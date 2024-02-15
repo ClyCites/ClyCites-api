@@ -1,20 +1,16 @@
 import pandas as pd
 import numpy as np
 
-# Generate dummy data for agricultural factors
 def generate_dummy_data(num_samples=1000):
     np.random.seed(42)
-    # Weather and climatic conditions
+
     temperature = np.random.uniform(15, 35, num_samples)  # Temperature in Celsius
     precipitation = np.random.uniform(0, 100, num_samples)  # Precipitation in mm
 
-    # Soil structure
     soil_ph = np.random.uniform(4, 8.5, num_samples)  # Soil pH
 
-    # Climate
     climate_zones = np.random.choice(['Tropical', 'Temperate', 'Arctic'], num_samples)
 
-    # Input and output expenses
     input_expenses = np.random.uniform(1000, 5000, num_samples)  # Input expenses in currency
     output_prices = np.random.uniform(5000, 10000, num_samples)  # Output prices in currency
 
