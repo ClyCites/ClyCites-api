@@ -39,7 +39,6 @@ const UserSchema = new mongoose.Schema(
       enum: ['admin', 'user'], // Modify based on your roles
       default: 'user',
     },
-    // Add more fields as needed (e.g., address, phone number, etc.)
   },
   { timestamps: true }
 );
