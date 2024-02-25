@@ -74,7 +74,7 @@ UserSchema.methods.generateAuthToken = function () {
     },
     constants.JWT_SECRET,
     {
-      expiresIn: '1h', // Token expires in 1 hour
+      expiresIn: '1h',
     }
   );
 };
