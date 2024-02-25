@@ -36,8 +36,8 @@ const UserSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ['admin', 'user'],
-      default: 'user',
+      enum: ['admin', 'user','guest','superadmin','company'],
+      default: 'guest',
     },
   },
   { timestamps: true }
@@ -74,7 +74,7 @@ UserSchema.methods.generateAuthToken = function () {
     },
     constants.JWT_SECRET,
     {
-      expiresIn: '1h', // Token expires in 1 hour
+      expiresIn: '1h',
     }
   );
 };
