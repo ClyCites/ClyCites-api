@@ -1,11 +1,12 @@
-// server.js
 
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-// const authController = require('@controllers/auth');
-
+import mongoose from "mongoose";
+import cors from "cors";
+import dotenv from "dotenv";
 const app = express();
+dotenv.config();
 
 // Middleware
 app.use(express.json());
@@ -25,6 +26,11 @@ app.get('/',  (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+mongoose
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server port: ${PORT}`));
+  })
