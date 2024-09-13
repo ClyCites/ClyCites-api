@@ -20,6 +20,16 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
+const refreshTokenSchema = new mongoose.Schema({
+    token: { type: String, required: true },
+    expiresAt: { type: Date, required: true },
+  });
+  
+  userSchema.add({
+    refreshTokens: [refreshTokenSchema],
+  });
+  
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
