@@ -16,7 +16,7 @@ const generateRefreshToken = (id) => {
     });
 };
 
-/// @desc Register new user
+// @desc Register new user
 // @route POST /api/auth/register
 const registerUser = async (req, res) => {
     const { fullName, email, password, role } = req.body; // Assuming role is included
@@ -59,30 +59,37 @@ const registerUser = async (req, res) => {
     }
 };
 
-
 // @desc Login user
 // @route POST /api/auth/login
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     try {
-      const user = await User.findOne({ email });
-      if (!user || user.password !== password) {
-        return res.status(401).json({ message: 'Invalid credentials' });
-      }
-  
-      const token = generateToken(user._id);
-      const refreshToken = generateRefreshToken(user._id);
-      user.refreshTokens.push({ token: refreshToken, expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
-      await user.save();
-  
-      res.status(200).json({ token, refreshToken });
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        // Compare password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid credentials' });
+        }
+
+        // Generate JWT and refresh token
+        const token = generateToken(user._id);
+        const refreshToken = generateRefreshToken(user._id);
+
+        // Save refresh token to user
+        user.refreshTokens.push({ token: refreshToken, expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) });
+        await user.save();
+
+        // Respond with tokens
+        res.status(200).json({ token, refreshToken });
     } catch (error) {
-      console.error('Error logging in:', error);
-      res.status(500).json({ message: 'Server error' });
+        console.error('Error logging in:', error);
+        res.status(500).json({ message: 'Server error' });
     }
-  };
-
-
+};
 
 // @desc Get user profile
 // @route GET /api/auth/me
@@ -100,4 +107,22 @@ const getMe = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, loginUser, getMe };
+// @desc Get all users (Admin only)
+// @route GET /api/auth/users
+const getAllUsers = async (req, res) => {
+    try {
+        // Only allow admin users to access this route
+        if (req.user.role !== 'admin') {
+            return res.status(403).json({ message: 'Access denied' });
+        }
+
+        // Fetch all users, excluding passwords
+        const users = await User.find().select('-password');
+        res.status(200).json(users);
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        res.status(500).json({ message: 'Error fetching users' });
+    }
+};
+
+module.exports = { registerUser, loginUser, getMe, getAllUsers };
