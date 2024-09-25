@@ -16,7 +16,6 @@ const generateRefreshToken = (id) => {
     });
 };
 
-// @desc Register new user
 // @route POST /api/auth/register
 const registerUser = async (req, res) => {
     const { fullName, email, password, role } = req.body; // Assuming role is included
@@ -59,7 +58,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-// @desc Login user
 // @route POST /api/auth/login
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
