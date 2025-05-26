@@ -1,32 +1,28 @@
 {
-  "name": "clycites-auth",
+  "name": "auth",
   "version": "1.0.0",
-  "description": "ClyCites Authentication Microservice",
-  "main": "./server",
+  "description": "This microservice is responsible for handling user authentication and authorization.",
+  "main": "index.js",
   "scripts": {
-    "start": "node ./server",
-    "dev": "nodemon ./server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "_moduleAliases": {
-    "@root": ".",
-    "@models": "models",
-    "@utils": "utils",
-    "@controllers": "controllers",
-    "@config": "config",
-    "@middleware": "middleware",
-    "@routes": "routes",
-    "@server": "server"
-  },
-  "author": "ClyCites",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "express": "^4.18.2",
-    "express-session": "^1.18.0",
-    "mongoose": "^8.2.2",
-    "nodemon": "^3.0.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken-refresh": "^5.7.0",
+    "mongoose": "^8.6.2",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "passport-microsoft": "^2.1.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
   }
 }
