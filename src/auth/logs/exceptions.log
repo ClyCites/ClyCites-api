@@ -1,0 +1,110 @@
+{
+  error: TypeError: JwtStrategy requires a secret or key
+      at new JwtStrategy (E:\Projects\ClyCites-api\src\auth\node_modules\passport-jwt\lib\strategy.js:45:15)
+      at configurePassport (file:///E:/Projects/ClyCites-api/src/auth/config/passport.js:8:16)
+      at file:///E:/Projects/ClyCites-api/src/auth/app.js:30:1
+      at ModuleJob.run (node:internal/modules/esm/module_job:218:25)
+      at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)
+      at async loadESM (node:internal/process/esm_loader:34:7)
+      at async handleMainPromise (node:internal/modules/run_main:113:12),
+  level: 'error',
+  message: 'uncaughtException: JwtStrategy requires a secret or key\n' +
+    'TypeError: JwtStrategy requires a secret or key\n' +
+    '    at new JwtStrategy (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport-jwt\\lib\\strategy.js:45:15)\n' +
+    '    at configurePassport (file:///E:/Projects/ClyCites-api/src/auth/config/passport.js:8:16)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/app.js:30:1\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  stack: 'TypeError: JwtStrategy requires a secret or key\n' +
+    '    at new JwtStrategy (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport-jwt\\lib\\strategy.js:45:15)\n' +
+    '    at configurePassport (file:///E:/Projects/ClyCites-api/src/auth/config/passport.js:8:16)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/app.js:30:1\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  exception: true,
+  date: 'Mon May 26 2025 16:34:15 GMT+0300 (East Africa Time)',
+  process: {
+    pid: 21432,
+    uid: null,
+    gid: null,
+    cwd: 'E:\\Projects\\ClyCites-api\\src\\auth',
+    execPath: 'C:\\Program Files\\nodejs\\node.exe',
+    version: 'v20.10.0',
+    argv: [
+      'C:\\Program Files\\nodejs\\node.exe',
+      'E:\\Projects\\ClyCites-api\\src\\auth\\app.js'
+    ],
+    memoryUsage: {
+      rss: 75476992,
+      heapTotal: 59740160,
+      heapUsed: 29967920,
+      external: 21076833,
+      arrayBuffers: 18262781
+    }
+  },
+  os: { loadavg: [ 0, 0, 0 ], uptime: 365276.562 },
+  trace: [
+    {
+      column: 15,
+      file: 'E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport-jwt\\lib\\strategy.js',
+      function: 'new JwtStrategy',
+      line: 45,
+      method: null,
+      native: false
+    },
+    {
+      column: 16,
+      file: 'file:///E:/Projects/ClyCites-api/src/auth/config/passport.js',
+      function: 'configurePassport',
+      line: 8,
+      method: null,
+      native: false
+    },
+    {
+      column: 1,
+      file: 'file:///E:/Projects/ClyCites-api/src/auth/app.js',
+      function: null,
+      line: 30,
+      method: null,
+      native: false
+    },
+    {
+      column: 25,
+      file: 'node:internal/modules/esm/module_job',
+      function: 'ModuleJob.run',
+      line: 218,
+      method: 'run',
+      native: false
+    },
+    {
+      column: 24,
+      file: 'node:internal/modules/esm/loader',
+      function: 'async ModuleLoader.import',
+      line: 329,
+      method: 'import',
+      native: false
+    },
+    {
+      column: 7,
+      file: 'node:internal/process/esm_loader',
+      function: 'async loadESM',
+      line: 34,
+      method: null,
+      native: false
+    },
+    {
+      column: 12,
+      file: 'node:internal/modules/run_main',
+      function: 'async handleMainPromise',
+      line: 113,
+      method: null,
+      native: false
+    }
+  ],
+  service: 'clycites-auth',
+  timestamp: '2025-05-26 16:34:15'
+}
