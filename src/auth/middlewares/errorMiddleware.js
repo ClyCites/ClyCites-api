@@ -30,14 +30,23 @@ const handleJWTExpiredError = () => new AppError("Your token has expired! Please
 
 // Send error in development
 const sendErrorDev = (err, req, res) => {
-  // Log error
+  // Log error with more details
   logger.error("Error 💥", {
-    error: err,
+    error: {
+      message: err.message,
+      stack: err.stack,
+      statusCode: err.statusCode,
+      isOperational: err.isOperational,
+      validationErrors: err.validationErrors,
+    },
     request: {
       method: req.method,
       url: req.originalUrl,
       headers: req.headers,
       body: req.body,
+      cookies: req.cookies,
+      query: req.query,
+      params: req.params,
       user: req.user?.id,
     },
   })
