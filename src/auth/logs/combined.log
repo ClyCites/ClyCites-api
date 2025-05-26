@@ -1,0 +1,184 @@
+{
+  service: 'clycites-auth',
+  method: 'GET',
+  url: '/favicon.ico',
+  ip: '::1',
+  userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+  level: 'warn',
+  message: '404 Error',
+  timestamp: '2025-05-26 17:27:55'
+}
+{
+  service: 'clycites-auth',
+  error: AppError: Not found - /favicon.ico
+      at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:142:8)
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at trim_prefix (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:328:13)
+      at E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:286:9
+      at Function.process_params (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:346:12)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:280:10)
+      at strategy.pass (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\middleware\authenticate.js:355:9)
+      at SessionStrategy.authenticate (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\strategies\session.js:126:10)
+      at attempt (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\middleware\authenticate.js:378:16)
+      at authenticate (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\middleware\authenticate.js:379:7) {
+    statusCode: 404,
+    status: 'fail',
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/favicon.ico',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+      'sec-fetch-site': 'same-origin',
+      'sec-fetch-mode': 'no-cors',
+      'sec-fetch-dest': 'image',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:27:55'
+}
+{
+  service: 'clycites-auth',
+  error: AppError: Validation failed
+      at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:146:17
+      at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\route.js:149:13)
+      at middleware (E:\Projects\ClyCites-api\src\auth\node_modules\express-validator\lib\middlewares\check.js:16:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+    statusCode: 400,
+    status: 'fail',
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Email or username is required',
+        path: 'identifier',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Password is required',
+        path: 'password',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/login',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '23b1a84e-f17f-4ecb-aaef-89d9c7a8a0f5',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:33:04'
+}
+{
+  service: 'clycites-auth',
+  error: AppError: Validation failed
+      at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:75:17
+      at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\route.js:149:13)
+      at middleware (E:\Projects\ClyCites-api\src\auth\node_modules\express-validator\lib\middlewares\check.js:16:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+    statusCode: 400,
+    status: 'fail',
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Username must be between 3 and 30 characters',
+        path: 'username',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Username can only contain letters, numbers, and underscores',
+        path: 'username',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Please provide a valid email',
+        path: 'email',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Password must be at least 8 characters long',
+        path: 'password',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+        path: 'password',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: '',
+        msg: 'First name is required and must not exceed 50 characters',
+        path: 'firstName',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: '',
+        msg: 'Last name is required and must not exceed 50 characters',
+        path: 'lastName',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/register',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '7d930cc1-330a-4c2f-ba29-0e07de04912c',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: { email: '@', firstName: '', lastName: '' },
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:36:54'
+}
