@@ -9,24 +9,13 @@ const __dirname = path.dirname(__filename)
 // Create email transporter
 const createTransporter = () => {
   if (process.env.NODE_ENV === "production") {
-    // Production email service (SendGrid, Mailgun, etc.)
-    if (process.env.EMAIL_SERVICE === "sendgrid") {
-      return nodemailer.createTransporter({
-        service: "SendGrid",
-        auth: {
-          user: "apikey",
-          pass: process.env.SENDGRID_API_KEY,
-        },
-      })
-    } else if (process.env.EMAIL_SERVICE === "mailgun") {
-      return nodemailer.createTransporter({
-        service: "Mailgun",
-        auth: {
-          user: process.env.MAILGUN_USERNAME,
-          pass: process.env.MAILGUN_PASSWORD,
-        },
-      })
-    }
+    return nodemailer.createTransporter({
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD, // Use App Password for Gmail
+    },
+  })
   }
 
   // Development or Gmail
