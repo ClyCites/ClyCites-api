@@ -67,7 +67,6 @@ export const configurePassport = () => {
     done(null, user._id);
   });
 
-  // Deserialize user from session
   passport.deserializeUser(async (id, done) => {
     try {
       const user = await User.findById(id);
