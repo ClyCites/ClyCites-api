@@ -398,7 +398,6 @@ export const changePassword = asyncHandler(async (req, res, next) => {
 
   const user = await User.findById(req.user.id).select("+password")
 
-  // Check current password
   if (!(await user.matchPassword(req.body.currentPassword))) {
     return next(new AppError("Current password is incorrect", 400))
   }
