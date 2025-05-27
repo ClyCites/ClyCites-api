@@ -298,7 +298,6 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
 })
 
 export const verifyEmail = asyncHandler(async (req, res, next) => {
-  // Get hashed token
   const hashedToken = crypto.createHash("sha256").update(req.params.token).digest("hex")
 
   const user = await User.findOne({
