@@ -180,46 +180,6 @@ The server will start on http://localhost:5000
 
 ## 🔧 Configuration
 
-### Email Services
-
-The system supports multiple email providers:
-
-**Gmail (Recommended for development):**
-\`\`\`env
-EMAIL_SERVICE=gmail
-EMAIL_USERNAME=your-email@gmail.com
-EMAIL_PASSWORD=your-gmail-app-password
-\`\`\`
-
-**SendGrid:**
-\`\`\`env
-EMAIL_SERVICE=sendgrid
-SENDGRID_API_KEY=your-sendgrid-api-key
-\`\`\`
-
-**Mailgun:**
-\`\`\`env
-EMAIL_SERVICE=mailgun
-MAILGUN_USERNAME=your-mailgun-username
-MAILGUN_PASSWORD=your-mailgun-password
-\`\`\`
-
-**Custom SMTP:**
-\`\`\`env
-SMTP_HOST=smtp.your-provider.com
-SMTP_PORT=587
-SMTP_SECURE=false
-EMAIL_USERNAME=your-email@domain.com
-EMAIL_PASSWORD=your-password
-\`\`\`
-
-### OAuth2 Providers
-
-**Google OAuth:**
-\`\`\`env
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-\`\`\`
 
 ### Security Configuration
 

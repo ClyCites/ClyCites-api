@@ -53,7 +53,7 @@ export const configurePassport = () => {
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         profilePicture: profile.photos[0]?.value,
-        isEmailVerified: true, // Google emails are pre-verified
+        isEmailVerified: true,
         lastLogin: new Date()
       });
 
@@ -63,7 +63,6 @@ export const configurePassport = () => {
     }
   }));
 
-  // Serialize user for session
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
