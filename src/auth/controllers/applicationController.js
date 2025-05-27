@@ -97,9 +97,6 @@ export const getApplication = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Regenerate client secret
-// @route   POST /api/applications/:appId/regenerate-secret
-// @access  Private (Admin+)
 export const regenerateClientSecret = asyncHandler(async (req, res, next) => {
   const application = await Application.findById(req.params.appId)
 
