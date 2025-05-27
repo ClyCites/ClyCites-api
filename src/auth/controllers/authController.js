@@ -239,7 +239,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
 export const refreshToken = asyncHandler(async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken || req.body.refreshToken
 
-  // Check if refresh token is provided
   if (!refreshToken) {
     return next(
       new AppError("Refresh token not provided. Please provide refreshToken in request body or cookies.", 401),
