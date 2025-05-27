@@ -24,7 +24,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
     return next(new AppError("Access denied", 403))
   }
 
-  // Validate application if specified
   let application = null
   if (applicationId) {
     application = await Application.findOne({
