@@ -81,7 +81,6 @@ export const getApplication = asyncHandler(async (req, res, next) => {
     return next(new AppError("Application not found", 404))
   }
 
-  // Check permissions
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: application.organization,
