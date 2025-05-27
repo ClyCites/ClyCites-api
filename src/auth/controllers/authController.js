@@ -168,9 +168,6 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
     })
 })
 
-// @desc    Get current user
-// @route   GET /api/auth/me
-// @access  Private
 export const getMe = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id)
 
