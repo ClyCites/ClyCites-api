@@ -4,9 +4,6 @@ import OrganizationMember from "../models/organizationMemberModel.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 
-// @desc    Create application
-// @route   POST /api/organizations/:orgId/applications
-// @access  Private (Admin+)
 export const createApplication = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -16,7 +13,6 @@ export const createApplication = asyncHandler(async (req, res, next) => {
   const { name, description, type, platform, redirectUris, scopes, grantTypes } = req.body
   const organizationId = req.params.orgId
 
-  // Check permissions
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: organizationId,
