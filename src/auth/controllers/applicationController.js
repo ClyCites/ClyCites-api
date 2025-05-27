@@ -48,7 +48,6 @@ export const createApplication = asyncHandler(async (req, res, next) => {
 export const getOrganizationApplications = asyncHandler(async (req, res, next) => {
   const organizationId = req.params.orgId
 
-  // Check permissions
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: organizationId,
@@ -73,9 +72,6 @@ export const getOrganizationApplications = asyncHandler(async (req, res, next) =
   })
 })
 
-// @desc    Get application details
-// @route   GET /api/applications/:appId
-// @access  Private (Admin+)
 export const getApplication = asyncHandler(async (req, res, next) => {
   const application = await Application.findById(req.params.appId)
     .select("-clientSecret")
