@@ -62,9 +62,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Get user's API tokens
-// @route   GET /api/organizations/:orgId/tokens
-// @access  Private
 export const getUserApiTokens = asyncHandler(async (req, res, next) => {
   const organizationId = req.params.orgId
 
