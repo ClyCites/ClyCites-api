@@ -29,17 +29,16 @@ export const configurePassport = () => {
       let user = await User.findOne({ googleId: profile.id });
 
       if (user) {
-        // Update last login
+
         user.lastLogin = new Date();
         await user.save();
         return done(null, user);
       }
 
-      // Check if user exists with same email
       user = await User.findOne({ email: profile.emails[0].value.toLowerCase() });
 
       if (user) {
-        // Link Google account to existing user
+
         user.googleId = profile.id;
         user.isEmailVerified = true; // Google emails are pre-verified
         user.lastLogin = new Date();
