@@ -384,15 +384,12 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   user.password = req.body.password
   user.passwordResetToken = undefined
   user.passwordResetExpires = undefined
-  user.refreshTokens = [] // Invalidate all refresh tokens
+  user.refreshTokens = []
   await user.save()
 
   sendTokenResponse(user, 200, res, "Password reset successful")
 })
 
-// @desc    Change password
-// @route   PUT /api/auth/change-password
-// @access  Private
 export const changePassword = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
