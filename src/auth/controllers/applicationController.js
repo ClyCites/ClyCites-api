@@ -35,7 +35,6 @@ export const createApplication = asyncHandler(async (req, res, next) => {
     createdBy: req.user.id,
   })
 
-  // Don't return client secret in response for security
   const responseApp = application.toObject()
   delete responseApp.clientSecret
 
