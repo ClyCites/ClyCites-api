@@ -20,12 +20,10 @@ const generateRefreshToken = (id) => {
   })
 }
 
-// Send token response
 const sendTokenResponse = async (user, statusCode, res, message = "Success") => {
   const token = generateToken(user._id)
   const refreshToken = generateRefreshToken(user._id)
 
-  // Save refresh token to user
   user.refreshTokens.push({
     token: crypto.createHash("sha256").update(refreshToken).digest("hex"),
   })
@@ -63,11 +61,7 @@ const sendTokenResponse = async (user, statusCode, res, message = "Success") => 
     })
 }
 
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
 export const registerUser = asyncHandler(async (req, res, next) => {
-  // Check for validation errors
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return next(new AppError("Validation failed", 400, errors.array()))
@@ -75,7 +69,6 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   const { username, email, password, firstName, lastName } = req.body
 
-  // Check if user already exists
   const existingUser = await User.findOne({
     $or: [{ email: email.toLowerCase() }, { username }],
   })
@@ -84,7 +77,6 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     return next(new AppError("User already exists with this email or username", 400))
   }
 
-  // Create user
   const user = await User.create({
     username,
     email: email.toLowerCase(),
@@ -93,11 +85,9 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     lastName,
   })
 
-  // Generate email verification token
   const verificationToken = user.generateEmailVerificationToken()
   await user.save({ validateBeforeSave: false })
 
-  // Send verification email
   try {
     const verificationUrl = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`
 
@@ -134,11 +124,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 export const loginUser = asyncHandler(async (req, res, next) => {
-  // Check for validation errors
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return next(new AppError("Validation failed", 400, errors.array()))
