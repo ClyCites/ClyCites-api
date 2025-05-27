@@ -211,7 +211,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
   if (lastName) user.lastName = lastName
   if (username) user.username = username
 
-  // Handle profile picture upload
   if (req.file) {
     user.profilePicture = `/uploads/profiles/${req.file.filename}`
   }
