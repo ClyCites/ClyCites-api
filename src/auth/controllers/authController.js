@@ -246,11 +246,9 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
   }
 
   try {
-    // Verify refresh token
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET)
     const hashedToken = crypto.createHash("sha256").update(refreshToken).digest("hex")
 
-    // Find user with this refresh token
     const user = await User.findOne({
       _id: decoded.id,
       "refreshTokens.token": hashedToken,
