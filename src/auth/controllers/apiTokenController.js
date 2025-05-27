@@ -5,9 +5,6 @@ import Application from "../models/applicationModel.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 
-// @desc    Create API token
-// @route   POST /api/organizations/:orgId/tokens
-// @access  Private (Member+)
 export const createApiToken = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
