@@ -1,0 +1,1146 @@
+{
+  service: 'clycites-auth',
+  error: AppError: Not found - /favicon.ico
+      at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:142:8)
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at trim_prefix (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:328:13)
+      at E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:286:9
+      at Function.process_params (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:346:12)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:280:10)
+      at strategy.pass (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\middleware\authenticate.js:355:9)
+      at SessionStrategy.authenticate (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\strategies\session.js:126:10)
+      at attempt (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\middleware\authenticate.js:378:16)
+      at authenticate (E:\Projects\ClyCites-api\src\auth\node_modules\passport\lib\middleware\authenticate.js:379:7) {
+    statusCode: 404,
+    status: 'fail',
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/favicon.ico',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+      'sec-fetch-site': 'same-origin',
+      'sec-fetch-mode': 'no-cors',
+      'sec-fetch-dest': 'image',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:27:55'
+}
+{
+  service: 'clycites-auth',
+  error: AppError: Validation failed
+      at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:146:17
+      at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\route.js:149:13)
+      at middleware (E:\Projects\ClyCites-api\src\auth\node_modules\express-validator\lib\middlewares\check.js:16:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+    statusCode: 400,
+    status: 'fail',
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Email or username is required',
+        path: 'identifier',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Password is required',
+        path: 'password',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/login',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '23b1a84e-f17f-4ecb-aaef-89d9c7a8a0f5',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:33:04'
+}
+{
+  service: 'clycites-auth',
+  error: AppError: Validation failed
+      at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:75:17
+      at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\route.js:149:13)
+      at middleware (E:\Projects\ClyCites-api\src\auth\node_modules\express-validator\lib\middlewares\check.js:16:13)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+    statusCode: 400,
+    status: 'fail',
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Username must be between 3 and 30 characters',
+        path: 'username',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Username can only contain letters, numbers, and underscores',
+        path: 'username',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Please provide a valid email',
+        path: 'email',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Password must be at least 8 characters long',
+        path: 'password',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character',
+        path: 'password',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: '',
+        msg: 'First name is required and must not exceed 50 characters',
+        path: 'firstName',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: '',
+        msg: 'Last name is required and must not exceed 50 characters',
+        path: 'lastName',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/register',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '7d930cc1-330a-4c2f-ba29-0e07de04912c',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: { email: '@', firstName: '', lastName: '' },
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:36:54'
+}
+{
+  service: 'clycites-auth',
+  error: TypeError: Cannot read properties of undefined (reading 'refreshToken')
+      at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:275:36
+      at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\route.js:149:13)
+      at Route.dispatch (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\route.js:119:3)
+      at Layer.handle [as handle_request] (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\layer.js:95:5)
+      at E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:284:15
+      at Function.process_params (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:346:12)
+      at next (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:280:10)
+      at Function.handle (E:\Projects\ClyCites-api\src\auth\node_modules\express\lib\router\index.js:175:3) {
+    statusCode: 500,
+    status: 'error'
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'edcdbffb-4a55-4a5b-8758-770d4ca2cb18',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:44:29'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'refreshToken')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'refreshToken')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:270:36\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\route.js:149:13)\n' +
+      '    at Route.dispatch (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\route.js:119:3)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:284:15\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '582db9bf-24d3-465c-b77a-208c86a5879b',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 17:53:28'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token/:token',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'db7546dc-8587-472e-af46-eb9db17b7bec',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:01:26'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Validation failed',
+    stack: 'Error: Validation failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:370:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\route.js:149:13)\n' +
+      '    at middleware (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 400,
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'Please provide a valid email',
+        path: 'email',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/forgot-password',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '7b35b856-ecde-426c-a1b7-a7b0c7c6b6d2',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: { email: '@' },
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:04:00'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/reset-password/:token',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '260492f3-4f74-4768-949d-16f3b33f083e',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:04:59'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/google',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '0b838cb7-123e-4340-a166-d74c5f42f6e7',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:05:47'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/logout',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'e7ed75bc-f8f7-4ffe-8804-15e78eccc1a4',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:13:10'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/logout',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '0c652d15-cba8-40d0-8725-545f005c96ee',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:15:27'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/me',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'dd5b897c-6da7-4eee-b9d4-a948324c45d6',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '0'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:16:39'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/me',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'a8a1d970-1d30-46f6-a484-9bad07338c2d',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:16:45'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/me',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'ce3cd959-eda3-43ea-9de9-bff72556257e',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:17:28'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/profile',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'af80a740-827a-4db9-bca0-5567275afb09',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:18:53'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/change-password',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': 'd4d259ae-6127-495e-b2a9-1c6d1ac4e0cf',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:19:49'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: "Cannot read properties of undefined (reading 'token')",
+    stack: "TypeError: Cannot read properties of undefined (reading 'token')\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:16:29\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/users',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.43.3',
+      accept: '*/*',
+      'postman-token': '01e045d7-f4a2-47cb-bc25-42b17735569e',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: undefined,
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-26 18:23:25'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:39:04'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/docs',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+      'upgrade-insecure-requests': '1',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'sec-fetch-site': 'none',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-user': '?1',
+      'sec-fetch-dest': 'document',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    cookies: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs',
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:39:52'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /favicon.ico',
+    stack: 'Error: Not found - /favicon.ico\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:151:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at strategy.pass (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\middleware\\authenticate.js:355:9)\n' +
+      '    at SessionStrategy.authenticate (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\strategies\\session.js:126:10)\n' +
+      '    at attempt (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\middleware\\authenticate.js:378:16)\n' +
+      '    at authenticate (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\middleware\\authenticate.js:379:7)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/favicon.ico',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+      'sec-fetch-site': 'same-origin',
+      'sec-fetch-mode': 'no-cors',
+      'sec-fetch-dest': 'image',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    cookies: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs',
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:39:53'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/health',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+      'upgrade-insecure-requests': '1',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'sec-fetch-site': 'none',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-user': '?1',
+      'sec-fetch-dest': 'document',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    cookies: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs',
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:40:35'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/docs',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'postman-token': '9905f9e8-9670-4645-8895-4962ffa2c307',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:44:28'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:47:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:48:37'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:49:53'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/postman',
+    headers: {
+      host: 'localhost:5000',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'accept-language': 'en-US,en;q=0.5',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      connection: 'keep-alive',
+      'upgrade-insecure-requests': '1',
+      'sec-fetch-dest': 'document',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-site': 'none',
+      'sec-fetch-user': '?1',
+      priority: 'u=0, i'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:53:44'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/openapi',
+    headers: {
+      host: 'localhost:5000',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'accept-language': 'en-US,en;q=0.5',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      connection: 'keep-alive',
+      'upgrade-insecure-requests': '1',
+      'sec-fetch-dest': 'document',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-site': 'none',
+      'sec-fetch-user': '?1',
+      priority: 'u=0, i'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:53:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:29:23'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:29:40'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:31:22'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:31:54'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:32:11'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:32:24'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:35:21'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:35:47'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:35:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:10'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:22'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:39'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:50'
+}
