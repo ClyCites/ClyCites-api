@@ -403,7 +403,7 @@ export const changePassword = asyncHandler(async (req, res, next) => {
   }
 
   user.password = req.body.newPassword
-  user.refreshTokens = [] // Invalidate all refresh tokens
+  user.refreshTokens = []
   await user.save()
 
   sendTokenResponse(user, 200, res, "Password changed successfully")
