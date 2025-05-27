@@ -191,9 +191,6 @@ export const getMe = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
 export const updateProfile = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
