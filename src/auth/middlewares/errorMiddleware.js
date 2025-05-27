@@ -30,26 +30,28 @@ const handleJWTExpiredError = () => new AppError("Your token has expired! Please
 
 // Send error in development
 const sendErrorDev = (err, req, res) => {
-  // Log error with more details
-  logger.error("Error 💥", {
-    error: {
-      message: err.message,
-      stack: err.stack,
-      statusCode: err.statusCode,
-      isOperational: err.isOperational,
-      validationErrors: err.validationErrors,
-    },
-    request: {
-      method: req.method,
-      url: req.originalUrl,
-      headers: req.headers,
-      body: req.body,
-      cookies: req.cookies,
-      query: req.query,
-      params: req.params,
-      user: req.user?.id,
-    },
-  })
+  // Don't log favicon errors
+  if (req.originalUrl !== "/favicon.ico") {
+    logger.error("Error 💥", {
+      error: {
+        message: err.message,
+        stack: err.stack,
+        statusCode: err.statusCode,
+        isOperational: err.isOperational,
+        validationErrors: err.validationErrors,
+      },
+      request: {
+        method: req.method,
+        url: req.originalUrl,
+        headers: req.headers,
+        body: req.body,
+        cookies: req.cookies,
+        query: req.query,
+        params: req.params,
+        user: req.user?.id,
+      },
+    })
+  }
 
   // API Error
   if (req.originalUrl.startsWith("/api")) {
@@ -71,17 +73,19 @@ const sendErrorDev = (err, req, res) => {
 
 // Send error in production
 const sendErrorProd = (err, req, res) => {
-  // Log error
-  logger.error("Error 💥", {
-    message: err.message,
-    statusCode: err.statusCode,
-    isOperational: err.isOperational,
-    request: {
-      method: req.method,
-      url: req.originalUrl,
-      user: req.user?.id,
-    },
-  })
+  // Don't log favicon errors
+  if (req.originalUrl !== "/favicon.ico") {
+    logger.error("Error 💥", {
+      message: err.message,
+      statusCode: err.statusCode,
+      isOperational: err.isOperational,
+      request: {
+        method: req.method,
+        url: req.originalUrl,
+        user: req.user?.id,
+      },
+    })
+  }
 
   // API Error
   if (req.originalUrl.startsWith("/api")) {
@@ -140,7 +144,14 @@ export const errorHandler = (err, req, res, next) => {
 
 // Handle 404 errors
 export const notFound = (req, res, next) => {
+  // Don't create errors for favicon requests
+  if (req.originalUrl === "/favicon.ico") {
+    return res.status(204).end()
+  }
+
   const message = `Not found - ${req.originalUrl}`
+
+  // Only log non-favicon 404s
   logger.warn("404 Error", {
     method: req.method,
     url: req.originalUrl,
