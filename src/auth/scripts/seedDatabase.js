@@ -9,11 +9,39 @@ dotenv.config()
 
 const seedDatabase = async () => {
   try {
+    console.log("🌱 Starting database seeding...")
+    console.log(`📍 Environment: ${process.env.NODE_ENV || "development"}`)
+    console.log(`🔗 Database: ${process.env.MONGODB_URI ? "MongoDB Atlas" : "Local MongoDB"}`)
+
     await connectDB()
 
-    console.log("🌱 Starting database seeding...")
+    // Check if data already exists
+    const existingUsers = await User.countDocuments()
+    const existingOrgs = await Organization.countDocuments()
+
+    if (existingUsers > 0 || existingOrgs > 0) {
+      console.log("⚠️  Database already contains data!")
+      console.log(`   Users: ${existingUsers}, Organizations: ${existingOrgs}`)
+
+      const readline = await import("readline")
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      })
+
+      const answer = await new Promise((resolve) => {
+        rl.question("Do you want to clear existing data and reseed? (yes/no): ", resolve)
+      })
+      rl.close()
+
+      if (answer.toLowerCase() !== "yes" && answer.toLowerCase() !== "y") {
+        console.log("❌ Seeding cancelled by user")
+        process.exit(0)
+      }
+    }
 
     // Clear existing data
+    console.log("🗑️  Clearing existing data...")
     await Promise.all([
       User.deleteMany({}),
       Organization.deleteMany({}),
@@ -21,9 +49,10 @@ const seedDatabase = async () => {
       Role.deleteMany({}),
     ])
 
-    console.log("🗑️  Cleared existing data")
+    console.log("✅ Cleared existing data")
 
     // Create super admin user
+    console.log("👤 Creating super admin user...")
     const superAdmin = await User.create({
       username: "superadmin",
       email: "admin@clycites.com",
@@ -34,9 +63,10 @@ const seedDatabase = async () => {
       isEmailVerified: true,
     })
 
-    console.log("👤 Created super admin user")
+    console.log("✅ Created super admin user")
 
     // Create default ClyCites organization
+    console.log("🏢 Creating ClyCites organization...")
     const clycitesOrg = await Organization.create({
       name: "ClyCites",
       slug: "clycites",
@@ -77,19 +107,34 @@ const seedDatabase = async () => {
       },
     })
 
-    console.log("🏢 Created ClyCites organization")
+    console.log("✅ Created ClyCites organization")
+
+    // Define all available actions based on the Role model enum
+    const allActions = ["create", "read", "update", "delete", "manage", "invite", "approve", "export", "import"]
 
     // Create system roles for ClyCites organization
+    console.log("🔐 Creating system roles...")
     const systemRoles = [
       {
         name: "Platform Owner",
+        slug: "platform-owner",
         description: "Full platform control and ownership",
         level: 100,
-        permissions: [{ resource: "*", actions: ["*"] }],
+        permissions: [
+          { resource: "organizations", actions: allActions },
+          { resource: "users", actions: allActions },
+          { resource: "teams", actions: allActions },
+          { resource: "roles", actions: allActions },
+          { resource: "applications", actions: allActions },
+          { resource: "system", actions: allActions },
+          { resource: "billing", actions: allActions },
+          { resource: "analytics", actions: allActions },
+        ],
         isSystem: true,
       },
       {
         name: "Platform Admin",
+        slug: "platform-admin",
         description: "Platform administration access",
         level: 95,
         permissions: [
@@ -102,6 +147,7 @@ const seedDatabase = async () => {
       },
       {
         name: "Organization Owner",
+        slug: "organization-owner",
         description: "Full organization control",
         level: 90,
         permissions: [
@@ -116,6 +162,7 @@ const seedDatabase = async () => {
       },
       {
         name: "Organization Admin",
+        slug: "organization-admin",
         description: "Organization administrative access",
         level: 85,
         permissions: [
@@ -128,6 +175,7 @@ const seedDatabase = async () => {
       },
       {
         name: "Team Manager",
+        slug: "team-manager",
         description: "Team management access",
         level: 70,
         permissions: [
@@ -139,6 +187,7 @@ const seedDatabase = async () => {
       },
       {
         name: "Developer",
+        slug: "developer",
         description: "Development access",
         level: 60,
         permissions: [
@@ -150,6 +199,7 @@ const seedDatabase = async () => {
       },
       {
         name: "Member",
+        slug: "member",
         description: "Standard member access",
         level: 50,
         permissions: [
@@ -161,6 +211,7 @@ const seedDatabase = async () => {
       },
       {
         name: "Viewer",
+        slug: "viewer",
         description: "Read-only access",
         level: 10,
         permissions: [
@@ -179,7 +230,7 @@ const seedDatabase = async () => {
       })),
     )
 
-    console.log("🔐 Created system roles")
+    console.log(`✅ Created ${createdRoles.length} system roles`)
 
     // Add super admin as platform owner
     const platformOwnerRole = createdRoles.find((role) => role.name === "Platform Owner")
@@ -194,6 +245,7 @@ const seedDatabase = async () => {
     console.log("👑 Added super admin as platform owner")
 
     // Create sample users
+    console.log("👥 Creating sample users...")
     const sampleUsers = [
       {
         username: "johndoe",
@@ -214,7 +266,7 @@ const seedDatabase = async () => {
     ]
 
     const createdUsers = await User.create(sampleUsers)
-    console.log("👥 Created sample users")
+    console.log(`✅ Created ${createdUsers.length} sample users`)
 
     // Add sample users to ClyCites organization
     const memberRole = createdRoles.find((role) => role.name === "Member")
@@ -228,19 +280,49 @@ const seedDatabase = async () => {
       })
     }
 
-    console.log("✅ Database seeding completed successfully!")
+    console.log("✅ Added sample users to ClyCites organization")
+
+    console.log("\n🎉 Database seeding completed successfully!")
     console.log("\n📋 Seeded data summary:")
     console.log(`   • 1 Super Admin: admin@clycites.com (password: SuperAdmin123!)`)
     console.log(`   • 1 Default Organization: ClyCites`)
     console.log(`   • ${systemRoles.length} System Roles`)
     console.log(`   • ${sampleUsers.length} Sample Users`)
+    console.log("\n🔐 Login credentials:")
+    console.log("   Super Admin: admin@clycites.com / SuperAdmin123!")
+    console.log("   Sample User 1: john@example.com / Password123!")
+    console.log("   Sample User 2: jane@example.com / Password123!")
     console.log("\n🚀 You can now start the server and begin using the authentication system!")
+    const PORT = process.env.PORT || 5000
+    console.log(`📍 Server will run on: http://localhost:${PORT}`)
 
     process.exit(0)
   } catch (error) {
     console.error("❌ Error seeding database:", error)
+
+    // Provide helpful error messages
+    if (error.name === "MongoServerSelectionError") {
+      console.error("💡 MongoDB connection failed. Please check:")
+      console.error("   - Your MongoDB Atlas connection string")
+      console.error("   - Network access settings in MongoDB Atlas")
+      console.error("   - Database user permissions")
+    }
+
+    if (error.name === "ValidationError") {
+      console.error("💡 Database validation failed. This might be due to:")
+      console.error("   - Schema changes that require model updates")
+      console.error("   - Invalid enum values in the data")
+      console.error("   - Missing required fields")
+    }
+
     process.exit(1)
   }
 }
+
+// Handle process termination
+process.on("SIGINT", () => {
+  console.log("\n⚠️  Seeding interrupted by user")
+  process.exit(0)
+})
 
 seedDatabase()
