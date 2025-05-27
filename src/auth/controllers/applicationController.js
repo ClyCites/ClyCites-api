@@ -45,9 +45,6 @@ export const createApplication = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Get organization applications
-// @route   GET /api/organizations/:orgId/applications
-// @access  Private (Admin+)
 export const getOrganizationApplications = asyncHandler(async (req, res, next) => {
   const organizationId = req.params.orgId
 
