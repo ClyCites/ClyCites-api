@@ -207,7 +207,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
     }
   }
 
-  // Update fields
   if (firstName) user.firstName = firstName
   if (lastName) user.lastName = lastName
   if (username) user.username = username
