@@ -14,7 +14,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   const { name, description, scopes, permissions, applicationId, expiresAt } = req.body
   const organizationId = req.params.orgId
 
-  // Check organization membership
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: organizationId,
