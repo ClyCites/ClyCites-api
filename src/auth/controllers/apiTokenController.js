@@ -65,7 +65,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
 export const getUserApiTokens = asyncHandler(async (req, res, next) => {
   const organizationId = req.params.orgId
 
-  // Check organization membership
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: organizationId,
@@ -91,9 +90,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Revoke API token
-// @route   DELETE /api/tokens/:tokenId
-// @access  Private
 export const revokeApiToken = asyncHandler(async (req, res, next) => {
   const token = await ApiToken.findById(req.params.tokenId)
 
