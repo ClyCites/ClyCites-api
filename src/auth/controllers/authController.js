@@ -362,9 +362,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Reset password
-// @route   PUT /api/auth/reset-password/:token
-// @access  Public
 export const resetPassword = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
