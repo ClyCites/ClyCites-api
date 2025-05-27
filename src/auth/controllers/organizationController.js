@@ -7,9 +7,6 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 import { sendEmail } from "../utils/emailService.js"
 
-// @desc    Create organization
-// @route   POST /api/organizations
-// @access  Private
 export const createOrganization = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
