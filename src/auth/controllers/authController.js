@@ -200,7 +200,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
   const { firstName, lastName, username } = req.body
   const user = await User.findById(req.user.id)
 
-  // Check if username is already taken by another user
   if (username && username !== user.username) {
     const existingUser = await User.findOne({ username, _id: { $ne: user._id } })
     if (existingUser) {
