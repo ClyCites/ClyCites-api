@@ -145,9 +145,6 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Logout user
-// @route   POST /api/auth/logout
-// @access  Private
 export const logoutUser = asyncHandler(async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken || req.body.refreshToken
 
