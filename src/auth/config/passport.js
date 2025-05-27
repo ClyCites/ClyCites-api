@@ -40,13 +40,12 @@ export const configurePassport = () => {
       if (user) {
 
         user.googleId = profile.id;
-        user.isEmailVerified = true; // Google emails are pre-verified
+        user.isEmailVerified = true;
         user.lastLogin = new Date();
         await user.save();
         return done(null, user);
       }
 
-      // Create new user
       user = await User.create({
         googleId: profile.id,
         username: profile.emails[0].value.split('@')[0] + '_' + Date.now(),
