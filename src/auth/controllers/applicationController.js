@@ -104,7 +104,6 @@ export const regenerateClientSecret = asyncHandler(async (req, res, next) => {
     return next(new AppError("Application not found", 404))
   }
 
-  // Check permissions
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: application.organization,
@@ -115,7 +114,6 @@ export const regenerateClientSecret = asyncHandler(async (req, res, next) => {
     return next(new AppError("Insufficient permissions", 403))
   }
 
-  // Generate new secret
   const crypto = await import("crypto")
   application.clientSecret = crypto.default.randomBytes(32).toString("hex")
   await application.save()
