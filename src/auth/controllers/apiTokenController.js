@@ -47,7 +47,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
     createdBy: req.user.id,
   })
 
-  // Return the token only once (for security)
   const responseToken = apiToken.toObject()
   const plainToken = responseToken.token
   delete responseToken.token
@@ -57,7 +56,7 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
     success: true,
     message: "API token created successfully",
     data: {
-      token: plainToken, // Show only once
+      token: plainToken,
       apiToken: responseToken,
     },
   })
