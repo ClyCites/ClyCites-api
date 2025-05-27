@@ -151,7 +151,6 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
   if (refreshToken) {
     const hashedToken = crypto.createHash("sha256").update(refreshToken).digest("hex")
 
-    // Remove refresh token from user's tokens array
     await User.updateOne({ _id: req.user.id }, { $pull: { refreshTokens: { token: hashedToken } } })
   }
 
