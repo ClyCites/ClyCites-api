@@ -320,9 +320,6 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Forgot password
-// @route   POST /api/auth/forgot-password
-// @access  Public
 export const forgotPassword = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
