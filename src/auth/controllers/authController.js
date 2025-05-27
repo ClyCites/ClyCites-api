@@ -20,12 +20,10 @@ const generateRefreshToken = (id) => {
   })
 }
 
-// Send token response
 const sendTokenResponse = async (user, statusCode, res, message = "Success") => {
   const token = generateToken(user._id)
   const refreshToken = generateRefreshToken(user._id)
 
-  // Save refresh token to user
   user.refreshTokens.push({
     token: crypto.createHash("sha256").update(refreshToken).digest("hex"),
   })
@@ -63,11 +61,7 @@ const sendTokenResponse = async (user, statusCode, res, message = "Success") => 
     })
 }
 
-// @desc    Register user
-// @route   POST /api/auth/register
-// @access  Public
 export const registerUser = asyncHandler(async (req, res, next) => {
-  // Check for validation errors
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return next(new AppError("Validation failed", 400, errors.array()))
@@ -75,7 +69,6 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   const { username, email, password, firstName, lastName } = req.body
 
-  // Check if user already exists
   const existingUser = await User.findOne({
     $or: [{ email: email.toLowerCase() }, { username }],
   })
@@ -84,7 +77,6 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     return next(new AppError("User already exists with this email or username", 400))
   }
 
-  // Create user
   const user = await User.create({
     username,
     email: email.toLowerCase(),
@@ -93,11 +85,9 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     lastName,
   })
 
-  // Generate email verification token
   const verificationToken = user.generateEmailVerificationToken()
   await user.save({ validateBeforeSave: false })
 
-  // Send verification email
   try {
     const verificationUrl = `${process.env.CLIENT_URL}/verify-email/${verificationToken}`
 
@@ -134,11 +124,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 export const loginUser = asyncHandler(async (req, res, next) => {
-  // Check for validation errors
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     return next(new AppError("Validation failed", 400, errors.array()))
@@ -159,16 +145,12 @@ export const loginUser = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Logout user
-// @route   POST /api/auth/logout
-// @access  Private
 export const logoutUser = asyncHandler(async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken || req.body.refreshToken
 
   if (refreshToken) {
     const hashedToken = crypto.createHash("sha256").update(refreshToken).digest("hex")
 
-    // Remove refresh token from user's tokens array
     await User.updateOne({ _id: req.user.id }, { $pull: { refreshTokens: { token: hashedToken } } })
   }
 
@@ -186,9 +168,6 @@ export const logoutUser = asyncHandler(async (req, res, next) => {
     })
 })
 
-// @desc    Get current user
-// @route   GET /api/auth/me
-// @access  Private
 export const getMe = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id)
 
@@ -212,9 +191,6 @@ export const getMe = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
 export const updateProfile = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -224,7 +200,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
   const { firstName, lastName, username } = req.body
   const user = await User.findById(req.user.id)
 
-  // Check if username is already taken by another user
   if (username && username !== user.username) {
     const existingUser = await User.findOne({ username, _id: { $ne: user._id } })
     if (existingUser) {
@@ -232,12 +207,10 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
     }
   }
 
-  // Update fields
   if (firstName) user.firstName = firstName
   if (lastName) user.lastName = lastName
   if (username) user.username = username
 
-  // Handle profile picture upload
   if (req.file) {
     user.profilePicture = `/uploads/profiles/${req.file.filename}`
   }
@@ -263,13 +236,9 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Refresh access token
-// @route   POST /api/auth/refresh-token
-// @access  Public
 export const refreshToken = asyncHandler(async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken || req.body.refreshToken
 
-  // Check if refresh token is provided
   if (!refreshToken) {
     return next(
       new AppError("Refresh token not provided. Please provide refreshToken in request body or cookies.", 401),
@@ -277,11 +246,9 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
   }
 
   try {
-    // Verify refresh token
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET)
     const hashedToken = crypto.createHash("sha256").update(refreshToken).digest("hex")
 
-    // Find user with this refresh token
     const user = await User.findOne({
       _id: decoded.id,
       "refreshTokens.token": hashedToken,
@@ -291,17 +258,14 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Invalid refresh token. Please login again.", 401))
     }
 
-    // Check if user is active
     if (!user.isActive) {
       return next(new AppError("Your account has been deactivated. Please contact support.", 401))
     }
 
-    // Check if account is locked
     if (user.isLocked) {
       return next(new AppError("Account temporarily locked due to too many failed login attempts", 401))
     }
 
-    // Generate new access token
     const newAccessToken = generateToken(user._id)
 
     res.status(200).json({
@@ -333,11 +297,7 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Verify email
-// @route   GET /api/auth/verify-email/:token
-// @access  Public
 export const verifyEmail = asyncHandler(async (req, res, next) => {
-  // Get hashed token
   const hashedToken = crypto.createHash("sha256").update(req.params.token).digest("hex")
 
   const user = await User.findOne({
@@ -349,7 +309,6 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
     return next(new AppError("Invalid or expired verification token", 400))
   }
 
-  // Update user
   user.isEmailVerified = true
   user.emailVerificationToken = undefined
   user.emailVerificationExpires = undefined
@@ -361,9 +320,6 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Forgot password
-// @route   POST /api/auth/forgot-password
-// @access  Public
 export const forgotPassword = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -406,9 +362,6 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Reset password
-// @route   PUT /api/auth/reset-password/:token
-// @access  Public
 export const resetPassword = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -431,15 +384,12 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   user.password = req.body.password
   user.passwordResetToken = undefined
   user.passwordResetExpires = undefined
-  user.refreshTokens = [] // Invalidate all refresh tokens
+  user.refreshTokens = []
   await user.save()
 
   sendTokenResponse(user, 200, res, "Password reset successful")
 })
 
-// @desc    Change password
-// @route   PUT /api/auth/change-password
-// @access  Private
 export const changePassword = asyncHandler(async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -448,13 +398,12 @@ export const changePassword = asyncHandler(async (req, res, next) => {
 
   const user = await User.findById(req.user.id).select("+password")
 
-  // Check current password
   if (!(await user.matchPassword(req.body.currentPassword))) {
     return next(new AppError("Current password is incorrect", 400))
   }
 
   user.password = req.body.newPassword
-  user.refreshTokens = [] // Invalidate all refresh tokens
+  user.refreshTokens = []
   await user.save()
 
   sendTokenResponse(user, 200, res, "Password changed successfully")

@@ -20,36 +20,32 @@ export const configurePassport = () => {
     }
   }));
 
-  // Google OAuth Strategy
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: '/api/auth/google/callback'
   }, async (accessToken, refreshToken, profile, done) => {
     try {
-      // Check if user already exists with this Google ID
       let user = await User.findOne({ googleId: profile.id });
 
       if (user) {
-        // Update last login
+
         user.lastLogin = new Date();
         await user.save();
         return done(null, user);
       }
 
-      // Check if user exists with same email
       user = await User.findOne({ email: profile.emails[0].value.toLowerCase() });
 
       if (user) {
-        // Link Google account to existing user
+
         user.googleId = profile.id;
-        user.isEmailVerified = true; // Google emails are pre-verified
+        user.isEmailVerified = true;
         user.lastLogin = new Date();
         await user.save();
         return done(null, user);
       }
 
-      // Create new user
       user = await User.create({
         googleId: profile.id,
         username: profile.emails[0].value.split('@')[0] + '_' + Date.now(),
@@ -57,7 +53,7 @@ export const configurePassport = () => {
         firstName: profile.name.givenName,
         lastName: profile.name.familyName,
         profilePicture: profile.photos[0]?.value,
-        isEmailVerified: true, // Google emails are pre-verified
+        isEmailVerified: true,
         lastLogin: new Date()
       });
 
@@ -67,12 +63,10 @@ export const configurePassport = () => {
     }
   }));
 
-  // Serialize user for session
   passport.serializeUser((user, done) => {
     done(null, user._id);
   });
 
-  // Deserialize user from session
   passport.deserializeUser(async (id, done) => {
     try {
       const user = await User.findById(id);

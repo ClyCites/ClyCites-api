@@ -739,3 +739,408 @@
   message: 'Error 💥',
   timestamp: '2025-05-26 18:23:25'
 }
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:39:04'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/docs',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+      'upgrade-insecure-requests': '1',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'sec-fetch-site': 'none',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-user': '?1',
+      'sec-fetch-dest': 'document',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    cookies: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs',
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:39:52'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /favicon.ico',
+    stack: 'Error: Not found - /favicon.ico\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:151:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at strategy.pass (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\middleware\\authenticate.js:355:9)\n' +
+      '    at SessionStrategy.authenticate (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\strategies\\session.js:126:10)\n' +
+      '    at attempt (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\middleware\\authenticate.js:378:16)\n' +
+      '    at authenticate (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\passport\\lib\\middleware\\authenticate.js:379:7)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/favicon.ico',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
+      'sec-fetch-site': 'same-origin',
+      'sec-fetch-mode': 'no-cors',
+      'sec-fetch-dest': 'image',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    cookies: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs',
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:39:53'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/health',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua': '"Chromium";v="136", "Google Chrome";v="136", "Not.A/Brand";v="99"',
+      'sec-ch-ua-mobile': '?0',
+      'sec-ch-ua-platform': '"Windows"',
+      'upgrade-insecure-requests': '1',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+      'sec-fetch-site': 'none',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-user': '?1',
+      'sec-fetch-dest': 'document',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs; refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    body: {},
+    cookies: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs',
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0ODA5ODQ0NCwiZXhwIjoxNzQ4NzAzMjQ0fQ.-6z-36l4SP0Wi_7ilCHMB-Z1I8Iyn3_zxE-gQIHJkWs'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:40:35'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/docs',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'postman-token': '9905f9e8-9670-4645-8895-4962ffa2c307',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:44:28'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:47:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:48:37'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 18:49:53'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/postman',
+    headers: {
+      host: 'localhost:5000',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'accept-language': 'en-US,en;q=0.5',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      connection: 'keep-alive',
+      'upgrade-insecure-requests': '1',
+      'sec-fetch-dest': 'document',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-site': 'none',
+      'sec-fetch-user': '?1',
+      priority: 'u=0, i'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:53:44'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/openapi',
+    headers: {
+      host: 'localhost:5000',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0',
+      accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+      'accept-language': 'en-US,en;q=0.5',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      connection: 'keep-alive',
+      'upgrade-insecure-requests': '1',
+      'sec-fetch-dest': 'document',
+      'sec-fetch-mode': 'navigate',
+      'sec-fetch-site': 'none',
+      'sec-fetch-user': '?1',
+      priority: 'u=0, i'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-27 18:53:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:29:23'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:29:40'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:31:22'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:31:54'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:32:11'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:32:24'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:35:21'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:35:47'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:35:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:10'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:22'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:39'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-27 19:36:50'
+}
