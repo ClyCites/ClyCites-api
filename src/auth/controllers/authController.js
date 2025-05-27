@@ -236,9 +236,6 @@ export const updateProfile = asyncHandler(async (req, res, next) => {
   })
 })
 
-// @desc    Refresh access token
-// @route   POST /api/auth/refresh-token
-// @access  Public
 export const refreshToken = asyncHandler(async (req, res, next) => {
   const refreshToken = req.cookies.refreshToken || req.body.refreshToken
 
