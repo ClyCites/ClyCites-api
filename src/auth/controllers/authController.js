@@ -258,17 +258,14 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Invalid refresh token. Please login again.", 401))
     }
 
-    // Check if user is active
     if (!user.isActive) {
       return next(new AppError("Your account has been deactivated. Please contact support.", 401))
     }
 
-    // Check if account is locked
     if (user.isLocked) {
       return next(new AppError("Account temporarily locked due to too many failed login attempts", 401))
     }
 
-    // Generate new access token
     const newAccessToken = generateToken(user._id)
 
     res.status(200).json({
@@ -300,9 +297,6 @@ export const refreshToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Verify email
-// @route   GET /api/auth/verify-email/:token
-// @access  Public
 export const verifyEmail = asyncHandler(async (req, res, next) => {
   // Get hashed token
   const hashedToken = crypto.createHash("sha256").update(req.params.token).digest("hex")
