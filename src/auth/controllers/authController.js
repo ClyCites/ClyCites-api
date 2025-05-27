@@ -309,7 +309,6 @@ export const verifyEmail = asyncHandler(async (req, res, next) => {
     return next(new AppError("Invalid or expired verification token", 400))
   }
 
-  // Update user
   user.isEmailVerified = true
   user.emailVerificationToken = undefined
   user.emailVerificationExpires = undefined
