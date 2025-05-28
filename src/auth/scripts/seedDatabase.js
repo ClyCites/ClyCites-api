@@ -244,6 +244,15 @@ const seedDatabase = async () => {
 
     console.log("👑 Added super admin as platform owner")
 
+    // Drop existing indexes to avoid conflicts
+    console.log("🔧 Cleaning up database indexes...")
+    try {
+      await User.collection.dropIndexes()
+      console.log("✅ Dropped existing User indexes")
+    } catch (error) {
+      console.log("ℹ️  No existing indexes to drop")
+    }
+
     // Create sample users
     console.log("👥 Creating sample users...")
     const sampleUsers = [
@@ -253,6 +262,7 @@ const seedDatabase = async () => {
         password: "Password123!",
         firstName: "John",
         lastName: "Doe",
+        phone: "+1234567890",
         isEmailVerified: true,
       },
       {
@@ -261,6 +271,7 @@ const seedDatabase = async () => {
         password: "Password123!",
         firstName: "Jane",
         lastName: "Smith",
+        phone: "+1987654321",
         isEmailVerified: true,
       },
     ]
