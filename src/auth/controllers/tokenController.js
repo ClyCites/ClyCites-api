@@ -1,17 +1,18 @@
 import jwt from "jsonwebtoken"
 import ApiToken from "../models/apiTokenModel.js"
 import User from "../models/userModel.js"
+import OrganizationMember from "../models/organizationMemberModel.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 
-// @desc    Validate API token or JWT token
+// @desc    Validate API token or JWT token (works with login-generated tokens)
 // @route   POST /api/auth/validate-token
 // @access  Public (but requires valid token)
 export const validateToken = asyncHandler(async (req, res, next) => {
   let token
   let tokenType = "unknown"
 
-  // Extract token from multiple sources
+  // Extract token from multiple sources (same as authMiddleware)
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1]
   }
@@ -24,12 +25,16 @@ export const validateToken = asyncHandler(async (req, res, next) => {
     token = req.body.token
   }
 
+  if (!token && req.cookies.token) {
+    token = req.cookies.token
+  }
+
   if (!token) {
     return next(new AppError("Token is required for validation", 400))
   }
 
   try {
-    // First, try to validate as JWT token
+    // First, try to validate as JWT token (same logic as login)
     let validationResult = await validateJWTToken(token)
 
     if (validationResult.success) {
@@ -43,10 +48,15 @@ export const validateToken = asyncHandler(async (req, res, next) => {
     }
 
     if (!validationResult.success) {
-      return next(new AppError(validationResult.message || "Invalid token", 401))
+      return res.status(401).json({
+        success: false,
+        message: validationResult.message || "Invalid token",
+        error: "TOKEN_VALIDATION_FAILED",
+        tokenType: tokenType,
+      })
     }
 
-    // Return validation result
+    // Return validation result (same format as login response)
     res.status(200).json({
       success: true,
       message: "Token validated successfully",
@@ -54,58 +64,59 @@ export const validateToken = asyncHandler(async (req, res, next) => {
         ...validationResult.data,
         tokenType,
         validatedAt: new Date().toISOString(),
+        isValid: true,
       },
     })
   } catch (error) {
-    return next(new AppError("Token validation failed", 401))
+    console.error("Token validation error:", error)
+    return res.status(401).json({
+      success: false,
+      message: "Token validation failed",
+      error: "VALIDATION_ERROR",
+      details: error.message,
+    })
   }
 })
 
-// @desc    Validate JWT token
-// @route   POST /api/auth/validate-jwt
-// @access  Public (but requires valid JWT)
-export const validateJWTToken = async (token) => {
+// @desc    Validate JWT token (exact same logic as authMiddleware.protect)
+const validateJWTToken = async (token) => {
   try {
-    // Verify JWT token
+    // Verify token using the same secret as login
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
-    // Get user from token
+    // Get user from token (same as authMiddleware)
     const user = await User.findById(decoded.id)
-      .select("-refreshTokens -passwordHistory -mfa.secret")
-      .populate({
-        path: "organizationMemberships",
-        populate: {
-          path: "organization role",
-          select: "name slug isActive level permissions",
-        },
-      })
 
     if (!user) {
       return {
         success: false,
-        message: "User no longer exists",
+        message: "The user belonging to this token no longer exists",
+        error: "USER_NOT_FOUND",
       }
     }
 
-    // Check if user is active
+    // Check if user is active (same checks as authMiddleware)
     if (!user.isActive) {
       return {
         success: false,
-        message: "User account is inactive",
+        message: "Your account has been deactivated. Please contact support.",
+        error: "ACCOUNT_DEACTIVATED",
       }
     }
 
-    // Check if account is locked
+    // Check if account is locked (same checks as authMiddleware)
     if (user.isLocked) {
       return {
         success: false,
-        message: "Account temporarily locked",
+        message: "Account temporarily locked due to too many failed login attempts",
+        error: "ACCOUNT_LOCKED",
       }
     }
 
-    // Get user's organizations
+    // Get user's organization memberships
     const organizationMemberships = await getUserOrganizations(user._id)
 
+    // Return user data in the same format as login response
     return {
       success: true,
       data: {
@@ -116,44 +127,57 @@ export const validateJWTToken = async (token) => {
           firstName: user.firstName,
           lastName: user.lastName,
           fullName: user.fullName,
+          role: user.globalRole, // Global role for backward compatibility
           globalRole: user.globalRole,
           profilePicture: user.profilePicture,
           isEmailVerified: user.isEmailVerified,
           lastLogin: user.lastLogin,
           isActive: user.isActive,
+          createdAt: user.createdAt,
         },
         organizations: organizationMemberships,
+        // Include primary organization (first one or default)
+        primaryOrganization: organizationMemberships.length > 0 ? organizationMemberships[0] : null,
         tokenInfo: {
           type: "jwt",
           issuedAt: new Date(decoded.iat * 1000),
           expiresAt: new Date(decoded.exp * 1000),
+          userId: decoded.id,
+          isExpired: decoded.exp < Date.now() / 1000,
+          timeToExpiry: decoded.exp - Math.floor(Date.now() / 1000),
         },
       },
     }
   } catch (error) {
+    console.error("JWT validation error:", error)
+    
+    // Provide specific error messages
     if (error.name === "JsonWebTokenError") {
       return {
         success: false,
-        message: "Invalid JWT token",
+        message: "Invalid token",
+        error: "INVALID_JWT",
       }
     } else if (error.name === "TokenExpiredError") {
       return {
         success: false,
-        message: "JWT token expired",
+        message: "Token expired",
+        error: "TOKEN_EXPIRED",
+        expiredAt: new Date(error.expiredAt).toISOString(),
       }
     } else {
       return {
         success: false,
-        message: "JWT token verification failed",
+        message: "Token verification failed",
+        error: "JWT_VERIFICATION_FAILED",
+        details: error.message,
       }
     }
   }
 }
 
 // @desc    Validate API token
-// @route   POST /api/auth/validate-api-token
-// @access  Public (but requires valid API token)
-export const validateAPIToken = async (token) => {
+const validateAPIToken = async (token) => {
   try {
     // Verify API token using the model's static method
     const apiToken = await ApiToken.verifyToken(token)
@@ -162,6 +186,7 @@ export const validateAPIToken = async (token) => {
       return {
         success: false,
         message: "Invalid or expired API token",
+        error: "INVALID_API_TOKEN",
       }
     }
 
@@ -170,6 +195,7 @@ export const validateAPIToken = async (token) => {
       return {
         success: false,
         message: "Organization is inactive",
+        error: "ORGANIZATION_INACTIVE",
       }
     }
 
@@ -178,6 +204,7 @@ export const validateAPIToken = async (token) => {
       return {
         success: false,
         message: "User account is inactive",
+        error: "USER_INACTIVE",
       }
     }
 
@@ -211,8 +238,6 @@ export const validateAPIToken = async (token) => {
           permissions: apiToken.permissions,
           rateLimits: apiToken.rateLimits,
           expiresAt: apiToken.expiresAt,
-          hasScope: (scope) => apiToken.hasScope(scope),
-          hasPermission: (resource, action) => apiToken.hasPermission(resource, action),
         },
         tokenInfo: {
           type: "api_token",
@@ -220,6 +245,7 @@ export const validateAPIToken = async (token) => {
           expiresAt: apiToken.expiresAt,
           lastUsedAt: apiToken.usage.lastUsedAt,
           totalRequests: apiToken.usage.totalRequests,
+          isExpired: apiToken.expiresAt < new Date(),
         },
       },
     }
@@ -227,44 +253,53 @@ export const validateAPIToken = async (token) => {
     return {
       success: false,
       message: "API token validation failed",
+      error: "API_TOKEN_VALIDATION_FAILED",
+      details: error.message,
     }
   }
 }
 
-// Helper function to get user organizations
+// Helper function to get user organizations (same as used in other controllers)
 const getUserOrganizations = async (userId) => {
   try {
-    const { default: OrganizationMember } = await import("../models/organizationMemberModel.js")
-
     const memberships = await OrganizationMember.find({
       user: userId,
       status: "active",
     })
       .populate({
         path: "organization",
-        select: "name slug isActive subscription",
+        select: "name slug description isActive subscription industry size",
       })
       .populate({
         path: "role",
-        select: "name level permissions",
+        select: "name slug level permissions isSystem",
       })
+      .sort({ joinedAt: 1 }) // Oldest membership first (likely primary org)
 
     return memberships.map((membership) => ({
       organization: {
         id: membership.organization._id,
         name: membership.organization.name,
         slug: membership.organization.slug,
+        description: membership.organization.description,
         isActive: membership.organization.isActive,
         subscription: membership.organization.subscription,
+        industry: membership.organization.industry,
+        size: membership.organization.size,
       },
       role: {
         id: membership.role._id,
         name: membership.role.name,
+        slug: membership.role.slug,
         level: membership.role.level,
         permissions: membership.role.permissions,
+        isSystem: membership.role.isSystem,
       },
-      status: membership.status,
-      joinedAt: membership.joinedAt,
+      membership: {
+        status: membership.status,
+        joinedAt: membership.joinedAt,
+        lastActivity: membership.lastActivity,
+      },
     }))
   } catch (error) {
     console.error("Error fetching user organizations:", error)
@@ -278,13 +313,17 @@ const getUserOrganizations = async (userId) => {
 export const getTokenInfo = asyncHandler(async (req, res, next) => {
   let token
 
-  // Extract token
+  // Extract token (same sources as validation)
   if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1]
   }
 
   if (!token && req.headers["x-api-key"]) {
     token = req.headers["x-api-key"]
+  }
+
+  if (!token && req.cookies.token) {
+    token = req.cookies.token
   }
 
   if (!token) {
@@ -302,37 +341,112 @@ export const getTokenInfo = asyncHandler(async (req, res, next) => {
         header: decoded.header,
         payload: {
           ...decoded.payload,
-          iat: new Date(decoded.payload.iat * 1000),
-          exp: new Date(decoded.payload.exp * 1000),
+          iat: new Date(decoded.payload.iat * 1000).toISOString(),
+          exp: new Date(decoded.payload.exp * 1000).toISOString(),
+          isExpired: decoded.payload.exp < Date.now() / 1000,
+          timeToExpiry: decoded.payload.exp - Math.floor(Date.now() / 1000),
         },
+        rawToken: token.substring(0, 50) + "...",
       }
     }
   } catch (error) {
     // Not a JWT, might be API token
-    const apiToken = await ApiToken.findOne({
-      hashedToken: require("crypto").createHash("sha256").update(token).digest("hex"),
-    })
-      .populate("user", "username email")
-      .populate("organization", "name slug")
+    try {
+      const crypto = await import("crypto")
+      const hashedToken = crypto.default.createHash("sha256").update(token).digest("hex")
+      
+      const apiToken = await ApiToken.findOne({ hashedToken })
+        .populate("user", "username email")
+        .populate("organization", "name slug")
 
-    if (apiToken) {
+      if (apiToken) {
+        tokenInfo = {
+          type: "api_token",
+          name: apiToken.name,
+          user: apiToken.user.username,
+          organization: apiToken.organization.name,
+          scopes: apiToken.scopes,
+          createdAt: apiToken.createdAt,
+          expiresAt: apiToken.expiresAt,
+          isActive: apiToken.isActive,
+          isExpired: apiToken.expiresAt < new Date(),
+          rawToken: token.substring(0, 50) + "...",
+        }
+      } else {
+        tokenInfo = {
+          type: "unknown",
+          message: "Token format not recognized",
+          rawToken: token.substring(0, 50) + "...",
+        }
+      }
+    } catch (apiError) {
       tokenInfo = {
-        type: "api_token",
-        name: apiToken.name,
-        user: apiToken.user.username,
-        organization: apiToken.organization.name,
-        scopes: apiToken.scopes,
-        createdAt: apiToken.createdAt,
-        expiresAt: apiToken.expiresAt,
-        isActive: apiToken.isActive,
+        type: "error",
+        message: "Failed to analyze token",
+        error: apiError.message,
+        rawToken: token.substring(0, 50) + "...",
       }
     }
   }
 
   res.status(200).json({
     success: true,
-    data: { tokenInfo },
+    data: { 
+      tokenInfo,
+      environment: {
+        jwtSecretConfigured: !!process.env.JWT_SECRET,
+        nodeEnv: process.env.NODE_ENV,
+      }
+    },
   })
+})
+
+// @desc    Quick token validation (lightweight version)
+// @route   POST /api/auth/validate-token/quick
+// @access  Public
+export const quickValidateToken = asyncHandler(async (req, res, next) => {
+  let token
+
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+    token = req.headers.authorization.split(" ")[1]
+  }
+
+  if (!token && req.body.token) {
+    token = req.body.token
+  }
+
+  if (!token) {
+    return res.status(400).json({
+      success: false,
+      message: "Token is required",
+      isValid: false,
+    })
+  }
+
+  try {
+    // Quick JWT validation without database lookup
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    
+    res.status(200).json({
+      success: true,
+      message: "Token is valid",
+      isValid: true,
+      data: {
+        userId: decoded.id,
+        issuedAt: new Date(decoded.iat * 1000),
+        expiresAt: new Date(decoded.exp * 1000),
+        isExpired: decoded.exp < Date.now() / 1000,
+        timeToExpiry: decoded.exp - Math.floor(Date.now() / 1000),
+      },
+    })
+  } catch (error) {
+    res.status(401).json({
+      success: false,
+      message: error.name === "TokenExpiredError" ? "Token expired" : "Invalid token",
+      isValid: false,
+      error: error.name,
+    })
+  }
 })
 
 export default {
@@ -340,4 +454,5 @@ export default {
   validateJWTToken,
   validateAPIToken,
   getTokenInfo,
+  quickValidateToken,
 }
