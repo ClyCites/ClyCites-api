@@ -15,6 +15,7 @@ import { fileURLToPath } from "url"
 
 // Import routes
 import authRoutes from "./routes/authRoutes.js"
+import tokenRoutes from "./routes/tokenRoutes.js"
 import organizationRoutes from "./routes/organizationRoutes.js"
 import teamRoutes from "./routes/teamRoutes.js"
 import roleRoutes from "./routes/roleRoutes.js"
@@ -180,6 +181,7 @@ app.get("/health", (req, res) => {
       "OAuth2 Applications",
       "Team Management",
       "Enterprise SSO",
+      "Token Validation API",
     ],
   })
 })
@@ -206,6 +208,8 @@ app.get("/api/docs", (req, res) => {
         "POST /api/auth/forgot-password": "Request password reset",
         "PUT /api/auth/reset-password/:token": "Reset password",
         "PUT /api/auth/change-password": "Change password (requires auth)",
+        "POST /api/auth/validate-token": "Validate JWT or API token",
+        "GET /api/auth/token-info": "Get token information (requires auth)",
       },
       organizations: {
         "GET /api/organizations": "Get user organizations (requires auth)",
@@ -278,6 +282,16 @@ app.get("/api/docs", (req, res) => {
           lastName: "Doe",
         },
       },
+      validateToken: {
+        url: "POST /api/auth/validate-token",
+        headers: {
+          Authorization: "Bearer <your-jwt-token>",
+          "x-api-key": "<your-api-key>",
+        },
+        body: {
+          token: "<token-to-validate>",
+        },
+      },
     },
   })
 })
@@ -291,6 +305,7 @@ app.use("/api/organizations", orgCreationRateLimit)
 
 // API routes
 app.use("/api/auth", authRoutes)
+app.use("/api/auth", tokenRoutes) // Add token validation routes
 app.use("/api/organizations", organizationRoutes)
 app.use("/api", teamRoutes)
 app.use("/api", roleRoutes)
@@ -307,6 +322,7 @@ app.get("/api/status", (req, res) => {
       database: "connected",
       email: "configured",
       authentication: "active",
+      tokenValidation: "active",
     },
   })
 })
@@ -371,6 +387,33 @@ app.get("/api/postman", (req, res) => {
             },
           },
           {
+            name: "Validate Token",
+            request: {
+              method: "POST",
+              header: [
+                {
+                  key: "Content-Type",
+                  value: "application/json",
+                },
+                {
+                  key: "Authorization",
+                  value: "Bearer {{access_token}}",
+                },
+              ],
+              body: {
+                mode: "raw",
+                raw: JSON.stringify({
+                  token: "{{access_token}}",
+                }),
+              },
+              url: {
+                raw: "{{base_url}}/api/auth/validate-token",
+                host: ["{{base_url}}"],
+                path: ["api", "auth", "validate-token"],
+              },
+            },
+          },
+          {
             name: "Get Current User",
             request: {
               method: "GET",
@@ -401,6 +444,15 @@ app.get("/", (req, res) => {
     documentation: `${req.protocol}://${req.get("host")}/api/docs`,
     health: `${req.protocol}://${req.get("host")}/health`,
     status: "operational",
+    features: [
+      "Multi-Organization Support",
+      "Role-Based Access Control",
+      "API Token Management",
+      "OAuth2 Applications",
+      "Team Management",
+      "Enterprise SSO",
+      "Token Validation API",
+    ],
   })
 })
 
@@ -416,6 +468,7 @@ const server = app.listen(PORT, () => {
   console.log(`🔗 Database: MongoDB Atlas`)
   console.log(`📚 API Documentation: http://localhost:${PORT}/api/docs`)
   console.log(`🏥 Health check: http://localhost:${PORT}/health`)
+  console.log(`🔐 Token validation: http://localhost:${PORT}/api/auth/validate-token`)
   console.log(`📧 Email service: ${process.env.EMAIL_SERVICE || "Not configured"}`)
   console.log(`🔐 Ready to accept requests!`)
 })
