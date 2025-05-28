@@ -1,71 +1,158 @@
-import jwt from "jsonwebtoken"
 import { logger } from "../utils/logger.js"
 import { ApiResponse } from "../utils/apiResponse.js"
 
 export const authMiddleware = async (req, res, next) => {
   try {
-    const token = req.header("Authorization")?.replace("Bearer ", "")
+    let token
+
+    // Check for token in headers (same pattern as your auth server)
+    if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+      token = req.headers.authorization.split(" ")[1]
+    }
+
+    // Check for API key in headers
+    if (!token && req.headers["x-api-key"]) {
+      token = req.headers["x-api-key"]
+    }
 
     if (!token) {
-      return res.status(401).json(ApiResponse.error("Access denied. No token provided."))
+      return res.status(401).json(ApiResponse.error("API token required"))
     }
 
-    // Verify token with your auth server or decode locally
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "your-secret-key")
-
-    // Optional: Validate token with auth server
-    if (process.env.AUTH_SERVER_URL) {
-      const isValid = await validateTokenWithAuthServer(token)
-      if (!isValid) {
-        return res.status(401).json(ApiResponse.error("Token validation failed."))
-      }
+    // Validate token with your auth server
+    const tokenValidation = await validateTokenWithAuthServer(token)
+    
+    if (!tokenValidation.success) {
+      return res.status(401).json(ApiResponse.error(tokenValidation.message || "Invalid or expired API token"))
     }
 
-    req.user = decoded
+    // Attach user and organization info from auth server response
+    req.user = tokenValidation.data.user
+    req.organization = tokenValidation.data.organization
+    req.apiToken = tokenValidation.data.apiToken
+
     next()
   } catch (error) {
     logger.error("Auth middleware error:", error)
-
-    if (error.name === "JsonWebTokenError") {
-      return res.status(401).json(ApiResponse.error("Invalid token."))
-    }
-
-    if (error.name === "TokenExpiredError") {
-      return res.status(401).json(ApiResponse.error("Token expired."))
-    }
-
-    res.status(500).json(ApiResponse.error("Authentication error."))
+    res.status(500).json(ApiResponse.error("Authentication error"))
   }
 }
 
+// Function to validate token with your auth server
 export const validateTokenWithAuthServer = async (token) => {
   try {
-    const response = await fetch(`${process.env.AUTH_SERVER_URL}/validate`, {
+    const response = await fetch(`${process.env.AUTH_SERVER_URL}/api/auth/validate-token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "Authorization": `Bearer ${token}`,
+        "x-api-key": token
       },
+      body: JSON.stringify({ token })
     })
 
-    return response.ok
+    const data = await response.json()
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: data.message || "Token validation failed"
+      }
+    }
+
+    return {
+      success: true,
+      data: data.data || data
+    }
   } catch (error) {
     logger.error("Auth server validation error:", error)
-    return false
+    return {
+      success: false,
+      message: "Auth server connection failed"
+    }
   }
 }
 
-// Optional middleware for role-based access
-export const requireRole = (roles) => {
+// Middleware to check API token scopes (matching your auth server pattern)
+export const requireScope = (...requiredScopes) => {
   return (req, res, next) => {
-    if (!req.user || !req.user.role) {
-      return res.status(403).json(ApiResponse.error("Access denied. No role information."))
+    if (!req.apiToken) {
+      return res.status(401).json(ApiResponse.error("API token required"))
     }
 
-    if (!roles.includes(req.user.role)) {
-      return res.status(403).json(ApiResponse.error("Access denied. Insufficient permissions."))
+    // Check if apiToken has the hasScope method or check scopes array
+    const hasRequiredScope = requiredScopes.some(scope => {
+      if (req.apiToken.hasScope) {
+        return req.apiToken.hasScope(scope)
+      }
+      // Fallback to checking scopes array
+      return req.apiToken.scopes && req.apiToken.scopes.includes(scope)
+    })
+
+    if (!hasRequiredScope) {
+      return res.status(403).json(
+        ApiResponse.error(`Insufficient scope. Required: ${requiredScopes.join(" or ")}`)
+      )
     }
 
     next()
   }
+}
+
+// Middleware to check API token permissions (matching your auth server pattern)
+export const requirePermission = (resource, action) => {
+  return (req, res, next) => {
+    if (!req.apiToken) {
+      return res.status(401).json(ApiResponse.error("API token required"))
+    }
+
+    // Check if apiToken has the hasPermission method
+    const hasPermission = req.apiToken.hasPermission 
+      ? req.apiToken.hasPermission(resource, action)
+      : checkPermissionFallback(req.apiToken, resource, action)
+
+    if (!hasPermission) {
+      return res.status(403).json(
+        ApiResponse.error(`Insufficient permissions for ${action} on ${resource}`)
+      )
+    }
+
+    next()
+  }
+}
+
+// Fallback permission check if hasPermission method is not available
+const checkPermissionFallback = (apiToken, resource, action) => {
+  if (!apiToken.permissions) return false
+  
+  const permission = `${resource}:${action}`
+  return apiToken.permissions.includes(permission) || 
+         apiToken.permissions.includes(`${resource}:*`) ||
+         apiToken.permissions.includes("*:*")
+}
+
+// Organization-specific middleware
+export const requireOrganization = (req, res, next) => {
+  if (!req.organization) {
+    return res.status(401).json(ApiResponse.error("Organization context required"))
+  }
+
+  if (!req.organization.isActive) {
+    return res.status(401).json(ApiResponse.error("Organization is inactive"))
+  }
+
+  next()
+}
+
+// User-specific middleware
+export const requireActiveUser = (req, res, next) => {
+  if (!req.user) {
+    return res.status(401).json(ApiResponse.error("User context required"))
+  }
+
+  if (!req.user.isActive) {
+    return res.status(401).json(ApiResponse.error("User account is inactive"))
+  }
+
+  next()
 }

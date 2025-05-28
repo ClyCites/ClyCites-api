@@ -18,7 +18,7 @@ import recommendationRoutes from "./app/routes/recommendations.js"
 import alertRoutes from "./app/routes/alerts.js"
 
 // Import middleware
-import { authMiddleware } from "./app/middleware/auth.js"
+import { authMiddleware, requireActiveUser, requireOrganization } from "./app/middleware/auth.js"
 import { errorHandler } from "./app/middleware/errorHandler.js"
 import { requestLogger } from "./app/middleware/requestLogger.js"
 import { logger } from "./app/utils/logger.js"
@@ -74,11 +74,11 @@ app.get("/api", (req, res) => {
   })
 })
 
-// API routes
-app.use("/api/weather", authMiddleware, weatherRoutes)
-app.use("/api/crops", authMiddleware, cropRoutes)
-app.use("/api/recommendations", authMiddleware, recommendationRoutes)
-app.use("/api/alerts", authMiddleware, alertRoutes)
+// API routes with proper middleware chain
+app.use("/api/weather", authMiddleware, requireActiveUser, requireOrganization, weatherRoutes)
+app.use("/api/crops", authMiddleware, requireActiveUser, requireOrganization, cropRoutes)
+app.use("/api/recommendations", authMiddleware, requireActiveUser, requireOrganization, recommendationRoutes)
+app.use("/api/alerts", authMiddleware, requireActiveUser, requireOrganization, alertRoutes)
 
 // Error handling middleware
 app.use(errorHandler)
