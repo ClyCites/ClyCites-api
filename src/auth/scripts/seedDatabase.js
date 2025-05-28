@@ -42,11 +42,16 @@ const seedDatabase = async () => {
 
     // Clear existing data
     console.log("🗑️  Clearing existing data...")
+
+    // Import ApiToken model
+    const ApiToken = (await import("../models/apiTokenModel.js")).default
+
     await Promise.all([
       User.deleteMany({}),
       Organization.deleteMany({}),
       OrganizationMember.deleteMany({}),
       Role.deleteMany({}),
+      ApiToken.deleteMany({}),
     ])
 
     console.log("✅ Cleared existing data")
@@ -293,19 +298,194 @@ const seedDatabase = async () => {
 
     console.log("✅ Added sample users to ClyCites organization")
 
+    // Create sample API tokens for different use cases
+    console.log("🔑 Creating sample API tokens...")
+
+    const apiTokens = []
+
+    // Create API tokens for super admin
+    const superAdminTokens = [
+      {
+        name: "Admin Dashboard Token",
+        description: "Full access token for admin dashboard",
+        user: superAdmin._id,
+        organization: clycitesOrg._id,
+        scopes: [
+          "profile",
+          "email",
+          "organizations",
+          "teams",
+          "users",
+          "roles",
+          "applications",
+          "admin",
+          "read",
+          "write",
+          "delete",
+        ],
+        permissions: [
+          { resource: "organizations", actions: ["create", "read", "update", "delete"] },
+          { resource: "users", actions: ["create", "read", "update", "delete"] },
+          { resource: "teams", actions: ["create", "read", "update", "delete"] },
+          { resource: "applications", actions: ["create", "read", "update", "delete"] },
+        ],
+        rateLimits: {
+          requestsPerMinute: 1000,
+          requestsPerHour: 10000,
+          requestsPerDay: 100000,
+        },
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
+        createdBy: superAdmin._id,
+      },
+      {
+        name: "System Monitoring Token",
+        description: "Read-only token for system monitoring and analytics",
+        user: superAdmin._id,
+        organization: clycitesOrg._id,
+        scopes: ["read", "analytics", "organizations", "users"],
+        permissions: [
+          { resource: "organizations", actions: ["read"] },
+          { resource: "users", actions: ["read"] },
+          { resource: "analytics", actions: ["read"] },
+        ],
+        rateLimits: {
+          requestsPerMinute: 500,
+          requestsPerHour: 5000,
+          requestsPerDay: 50000,
+        },
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
+        createdBy: superAdmin._id,
+      },
+    ]
+
+    // Create API tokens for John Doe (sample user)
+    const johnTokens = [
+      {
+        name: "Mobile App Token",
+        description: "Token for ClyCites mobile application",
+        user: createdUsers[0]._id, // John Doe
+        organization: clycitesOrg._id,
+        scopes: ["profile", "email", "teams", "read"],
+        permissions: [
+          { resource: "profile", actions: ["read", "update"] },
+          { resource: "teams", actions: ["read"] },
+        ],
+        rateLimits: {
+          requestsPerMinute: 100,
+          requestsPerHour: 1000,
+          requestsPerDay: 10000,
+        },
+        expiresAt: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000), // 6 months
+        createdBy: createdUsers[0]._id,
+      },
+      {
+        name: "Integration Script Token",
+        description: "Token for automated data synchronization script",
+        user: createdUsers[0]._id, // John Doe
+        organization: clycitesOrg._id,
+        scopes: ["read", "write", "teams"],
+        permissions: [
+          { resource: "teams", actions: ["read", "update"] },
+          { resource: "profile", actions: ["read"] },
+        ],
+        rateLimits: {
+          requestsPerMinute: 60,
+          requestsPerHour: 500,
+          requestsPerDay: 5000,
+        },
+        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 3 months
+        createdBy: createdUsers[0]._id,
+      },
+    ]
+
+    // Create API tokens for Jane Smith (sample user)
+    const janeTokens = [
+      {
+        name: "Web Dashboard Token",
+        description: "Token for web dashboard access",
+        user: createdUsers[1]._id, // Jane Smith
+        organization: clycitesOrg._id,
+        scopes: ["profile", "email", "teams", "read", "write"],
+        permissions: [
+          { resource: "profile", actions: ["read", "update"] },
+          { resource: "teams", actions: ["read", "update"] },
+        ],
+        rateLimits: {
+          requestsPerMinute: 100,
+          requestsPerHour: 1000,
+          requestsPerDay: 10000,
+        },
+        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
+        createdBy: createdUsers[1]._id,
+      },
+      {
+        name: "Testing Token",
+        description: "Short-lived token for API testing and development",
+        user: createdUsers[1]._id, // Jane Smith
+        organization: clycitesOrg._id,
+        scopes: ["profile", "read"],
+        permissions: [{ resource: "profile", actions: ["read"] }],
+        rateLimits: {
+          requestsPerMinute: 60,
+          requestsPerHour: 500,
+          requestsPerDay: 2000,
+        },
+        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+        createdBy: createdUsers[1]._id,
+      },
+    ]
+
+    // Combine all tokens
+    apiTokens.push(...superAdminTokens, ...johnTokens, ...janeTokens)
+
+    // Create the API tokens (let the pre-save middleware generate the actual tokens)
+    const createdTokens = await ApiToken.create(apiTokens)
+
+    console.log(`✅ Created ${createdTokens.length} sample API tokens`)
+
+    // Fetch the tokens with the generated token values to display them
+    const tokensWithValues = await ApiToken.find({
+      _id: { $in: createdTokens.map((t) => t._id) },
+    })
+      .select("+token")
+      .populate("user", "firstName lastName email")
+
+    // Display token information (showing actual tokens for demo purposes)
+    console.log("\n🔑 Sample API Tokens Created:")
+    for (const token of tokensWithValues) {
+      const user = token.user.firstName + " " + token.user.lastName
+
+      console.log(`   • ${token.name}`)
+      console.log(`     User: ${user} (${token.user.email})`)
+      console.log(`     Token: ${token.token}`)
+      console.log(`     Scopes: ${token.scopes.join(", ")}`)
+      console.log(`     Expires: ${token.expiresAt.toLocaleDateString()}`)
+      console.log(
+        `     Rate Limits: ${token.rateLimits.requestsPerMinute}/min, ${token.rateLimits.requestsPerHour}/hour`,
+      )
+      console.log("")
+    }
+
     console.log("\n🎉 Database seeding completed successfully!")
     console.log("\n📋 Seeded data summary:")
     console.log(`   • 1 Super Admin: admin@clycites.com (password: SuperAdmin123!)`)
     console.log(`   • 1 Default Organization: ClyCites`)
     console.log(`   • ${systemRoles.length} System Roles`)
     console.log(`   • ${sampleUsers.length} Sample Users`)
+    console.log(`   • ${createdTokens.length} Sample API Tokens`)
     console.log("\n🔐 Login credentials:")
     console.log("   Super Admin: admin@clycites.com / SuperAdmin123!")
     console.log("   Sample User 1: john@example.com / Password123!")
     console.log("   Sample User 2: jane@example.com / Password123!")
+    console.log("\n🔑 API Token Testing:")
+    console.log("   Use any of the tokens shown above for API testing")
+    console.log("   Example: curl -H 'x-api-key: TOKEN_HERE' http://localhost:5000/api/v1/test")
+    console.log("   Example: curl -H 'x-api-key: TOKEN_HERE' http://localhost:5000/api/v1/profile")
     console.log("\n🚀 You can now start the server and begin using the authentication system!")
     const PORT = process.env.PORT || 5000
     console.log(`📍 Server will run on: http://localhost:${PORT}`)
+    console.log(`🔧 API Token Management: http://localhost:${PORT}/api/organizations/${clycitesOrg._id}/tokens`)
+    console.log(`🔐 Token Validation: http://localhost:${PORT}/api/auth/validate-token`)
 
     process.exit(0)
   } catch (error) {
@@ -324,6 +504,7 @@ const seedDatabase = async () => {
       console.error("   - Schema changes that require model updates")
       console.error("   - Invalid enum values in the data")
       console.error("   - Missing required fields")
+      console.error("   - Check the error details above for specific field issues")
     }
 
     process.exit(1)

@@ -56,6 +56,9 @@ const apiTokenSchema = new mongoose.Schema(
           "read",
           "write",
           "delete",
+          "invite",
+          "export",
+          "import",
         ],
       },
     ],
@@ -110,7 +113,7 @@ apiTokenSchema.index({ isActive: 1 })
 
 // Pre-save middleware to generate token
 apiTokenSchema.pre("save", function (next) {
-  if (this.isNew) {
+  if (this.isNew && !this.token) {
     const token = `clycites_${crypto.randomBytes(32).toString("hex")}`
     this.token = token
     this.hashedToken = crypto.createHash("sha256").update(token).digest("hex")
