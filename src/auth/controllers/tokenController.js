@@ -34,38 +34,46 @@ export const validateToken = asyncHandler(async (req, res, next) => {
   }
 
   try {
-    // First, try to validate as JWT token (same logic as login)
-    let validationResult = await validateJWTToken(token)
-
-    if (validationResult.success) {
-      tokenType = "jwt"
-    } else {
-      // If JWT validation fails, try API token validation
-      validationResult = await validateAPIToken(token)
+    // Check if it's an API token first (they start with 'clycites_')
+    if (token.startsWith("clycites_")) {
+      const validationResult = await validateAPIToken(token)
       if (validationResult.success) {
         tokenType = "api_token"
+        return res.status(200).json({
+          success: true,
+          message: "API token validated successfully",
+          data: {
+            ...validationResult.data,
+            tokenType,
+            validatedAt: new Date().toISOString(),
+            isValid: true,
+          },
+        })
       }
     }
 
-    if (!validationResult.success) {
-      return res.status(401).json({
-        success: false,
-        message: validationResult.message || "Invalid token",
-        error: "TOKEN_VALIDATION_FAILED",
-        tokenType: tokenType,
+    // Try JWT validation
+    const validationResult = await validateJWTToken(token)
+    if (validationResult.success) {
+      tokenType = "jwt"
+      return res.status(200).json({
+        success: true,
+        message: "JWT token validated successfully",
+        data: {
+          ...validationResult.data,
+          tokenType,
+          validatedAt: new Date().toISOString(),
+          isValid: true,
+        },
       })
     }
 
-    // Return validation result (same format as login response)
-    res.status(200).json({
-      success: true,
-      message: "Token validated successfully",
-      data: {
-        ...validationResult.data,
-        tokenType,
-        validatedAt: new Date().toISOString(),
-        isValid: true,
-      },
+    // If both fail, return error
+    return res.status(401).json({
+      success: false,
+      message: "Invalid token",
+      error: "TOKEN_VALIDATION_FAILED",
+      tokenType: tokenType,
     })
   } catch (error) {
     console.error("Token validation error:", error)
@@ -150,7 +158,7 @@ const validateJWTToken = async (token) => {
     }
   } catch (error) {
     console.error("JWT validation error:", error)
-    
+
     // Provide specific error messages
     if (error.name === "JsonWebTokenError") {
       return {
@@ -354,7 +362,7 @@ export const getTokenInfo = asyncHandler(async (req, res, next) => {
     try {
       const crypto = await import("crypto")
       const hashedToken = crypto.default.createHash("sha256").update(token).digest("hex")
-      
+
       const apiToken = await ApiToken.findOne({ hashedToken })
         .populate("user", "username email")
         .populate("organization", "name slug")
@@ -391,12 +399,12 @@ export const getTokenInfo = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: { 
+    data: {
       tokenInfo,
       environment: {
         jwtSecretConfigured: !!process.env.JWT_SECRET,
         nodeEnv: process.env.NODE_ENV,
-      }
+      },
     },
   })
 })
@@ -424,13 +432,30 @@ export const quickValidateToken = asyncHandler(async (req, res, next) => {
   }
 
   try {
+    // Check if it's an API token
+    if (token.startsWith("clycites_")) {
+      const apiToken = await ApiToken.verifyToken(token)
+      return res.status(200).json({
+        success: true,
+        message: "API token is valid",
+        isValid: true,
+        tokenType: "api_token",
+        data: {
+          name: apiToken.name,
+          expiresAt: apiToken.expiresAt,
+          isExpired: apiToken.expiresAt < new Date(),
+        },
+      })
+    }
+
     // Quick JWT validation without database lookup
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    
+
     res.status(200).json({
       success: true,
-      message: "Token is valid",
+      message: "JWT token is valid",
       isValid: true,
+      tokenType: "jwt",
       data: {
         userId: decoded.id,
         issuedAt: new Date(decoded.iat * 1000),
