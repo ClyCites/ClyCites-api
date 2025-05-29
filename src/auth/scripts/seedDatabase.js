@@ -553,8 +553,8 @@ const seedDatabase = async () => {
         organization: clycitesOrg._id,
         type: "mobile",
         platform: "cross-platform",
-        redirectUris: ["clycites://auth/callback", "com.clycites.app://auth/callback"],
-        allowedOrigins: ["clycites://", "com.clycites.app://"],
+        redirectUris: ["https://mobile.clycites.com/auth/callback", "https://app.clycites.com/auth/callback"],
+        allowedOrigins: ["https://mobile.clycites.com", "https://app.clycites.com"],
         scopes: ["profile", "email", "teams", "read", "write"],
         grantTypes: ["authorization_code", "refresh_token"],
         tokenSettings: {
@@ -572,6 +572,7 @@ const seedDatabase = async () => {
           version: "2.1.0",
           platforms: ["iOS", "Android"],
           minVersion: "2.0.0",
+          customSchemes: ["clycites://", "com.clycites.app://"], // Store custom schemes in metadata
         },
         createdBy: superAdmin._id,
       },
@@ -581,7 +582,7 @@ const seedDatabase = async () => {
         organization: clycitesOrg._id,
         type: "service",
         platform: "web",
-        redirectUris: [],
+        redirectUris: [], // No redirect URIs for service-to-service
         allowedOrigins: ["https://api.clycites.com", "https://gateway.clycites.com"],
         scopes: ["read", "write", "admin"],
         grantTypes: ["client_credentials"],
@@ -673,8 +674,8 @@ const seedDatabase = async () => {
         organization: additionalOrgs[0]._id,
         type: "mobile",
         platform: "cross-platform",
-        redirectUris: ["techcorp://auth/callback"],
-        allowedOrigins: ["techcorp://"],
+        redirectUris: ["https://mobile.techcorp.com/auth/callback"],
+        allowedOrigins: ["https://mobile.techcorp.com"],
         scopes: ["profile", "email", "teams", "read", "write"],
         grantTypes: ["authorization_code", "refresh_token"],
         tokenSettings: {
@@ -691,6 +692,7 @@ const seedDatabase = async () => {
         metadata: {
           targetUsers: "field_workers",
           offlineCapable: true,
+          customSchemes: ["techcorp://"], // Store custom schemes in metadata
         },
         createdBy: createdUsers[0]._id, // John
       },
@@ -737,8 +739,8 @@ const seedDatabase = async () => {
         organization: additionalOrgs[1]._id,
         type: "mobile",
         platform: "cross-platform",
-        redirectUris: ["startuphub://mentor/callback"],
-        allowedOrigins: ["startuphub://"],
+        redirectUris: ["https://mentor.startuphub.com/auth/callback"],
+        allowedOrigins: ["https://mentor.startuphub.com"],
         scopes: ["profile", "email", "read"],
         grantTypes: ["authorization_code", "refresh_token"],
         tokenSettings: {
@@ -755,6 +757,7 @@ const seedDatabase = async () => {
         metadata: {
           userTypes: ["startups", "mentors"],
           matchingAlgorithm: "v2.0",
+          customSchemes: ["startuphub://"], // Store custom schemes in metadata
         },
         createdBy: createdUsers[1]._id, // Jane
       },
@@ -764,7 +767,7 @@ const seedDatabase = async () => {
         organization: additionalOrgs[1]._id,
         type: "api",
         platform: "web",
-        redirectUris: [],
+        redirectUris: [], // No redirect URIs for API service
         allowedOrigins: ["https://api.startuphub.com"],
         scopes: ["read", "write"],
         grantTypes: ["client_credentials", "authorization_code"],
@@ -787,7 +790,19 @@ const seedDatabase = async () => {
       },
     ]
 
-    const createdApplications = await Application.create(sampleApplications)
+    // Create applications one by one to ensure pre-save middleware runs
+    const createdApplications = []
+    for (const appData of sampleApplications) {
+      try {
+        const app = new Application(appData)
+        const savedApp = await app.save()
+        createdApplications.push(savedApp)
+        console.log(`✅ Created application: ${app.name}`)
+      } catch (error) {
+        console.error(`❌ Failed to create application ${appData.name}:`, error.message)
+      }
+    }
+
     console.log(`✅ Created ${createdApplications.length} sample applications`)
 
     // Display application information
