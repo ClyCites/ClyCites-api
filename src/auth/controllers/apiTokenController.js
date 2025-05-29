@@ -4,6 +4,7 @@ import OrganizationMember from "../models/organizationMemberModel.js"
 import Application from "../models/applicationModel.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
+import crypto from "crypto"
 
 // Helper function to get allowed scopes based on role level
 const getScopesForRoleLevel = (roleLevel) => {
@@ -36,6 +37,12 @@ const getScopesForRoleLevel = (roleLevel) => {
 
   return baseScopes
 }
+
+// Step 1: Generate a secure random token (e.g., 32 bytes -> 64-char hex string)
+const plainToken = crypto.randomBytes(32).toString("hex")
+
+// Step 2: Hash it using SHA-256 (or whatever your model expects)
+const hashedToken = crypto.createHash("sha256").update(plainToken).digest("hex")
 
 // Helper function to get rate limits based on role level
 const getRateLimitsForRoleLevel = (roleLevel) => {
@@ -152,10 +159,11 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       }
 
       application = await Application.findOne({
-        _id: applicationId,
-        organization: organizationId,
+        _id: new mongoose.Types.ObjectId(applicationId),
+        organization: new mongoose.Types.ObjectId(organizationId),
         isActive: true,
       })
+
 
       if (!application) {
         return next(new AppError("Application not found or inactive", 404))
@@ -238,15 +246,17 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       expiresAt: tokenExpiration,
       rateLimits: finalRateLimits,
       createdBy: req.user.id,
+      token: plainToken,           // store plaintext if needed temporarily (or omit and only return)
+      hashedToken: hashedToken,    // required for DB
     })
+
 
     console.log("API Token created successfully:", apiToken._id)
 
-    // Prepare response (exclude sensitive data)
     const responseToken = apiToken.toObject()
-    const plainToken = responseToken.token
-    delete responseToken.token
     delete responseToken.hashedToken
+    delete responseToken.token // Optional if you stored it temporarily
+
 
     res.status(201).json({
       success: true,
