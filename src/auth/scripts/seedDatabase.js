@@ -4,6 +4,8 @@ import Organization from "../models/organizationModel.js"
 import OrganizationMember from "../models/organizationMemberModel.js"
 import Role from "../models/roleModel.js"
 import { connectDB } from "../config/db.js"
+import Application from "../models/applicationModel.js"
+import crypto from "crypto"
 
 dotenv.config()
 
@@ -42,16 +44,12 @@ const seedDatabase = async () => {
 
     // Clear existing data
     console.log("🗑️  Clearing existing data...")
-
-    // Import ApiToken model
-    const ApiToken = (await import("../models/apiTokenModel.js")).default
-
     await Promise.all([
       User.deleteMany({}),
       Organization.deleteMany({}),
       OrganizationMember.deleteMany({}),
       Role.deleteMany({}),
-      ApiToken.deleteMany({}),
+      Application.deleteMany({}),
     ])
 
     console.log("✅ Cleared existing data")
@@ -279,37 +277,242 @@ const seedDatabase = async () => {
         phone: "+1987654321",
         isEmailVerified: true,
       },
+      {
+        username: "mikejohnson",
+        email: "mike@example.com",
+        password: "Password123!",
+        firstName: "Mike",
+        lastName: "Johnson",
+        phone: "+1122334455",
+        isEmailVerified: true,
+      },
+      {
+        username: "sarahwilson",
+        email: "sarah@example.com",
+        password: "Password123!",
+        firstName: "Sarah",
+        lastName: "Wilson",
+        phone: "+1555666777",
+        isEmailVerified: true,
+      },
     ]
 
     const createdUsers = await User.create(sampleUsers)
     console.log(`✅ Created ${createdUsers.length} sample users`)
 
-    // Add sample users to ClyCites organization
+    // Add sample users to ClyCites organization with different roles
     const memberRole = createdRoles.find((role) => role.name === "Member")
-    for (const user of createdUsers) {
+    const developerRole = createdRoles.find((role) => role.name === "Developer")
+    const teamManagerRole = createdRoles.find((role) => role.name === "Team Manager")
+    const orgAdminRole = createdRoles.find((role) => role.name === "Organization Admin")
+
+    const userRoleAssignments = [
+      { user: createdUsers[0], role: orgAdminRole }, // John as Org Admin
+      { user: createdUsers[1], role: teamManagerRole }, // Jane as Team Manager
+      { user: createdUsers[2], role: developerRole }, // Mike as Developer
+      { user: createdUsers[3], role: memberRole }, // Sarah as Member
+    ]
+
+    for (const assignment of userRoleAssignments) {
       await OrganizationMember.create({
-        user: user._id,
+        user: assignment.user._id,
         organization: clycitesOrg._id,
-        role: memberRole._id,
+        role: assignment.role._id,
         status: "active",
         joinedAt: new Date(),
       })
     }
 
-    console.log("✅ Added sample users to ClyCites organization")
+    console.log("✅ Added sample users to ClyCites organization with roles")
 
-    // Create sample API tokens for different use cases
-    console.log("🔑 Creating sample API tokens...")
-
-    const apiTokens = []
-
-    // Create API tokens for super admin
-    const superAdminTokens = [
+    // Create additional sample organizations
+    console.log("🏢 Creating additional sample organizations...")
+    const sampleOrganizations = [
       {
-        name: "Admin Dashboard Token",
-        description: "Full access token for admin dashboard",
-        user: superAdmin._id,
+        name: "TechCorp Solutions",
+        slug: "techcorp-solutions",
+        description: "A technology consulting company",
+        industry: "technology",
+        size: "medium",
+        owner: createdUsers[0]._id, // John
+        createdBy: createdUsers[0]._id,
+        settings: {
+          allowPublicSignup: true,
+          requireEmailVerification: true,
+          enableSSO: false,
+          passwordPolicy: {
+            minLength: 8,
+            requireUppercase: true,
+            requireLowercase: true,
+            requireNumbers: true,
+            requireSpecialChars: false,
+            maxAge: 180,
+            preventReuse: 3,
+          },
+          sessionSettings: {
+            maxConcurrentSessions: 5,
+            sessionTimeout: 8,
+            requireMFA: false,
+          },
+        },
+        subscription: {
+          plan: "professional",
+          status: "active",
+          limits: {
+            maxUsers: 100,
+            maxTeams: 20,
+            maxApplications: 10,
+            maxAPIRequests: 50000,
+          },
+        },
+      },
+      {
+        name: "StartupHub",
+        slug: "startuphub",
+        description: "An innovative startup accelerator",
+        industry: "technology", // Changed from "business_services" to "technology"
+        size: "small",
+        owner: createdUsers[1]._id, // Jane
+        createdBy: createdUsers[1]._id,
+        settings: {
+          allowPublicSignup: false,
+          requireEmailVerification: true,
+          enableSSO: false,
+          passwordPolicy: {
+            minLength: 6,
+            requireUppercase: false,
+            requireLowercase: true,
+            requireNumbers: true,
+            requireSpecialChars: false,
+            maxAge: 365,
+            preventReuse: 2,
+          },
+          sessionSettings: {
+            maxConcurrentSessions: 3,
+            sessionTimeout: 12,
+            requireMFA: false,
+          },
+        },
+        subscription: {
+          plan: "starter", // Changed from "basic" to "starter"
+          status: "active",
+          limits: {
+            maxUsers: 25,
+            maxTeams: 5,
+            maxApplications: 3,
+            maxAPIRequests: 10000,
+          },
+        },
+      },
+    ]
+
+    const additionalOrgs = await Organization.create(sampleOrganizations)
+    console.log(`✅ Created ${additionalOrgs.length} additional organizations`)
+
+    // Create roles for additional organizations and add members
+    for (let i = 0; i < additionalOrgs.length; i++) {
+      const org = additionalOrgs[i]
+      const owner = createdUsers[i]
+
+      // Create basic roles for each organization
+      const orgRoles = [
+        {
+          name: "Owner",
+          slug: "owner",
+          description: "Organization owner with full control",
+          level: 90,
+          permissions: [
+            { resource: "organization", actions: ["read", "update", "delete", "manage"] },
+            { resource: "users", actions: ["create", "read", "update", "delete", "invite", "manage"] },
+            { resource: "teams", actions: ["create", "read", "update", "delete", "manage"] },
+            { resource: "roles", actions: ["create", "read", "update", "delete"] },
+          ],
+          organization: org._id,
+          createdBy: owner._id,
+          isSystem: false,
+        },
+        {
+          name: "Admin",
+          slug: "admin",
+          description: "Administrative access",
+          level: 80,
+          permissions: [
+            { resource: "users", actions: ["create", "read", "update", "invite"] },
+            { resource: "teams", actions: ["create", "read", "update", "delete"] },
+          ],
+          organization: org._id,
+          createdBy: owner._id,
+          isSystem: false,
+        },
+        {
+          name: "Member",
+          slug: "member",
+          description: "Standard member access",
+          level: 50,
+          permissions: [
+            { resource: "profile", actions: ["read", "update"] },
+            { resource: "teams", actions: ["read"] },
+          ],
+          organization: org._id,
+          createdBy: owner._id,
+          isSystem: false,
+        },
+      ]
+
+      const createdOrgRoles = await Role.create(orgRoles)
+
+      // Add owner to their organization
+      const ownerRole = createdOrgRoles.find((role) => role.name === "Owner")
+      await OrganizationMember.create({
+        user: owner._id,
+        organization: org._id,
+        role: ownerRole._id,
+        status: "active",
+        joinedAt: new Date(),
+      })
+
+      // Add some other users as members
+      const memberRole = createdOrgRoles.find((role) => role.name === "Member")
+      const otherUsers = createdUsers.filter((user) => user._id.toString() !== owner._id.toString()).slice(0, 2)
+
+      for (const user of otherUsers) {
+        await OrganizationMember.create({
+          user: user._id,
+          organization: org._id,
+          role: memberRole._id,
+          status: "active",
+          joinedAt: new Date(),
+        })
+      }
+
+      console.log(`✅ Created roles and members for ${org.name}`)
+    }
+
+    // Create sample applications
+    console.log("📱 Creating sample applications...")
+
+    // Function to generate client credentials
+    const generateClientCredentials = () => {
+      return {
+        clientId: `clycites_${crypto.randomBytes(16).toString("hex")}`,
+        clientSecret: crypto.randomBytes(32).toString("hex"),
+      }
+    }
+
+    const sampleApplications = [
+      // ClyCites Platform Applications
+      {
+        name: "ClyCites Admin Dashboard",
+        description: "Main administrative dashboard for platform management",
         organization: clycitesOrg._id,
+        type: "web",
+        platform: "web",
+        redirectUris: [
+          "http://localhost:3000/auth/callback",
+          "https://admin.clycites.com/auth/callback",
+          "https://dashboard.clycites.com/auth/callback",
+        ],
+        allowedOrigins: ["http://localhost:3000", "https://admin.clycites.com", "https://dashboard.clycites.com"],
         scopes: [
           "profile",
           "email",
@@ -317,175 +520,359 @@ const seedDatabase = async () => {
           "teams",
           "users",
           "roles",
+          "permissions",
           "applications",
+          "analytics",
+          "billing",
           "admin",
           "read",
           "write",
           "delete",
         ],
-        permissions: [
-          { resource: "organizations", actions: ["create", "read", "update", "delete"] },
-          { resource: "users", actions: ["create", "read", "update", "delete"] },
-          { resource: "teams", actions: ["create", "read", "update", "delete"] },
-          { resource: "applications", actions: ["create", "read", "update", "delete"] },
-        ],
+        grantTypes: ["authorization_code", "refresh_token"],
+        tokenSettings: {
+          accessTokenTTL: 3600, // 1 hour
+          refreshTokenTTL: 2592000, // 30 days
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
         rateLimits: {
           requestsPerMinute: 1000,
           requestsPerHour: 10000,
           requestsPerDay: 100000,
         },
-        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
-        createdBy: superAdmin._id,
-      },
-      {
-        name: "System Monitoring Token",
-        description: "Read-only token for system monitoring and analytics",
-        user: superAdmin._id,
-        organization: clycitesOrg._id,
-        scopes: ["read", "analytics", "organizations", "users"],
-        permissions: [
-          { resource: "organizations", actions: ["read"] },
-          { resource: "users", actions: ["read"] },
-          { resource: "analytics", actions: ["read"] },
+        webhooks: [
+          {
+            url: "https://admin.clycites.com/webhooks/auth",
+            events: ["user.created", "user.updated", "user.deleted"],
+            secret: "webhook_secret_admin_dashboard",
+            isActive: true,
+          },
         ],
-        rateLimits: {
-          requestsPerMinute: 500,
-          requestsPerHour: 5000,
-          requestsPerDay: 50000,
+        metadata: {
+          version: "1.0.0",
+          environment: "production",
+          maintainer: "ClyCites Platform Team",
         },
-        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
         createdBy: superAdmin._id,
+        ...generateClientCredentials(),
       },
-    ]
-
-    // Create API tokens for John Doe (sample user)
-    const johnTokens = [
       {
-        name: "Mobile App Token",
-        description: "Token for ClyCites mobile application",
-        user: createdUsers[0]._id, // John Doe
+        name: "ClyCites Mobile App",
+        description: "Official ClyCites mobile application for iOS and Android",
         organization: clycitesOrg._id,
-        scopes: ["profile", "email", "teams", "read"],
-        permissions: [
-          { resource: "profile", actions: ["read", "update"] },
-          { resource: "teams", actions: ["read"] },
-        ],
+        type: "mobile",
+        platform: "cross-platform",
+        redirectUris: ["https://mobile.clycites.com/auth/callback", "https://app.clycites.com/auth/callback"],
+        allowedOrigins: ["https://mobile.clycites.com", "https://app.clycites.com"],
+        scopes: ["profile", "email", "teams", "read", "write"],
+        grantTypes: ["authorization_code", "refresh_token"],
+        tokenSettings: {
+          accessTokenTTL: 7200, // 2 hours
+          refreshTokenTTL: 7776000, // 90 days
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
+        rateLimits: {
+          requestsPerMinute: 200,
+          requestsPerHour: 2000,
+          requestsPerDay: 20000,
+        },
+        metadata: {
+          version: "2.1.0",
+          platforms: ["iOS", "Android"],
+          minVersion: "2.0.0",
+          customSchemes: ["clycites://", "com.clycites.app://"], // Store custom schemes in metadata
+        },
+        createdBy: superAdmin._id,
+        ...generateClientCredentials(),
+      },
+      {
+        name: "ClyCites API Gateway",
+        description: "Internal API gateway for microservices communication",
+        organization: clycitesOrg._id,
+        type: "service",
+        platform: "web",
+        redirectUris: [], // No redirect URIs for service-to-service
+        allowedOrigins: ["https://api.clycites.com", "https://gateway.clycites.com"],
+        scopes: ["read", "write", "admin"],
+        grantTypes: ["client_credentials"],
+        tokenSettings: {
+          accessTokenTTL: 1800, // 30 minutes
+          refreshTokenTTL: 0, // No refresh for service-to-service
+          allowRefreshToken: false,
+          reuseRefreshToken: false,
+        },
+        rateLimits: {
+          requestsPerMinute: 5000,
+          requestsPerHour: 50000,
+          requestsPerDay: 500000,
+        },
+        metadata: {
+          serviceType: "gateway",
+          internal: true,
+          criticality: "high",
+        },
+        createdBy: superAdmin._id,
+        ...generateClientCredentials(),
+      },
+
+      // TechCorp Solutions Applications
+      {
+        name: "TechCorp Client Portal",
+        description: "Customer-facing portal for TechCorp clients",
+        organization: additionalOrgs[0]._id, // TechCorp Solutions
+        type: "web",
+        platform: "web",
+        redirectUris: ["https://portal.techcorp.com/auth/callback", "http://localhost:3001/auth/callback"],
+        allowedOrigins: ["https://portal.techcorp.com", "http://localhost:3001"],
+        scopes: ["profile", "email", "read", "write"],
+        grantTypes: ["authorization_code", "refresh_token"],
+        tokenSettings: {
+          accessTokenTTL: 3600,
+          refreshTokenTTL: 1209600, // 14 days
+          allowRefreshToken: true,
+          reuseRefreshToken: true,
+        },
         rateLimits: {
           requestsPerMinute: 100,
           requestsPerHour: 1000,
           requestsPerDay: 10000,
         },
-        expiresAt: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000), // 6 months
-        createdBy: createdUsers[0]._id,
+        webhooks: [
+          {
+            url: "https://portal.techcorp.com/webhooks/user-events",
+            events: ["user.login", "user.logout"],
+            secret: "techcorp_webhook_secret",
+            isActive: true,
+          },
+        ],
+        metadata: {
+          clientType: "external",
+          industry: "consulting",
+        },
+        createdBy: createdUsers[0]._id, // John
+        ...generateClientCredentials(),
       },
       {
-        name: "Integration Script Token",
-        description: "Token for automated data synchronization script",
-        user: createdUsers[0]._id, // John Doe
-        organization: clycitesOrg._id,
-        scopes: ["read", "write", "teams"],
-        permissions: [
-          { resource: "teams", actions: ["read", "update"] },
-          { resource: "profile", actions: ["read"] },
-        ],
+        name: "TechCorp Analytics Dashboard",
+        description: "Internal analytics and reporting dashboard",
+        organization: additionalOrgs[0]._id,
+        type: "web",
+        platform: "web",
+        redirectUris: ["https://analytics.techcorp.internal/auth/callback"],
+        allowedOrigins: ["https://analytics.techcorp.internal"],
+        scopes: ["profile", "analytics", "read"],
+        grantTypes: ["authorization_code"],
+        tokenSettings: {
+          accessTokenTTL: 28800, // 8 hours
+          refreshTokenTTL: 604800, // 7 days
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
         rateLimits: {
-          requestsPerMinute: 60,
+          requestsPerMinute: 50,
           requestsPerHour: 500,
           requestsPerDay: 5000,
         },
-        expiresAt: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000), // 3 months
-        createdBy: createdUsers[0]._id,
-      },
-    ]
-
-    // Create API tokens for Jane Smith (sample user)
-    const janeTokens = [
-      {
-        name: "Web Dashboard Token",
-        description: "Token for web dashboard access",
-        user: createdUsers[1]._id, // Jane Smith
-        organization: clycitesOrg._id,
-        scopes: ["profile", "email", "teams", "read", "write"],
-        permissions: [
-          { resource: "profile", actions: ["read", "update"] },
-          { resource: "teams", actions: ["read", "update"] },
-        ],
-        rateLimits: {
-          requestsPerMinute: 100,
-          requestsPerHour: 1000,
-          requestsPerDay: 10000,
+        metadata: {
+          internal: true,
+          department: "analytics",
         },
-        expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 year
-        createdBy: createdUsers[1]._id,
+        createdBy: createdUsers[0]._id, // John
+        ...generateClientCredentials(),
       },
       {
-        name: "Testing Token",
-        description: "Short-lived token for API testing and development",
-        user: createdUsers[1]._id, // Jane Smith
-        organization: clycitesOrg._id,
-        scopes: ["profile", "read"],
-        permissions: [{ resource: "profile", actions: ["read"] }],
+        name: "TechCorp Mobile Workforce",
+        description: "Mobile app for field technicians and remote workers",
+        organization: additionalOrgs[0]._id,
+        type: "mobile",
+        platform: "cross-platform",
+        redirectUris: ["https://mobile.techcorp.com/auth/callback"],
+        allowedOrigins: ["https://mobile.techcorp.com"],
+        scopes: ["profile", "email", "teams", "read", "write"],
+        grantTypes: ["authorization_code", "refresh_token"],
+        tokenSettings: {
+          accessTokenTTL: 14400, // 4 hours
+          refreshTokenTTL: 2592000, // 30 days
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
         rateLimits: {
           requestsPerMinute: 60,
-          requestsPerHour: 500,
-          requestsPerDay: 2000,
+          requestsPerHour: 600,
+          requestsPerDay: 6000,
         },
-        expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
-        createdBy: createdUsers[1]._id,
+        metadata: {
+          targetUsers: "field_workers",
+          offlineCapable: true,
+          customSchemes: ["techcorp://"], // Store custom schemes in metadata
+        },
+        createdBy: createdUsers[0]._id, // John
+        ...generateClientCredentials(),
+      },
+
+      // StartupHub Applications
+      {
+        name: "StartupHub Accelerator Platform",
+        description: "Main platform for startup accelerator program management",
+        organization: additionalOrgs[1]._id, // StartupHub
+        type: "web",
+        platform: "web",
+        redirectUris: ["https://platform.startuphub.com/auth/callback", "http://localhost:3002/auth/callback"],
+        allowedOrigins: ["https://platform.startuphub.com", "http://localhost:3002"],
+        scopes: ["profile", "email", "organizations", "teams", "read", "write"],
+        grantTypes: ["authorization_code", "refresh_token"],
+        tokenSettings: {
+          accessTokenTTL: 7200, // 2 hours
+          refreshTokenTTL: 1209600, // 14 days
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
+        rateLimits: {
+          requestsPerMinute: 80,
+          requestsPerHour: 800,
+          requestsPerDay: 8000,
+        },
+        webhooks: [
+          {
+            url: "https://platform.startuphub.com/webhooks/program-events",
+            events: ["user.enrolled", "program.completed"],
+            secret: "startuphub_webhook_secret",
+            isActive: true,
+          },
+        ],
+        metadata: {
+          programType: "accelerator",
+          cohortBased: true,
+        },
+        createdBy: createdUsers[1]._id, // Jane
+        ...generateClientCredentials(),
+      },
+      {
+        name: "StartupHub Mentor Connect",
+        description: "Mobile app connecting startups with mentors",
+        organization: additionalOrgs[1]._id,
+        type: "mobile",
+        platform: "cross-platform",
+        redirectUris: ["https://mentor.startuphub.com/auth/callback"],
+        allowedOrigins: ["https://mentor.startuphub.com"],
+        scopes: ["profile", "email", "read"],
+        grantTypes: ["authorization_code", "refresh_token"],
+        tokenSettings: {
+          accessTokenTTL: 10800, // 3 hours
+          refreshTokenTTL: 2592000, // 30 days
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
+        rateLimits: {
+          requestsPerMinute: 40,
+          requestsPerHour: 400,
+          requestsPerDay: 4000,
+        },
+        metadata: {
+          userTypes: ["startups", "mentors"],
+          matchingAlgorithm: "v2.0",
+          customSchemes: ["startuphub://"], // Store custom schemes in metadata
+        },
+        createdBy: createdUsers[1]._id, // Jane
+        ...generateClientCredentials(),
+      },
+      {
+        name: "StartupHub API Integration",
+        description: "API service for third-party integrations and data sync",
+        organization: additionalOrgs[1]._id,
+        type: "api",
+        platform: "web",
+        redirectUris: [], // No redirect URIs for API service
+        allowedOrigins: ["https://api.startuphub.com"],
+        scopes: ["read", "write"],
+        grantTypes: ["client_credentials", "authorization_code"],
+        tokenSettings: {
+          accessTokenTTL: 3600, // 1 hour
+          refreshTokenTTL: 86400, // 1 day
+          allowRefreshToken: true,
+          reuseRefreshToken: false,
+        },
+        rateLimits: {
+          requestsPerMinute: 200,
+          requestsPerHour: 2000,
+          requestsPerDay: 20000,
+        },
+        metadata: {
+          apiVersion: "v1",
+          integrationPartners: ["Slack", "Notion", "Airtable"],
+        },
+        createdBy: createdUsers[1]._id, // Jane
+        ...generateClientCredentials(),
       },
     ]
 
-    // Combine all tokens
-    apiTokens.push(...superAdminTokens, ...johnTokens, ...janeTokens)
+    // Create applications one by one to ensure pre-save middleware runs
+    const createdApplications = []
+    for (const appData of sampleApplications) {
+      try {
+        // Create the application with manually generated client credentials
+        const app = await Application.create(appData)
+        createdApplications.push(app)
+        console.log(`✅ Created application: ${app.name}`)
+      } catch (error) {
+        console.error(`❌ Failed to create application ${appData.name}:`, error.message)
+      }
+    }
 
-    // Create the API tokens (let the pre-save middleware generate the actual tokens)
-    const createdTokens = await ApiToken.create(apiTokens)
+    console.log(`✅ Created ${createdApplications.length} sample applications`)
 
-    console.log(`✅ Created ${createdTokens.length} sample API tokens`)
+    // Display application information
+    console.log("\n📱 Sample Applications Created:")
+    for (const app of createdApplications) {
+      const org =
+        app.organization.toString() === clycitesOrg._id.toString()
+          ? "ClyCites"
+          : app.organization.toString() === additionalOrgs[0]._id.toString()
+            ? "TechCorp Solutions"
+            : "StartupHub"
 
-    // Fetch the tokens with the generated token values to display them
-    const tokensWithValues = await ApiToken.find({
-      _id: { $in: createdTokens.map((t) => t._id) },
-    })
-      .select("+token")
-      .populate("user", "firstName lastName email")
-
-    // Display token information (showing actual tokens for demo purposes)
-    console.log("\n🔑 Sample API Tokens Created:")
-    for (const token of tokensWithValues) {
-      const user = token.user.firstName + " " + token.user.lastName
-
-      console.log(`   • ${token.name}`)
-      console.log(`     User: ${user} (${token.user.email})`)
-      console.log(`     Token: ${token.token}`)
-      console.log(`     Scopes: ${token.scopes.join(", ")}`)
-      console.log(`     Expires: ${token.expiresAt.toLocaleDateString()}`)
-      console.log(
-        `     Rate Limits: ${token.rateLimits.requestsPerMinute}/min, ${token.rateLimits.requestsPerHour}/hour`,
-      )
+      console.log(`   • ${app.name}`)
+      console.log(`     Organization: ${org}`)
+      console.log(`     Type: ${app.type} (${app.platform})`)
+      console.log(`     Client ID: ${app.clientId}`)
+      console.log(`     Scopes: ${app.scopes.join(", ")}`)
+      console.log(`     Rate Limits: ${app.rateLimits.requestsPerMinute}/min`)
       console.log("")
     }
 
     console.log("\n🎉 Database seeding completed successfully!")
     console.log("\n📋 Seeded data summary:")
     console.log(`   • 1 Super Admin: admin@clycites.com (password: SuperAdmin123!)`)
-    console.log(`   • 1 Default Organization: ClyCites`)
-    console.log(`   • ${systemRoles.length} System Roles`)
+    console.log(`   • ${1 + additionalOrgs.length} Organizations (1 default + ${additionalOrgs.length} sample)`)
+    console.log(`   • ${systemRoles.length} System Roles (ClyCites org)`)
     console.log(`   • ${sampleUsers.length} Sample Users`)
-    console.log(`   • ${createdTokens.length} Sample API Tokens`)
+    console.log(`   • ${createdApplications.length} Sample Applications`)
+    console.log(`   • Multiple organization memberships with different roles`)
+
     console.log("\n🔐 Login credentials:")
     console.log("   Super Admin: admin@clycites.com / SuperAdmin123!")
-    console.log("   Sample User 1: john@example.com / Password123!")
-    console.log("   Sample User 2: jane@example.com / Password123!")
-    console.log("\n🔑 API Token Testing:")
-    console.log("   Use any of the tokens shown above for API testing")
-    console.log("   Example: curl -H 'x-api-key: TOKEN_HERE' http://localhost:5000/api/v1/test")
-    console.log("   Example: curl -H 'x-api-key: TOKEN_HERE' http://localhost:5000/api/v1/profile")
+    console.log("   John Doe (Org Admin): john@example.com / Password123!")
+    console.log("   Jane Smith (Team Manager): jane@example.com / Password123!")
+    console.log("   Mike Johnson (Developer): mike@example.com / Password123!")
+    console.log("   Sarah Wilson (Member): sarah@example.com / Password123!")
+
+    console.log("\n🏢 Organizations:")
+    console.log("   • ClyCites (Default) - Super Admin, John, Jane, Mike, Sarah")
+    console.log("   • TechCorp Solutions - John (Owner), Mike, Sarah")
+    console.log("   • StartupHub - Jane (Owner), John, Mike")
+
+    console.log("\n📱 Applications:")
+    console.log("   • ClyCites: Admin Dashboard, Mobile App, API Gateway")
+    console.log("   • TechCorp Solutions: Client Portal, Analytics Dashboard, Mobile Workforce")
+    console.log("   • StartupHub: Accelerator Platform, Mentor Connect, API Integration")
+
     console.log("\n🚀 You can now start the server and begin using the authentication system!")
     const PORT = process.env.PORT || 5000
     console.log(`📍 Server will run on: http://localhost:${PORT}`)
-    console.log(`🔧 API Token Management: http://localhost:${PORT}/api/organizations/${clycitesOrg._id}/tokens`)
-    console.log(`🔐 Token Validation: http://localhost:${PORT}/api/auth/validate-token`)
+    console.log(`🔧 API Documentation: http://localhost:${PORT}/api-docs`)
+    console.log(`🔐 Authentication endpoints: http://localhost:${PORT}/api/auth/*`)
 
     process.exit(0)
   } catch (error) {
