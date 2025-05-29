@@ -9,13 +9,22 @@ import { AppError } from "../utils/appError.js"
 // @route   POST /api/organizations/:orgId/tokens
 // @access  Private (Member+)
 export const createApiToken = asyncHandler(async (req, res, next) => {
+  // Debug: Log the received request body
+  console.log("Received request body:", JSON.stringify(req.body, null, 2))
+  console.log("Request headers:", req.headers["content-type"])
+
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
+    console.log("Validation errors:", JSON.stringify(errors.array(), null, 2))
     return next(new AppError("Validation failed", 400, errors.array()))
   }
 
   const { name, description, scopes, permissions, applicationId, expiresAt, rateLimits } = req.body
   const organizationId = req.params.orgId
+
+  if (!organizationId) {
+    return next(new AppError("Organization ID is required", 400))
+  }
 
   // Check organization membership
   const membership = await OrganizationMember.findOne({
