@@ -1019,3 +1019,136 @@
   message: 'Error 💥',
   timestamp: '2025-05-29 22:45:48'
 }
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-29 22:47:41'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Failed to create API token',
+    stack: 'Error: Failed to create API token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/apiTokenController.js:291:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 500,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/organizations/68389807bc79da33aefafdb8/tokens',
+    headers: {
+      'content-type': 'application/json',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '464b9df7-d8cb-4090-a45d-63a9619c61c9',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '490',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.aKi9xCjVtzf3K8kwzEtnKKtidE9ZVCcI9qcta3YDs0s'
+    },
+    body: {
+      name: 'Admin Token',
+      scopes: [ 'users', 'roles', 'permissions' ],
+      description: 'API token with full access',
+      expiresAt: '2025-12-31T23:59:59.000Z',
+      permissions: [
+        {
+          resource: 'users',
+          actions: [ 'create', 'read', 'update', 'delete' ]
+        },
+        { resource: 'roles', actions: [ 'read', 'update' ] }
+      ],
+      rateLimits: {
+        requestsPerMinute: 100,
+        requestsPerHour: 1000,
+        requestsPerDay: 5000
+      }
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.aKi9xCjVtzf3K8kwzEtnKKtidE9ZVCcI9qcta3YDs0s'
+    },
+    query: {},
+    params: {},
+    user: '68389805bc79da33aefafdb5'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-29 22:47:58'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-29 22:48:25'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-29 22:48:40'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Failed to create API token',
+    stack: 'Error: Failed to create API token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/apiTokenController.js:291:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 500,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/organizations/68389807bc79da33aefafdb8/tokens',
+    headers: {
+      'content-type': 'application/json',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '0c42dea6-a012-4e96-8d8f-65c3489f4b28',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '490',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.aKi9xCjVtzf3K8kwzEtnKKtidE9ZVCcI9qcta3YDs0s'
+    },
+    body: {
+      name: 'Admin Token',
+      scopes: [ 'users', 'roles', 'permissions' ],
+      description: 'API token with full access',
+      expiresAt: '2025-12-31T23:59:59.000Z',
+      permissions: [
+        {
+          resource: 'users',
+          actions: [ 'create', 'read', 'update', 'delete' ]
+        },
+        { resource: 'roles', actions: [ 'read', 'update' ] }
+      ],
+      rateLimits: {
+        requestsPerMinute: 100,
+        requestsPerHour: 1000,
+        requestsPerDay: 5000
+      }
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.aKi9xCjVtzf3K8kwzEtnKKtidE9ZVCcI9qcta3YDs0s'
+    },
+    query: {},
+    params: {},
+    user: '68389805bc79da33aefafdb5'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-29 22:48:51'
+}

@@ -38,11 +38,10 @@ const getScopesForRoleLevel = (roleLevel) => {
   return baseScopes
 }
 
-// Step 1: Generate a secure random token (e.g., 32 bytes -> 64-char hex string)
-const plainToken = crypto.randomBytes(32).toString("hex")
-
-// Step 2: Hash it using SHA-256 (or whatever your model expects)
+const rawToken = crypto.randomBytes(32).toString('hex') // 64-char hex string
+const plainToken = `clycites_${rawToken}`
 const hashedToken = crypto.createHash("sha256").update(plainToken).digest("hex")
+
 
 // Helper function to get rate limits based on role level
 const getRateLimitsForRoleLevel = (roleLevel) => {
