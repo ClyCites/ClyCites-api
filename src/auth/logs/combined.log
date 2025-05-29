@@ -1988,3 +1988,82 @@
   message: 'Email configuration verification failed',
   timestamp: '2025-05-29 20:11:48'
 }
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-29 20:14:51'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Validation failed',
+    stack: 'Error: Validation failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/apiTokenController.js:14:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\route.js:149:13)\n' +
+      '    at middleware (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 400,
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: '',
+        msg: 'Token name must be between 2 and 100 characters',
+        path: 'name',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'At least one scope is required',
+        path: 'scopes',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: "Cannot read properties of undefined (reading 'filter')",
+        path: 'scopes',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/organizations/683710705bdad0dd935c7abe/tokens',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5NjE5YTMzZjAxMDc2ZmRlMGIzZiIsImlhdCI6MTc0ODUzODk0MywiZXhwIjoxNzQ5MTQzNzQzfQ.Bj4YKrqgXxuYBaOnq95cKK-WPRUOQ65mHsz4tFNDpvs',
+      'content-type': 'text/plain',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '9d30b08a-736b-4c85-806b-9f73c73d2151',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '689',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5NjE5YTMzZjAxMDc2ZmRlMGIzZiIsImlhdCI6MTc0ODUzODk0MywiZXhwIjoxNzQ5MTQzNzQzfQ.O9UMSQ1lGw9SRgaeFvukTpUisby44NvAVPiP67da7AE'
+    },
+    body: { name: '' },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5NjE5YTMzZjAxMDc2ZmRlMGIzZiIsImlhdCI6MTc0ODUzODk0MywiZXhwIjoxNzQ5MTQzNzQzfQ.O9UMSQ1lGw9SRgaeFvukTpUisby44NvAVPiP67da7AE'
+    },
+    query: {},
+    params: {},
+    user: '68389619a33f01076fde0b3f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-29 20:19:45'
+}
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-29 20:22:27'
+}

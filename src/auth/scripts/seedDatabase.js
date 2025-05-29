@@ -5,6 +5,7 @@ import OrganizationMember from "../models/organizationMemberModel.js"
 import Role from "../models/roleModel.js"
 import { connectDB } from "../config/db.js"
 import Application from "../models/applicationModel.js"
+import crypto from "crypto"
 
 dotenv.config()
 
@@ -490,6 +491,14 @@ const seedDatabase = async () => {
     // Create sample applications
     console.log("📱 Creating sample applications...")
 
+    // Function to generate client credentials
+    const generateClientCredentials = () => {
+      return {
+        clientId: `clycites_${crypto.randomBytes(16).toString("hex")}`,
+        clientSecret: crypto.randomBytes(32).toString("hex"),
+      }
+    }
+
     const sampleApplications = [
       // ClyCites Platform Applications
       {
@@ -546,6 +555,7 @@ const seedDatabase = async () => {
           maintainer: "ClyCites Platform Team",
         },
         createdBy: superAdmin._id,
+        ...generateClientCredentials(),
       },
       {
         name: "ClyCites Mobile App",
@@ -575,6 +585,7 @@ const seedDatabase = async () => {
           customSchemes: ["clycites://", "com.clycites.app://"], // Store custom schemes in metadata
         },
         createdBy: superAdmin._id,
+        ...generateClientCredentials(),
       },
       {
         name: "ClyCites API Gateway",
@@ -603,6 +614,7 @@ const seedDatabase = async () => {
           criticality: "high",
         },
         createdBy: superAdmin._id,
+        ...generateClientCredentials(),
       },
 
       // TechCorp Solutions Applications
@@ -640,6 +652,7 @@ const seedDatabase = async () => {
           industry: "consulting",
         },
         createdBy: createdUsers[0]._id, // John
+        ...generateClientCredentials(),
       },
       {
         name: "TechCorp Analytics Dashboard",
@@ -667,6 +680,7 @@ const seedDatabase = async () => {
           department: "analytics",
         },
         createdBy: createdUsers[0]._id, // John
+        ...generateClientCredentials(),
       },
       {
         name: "TechCorp Mobile Workforce",
@@ -695,6 +709,7 @@ const seedDatabase = async () => {
           customSchemes: ["techcorp://"], // Store custom schemes in metadata
         },
         createdBy: createdUsers[0]._id, // John
+        ...generateClientCredentials(),
       },
 
       // StartupHub Applications
@@ -732,6 +747,7 @@ const seedDatabase = async () => {
           cohortBased: true,
         },
         createdBy: createdUsers[1]._id, // Jane
+        ...generateClientCredentials(),
       },
       {
         name: "StartupHub Mentor Connect",
@@ -760,6 +776,7 @@ const seedDatabase = async () => {
           customSchemes: ["startuphub://"], // Store custom schemes in metadata
         },
         createdBy: createdUsers[1]._id, // Jane
+        ...generateClientCredentials(),
       },
       {
         name: "StartupHub API Integration",
@@ -787,6 +804,7 @@ const seedDatabase = async () => {
           integrationPartners: ["Slack", "Notion", "Airtable"],
         },
         createdBy: createdUsers[1]._id, // Jane
+        ...generateClientCredentials(),
       },
     ]
 
@@ -794,9 +812,9 @@ const seedDatabase = async () => {
     const createdApplications = []
     for (const appData of sampleApplications) {
       try {
-        const app = new Application(appData)
-        const savedApp = await app.save()
-        createdApplications.push(savedApp)
+        // Create the application with manually generated client credentials
+        const app = await Application.create(appData)
+        createdApplications.push(app)
         console.log(`✅ Created application: ${app.name}`)
       } catch (error) {
         console.error(`❌ Failed to create application ${appData.name}:`, error.message)
