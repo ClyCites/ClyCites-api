@@ -1152,3 +1152,10 @@
   message: 'Error 💥',
   timestamp: '2025-05-29 22:48:51'
 }
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-29 22:50:23'
+}
