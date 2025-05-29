@@ -2067,3 +2067,107 @@
   message: 'Email configuration verification failed',
   timestamp: '2025-05-29 20:22:27'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'The user belonging to this token no longer exists',
+    stack: 'Error: The user belonging to this token no longer exists\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:32:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/organizations/683710705bdad0dd935c7abe/tokens',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5NjE5YTMzZjAxMDc2ZmRlMGIzZiIsImlhdCI6MTc0ODUzODk0MywiZXhwIjoxNzQ5MTQzNzQzfQ.Bj4YKrqgXxuYBaOnq95cKK-WPRUOQ65mHsz4tFNDpvs',
+      'content-type': 'text/plain',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '0c6b4504-dd74-4035-ac01-cfcf2f70a26b',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '689',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5NjE5YTMzZjAxMDc2ZmRlMGIzZiIsImlhdCI6MTc0ODUzODk0MywiZXhwIjoxNzQ5MTQzNzQzfQ.O9UMSQ1lGw9SRgaeFvukTpUisby44NvAVPiP67da7AE'
+    },
+    body: {},
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5NjE5YTMzZjAxMDc2ZmRlMGIzZiIsImlhdCI6MTc0ODUzODk0MywiZXhwIjoxNzQ5MTQzNzQzfQ.O9UMSQ1lGw9SRgaeFvukTpUisby44NvAVPiP67da7AE'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-29 20:27:20'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Validation failed',
+    stack: 'Error: Validation failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/apiTokenController.js:14:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\route.js:149:13)\n' +
+      '    at middleware (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express-validator\\lib\\middlewares\\check.js:16:13)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 400,
+    isOperational: true,
+    validationErrors: [
+      {
+        type: 'field',
+        value: '',
+        msg: 'Token name must be between 2 and 100 characters',
+        path: 'name',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: 'At least one scope is required',
+        path: 'scopes',
+        location: 'body'
+      },
+      {
+        type: 'field',
+        value: undefined,
+        msg: "Cannot read properties of undefined (reading 'filter')",
+        path: 'scopes',
+        location: 'body'
+      }
+    ]
+  },
+  request: {
+    method: 'POST',
+    url: '/api/organizations/683710705bdad0dd935c7abe/tokens',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+      'content-type': 'text/plain',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '498198b1-5c82-4708-a758-33c09ee461e8',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '689',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.aKi9xCjVtzf3K8kwzEtnKKtidE9ZVCcI9qcta3YDs0s'
+    },
+    body: { name: '' },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.aKi9xCjVtzf3K8kwzEtnKKtidE9ZVCcI9qcta3YDs0s'
+    },
+    query: {},
+    params: {},
+    user: '68389805bc79da33aefafdb5'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-29 20:28:20'
+}
