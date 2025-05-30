@@ -233,7 +233,7 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       expiresAt: tokenExpiration,
       rateLimits: finalRateLimits,
       createdBy: req.user.id,
-      token: plainToken,           // store plaintext if needed temporarily (or omit and only return)
+      token: plainToken,
       hashedToken: hashedToken,    // required for DB
     })
 
