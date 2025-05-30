@@ -125,7 +125,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   }
 
   try {
-    // Check organization membership
     const membership = await OrganizationMember.findOne({
       user: req.user.id,
       organization: organizationId,
