@@ -159,7 +159,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Validate scopes based on user's role level
     const allowedScopes = getScopesForRoleLevel(membership.role.level)
     const invalidScopes = scopes.filter((scope) => !allowedScopes.includes(scope))
 
