@@ -41,8 +41,6 @@ const rawToken = crypto.randomBytes(32).toString('hex') // 64-char hex string
 const plainToken = `clycites_${rawToken}`
 const hashedToken = crypto.createHash("sha256").update(plainToken).digest("hex")
 
-
-// Helper function to get rate limits based on role level
 const getRateLimitsForRoleLevel = (roleLevel) => {
   if (roleLevel >= 90) {
     // Owner+
