@@ -172,7 +172,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       )
     }
 
-    // Validate and set expiration date
     let tokenExpiration
     if (expiresAt) {
       tokenExpiration = new Date(expiresAt)
