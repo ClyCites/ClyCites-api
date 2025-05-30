@@ -108,7 +108,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   const { name, description, scopes, permissions, applicationId, expiresAt, rateLimits } = req.body
   const organizationId = req.params.orgId
 
-  // Additional manual validation for critical fields
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     return next(new AppError("Token name is required and must be a non-empty string", 400))
   }
