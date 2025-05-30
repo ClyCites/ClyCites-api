@@ -6,7 +6,6 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 import crypto from "crypto"
 
-// Helper function to get allowed scopes based on role level
 const getScopesForRoleLevel = (roleLevel) => {
   const baseScopes = ["profile", "read"]
 
