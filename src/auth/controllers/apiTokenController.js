@@ -96,7 +96,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   if (!errors.isEmpty()) {
     console.log("Validation errors:", JSON.stringify(errors.array(), null, 2))
 
-    // Create user-friendly error messages
     const errorMessages = errors.array().map((error) => ({
       field: error.path,
       message: error.msg,
