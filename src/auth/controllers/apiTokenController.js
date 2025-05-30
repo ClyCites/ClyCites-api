@@ -88,7 +88,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   console.log("Organization ID:", req.params.orgId)
   console.log("User ID:", req.user?.id)
 
-  // Check if request body is properly parsed
   if (!req.body || typeof req.body !== "object") {
     return next(new AppError("Invalid request body. Please ensure Content-Type is application/json", 400))
   }
