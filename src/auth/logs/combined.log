@@ -1943,3 +1943,53 @@
   message: 'Error 💥',
   timestamp: '2025-05-30 15:19:57'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/validate-token',
+    headers: {
+      accept: 'application/json, text/plain, */*',
+      'content-type': 'application/json',
+      'user-agent': 'axios/1.9.0',
+      'content-length': '523',
+      'accept-encoding': 'gzip, compress, deflate, br',
+      host: 'localhost:5000',
+      connection: 'keep-alive'
+    },
+    body: {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+        'x-api-key': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk'
+      },
+      body: {
+        token: 'clycites_6a043d11bc1882e8845c4fe59ed661a1df50d4ead1e62443f2bee8295a93c2ae'
+      }
+    },
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-05-30 15:42:24'
+}

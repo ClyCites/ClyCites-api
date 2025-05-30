@@ -1,77 +1,81 @@
 import { logger } from "../utils/logger.js"
 import { ApiResponse } from "../utils/apiResponse.js"
+import axios from "axios"
 
 export const authMiddleware = async (req, res, next) => {
   try {
-    let token
+    let token;
 
-    // Check for token in headers (same pattern as your auth server)
+    // Check for token in headers
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
-      token = req.headers.authorization.split(" ")[1]
+      token = req.headers.authorization.split(" ")[1];
     }
 
     // Check for API key in headers
     if (!token && req.headers["x-api-key"]) {
-      token = req.headers["x-api-key"]
+      token = req.headers["x-api-key"];
     }
 
     if (!token) {
-      return res.status(401).json(ApiResponse.error("API token required"))
+      return res.status(401).json(ApiResponse.error("API token required"));
     }
 
-    // Validate token with your auth server
-    const tokenValidation = await validateTokenWithAuthServer(token)
-    
+    // Validate token with auth server
+    const tokenValidation = await validateTokenWithAuthServer(token);
+
     if (!tokenValidation.success) {
-      return res.status(401).json(ApiResponse.error(tokenValidation.message || "Invalid or expired API token"))
+      return res.status(401).json(ApiResponse.error(tokenValidation.message || "Invalid or expired API token"));
     }
 
-    // Attach user and organization info from auth server response
-    req.user = tokenValidation.data.user
-    req.organization = tokenValidation.data.organization
-    req.apiToken = tokenValidation.data.apiToken
+    // ✅ Fix here
+    req.user = { id: tokenValidation.data.id };
+    req.organization = tokenValidation.data.organization;
+    req.apiToken = tokenValidation.data.apiToken;
 
-    next()
+    next();
   } catch (error) {
-    logger.error("Auth middleware error:", error)
-    res.status(500).json(ApiResponse.error("Authentication error"))
+    logger.error("Auth middleware error:", error);
+    res.status(500).json(ApiResponse.error("Authentication error"));
   }
-}
+};
+
 
 // Function to validate token with your auth server
 export const validateTokenWithAuthServer = async (token) => {
   try {
-    const response = await fetch(`${process.env.AUTH_SERVER_URL}/api/auth/validate-token`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.JWT_SECRET}`, // Use your JWT secret or API key for auth server
-        "x-api-key": process.env.JWT_SECRET
-      },
-      body: JSON.stringify({ token })
-    })
+    const response = await axios.post(
+      `${process.env.AUTH_SERVER_URL}/api/auth/validate-token`,
+      { token },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.JWT_SECRET}`,
+        },
+      }
+    );
 
-    const data = await response.json()
+    const data = response.data;
 
-    if (!response.ok) {
+    if (response.status !== 200 || !data.success) {
       return {
         success: false,
-        message: data.message || "Token validation failed"
-      }
+        message: data.message || "Token validation failed",
+      };
     }
 
     return {
       success: true,
-      data: data.data || data
-    }
+      data: data.data || data,
+    };
   } catch (error) {
-    logger.error("Auth server validation error:", error)
+    logger.error("Auth server validation error:", error.message || error);
     return {
       success: false,
-      message: "Auth server connection failed"
-    }
+      message: "Auth server connection failed",
+    };
   }
-}
+};
+
 
 // Middleware to check API token scopes (matching your auth server pattern)
 export const requireScope = (...requiredScopes) => {
