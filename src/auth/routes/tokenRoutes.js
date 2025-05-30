@@ -8,7 +8,6 @@ import {
   checkTokenHealth,
   getTokenUsageStats,
 } from "../controllers/tokenController.js"
-import { protect } from "../middlewares/authMiddleware.js"
 import { authenticateApiToken, requireScopes } from "../middlewares/apiTokenAuthMiddleware.js"
 import {
   validateTokenValidation,
@@ -17,64 +16,79 @@ import {
   tokenScopeValidation,
   tokenResourceValidation,
 } from "../middlewares/tokenValidationMiddleware.js"
-import {
-  rateLimiter,
-  tokenValidationRateLimit,
-  quickValidationRateLimit,
-  authRateLimit,
-} from "../middlewares/rateLimitMiddleware.js"
+import { rateLimiter, tokenValidationRateLimit, quickValidationRateLimit } from "../middlewares/rateLimitMiddleware.js"
 
 const router = express.Router()
 
-// ===== Public Token Validation Endpoints =====
+// ===== Public Token Validation Endpoints (No Auth Required) =====
 
 /**
  * @route   POST /api/auth/validate-token
- * @desc    Validate token with full user data lookup
+ * @desc    Validate any token (JWT or API token) - Public endpoint
  * @access  Public
  */
 router.post("/validate-token", tokenValidationRateLimit, validateTokenValidation, validateToken)
 
 /**
  * @route   POST /api/auth/validate-token/quick
- * @desc    Quick token validation without user lookup
+ * @desc    Quick token validation without user lookup - Public endpoint
  * @access  Public
  */
 router.post("/validate-token/quick", quickValidationRateLimit, quickValidateTokenValidation, quickValidateToken)
 
+// ===== API Token Authenticated Validation Endpoints =====
+
 /**
  * @route   POST /api/auth/validate-token/scopes
- * @desc    Validate token with specific required scopes
- * @access  Public
+ * @desc    Validate token with specific required scopes (API token auth)
+ * @access  Private (requires API token)
  */
-router.post("/validate-token/scopes", tokenValidationRateLimit, tokenScopeValidation, validateTokenWithScopes)
+router.post(
+  "/validate-token/scopes",
+  tokenValidationRateLimit,
+  authenticateApiToken,
+  tokenScopeValidation,
+  validateTokenWithScopes,
+)
 
 /**
  * @route   POST /api/auth/validate-token/resource
- * @desc    Validate token for specific resource and actions
- * @access  Public
+ * @desc    Validate token for specific resource and actions (API token auth)
+ * @access  Private (requires API token)
  */
-router.post("/validate-token/resource", tokenValidationRateLimit, tokenResourceValidation, validateTokenForResource)
+router.post(
+  "/validate-token/resource",
+  tokenValidationRateLimit,
+  authenticateApiToken,
+  tokenResourceValidation,
+  validateTokenForResource,
+)
 
-// ===== Protected Token Information Endpoints =====
+// ===== Token Information Endpoints =====
 
 /**
  * @route   GET /api/auth/token-info
- * @desc    Get detailed token info (for debugging)
- * @access  Private (requires JWT auth)
+ * @desc    Get detailed token info (API token auth)
+ * @access  Private (requires API token)
  */
-router.get("/token-info", authRateLimit, protect, tokenInfoValidation, getTokenInfo)
+router.get(
+  "/token-info",
+  rateLimiter({ max: 30, windowMs: 5 * 60 * 1000 }),
+  authenticateApiToken,
+  tokenInfoValidation,
+  getTokenInfo,
+)
 
 /**
  * @route   GET /api/auth/token-health
- * @desc    Check token health and validity
+ * @desc    Check token health and validity - API token auth required
  * @access  Private (requires API token)
  */
 router.get("/token-health", rateLimiter({ max: 50, windowMs: 5 * 60 * 1000 }), authenticateApiToken, checkTokenHealth)
 
 /**
  * @route   GET /api/auth/token-usage
- * @desc    Get token usage statistics
+ * @desc    Get token usage statistics - API token with admin scope required
  * @access  Private (requires API token with admin scope)
  */
 router.get(

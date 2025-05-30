@@ -21,7 +21,7 @@ export const authMiddleware = async (req, res, next) => {
 
     // Validate token with your auth server
     const tokenValidation = await validateTokenWithAuthServer(token)
-
+    
     if (!tokenValidation.success) {
       return res.status(401).json(ApiResponse.error(tokenValidation.message || "Invalid or expired API token"))
     }
@@ -45,8 +45,10 @@ export const validateTokenWithAuthServer = async (token) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.JWT_SECRET}`, // Use your JWT secret or API key for auth server
+        "x-api-key": process.env.JWT_SECRET
       },
-      body: JSON.stringify({ token }),
+      body: JSON.stringify({ token })
     })
 
     const data = await response.json()
@@ -54,118 +56,19 @@ export const validateTokenWithAuthServer = async (token) => {
     if (!response.ok) {
       return {
         success: false,
-        message: data.message || "Token validation failed",
+        message: data.message || "Token validation failed"
       }
     }
 
-    // Handle the response format from your auth server
     return {
       success: true,
-      data: {
-        user: data.data.user,
-        organization: data.data.organization,
-        apiToken: {
-          id: data.data.tokenId,
-          name: data.data.name,
-          type: data.data.type,
-          scopes: data.data.scopes,
-          permissions: data.data.permissions || [],
-          expiresAt: data.data.expiresAt,
-          hasScope: function (scope) {
-            return this.scopes && this.scopes.includes(scope)
-          },
-          hasPermission: function (resource, action) {
-            if (!this.permissions) return false
-            const permission = `${resource}:${action}`
-            return (
-              this.permissions.includes(permission) ||
-              this.permissions.includes(`${resource}:*`) ||
-              this.permissions.includes("*:*")
-            )
-          },
-        },
-      },
+      data: data.data || data
     }
   } catch (error) {
     logger.error("Auth server validation error:", error)
     return {
       success: false,
-      message: "Auth server connection failed",
-    }
-  }
-}
-
-// Function for quick token validation (no user lookup)
-export const quickValidateTokenWithAuthServer = async (token) => {
-  try {
-    const response = await fetch(`${process.env.AUTH_SERVER_URL}/api/auth/validate-token/quick`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token }),
-    })
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      return {
-        success: false,
-        message: data.message || "Token validation failed",
-      }
-    }
-
-    return {
-      success: true,
-      data: {
-        tokenId: data.data.tokenId,
-        name: data.data.name,
-        type: data.data.type,
-        scopes: data.data.scopes,
-        expiresAt: data.data.expiresAt,
-      },
-    }
-  } catch (error) {
-    logger.error("Auth server quick validation error:", error)
-    return {
-      success: false,
-      message: "Auth server connection failed",
-    }
-  }
-}
-
-// Function to validate token with specific scopes
-export const validateTokenWithScopesOnAuthServer = async (token, requiredScopes) => {
-  try {
-    const response = await fetch(`${process.env.AUTH_SERVER_URL}/api/auth/validate-token/scopes`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token,
-        scopes: requiredScopes,
-      }),
-    })
-
-    const data = await response.json()
-
-    if (!response.ok) {
-      return {
-        success: false,
-        message: data.message || "Token scope validation failed",
-      }
-    }
-
-    return {
-      success: true,
-      data: data.data,
-    }
-  } catch (error) {
-    logger.error("Auth server scope validation error:", error)
-    return {
-      success: false,
-      message: "Auth server connection failed",
+      message: "Auth server connection failed"
     }
   }
 }
@@ -178,7 +81,7 @@ export const requireScope = (...requiredScopes) => {
     }
 
     // Check if apiToken has the hasScope method or check scopes array
-    const hasRequiredScope = requiredScopes.some((scope) => {
+    const hasRequiredScope = requiredScopes.some(scope => {
       if (req.apiToken.hasScope) {
         return req.apiToken.hasScope(scope)
       }
@@ -187,7 +90,9 @@ export const requireScope = (...requiredScopes) => {
     })
 
     if (!hasRequiredScope) {
-      return res.status(403).json(ApiResponse.error(`Insufficient scope. Required: ${requiredScopes.join(" or ")}`))
+      return res.status(403).json(
+        ApiResponse.error(`Insufficient scope. Required: ${requiredScopes.join(" or ")}`)
+      )
     }
 
     next()
@@ -202,12 +107,14 @@ export const requirePermission = (resource, action) => {
     }
 
     // Check if apiToken has the hasPermission method
-    const hasPermission = req.apiToken.hasPermission
+    const hasPermission = req.apiToken.hasPermission 
       ? req.apiToken.hasPermission(resource, action)
       : checkPermissionFallback(req.apiToken, resource, action)
 
     if (!hasPermission) {
-      return res.status(403).json(ApiResponse.error(`Insufficient permissions for ${action} on ${resource}`))
+      return res.status(403).json(
+        ApiResponse.error(`Insufficient permissions for ${action} on ${resource}`)
+      )
     }
 
     next()
@@ -217,13 +124,11 @@ export const requirePermission = (resource, action) => {
 // Fallback permission check if hasPermission method is not available
 const checkPermissionFallback = (apiToken, resource, action) => {
   if (!apiToken.permissions) return false
-
+  
   const permission = `${resource}:${action}`
-  return (
-    apiToken.permissions.includes(permission) ||
-    apiToken.permissions.includes(`${resource}:*`) ||
-    apiToken.permissions.includes("*:*")
-  )
+  return apiToken.permissions.includes(permission) || 
+         apiToken.permissions.includes(`${resource}:*`) ||
+         apiToken.permissions.includes("*:*")
 }
 
 // Organization-specific middleware

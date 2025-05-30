@@ -1,6 +1,26 @@
 import mongoose from "mongoose"
 import crypto from "crypto"
 
+// Helper function to validate IP addresses (IPv4, IPv6, and IPv4-mapped IPv6)
+const isValidIP = (ip) => {
+  if (!ip) return true // Allow null/empty values
+
+  // IPv4 regex
+  const ipv4Regex = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+
+  // IPv6 regex
+  const ipv6Regex = /^(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/
+
+  // IPv4-mapped IPv6 regex (::ffff:192.168.1.1)
+  const ipv4MappedIPv6Regex =
+    /^::ffff:(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+
+  // Compressed IPv6 regex (handles :: notation)
+  const compressedIPv6Regex = /^(([0-9a-fA-F]{1,4}:){1,7}:|:((:[0-9a-fA-F]{1,4}){1,7}|:))$/
+
+  return ipv4Regex.test(ip) || ipv6Regex.test(ip) || ipv4MappedIPv6Regex.test(ip) || compressedIPv6Regex.test(ip)
+}
+
 const apiTokenSchema = new mongoose.Schema(
   {
     name: {
@@ -165,14 +185,7 @@ const apiTokenSchema = new mongoose.Schema(
         type: String,
         default: null,
         validate: {
-          validator: (v) => {
-            if (!v) return true
-            // Basic IP validation (IPv4 and IPv6)
-            const ipv4Regex =
-              /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-            const ipv6Regex = /^(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/
-            return ipv4Regex.test(v) || ipv6Regex.test(v)
-          },
+          validator: isValidIP,
           message: "Invalid IP address format",
         },
       },
@@ -189,9 +202,7 @@ const apiTokenSchema = new mongoose.Schema(
         validate: {
           validator: (v) => {
             if (!Array.isArray(v)) return false
-            const ipv4Regex =
-              /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-            return v.every((ip) => ipv4Regex.test(ip))
+            return v.every((ip) => isValidIP(ip))
           },
           message: "Invalid IP addresses in allowedIPs",
         },
