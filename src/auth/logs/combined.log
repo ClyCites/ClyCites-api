@@ -1241,3 +1241,16 @@
   message: 'Email configuration verification failed',
   timestamp: '2025-05-30 13:05:59'
 }
+{
+  service: 'clycites-auth',
+  error: 'nodemailer.createTransporter is not a function',
+  level: 'error',
+  message: 'Email configuration verification failed',
+  timestamp: '2025-05-30 13:06:09'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-05-30 13:07:23'
+}
