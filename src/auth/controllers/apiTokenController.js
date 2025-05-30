@@ -92,7 +92,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
     return next(new AppError("Invalid request body. Please ensure Content-Type is application/json", 400))
   }
 
-  // Validate express-validator results
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     console.log("Validation errors:", JSON.stringify(errors.array(), null, 2))
