@@ -1,65 +1,70 @@
-import ApiToken from "../models/apiTokenModel.js"
+import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
+import ApiToken from "../models/apiTokenModel.js"
 import crypto from "crypto"
 
-// Middleware to authenticate API tokens (matching your token creation logic)
-export const authenticateApiToken = async (req, res, next) => {
+// Middleware to authenticate API token
+export const authenticateApiToken = asyncHandler(async (req, res, next) => {
+  // Get token from header
+  let token = req.headers["x-api-key"] || req.headers["authorization"]
+
+  // Check if token exists
+  if (!token) {
+    return next(new AppError("API token is required", 401))
+  }
+
+  // Remove Bearer prefix if present
+  if (token.startsWith("Bearer ")) {
+    token = token.slice(7)
+  }
+
+  // Check if it's an API token (starts with clycites_)
+  if (!token.startsWith("clycites_")) {
+    return next(new AppError("Invalid API token format", 401))
+  }
+
   try {
-    let token
-
-    // Extract token from headers
-    if (req.headers["x-api-key"]) {
-      token = req.headers["x-api-key"]
-    } else if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
-      const authToken = req.headers.authorization.split(" ")[1]
-      if (authToken.startsWith("clycites_")) {
-        token = authToken
-      }
-    }
-
-    if (!token) {
-      return next(new AppError("API token is required", 401))
-    }
-
-    // Validate token format (matching your creation logic)
-    if (!token.startsWith("clycites_") || token.length !== 73) {
-      return next(new AppError("Invalid API token format", 401))
-    }
-
-    // Hash token to find in database
+    // Hash the token
     const hashedToken = crypto.createHash("sha256").update(token).digest("hex")
 
-    // Find and validate token
+    // Find the token in the database
     const apiToken = await ApiToken.findOne({
       hashedToken,
       isActive: true,
       expiresAt: { $gt: new Date() },
-    })
-      .populate("user", "firstName lastName email username isActive isLocked")
-      .populate("organization", "name slug isActive")
+    }).populate([
+      { path: "user", select: "firstName lastName email username isActive" },
+      { path: "organization", select: "name slug isActive" },
+      { path: "application", select: "name type platform" },
+    ])
 
     if (!apiToken) {
       return next(new AppError("Invalid or expired API token", 401))
     }
 
-    // Check if user and organization are active
-    if (!apiToken.user.isActive) {
-      return next(new AppError("User account is inactive", 401))
-    }
-
-    if (apiToken.user.isLocked) {
-      return next(new AppError("User account is locked", 401))
-    }
-
+    // Check if organization is active
     if (!apiToken.organization.isActive) {
-      return next(new AppError("Organization is inactive", 401))
+      return next(new AppError("Organization is inactive", 403))
     }
 
-    // Check IP restrictions
-    if (apiToken.restrictions.allowedIPs.length > 0) {
+    // Check if user is active
+    if (!apiToken.user.isActive) {
+      return next(new AppError("User account is inactive", 403))
+    }
+
+    // Check IP restrictions if configured
+    if (apiToken.restrictions?.allowedIPs?.length > 0) {
       const clientIP = req.ip || req.connection.remoteAddress
-      if (!apiToken.restrictions.allowedIPs.includes(clientIP)) {
+      if (!apiToken.isIPAllowed(clientIP)) {
         return next(new AppError("Access denied from this IP address", 403))
+      }
+    }
+
+    // Check domain restrictions if configured
+    if (apiToken.restrictions?.allowedDomains?.length > 0) {
+      const origin = req.get("origin") || req.get("referer")
+      if (origin && !apiToken.isDomainAllowed(new URL(origin).hostname)) {
+        return next(new AppError("Access denied from this domain", 403))
       }
     }
 
@@ -67,10 +72,11 @@ export const authenticateApiToken = async (req, res, next) => {
     apiToken.usage.totalRequests += 1
     apiToken.usage.lastUsedAt = new Date()
     apiToken.usage.lastUsedIP = req.ip || req.connection.remoteAddress
-    apiToken.usage.lastUsedUserAgent = req.headers["user-agent"] || null
+    apiToken.usage.lastUsedUserAgent = req.get("user-agent") || null
+
     await apiToken.save()
 
-    // Attach token and user info to request
+    // Attach token and user to request
     req.apiToken = apiToken
     req.user = apiToken.user
     req.organization = apiToken.organization
@@ -78,53 +84,50 @@ export const authenticateApiToken = async (req, res, next) => {
     next()
   } catch (error) {
     console.error("API token authentication error:", error)
-    return next(new AppError("Token authentication failed", 401))
+    return next(new AppError("Authentication failed", 500))
   }
-}
+})
 
-// Middleware to check specific scopes
+// Middleware to require specific scopes
 export const requireScopes = (requiredScopes) => {
-  return (req, res, next) => {
+  return asyncHandler(async (req, res, next) => {
+    // Check if API token exists on request
     if (!req.apiToken) {
-      return next(new AppError("API token required for scope validation", 401))
+      return next(new AppError("API token authentication required", 401))
     }
 
-    const hasRequiredScopes = requiredScopes.every((scope) => req.apiToken.scopes.includes(scope))
+    // Check if token has all required scopes
+    const hasAllScopes = requiredScopes.every((scope) => req.apiToken.scopes.includes(scope))
 
-    if (!hasRequiredScopes) {
-      return next(
-        new AppError(
-          `Insufficient scopes. Required: ${requiredScopes.join(", ")}. Available: ${req.apiToken.scopes.join(", ")}`,
-          403,
-        ),
-      )
+    if (!hasAllScopes) {
+      return next(new AppError(`Insufficient scopes. Required: ${requiredScopes.join(", ")}`, 403))
     }
 
     next()
-  }
+  })
 }
 
-// Middleware to check specific permissions
-export const requirePermissions = (resource, actions) => {
-  return (req, res, next) => {
+// Middleware to require permission for resource and action
+export const requirePermission = (resource, action) => {
+  return asyncHandler(async (req, res, next) => {
+    // Check if API token exists on request
     if (!req.apiToken) {
-      return next(new AppError("API token required for permission validation", 401))
+      return next(new AppError("API token authentication required", 401))
     }
 
-    const hasPermission = req.apiToken.permissions.some((permission) => {
-      return permission.resource === resource && actions.every((action) => permission.actions.includes(action))
-    })
+    // Check if token has permission for resource and action
+    const hasPermission = req.apiToken.hasPermission(resource, action)
 
     if (!hasPermission) {
-      return next(new AppError(`Insufficient permissions for ${resource}:${actions.join(",")}`, 403))
+      return next(new AppError(`Insufficient permissions. Required: ${resource}:${action}`, 403))
     }
 
     next()
-  }
+  })
 }
 
 export default {
   authenticateApiToken,
   requireScopes,
-  requirePermissions,
+  requirePermission,
 }
