@@ -81,3 +81,43 @@ export const dynamicApiRateLimit = (req, res, next) => {
 
   next()
 }
+
+// Generic rate limiter factory function
+export const rateLimiter = (options = {}) => {
+  const defaultOptions = {
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    message: {
+      error: "Too many requests from this IP, please try again later.",
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+  }
+
+  return rateLimit({
+    ...defaultOptions,
+    ...options,
+  })
+}
+
+// Token validation specific rate limiting
+export const tokenValidationRateLimit = rateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 100, // limit each IP to 100 token validation requests per 5 minutes
+  message: {
+    error: "Too many token validation requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+
+// Quick validation rate limiting (more permissive)
+export const quickValidationRateLimit = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 200, // limit each IP to 200 quick validation requests per minute
+  message: {
+    error: "Too many quick validation requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+})

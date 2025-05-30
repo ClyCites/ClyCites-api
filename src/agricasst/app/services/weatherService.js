@@ -77,7 +77,19 @@ class WeatherService {
       logger.info("Weather data updated successfully")
       return savedWeather
     } catch (error) {
-      logger.error("Error fetching weather data:", error)
+      // Extract safe error info
+      const safeError = {
+        message: error.message,
+        stack: error.stack,
+      }
+
+      // If axios error, add response details if available
+      if (error.response) {
+        safeError.status = error.response.status
+        safeError.data = error.response.data
+      }
+
+      logger.error("Error fetching weather data:", safeError)
       throw new Error("Failed to fetch weather data")
     }
   }

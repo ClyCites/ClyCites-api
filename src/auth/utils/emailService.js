@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename)
 // Create email transporter
 const createTransporter = () => {
   if (process.env.NODE_ENV === "production") {
-    return nodemailer.createTransporter({
+    return nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USERNAME,
@@ -19,7 +19,7 @@ const createTransporter = () => {
   }
 
   // Development or Gmail
-  return nodemailer.createTransporter({
+  return nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USERNAME,
