@@ -242,7 +242,7 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
 
     const responseToken = apiToken.toObject()
     delete responseToken.hashedToken
-    delete responseToken.token // Optional if you stored it temporarily
+    delete responseToken.token
 
 
     res.status(201).json({
