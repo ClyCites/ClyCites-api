@@ -120,7 +120,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
     return next(new AppError("Organization ID is required", 400))
   }
 
-  // Validate organization ID format
   if (!organizationId.match(/^[0-9a-fA-F]{24}$/)) {
     return next(new AppError("Invalid organization ID format", 400))
   }
