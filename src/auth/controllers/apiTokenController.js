@@ -249,7 +249,7 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       success: true,
       message: "API token created successfully",
       data: {
-        token: plainToken, // Show only once
+        token: plainToken,
         apiToken: responseToken,
         usage: {
           curl: `curl -H "x-api-key: ${plainToken}" ${req.protocol}://${req.get("host")}/api/...`,
