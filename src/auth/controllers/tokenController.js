@@ -256,9 +256,6 @@ const validateAPITokenLogic = async (token, req = null) => {
     throw new Error("Organization is inactive")
   }
 
-  if (!apiToken.user.isActive) {
-    throw new Error("User account is inactive")
-  }
 
   // Update usage if request provided
   if (req) {
@@ -275,6 +272,7 @@ const validateAPITokenLogic = async (token, req = null) => {
       name: `${apiToken.user.firstName} ${apiToken.user.lastName}`,
       email: apiToken.user.email,
       username: apiToken.user.username,
+      isActive: apiToken.user.isActive,
     },
     organization: {
       id: apiToken.organization._id,

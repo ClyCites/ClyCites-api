@@ -1993,3 +1993,15 @@
   message: 'Error 💥',
   timestamp: '2025-05-30 15:42:24'
 }
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-05-30 16:25:12'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-05-30 16:26:54'
+}

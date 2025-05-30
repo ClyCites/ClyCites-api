@@ -141,10 +141,6 @@ export const requireOrganization = (req, res, next) => {
     return res.status(401).json(ApiResponse.error("Organization context required"))
   }
 
-  if (!req.organization.isActive) {
-    return res.status(401).json(ApiResponse.error("Organization is inactive"))
-  }
-
   next()
 }
 
@@ -152,10 +148,6 @@ export const requireOrganization = (req, res, next) => {
 export const requireActiveUser = (req, res, next) => {
   if (!req.user) {
     return res.status(401).json(ApiResponse.error("User context required"))
-  }
-
-  if (!req.user.isActive) {
-    return res.status(401).json(ApiResponse.error("User account is inactive"))
   }
 
   next()
