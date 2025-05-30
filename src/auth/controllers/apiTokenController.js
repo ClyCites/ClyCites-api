@@ -141,7 +141,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
 
     console.log("User role level:", membership.role.level)
 
-    // Validate application if specified
     let application = null
     if (applicationId) {
       if (!applicationId.match(/^[0-9a-fA-F]{24}$/)) {
