@@ -408,7 +408,6 @@ app.get("/api/postman", (req, res) => {
   })
 })
 
-// Root endpoint
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "🚀 ClyCites Enterprise Authentication Server",
