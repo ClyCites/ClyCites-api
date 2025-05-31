@@ -42,7 +42,6 @@ if (missingEnvVars.length > 0) {
   process.exit(1)
 }
 
-// Connect to database
 connectDB()
 
 // Verify email configuration on startup
