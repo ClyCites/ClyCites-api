@@ -163,7 +163,6 @@ app.get("/health", (req, res) => {
   })
 })
 
-// API documentation endpoint - public access
 app.get("/api/docs", (req, res) => {
   res.status(200).json({
     title: "ClyCites Enterprise Authentication API",
