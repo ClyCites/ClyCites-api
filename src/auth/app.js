@@ -34,7 +34,6 @@ dotenv.config()
 
 const app = express()
 
-// Validate required environment variables
 const requiredEnvVars = ["MONGODB_URI", "JWT_SECRET", "JWT_REFRESH_SECRET"]
 const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar])
 
