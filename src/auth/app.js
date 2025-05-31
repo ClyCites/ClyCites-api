@@ -120,7 +120,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("combined"))
 }
 
-// Session configuration for Passport
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-session-secret",
