@@ -443,7 +443,6 @@ const server = app.listen(PORT, () => {
   console.log(`🔐 Ready to accept requests!`)
 })
 
-// Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
   console.log(`❌ Unhandled Promise Rejection: ${err.message}`)
   server.close(() => {
