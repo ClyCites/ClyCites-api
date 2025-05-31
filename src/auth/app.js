@@ -427,7 +427,6 @@ app.get("/", (req, res) => {
   })
 })
 
-// Error handling middleware - MUST be last
 app.use(notFound)
 app.use(errorHandler)
 
