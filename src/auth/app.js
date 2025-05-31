@@ -141,7 +141,7 @@ app.use("/uploads", express.static("uploads"))
 app.get("/favicon.ico", (req, res) => {
   res.status(204).end()
 })
-h
+
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "success",
