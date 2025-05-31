@@ -27,7 +27,6 @@ import { configurePassport } from "./config/passport.js"
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js"
 import { apiRateLimit, authRateLimit, tokenRateLimit, orgCreationRateLimit } from "./middlewares/rateLimitMiddleware.js"
 
-// Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
