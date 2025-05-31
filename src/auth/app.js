@@ -111,7 +111,6 @@ app.use(xss())
 
 app.use(hpp())
 
-// Compression middleware
 app.use(compression())
 
 // Logging
