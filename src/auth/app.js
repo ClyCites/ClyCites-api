@@ -300,7 +300,6 @@ app.get("/api/status", (req, res) => {
   })
 })
 
-// Postman collection endpoint
 app.get("/api/postman", (req, res) => {
   res.status(200).json({
     info: {
