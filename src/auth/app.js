@@ -100,7 +100,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-// Cookie parser middleware
 app.use(cookieParser())
 
 // Body parsing middleware
