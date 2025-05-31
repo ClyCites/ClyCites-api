@@ -57,7 +57,6 @@ if (process.env.NODE_ENV !== "test") {
   })
 }
 
-// Configure Passport
 configurePassport()
 
 // Trust proxy for cloud deployment
