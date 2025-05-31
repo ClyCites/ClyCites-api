@@ -13,7 +13,6 @@ import cookieParser from "cookie-parser"
 import path from "path"
 import { fileURLToPath } from "url"
 
-// Import routes
 import authRoutes from "./routes/authRoutes.js"
 import tokenRoutes from "./routes/tokenRoutes.js"
 import organizationRoutes from "./routes/organizationRoutes.js"
