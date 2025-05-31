@@ -272,7 +272,6 @@ app.get("/api/docs", (req, res) => {
   })
 })
 
-// Rate limiting - apply after public routes
 app.use("/api", apiRateLimit)
 app.use("/api/auth/login", authRateLimit)
 app.use("/api/auth/register", authRateLimit)
