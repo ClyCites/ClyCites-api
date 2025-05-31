@@ -278,7 +278,6 @@ app.use("/api/auth/register", authRateLimit)
 app.use("/api/*/tokens", tokenRateLimit)
 app.use("/api/organizations", orgCreationRateLimit)
 
-// API routes
 app.use("/api/auth", authRoutes)
 app.use("/api/auth", tokenRoutes) // Add token validation routes
 app.use("/api/organizations", organizationRoutes)
