@@ -287,7 +287,6 @@ app.use("/api", applicationRoutes)
 app.use("/api", apiTokenRoutes)
 app.use("/api/users", userRoutes)
 
-// Additional public endpoints
 app.get("/api/status", (req, res) => {
   res.status(200).json({
     status: "operational",
