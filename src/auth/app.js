@@ -107,7 +107,6 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }))
 
 app.use(mongoSanitize())
 
-// Data sanitization against XSS
 app.use(xss())
 
 // Prevent parameter pollution
