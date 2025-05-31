@@ -133,14 +133,11 @@ app.use(
   }),
 )
 
-// Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Static files for profile pictures
 app.use("/uploads", express.static("uploads"))
 
-// Favicon route to prevent 404 errors
 app.get("/favicon.ico", (req, res) => {
   res.status(204).end()
 })
