@@ -79,7 +79,6 @@ app.use(
 // CORS configuration
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, etc.)
     if (!origin) return callback(null, true)
 
     const allowedOrigins = [
