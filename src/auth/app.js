@@ -59,7 +59,6 @@ if (process.env.NODE_ENV !== "test") {
 
 configurePassport()
 
-// Trust proxy for cloud deployment
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1)
 }
