@@ -91,7 +91,7 @@ const corsOptions = {
     if (allowedOrigins.includes(origin)) {
       callback(null, true)
     } else {
-      callback(null, true) // Allow all origins in development
+      callback(null, true)
     }
   },
   credentials: true,
