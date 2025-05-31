@@ -141,9 +141,7 @@ app.use("/uploads", express.static("uploads"))
 app.get("/favicon.ico", (req, res) => {
   res.status(204).end()
 })
-
-// Public routes (no authentication required)
-// Health check endpoint - MUST be before rate limiting and auth
+h
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "success",
