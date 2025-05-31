@@ -44,7 +44,6 @@ if (missingEnvVars.length > 0) {
 
 connectDB()
 
-// Verify email configuration on startup
 if (process.env.NODE_ENV !== "test") {
   import("./utils/emailService.js").then(({ verifyEmailConfig }) => {
     verifyEmailConfig().then((isValid) => {
