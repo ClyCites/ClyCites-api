@@ -6,7 +6,6 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 import crypto from "crypto"
 
-// Helper function to get allowed scopes based on role level
 const getScopesForRoleLevel = (roleLevel) => {
   const baseScopes = ["profile", "read"]
 
@@ -38,13 +37,10 @@ const getScopesForRoleLevel = (roleLevel) => {
   return baseScopes
 }
 
-// Step 1: Generate a secure random token (e.g., 32 bytes -> 64-char hex string)
-const plainToken = crypto.randomBytes(32).toString("hex")
-
-// Step 2: Hash it using SHA-256 (or whatever your model expects)
+const rawToken = crypto.randomBytes(32).toString('hex') // 64-char hex string
+const plainToken = `clycites_${rawToken}`
 const hashedToken = crypto.createHash("sha256").update(plainToken).digest("hex")
 
-// Helper function to get rate limits based on role level
 const getRateLimitsForRoleLevel = (roleLevel) => {
   if (roleLevel >= 90) {
     // Owner+
@@ -92,17 +88,14 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   console.log("Organization ID:", req.params.orgId)
   console.log("User ID:", req.user?.id)
 
-  // Check if request body is properly parsed
   if (!req.body || typeof req.body !== "object") {
     return next(new AppError("Invalid request body. Please ensure Content-Type is application/json", 400))
   }
 
-  // Validate express-validator results
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     console.log("Validation errors:", JSON.stringify(errors.array(), null, 2))
 
-    // Create user-friendly error messages
     const errorMessages = errors.array().map((error) => ({
       field: error.path,
       message: error.msg,
@@ -115,7 +108,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   const { name, description, scopes, permissions, applicationId, expiresAt, rateLimits } = req.body
   const organizationId = req.params.orgId
 
-  // Additional manual validation for critical fields
   if (!name || typeof name !== "string" || name.trim().length === 0) {
     return next(new AppError("Token name is required and must be a non-empty string", 400))
   }
@@ -128,13 +120,11 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
     return next(new AppError("Organization ID is required", 400))
   }
 
-  // Validate organization ID format
   if (!organizationId.match(/^[0-9a-fA-F]{24}$/)) {
     return next(new AppError("Invalid organization ID format", 400))
   }
 
   try {
-    // Check organization membership
     const membership = await OrganizationMember.findOne({
       user: req.user.id,
       organization: organizationId,
@@ -151,7 +141,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
 
     console.log("User role level:", membership.role.level)
 
-    // Validate application if specified
     let application = null
     if (applicationId) {
       if (!applicationId.match(/^[0-9a-fA-F]{24}$/)) {
@@ -170,7 +159,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Validate scopes based on user's role level
     const allowedScopes = getScopesForRoleLevel(membership.role.level)
     const invalidScopes = scopes.filter((scope) => !allowedScopes.includes(scope))
 
@@ -184,7 +172,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       )
     }
 
-    // Validate and set expiration date
     let tokenExpiration
     if (expiresAt) {
       tokenExpiration = new Date(expiresAt)
@@ -246,8 +233,8 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       expiresAt: tokenExpiration,
       rateLimits: finalRateLimits,
       createdBy: req.user.id,
-      token: plainToken,           // store plaintext if needed temporarily (or omit and only return)
-      hashedToken: hashedToken,    // required for DB
+      token: plainToken,
+      hashedToken: hashedToken,
     })
 
 
@@ -255,14 +242,14 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
 
     const responseToken = apiToken.toObject()
     delete responseToken.hashedToken
-    delete responseToken.token // Optional if you stored it temporarily
+    delete responseToken.token
 
 
     res.status(201).json({
       success: true,
       message: "API token created successfully",
       data: {
-        token: plainToken, // Show only once
+        token: plainToken,
         apiToken: responseToken,
         usage: {
           curl: `curl -H "x-api-key: ${plainToken}" ${req.protocol}://${req.get("host")}/api/...`,

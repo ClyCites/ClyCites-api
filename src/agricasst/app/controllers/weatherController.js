@@ -21,7 +21,7 @@ export const getForecast = async (req, res) => {
   try {
     const { lat, lon, days = 7 } = req.query
 
-    const forecast = await weatherService.getForecast(Number.parseFloat(lat), Number.parseFloat(lon))
+    const forecast = await weatherService.fetchForecast(Number.parseFloat(lat), Number.parseFloat(lon))
 
     res.json(ApiResponse.success(forecast.slice(0, Number.parseInt(days)), "Forecast data retrieved successfully"))
   } catch (error) {

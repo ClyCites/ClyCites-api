@@ -13,7 +13,6 @@ import cookieParser from "cookie-parser"
 import path from "path"
 import { fileURLToPath } from "url"
 
-// Import routes
 import authRoutes from "./routes/authRoutes.js"
 import tokenRoutes from "./routes/tokenRoutes.js"
 import organizationRoutes from "./routes/organizationRoutes.js"
@@ -28,16 +27,13 @@ import { configurePassport } from "./config/passport.js"
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js"
 import { apiRateLimit, authRateLimit, tokenRateLimit, orgCreationRateLimit } from "./middlewares/rateLimitMiddleware.js"
 
-// Get current directory for ES modules
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-// Load environment variables
 dotenv.config()
 
 const app = express()
 
-// Validate required environment variables
 const requiredEnvVars = ["MONGODB_URI", "JWT_SECRET", "JWT_REFRESH_SECRET"]
 const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar])
 
@@ -46,10 +42,8 @@ if (missingEnvVars.length > 0) {
   process.exit(1)
 }
 
-// Connect to database
 connectDB()
 
-// Verify email configuration on startup
 if (process.env.NODE_ENV !== "test") {
   import("./utils/emailService.js").then(({ verifyEmailConfig }) => {
     verifyEmailConfig().then((isValid) => {
@@ -63,15 +57,12 @@ if (process.env.NODE_ENV !== "test") {
   })
 }
 
-// Configure Passport
 configurePassport()
 
-// Trust proxy for cloud deployment
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1)
 }
 
-// Security middleware
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -85,10 +76,8 @@ app.use(
   }),
 )
 
-// CORS configuration
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (mobile apps, etc.)
     if (!origin) return callback(null, true)
 
     const allowedOrigins = [
@@ -102,7 +91,7 @@ const corsOptions = {
     if (allowedOrigins.includes(origin)) {
       callback(null, true)
     } else {
-      callback(null, true) // Allow all origins in development
+      callback(null, true)
     }
   },
   credentials: true,
@@ -111,23 +100,17 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
-// Cookie parser middleware
 app.use(cookieParser())
 
-// Body parsing middleware
 app.use(express.json({ limit: "10mb" }))
 app.use(express.urlencoded({ extended: true, limit: "10mb" }))
 
-// Data sanitization against NoSQL query injection
 app.use(mongoSanitize())
 
-// Data sanitization against XSS
 app.use(xss())
 
-// Prevent parameter pollution
 app.use(hpp())
 
-// Compression middleware
 app.use(compression())
 
 // Logging
@@ -137,7 +120,6 @@ if (process.env.NODE_ENV === "development") {
   app.use(morgan("combined"))
 }
 
-// Session configuration for Passport
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "your-session-secret",
@@ -146,25 +128,20 @@ app.use(
     cookie: {
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+      maxAge: 24 * 60 * 60 * 1000,
     },
   }),
 )
 
-// Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Static files for profile pictures
 app.use("/uploads", express.static("uploads"))
 
-// Favicon route to prevent 404 errors
 app.get("/favicon.ico", (req, res) => {
   res.status(204).end()
 })
 
-// Public routes (no authentication required)
-// Health check endpoint - MUST be before rate limiting and auth
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "success",
@@ -186,7 +163,6 @@ app.get("/health", (req, res) => {
   })
 })
 
-// API documentation endpoint - public access
 app.get("/api/docs", (req, res) => {
   res.status(200).json({
     title: "ClyCites Enterprise Authentication API",
@@ -296,16 +272,14 @@ app.get("/api/docs", (req, res) => {
   })
 })
 
-// Rate limiting - apply after public routes
 app.use("/api", apiRateLimit)
 app.use("/api/auth/login", authRateLimit)
 app.use("/api/auth/register", authRateLimit)
 app.use("/api/*/tokens", tokenRateLimit)
 app.use("/api/organizations", orgCreationRateLimit)
 
-// API routes
 app.use("/api/auth", authRoutes)
-app.use("/api/auth", tokenRoutes) // Add token validation routes
+app.use("/api/auth", tokenRoutes)
 app.use("/api/organizations", organizationRoutes)
 app.use("/api", teamRoutes)
 app.use("/api", roleRoutes)
@@ -313,7 +287,6 @@ app.use("/api", applicationRoutes)
 app.use("/api", apiTokenRoutes)
 app.use("/api/users", userRoutes)
 
-// Additional public endpoints
 app.get("/api/status", (req, res) => {
   res.status(200).json({
     status: "operational",
@@ -327,7 +300,6 @@ app.get("/api/status", (req, res) => {
   })
 })
 
-// Postman collection endpoint
 app.get("/api/postman", (req, res) => {
   res.status(200).json({
     info: {
@@ -436,7 +408,6 @@ app.get("/api/postman", (req, res) => {
   })
 })
 
-// Root endpoint
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "🚀 ClyCites Enterprise Authentication Server",
@@ -456,7 +427,6 @@ app.get("/", (req, res) => {
   })
 })
 
-// Error handling middleware - MUST be last
 app.use(notFound)
 app.use(errorHandler)
 
@@ -473,7 +443,6 @@ const server = app.listen(PORT, () => {
   console.log(`🔐 Ready to accept requests!`)
 })
 
-// Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
   console.log(`❌ Unhandled Promise Rejection: ${err.message}`)
   server.close(() => {
@@ -481,7 +450,6 @@ process.on("unhandledRejection", (err, promise) => {
   })
 })
 
-// Handle uncaught exceptions
 process.on("uncaughtException", (err) => {
   console.log(`❌ Uncaught Exception: ${err.message}`)
   process.exit(1)
