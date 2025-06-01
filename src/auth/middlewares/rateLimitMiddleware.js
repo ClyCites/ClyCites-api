@@ -15,7 +15,7 @@ export const apiRateLimit = rateLimit({
 // Authentication rate limiting
 export const authRateLimit = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 10, // limit each IP to 10 auth requests per windowMs
+  max: 1000, // limit each IP to 10 auth requests per windowMs
   message: {
     error: "Too many authentication attempts, please try again later.",
   },
@@ -25,7 +25,7 @@ export const authRateLimit = rateLimit({
 // Token creation rate limiting
 export const tokenRateLimit = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 50, // limit each IP to 50 token requests per hour
+  max: 1000, // limit each IP to 50 token requests per hour
   message: {
     error: "Too many token creation requests, please try again later.",
   },
@@ -34,7 +34,7 @@ export const tokenRateLimit = rateLimit({
 // Organization creation rate limiting
 export const orgCreationRateLimit = rateLimit({
   windowMs: 24 * 60 * 60 * 1000, // 24 hours
-  max: 5, // limit each IP to 5 org creation requests per day
+  max: 1000, // limit each IP to 5 org creation requests per day
   message: {
     error: "Too many organization creation requests, please try again tomorrow.",
   },
@@ -81,3 +81,43 @@ export const dynamicApiRateLimit = (req, res, next) => {
 
   next()
 }
+
+// Generic rate limiter factory function
+export const rateLimiter = (options = {}) => {
+  const defaultOptions = {
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 1000, // limit each IP to 100 requests per windowMs
+    message: {
+      error: "Too many requests from this IP, please try again later.",
+    },
+    standardHeaders: true,
+    legacyHeaders: false,
+  }
+
+  return rateLimit({
+    ...defaultOptions,
+    ...options,
+  })
+}
+
+// Token validation specific rate limiting
+export const tokenValidationRateLimit = rateLimit({
+  windowMs: 5 * 60 * 1000, // 5 minutes
+  max: 1000, // limit each IP to 100 token validation requests per 5 minutes
+  message: {
+    error: "Too many token validation requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
+
+// Quick validation rate limiting (more permissive)
+export const quickValidationRateLimit = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 1000, // limit each IP to 200 quick validation requests per minute
+  message: {
+    error: "Too many quick validation requests, please try again later.",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+})
