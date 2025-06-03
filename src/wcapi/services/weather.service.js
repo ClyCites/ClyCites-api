@@ -17,7 +17,7 @@ class WeatherService {
           longitude,
           current:
             "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover",
-          timezone: "auto",
+          timezone: "auto", // This ensures Open-Meteo returns local time
         },
       })
 
@@ -43,7 +43,7 @@ class WeatherService {
           hourly:
             "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover",
           forecast_days: days,
-          timezone: "auto",
+          timezone: "auto", // This ensures Open-Meteo returns local time
         },
       })
 
@@ -72,7 +72,7 @@ class WeatherService {
           daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max",
           hourly:
             "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover",
-          timezone: "auto",
+          timezone: "auto", // This ensures Open-Meteo returns local time
         },
       })
 
@@ -101,8 +101,10 @@ class WeatherService {
       location: {
         latitude: data.latitude,
         longitude: data.longitude,
+        timezone: data.timezone || "UTC", // Open-Meteo includes timezone in response
+        timezoneAbbreviation: data.timezone_abbreviation || "UTC",
       },
-      timestamp: new Date(current.time),
+      timestamp: new Date(current.time), // Time is already in local timezone from Open-Meteo
       type: "current",
       data: {
         temperature: current.temperature_2m,
@@ -113,7 +115,16 @@ class WeatherService {
         pressure: current.surface_pressure || 0,
         cloudCover: current.cloud_cover || 0,
       },
-      source: "Clycites-Weather-API",
+      source: "open-meteo",
+      units: {
+        temperature: "°C",
+        humidity: "%",
+        precipitation: "mm",
+        windSpeed: "km/h",
+        windDirection: "°",
+        pressure: "hPa",
+        cloudCover: "%",
+      },
     }
   }
 
@@ -129,8 +140,10 @@ class WeatherService {
       location: {
         latitude: data.latitude,
         longitude: data.longitude,
+        timezone: data.timezone || "UTC",
+        timezoneAbbreviation: data.timezone_abbreviation || "UTC",
       },
-      timestamp: new Date(time),
+      timestamp: new Date(time), // Time is already in local timezone from Open-Meteo
       type: "forecast",
       data: {
         temperature: hourly.temperature_2m[index],
@@ -141,7 +154,16 @@ class WeatherService {
         pressure: hourly.surface_pressure[index] || 0,
         cloudCover: hourly.cloud_cover[index] || 0,
       },
-      source: "Clycites-Weather-API",
+      source: "open-meteo",
+      units: {
+        temperature: "°C",
+        humidity: "%",
+        precipitation: "mm",
+        windSpeed: "km/h",
+        windDirection: "°",
+        pressure: "hPa",
+        cloudCover: "%",
+      },
     }))
   }
 
@@ -157,8 +179,10 @@ class WeatherService {
       location: {
         latitude: data.latitude,
         longitude: data.longitude,
+        timezone: data.timezone || "UTC",
+        timezoneAbbreviation: data.timezone_abbreviation || "UTC",
       },
-      timestamp: new Date(time),
+      timestamp: new Date(time), // Time is already in local timezone from Open-Meteo
       type: "historical",
       data: {
         temperature: hourly.temperature_2m[index] || 0,
@@ -169,7 +193,16 @@ class WeatherService {
         pressure: hourly.surface_pressure[index] || 0,
         cloudCover: hourly.cloud_cover[index] || 0,
       },
-      source: "Clycites-Weather-API",
+      source: "open-meteo",
+      units: {
+        temperature: "°C",
+        humidity: "%",
+        precipitation: "mm",
+        windSpeed: "km/h",
+        windDirection: "°",
+        pressure: "hPa",
+        cloudCover: "%",
+      },
     }))
   }
 
