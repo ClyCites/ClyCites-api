@@ -1,39 +1,27 @@
 import axios from "axios"
-import { getRedisClient } from "../config/redis.js"
 import { WeatherData } from "../models/weather.model.js"
 import { logger } from "../utils/logger.js"
 
 class WeatherService {
   constructor() {
-    this.baseUrl = "https://api.open-meteo.com/v1"
-    this.redis = getRedisClient()
+    this.forecastBaseUrl = "https://api.open-meteo.com/v1/forecast"
+    this.archiveBaseUrl = "https://archive-api.open-meteo.com/v1/archive"
+    this.era5BaseUrl = "https://archive-api.open-meteo.com/v1/era5"
   }
 
   async getCurrentWeather(latitude, longitude) {
-    const cacheKey = `weather:current:${latitude}:${longitude}`
-
     try {
-      // Check cache first
-      const cached = await this.redis.get(cacheKey)
-      if (cached) {
-        return JSON.parse(cached)
-      }
-
-      const response = await axios.get(`${this.baseUrl}/forecast`, {
+      const response = await axios.get(this.forecastBaseUrl, {
         params: {
           latitude,
           longitude,
-          current_weather: true,
-          hourly:
-            "temperature_2m,relative_humidity_2m,precipitation,windspeed_10m,winddirection_10m,surface_pressure,cloudcover",
+          current:
+            "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover",
           timezone: "auto",
         },
       })
 
-      const weatherData = this.transformWeatherData(response.data, "current")
-
-      // Cache for 10 minutes
-      await this.redis.setex(cacheKey, 600, JSON.stringify(weatherData))
+      const weatherData = this.transformCurrentWeatherData(response.data)
 
       // Store in database
       await this.storeWeatherData(weatherData)
@@ -46,30 +34,20 @@ class WeatherService {
   }
 
   async getForecast(latitude, longitude, days = 7) {
-    const cacheKey = `weather:forecast:${latitude}:${longitude}:${days}`
-
     try {
-      const cached = await this.redis.get(cacheKey)
-      if (cached) {
-        return JSON.parse(cached)
-      }
-
-      const response = await axios.get(`${this.baseUrl}/forecast`, {
+      const response = await axios.get(this.forecastBaseUrl, {
         params: {
           latitude,
           longitude,
-          daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max",
+          daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max",
           hourly:
-            "temperature_2m,relative_humidity_2m,precipitation,windspeed_10m,winddirection_10m,surface_pressure,cloudcover",
+            "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover",
           forecast_days: days,
           timezone: "auto",
         },
       })
 
       const forecastData = this.transformForecastData(response.data)
-
-      // Cache for 1 hour
-      await this.redis.setex(cacheKey, 3600, JSON.stringify(forecastData))
 
       // Store in database
       for (const data of forecastData) {
@@ -84,29 +62,21 @@ class WeatherService {
   }
 
   async getHistoricalWeather(latitude, longitude, startDate, endDate) {
-    const cacheKey = `weather:historical:${latitude}:${longitude}:${startDate}:${endDate}`
-
     try {
-      const cached = await this.redis.get(cacheKey)
-      if (cached) {
-        return JSON.parse(cached)
-      }
-
-      const response = await axios.get(`${this.baseUrl}/archive`, {
+      const response = await axios.get(this.archiveBaseUrl, {
         params: {
           latitude,
           longitude,
           start_date: startDate,
           end_date: endDate,
-          daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max",
+          daily: "temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max",
+          hourly:
+            "temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover",
           timezone: "auto",
         },
       })
 
       const historicalData = this.transformHistoricalData(response.data)
-
-      // Cache for 24 hours (historical data doesn't change)
-      await this.redis.setex(cacheKey, 86400, JSON.stringify(historicalData))
 
       // Store in database
       for (const data of historicalData) {
@@ -120,11 +90,10 @@ class WeatherService {
     }
   }
 
-  transformWeatherData(data, type) {
-    const current = data.current_weather
-    const hourly = data.hourly
+  transformCurrentWeatherData(data) {
+    const current = data.current
 
-    if (!current || !hourly) {
+    if (!current) {
       throw new Error("Invalid weather data received")
     }
 
@@ -134,29 +103,29 @@ class WeatherService {
         longitude: data.longitude,
       },
       timestamp: new Date(current.time),
-      type,
+      type: "current",
       data: {
-        temperature: current.temperature,
-        humidity: hourly.relative_humidity_2m[0] || 0,
-        precipitation: hourly.precipitation[0] || 0,
-        windSpeed: current.windspeed,
-        windDirection: current.winddirection,
-        pressure: hourly.surface_pressure[0] || 0,
-        cloudCover: hourly.cloudcover[0] || 0,
+        temperature: current.temperature_2m,
+        humidity: current.relative_humidity_2m || 0,
+        precipitation: current.precipitation || 0,
+        windSpeed: current.wind_speed_10m,
+        windDirection: current.wind_direction_10m,
+        pressure: current.surface_pressure || 0,
+        cloudCover: current.cloud_cover || 0,
       },
       source: "open-meteo",
     }
   }
 
   transformForecastData(data) {
-    const daily = data.daily
     const hourly = data.hourly
+    const times = hourly.time
 
-    if (!daily || !hourly) {
+    if (!hourly || !times) {
       throw new Error("Invalid forecast data received")
     }
 
-    return daily.time.map((time, index) => ({
+    return times.map((time, index) => ({
       location: {
         latitude: data.latitude,
         longitude: data.longitude,
@@ -164,26 +133,27 @@ class WeatherService {
       timestamp: new Date(time),
       type: "forecast",
       data: {
-        temperature: daily.temperature_2m_max[index],
-        humidity: hourly.relative_humidity_2m[index * 24] || 0,
-        precipitation: daily.precipitation_sum[index],
-        windSpeed: daily.windspeed_10m_max[index],
-        windDirection: hourly.winddirection_10m[index * 24] || 0,
-        pressure: hourly.surface_pressure[index * 24] || 0,
-        cloudCover: hourly.cloudcover[index * 24] || 0,
+        temperature: hourly.temperature_2m[index],
+        humidity: hourly.relative_humidity_2m[index] || 0,
+        precipitation: hourly.precipitation[index] || 0,
+        windSpeed: hourly.wind_speed_10m[index] || 0,
+        windDirection: hourly.wind_direction_10m[index] || 0,
+        pressure: hourly.surface_pressure[index] || 0,
+        cloudCover: hourly.cloud_cover[index] || 0,
       },
       source: "open-meteo",
     }))
   }
 
   transformHistoricalData(data) {
-    const daily = data.daily
+    const hourly = data.hourly
+    const times = hourly.time
 
-    if (!daily) {
+    if (!hourly || !times) {
       throw new Error("Invalid historical data received")
     }
 
-    return daily.time.map((time, index) => ({
+    return times.map((time, index) => ({
       location: {
         latitude: data.latitude,
         longitude: data.longitude,
@@ -191,13 +161,13 @@ class WeatherService {
       timestamp: new Date(time),
       type: "historical",
       data: {
-        temperature: daily.temperature_2m_max[index],
-        humidity: 0, // Historical data might not include all parameters
-        precipitation: daily.precipitation_sum[index],
-        windSpeed: daily.windspeed_10m_max[index],
-        windDirection: 0,
-        pressure: 0,
-        cloudCover: 0,
+        temperature: hourly.temperature_2m[index] || 0,
+        humidity: hourly.relative_humidity_2m[index] || 0,
+        precipitation: hourly.precipitation[index] || 0,
+        windSpeed: hourly.wind_speed_10m[index] || 0,
+        windDirection: hourly.wind_direction_10m[index] || 0,
+        pressure: hourly.surface_pressure[index] || 0,
+        cloudCover: hourly.cloud_cover[index] || 0,
       },
       source: "open-meteo",
     }))

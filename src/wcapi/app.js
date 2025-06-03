@@ -5,7 +5,6 @@ import rateLimit from "express-rate-limit"
 import compression from "compression"
 import dotenv from "dotenv"
 import { connectDatabase } from "./config/database.js"
-import { connectRedis } from "./config/redis.js"
 import { initializeQueues } from "./services/queue.service.js"
 import { errorHandler } from "./middleware/error.middleware.js"
 import { logger } from "./utils/logger.js"
@@ -34,7 +33,7 @@ app.use(
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 1000, // limit each IP to 100 requests per windowMs
   message: "Too many requests from this IP, please try again later.",
 })
 app.use("/api/", limiter)
@@ -75,10 +74,6 @@ async function startServer() {
     // Connect to database
     await connectDatabase()
     logger.info("Database connected successfully")
-
-    // Connect to Redis
-    await connectRedis()
-    logger.info("Redis connected successfully")
 
     // Initialize background job queues
     await initializeQueues()

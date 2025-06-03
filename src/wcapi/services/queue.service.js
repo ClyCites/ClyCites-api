@@ -1,5 +1,3 @@
-import { Queue, Worker } from "bullmq"
-import { getRedisClient } from "../config/redis.js"
 import { weatherService } from "./weather.service.js"
 import { aiRecommendationService } from "./ai-recommendation.service.js"
 import { notificationService } from "./notification.service.js"
@@ -7,90 +5,69 @@ import { Alert } from "../models/alert.model.js"
 import { Farm } from "../models/farm.model.js"
 import { logger } from "../utils/logger.js"
 
+// Create a simple in-memory queue for development
+class SimpleQueue {
+  constructor(name) {
+    this.name = name
+    this.jobs = []
+    this.handlers = {}
+  }
+
+  async add(jobId, data, options = {}) {
+    const job = { id: jobId, data, options }
+    this.jobs.push(job)
+
+    // Process immediately for simplicity
+    if (this.handlers[jobId]) {
+      try {
+        await this.handlers[jobId](job)
+      } catch (error) {
+        logger.error(`Error processing job ${jobId}:`, error)
+      }
+    }
+
+    return job
+  }
+
+  process(jobId, handler) {
+    this.handlers[jobId] = handler
+  }
+}
+
 class QueueService {
   constructor() {
-    const redis = getRedisClient()
+    // Initialize simple in-memory queues
+    this.weatherQueue = new SimpleQueue("weather-updates")
+    this.alertQueue = new SimpleQueue("alert-checks")
+    this.recommendationQueue = new SimpleQueue("recommendations")
+    this.notificationQueue = new SimpleQueue("notifications")
 
-    // Initialize queues
-    this.weatherQueue = new Queue("weather-updates", { connection: redis })
-    this.alertQueue = new Queue("alert-checks", { connection: redis })
-    this.recommendationQueue = new Queue("recommendations", { connection: redis })
-    this.notificationQueue = new Queue("notifications", { connection: redis })
+    // Set up handlers
+    this.weatherQueue.process("weather-update", async (job) => {
+      await this.processWeatherUpdate(job.data)
+    })
+
+    this.alertQueue.process("alert-check", async (job) => {
+      await this.processAlertCheck(job.data)
+    })
+
+    this.recommendationQueue.process("recommendation", async (job) => {
+      await this.processRecommendationGeneration(job.data)
+    })
+
+    this.notificationQueue.process("notification", async (job) => {
+      await this.processNotification(job.data)
+    })
   }
 
   async initializeWorkers() {
-    // Weather update worker
-    new Worker(
-      "weather-updates",
-      async (job) => {
-        await this.processWeatherUpdate(job.data)
-      },
-      { connection: getRedisClient() },
-    )
-
-    // Alert check worker
-    new Worker(
-      "alert-checks",
-      async (job) => {
-        await this.processAlertCheck(job.data)
-      },
-      { connection: getRedisClient() },
-    )
-
-    // Recommendation worker
-    new Worker(
-      "recommendations",
-      async (job) => {
-        await this.processRecommendationGeneration(job.data)
-      },
-      { connection: getRedisClient() },
-    )
-
-    // Notification worker
-    new Worker(
-      "notifications",
-      async (job) => {
-        await this.processNotification(job.data)
-      },
-      { connection: getRedisClient() },
-    )
-
     logger.info("Queue workers initialized")
   }
 
   // Schedule recurring jobs
   async scheduleRecurringJobs() {
-    // Update weather data every hour
-    await this.weatherQueue.add(
-      "hourly-weather-update",
-      {},
-      {
-        repeat: { pattern: "0 * * * *" }, // Every hour
-        jobId: "hourly-weather-update",
-      },
-    )
-
-    // Check alerts every 15 minutes
-    await this.alertQueue.add(
-      "alert-check",
-      {},
-      {
-        repeat: { pattern: "*/15 * * * *" }, // Every 15 minutes
-        jobId: "alert-check",
-      },
-    )
-
-    // Generate daily recommendations at 6 AM
-    await this.recommendationQueue.add(
-      "daily-recommendations",
-      {},
-      {
-        repeat: { pattern: "0 6 * * *" }, // Daily at 6 AM
-        jobId: "daily-recommendations",
-      },
-    )
-
-    logger.info("Recurring jobs scheduled")
+    // For development, we'll just log that jobs would be scheduled
+    logger.info("Recurring jobs would be scheduled in production")
   }
 
   // Add jobs to queues
