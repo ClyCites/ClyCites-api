@@ -1,6 +1,4 @@
 import axios from "axios"
-import moment from "moment-timezone"
-import geotz from "geo-tz"
 import { WeatherData } from "../models/weather.model.js"
 import { logger } from "../utils/logger.js"
 
@@ -23,7 +21,7 @@ class WeatherService {
         },
       })
 
-      const weatherData = this.transformCurrentWeatherData(response.data, latitude, longitude)
+      const weatherData = this.transformCurrentWeatherData(response.data)
 
       // Store in database
       await this.storeWeatherData(weatherData)
@@ -49,7 +47,7 @@ class WeatherService {
         },
       })
 
-      const forecastData = this.transformForecastData(response.data, latitude, longitude)
+      const forecastData = this.transformForecastData(response.data)
 
       // Store in database
       for (const data of forecastData) {
@@ -78,7 +76,7 @@ class WeatherService {
         },
       })
 
-      const historicalData = this.transformHistoricalData(response.data, latitude, longitude)
+      const historicalData = this.transformHistoricalData(response.data)
 
       // Store in database
       for (const data of historicalData) {
@@ -92,45 +90,19 @@ class WeatherService {
     }
   }
 
-  // Get timezone for a location
-  getTimezone(latitude, longitude) {
-    try {
-      const timezones = geotz.find(latitude, longitude)
-      return timezones && timezones.length > 0 ? timezones[0] : "UTC"
-    } catch (error) {
-      logger.error("Error getting timezone:", error)
-      return "UTC"
-    }
-  }
-
-  // Convert UTC time to local time
-  convertToLocalTime(utcTime, latitude, longitude) {
-    try {
-      const timezone = this.getTimezone(latitude, longitude)
-      return moment.utc(utcTime).tz(timezone).toDate()
-    } catch (error) {
-      logger.error("Error converting time:", error)
-      return new Date(utcTime)
-    }
-  }
-
-  transformCurrentWeatherData(data, latitude, longitude) {
+  transformCurrentWeatherData(data) {
     const current = data.current
 
     if (!current) {
       throw new Error("Invalid weather data received")
     }
 
-    // Convert time to local time
-    const localTime = this.convertToLocalTime(current.time, latitude, longitude)
-
     return {
       location: {
         latitude: data.latitude,
         longitude: data.longitude,
-        timezone: this.getTimezone(latitude, longitude),
       },
-      timestamp: localTime,
+      timestamp: new Date(current.time),
       type: "current",
       data: {
         temperature: current.temperature_2m,
@@ -142,11 +114,10 @@ class WeatherService {
         cloudCover: current.cloud_cover || 0,
       },
       source: "Clycites-Weather-API",
-      originalTimestamp: new Date(current.time), // Keep original UTC time for reference
     }
   }
 
-  transformForecastData(data, latitude, longitude) {
+  transformForecastData(data) {
     const hourly = data.hourly
     const times = hourly.time
 
@@ -154,36 +125,27 @@ class WeatherService {
       throw new Error("Invalid forecast data received")
     }
 
-    const timezone = this.getTimezone(latitude, longitude)
-
-    return times.map((time, index) => {
-      // Convert time to local time
-      const localTime = this.convertToLocalTime(time, latitude, longitude)
-
-      return {
-        location: {
-          latitude: data.latitude,
-          longitude: data.longitude,
-          timezone,
-        },
-        timestamp: localTime,
-        type: "forecast",
-        data: {
-          temperature: hourly.temperature_2m[index],
-          humidity: hourly.relative_humidity_2m[index] || 0,
-          precipitation: hourly.precipitation[index] || 0,
-          windSpeed: hourly.wind_speed_10m[index] || 0,
-          windDirection: hourly.wind_direction_10m[index] || 0,
-          pressure: hourly.surface_pressure[index] || 0,
-          cloudCover: hourly.cloud_cover[index] || 0,
-        },
-        source: "Clycites-Weather-API",
-        originalTimestamp: new Date(time), // Keep original UTC time for reference
-      }
-    })
+    return times.map((time, index) => ({
+      location: {
+        latitude: data.latitude,
+        longitude: data.longitude,
+      },
+      timestamp: new Date(time),
+      type: "forecast",
+      data: {
+        temperature: hourly.temperature_2m[index],
+        humidity: hourly.relative_humidity_2m[index] || 0,
+        precipitation: hourly.precipitation[index] || 0,
+        windSpeed: hourly.wind_speed_10m[index] || 0,
+        windDirection: hourly.wind_direction_10m[index] || 0,
+        pressure: hourly.surface_pressure[index] || 0,
+        cloudCover: hourly.cloud_cover[index] || 0,
+      },
+      source: "Clycites-Weather-API",
+    }))
   }
 
-  transformHistoricalData(data, latitude, longitude) {
+  transformHistoricalData(data) {
     const hourly = data.hourly
     const times = hourly.time
 
@@ -191,33 +153,24 @@ class WeatherService {
       throw new Error("Invalid historical data received")
     }
 
-    const timezone = this.getTimezone(latitude, longitude)
-
-    return times.map((time, index) => {
-      // Convert time to local time
-      const localTime = this.convertToLocalTime(time, latitude, longitude)
-
-      return {
-        location: {
-          latitude: data.latitude,
-          longitude: data.longitude,
-          timezone,
-        },
-        timestamp: localTime,
-        type: "historical",
-        data: {
-          temperature: hourly.temperature_2m[index] || 0,
-          humidity: hourly.relative_humidity_2m[index] || 0,
-          precipitation: hourly.precipitation[index] || 0,
-          windSpeed: hourly.wind_speed_10m[index] || 0,
-          windDirection: hourly.wind_direction_10m[index] || 0,
-          pressure: hourly.surface_pressure[index] || 0,
-          cloudCover: hourly.cloud_cover[index] || 0,
-        },
-        source: "Clycites-Weather-API",
-        originalTimestamp: new Date(time), // Keep original UTC time for reference
-      }
-    })
+    return times.map((time, index) => ({
+      location: {
+        latitude: data.latitude,
+        longitude: data.longitude,
+      },
+      timestamp: new Date(time),
+      type: "historical",
+      data: {
+        temperature: hourly.temperature_2m[index] || 0,
+        humidity: hourly.relative_humidity_2m[index] || 0,
+        precipitation: hourly.precipitation[index] || 0,
+        windSpeed: hourly.wind_speed_10m[index] || 0,
+        windDirection: hourly.wind_direction_10m[index] || 0,
+        pressure: hourly.surface_pressure[index] || 0,
+        cloudCover: hourly.cloud_cover[index] || 0,
+      },
+      source: "Clycites-Weather-API",
+    }))
   }
 
   async storeWeatherData(weatherData) {
