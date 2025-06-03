@@ -5,7 +5,6 @@ const farmSchema = new mongoose.Schema(
     userId: {
       type: String,
       required: true,
-      index: true,
     },
     name: {
       type: String,
@@ -92,6 +91,7 @@ const farmSchema = new mongoose.Schema(
   },
 )
 
+// Index for geospatial queries
 farmSchema.index({ "location.latitude": 1, "location.longitude": 1 })
 farmSchema.index({ userId: 1 })
 

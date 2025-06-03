@@ -5,7 +5,7 @@ import { logger } from "../utils/logger.js"
 class NotificationService {
   constructor() {
     // Initialize email transporter
-    this.emailTransporter = nodemailer.createTransporter({
+    this.emailTransporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST || "smtp.gmail.com",
       port: Number.parseInt(process.env.SMTP_PORT || "587"),
       secure: false,

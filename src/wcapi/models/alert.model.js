@@ -5,13 +5,11 @@ const alertSchema = new mongoose.Schema(
     userId: {
       type: String,
       required: true,
-      index: true,
     },
     farmId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "Farm",
-      index: true,
     },
     type: {
       type: String,
