@@ -1,13 +1,9 @@
 import express from "express"
 import { query, validationResult } from "express-validator"
 import { weatherService } from "../services/weather.service.js"
-import { extractUserInfo } from "../middleware/user.middleware.js"
 import { logger } from "../utils/logger.js"
 
 const router = express.Router()
-
-// Apply user info extraction middleware
-router.use(extractUserInfo)
 
 // Get current weather
 router.get(
