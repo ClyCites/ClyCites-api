@@ -1,14 +1,10 @@
 import express from "express"
 import { body, param, validationResult } from "express-validator"
 import { Farm } from "../models/farm.model.js"
-import { extractUserInfo } from "../middleware/user.middleware.js"
 import { queueService } from "../services/queue.service.js"
 import { logger } from "../utils/logger.js"
 
 const router = express.Router()
-
-// Apply user info extraction middleware
-router.use(extractUserInfo)
 
 // Create farm
 router.post(
@@ -23,6 +19,7 @@ router.post(
     body("size").isFloat({ min: 0 }),
     body("soilType").isIn(["clay", "sandy", "loam", "silt", "peat", "chalk"]),
     body("irrigationSystem").optional().isIn(["none", "drip", "sprinkler", "flood", "furrow"]),
+    body("userId").optional().trim(),
   ],
   async (req, res) => {
     try {
@@ -37,7 +34,7 @@ router.post(
 
       const farmData = {
         ...req.body,
-        userId: req.user.userId,
+        userId: req.body.userId || "default-user",
       }
 
       const farm = new Farm(farmData)
@@ -50,7 +47,7 @@ router.post(
         longitude: farm.location.longitude,
       })
 
-      logger.info(`New farm created: ${farm.name} by user ${req.user.userId}`)
+      logger.info(`New farm created: ${farm.name}`)
 
       res.status(201).json({
         success: true,
@@ -67,10 +64,17 @@ router.post(
   },
 )
 
-// Get user's farms
+// Get all farms (optionally filter by userId)
 router.get("/", async (req, res) => {
   try {
-    const farms = await Farm.find({ userId: req.user.userId, isActive: true })
+    const { userId } = req.query
+    const filter = { isActive: true }
+
+    if (userId) {
+      filter.userId = userId
+    }
+
+    const farms = await Farm.find(filter)
 
     res.json({
       success: true,
@@ -99,7 +103,6 @@ router.get("/:id", [param("id").isMongoId()], async (req, res) => {
 
     const farm = await Farm.findOne({
       _id: req.params.id,
-      userId: req.user.userId,
       isActive: true,
     })
 
@@ -146,7 +149,7 @@ router.put(
         })
       }
 
-      const farm = await Farm.findOneAndUpdate({ _id: req.params.id, userId: req.user.userId }, req.body, {
+      const farm = await Farm.findOneAndUpdate({ _id: req.params.id }, req.body, {
         new: true,
         runValidators: true,
       })
@@ -209,7 +212,6 @@ router.post(
 
       const farm = await Farm.findOne({
         _id: req.params.id,
-        userId: req.user.userId,
       })
 
       if (!farm) {
@@ -240,11 +242,7 @@ router.post(
 // Delete farm
 router.delete("/:id", [param("id").isMongoId()], async (req, res) => {
   try {
-    const farm = await Farm.findOneAndUpdate(
-      { _id: req.params.id, userId: req.user.userId },
-      { isActive: false },
-      { new: true },
-    )
+    const farm = await Farm.findOneAndUpdate({ _id: req.params.id }, { isActive: false }, { new: true })
 
     if (!farm) {
       return res.status(404).json({

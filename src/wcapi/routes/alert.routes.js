@@ -2,14 +2,10 @@ import express from "express"
 import { body, param, validationResult } from "express-validator"
 import { Alert } from "../models/alert.model.js"
 import { Farm } from "../models/farm.model.js"
-import { extractUserInfo } from "../middleware/user.middleware.js"
 import { queueService } from "../services/queue.service.js"
 import { logger } from "../utils/logger.js"
 
 const router = express.Router()
-
-// Apply user info extraction middleware
-router.use(extractUserInfo)
 
 // Create alert
 router.post(
@@ -22,6 +18,9 @@ router.post(
     body("notifications.email").optional().isBoolean(),
     body("notifications.sms").optional().isBoolean(),
     body("notifications.push").optional().isBoolean(),
+    body("userId").optional().trim(),
+    body("userEmail").optional().isEmail(),
+    body("phoneNumber").optional().trim(),
   ],
   async (req, res) => {
     try {
@@ -34,10 +33,9 @@ router.post(
         })
       }
 
-      // Verify farm belongs to user
+      // Verify farm exists
       const farm = await Farm.findOne({
         _id: req.body.farmId,
-        userId: req.user.userId,
         isActive: true,
       })
 
@@ -50,7 +48,7 @@ router.post(
 
       const alertData = {
         ...req.body,
-        userId: req.user.userId,
+        userId: req.body.userId || "default-user",
       }
 
       const alert = new Alert(alertData)
@@ -61,8 +59,8 @@ router.post(
         alertId: alert._id,
         farmId: alert.farmId,
         userId: alert.userId,
-        userEmail: req.user.email,
-        phoneNumber: req.user.phone,
+        userEmail: req.body.userEmail || "default@example.com",
+        phoneNumber: req.body.phoneNumber || "",
       })
 
       logger.info(`New alert created: ${alert.name} for farm ${farm.name}`)
@@ -82,12 +80,21 @@ router.post(
   },
 )
 
-// Get user's alerts
+// Get alerts (optionally filter by userId or farmId)
 router.get("/", async (req, res) => {
   try {
-    const alerts = await Alert.find({ userId: req.user.userId })
-      .populate("farmId", "name location")
-      .sort({ createdAt: -1 })
+    const { userId, farmId } = req.query
+    const filter = {}
+
+    if (userId) {
+      filter.userId = userId
+    }
+
+    if (farmId) {
+      filter.farmId = farmId
+    }
+
+    const alerts = await Alert.find(filter).populate("farmId", "name location").sort({ createdAt: -1 })
 
     res.json({
       success: true,
@@ -114,10 +121,9 @@ router.get("/farm/:farmId", [param("farmId").isMongoId()], async (req, res) => {
       })
     }
 
-    // Verify farm belongs to user
+    // Verify farm exists
     const farm = await Farm.findOne({
       _id: req.params.farmId,
-      userId: req.user.userId,
       isActive: true,
     })
 
@@ -130,7 +136,6 @@ router.get("/farm/:farmId", [param("farmId").isMongoId()], async (req, res) => {
 
     const alerts = await Alert.find({
       farmId: req.params.farmId,
-      userId: req.user.userId,
     }).sort({ createdAt: -1 })
 
     res.json({
@@ -168,7 +173,7 @@ router.put(
         })
       }
 
-      const alert = await Alert.findOneAndUpdate({ _id: req.params.id, userId: req.user.userId }, req.body, {
+      const alert = await Alert.findOneAndUpdate({ _id: req.params.id }, req.body, {
         new: true,
         runValidators: true,
       })
@@ -200,7 +205,6 @@ router.delete("/:id", [param("id").isMongoId()], async (req, res) => {
   try {
     const alert = await Alert.findOneAndDelete({
       _id: req.params.id,
-      userId: req.user.userId,
     })
 
     if (!alert) {

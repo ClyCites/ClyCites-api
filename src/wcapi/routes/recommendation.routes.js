@@ -2,13 +2,9 @@ import express from "express"
 import { param, validationResult } from "express-validator"
 import { Farm } from "../models/farm.model.js"
 import { aiRecommendationService } from "../services/ai-recommendation.service.js"
-import { extractUserInfo } from "../middleware/user.middleware.js"
 import { logger } from "../utils/logger.js"
 
 const router = express.Router()
-
-// Apply user info extraction middleware
-router.use(extractUserInfo)
 
 // Get recommendations for a specific farm
 router.get("/farm/:farmId", [param("farmId").isMongoId()], async (req, res) => {
@@ -23,7 +19,6 @@ router.get("/farm/:farmId", [param("farmId").isMongoId()], async (req, res) => {
 
     const farm = await Farm.findOne({
       _id: req.params.farmId,
-      userId: req.user.userId,
       isActive: true,
     })
 
@@ -55,13 +50,17 @@ router.get("/farm/:farmId", [param("farmId").isMongoId()], async (req, res) => {
   }
 })
 
-// Get recommendations for all user's farms
+// Get recommendations for all farms (optionally filter by userId)
 router.get("/all", async (req, res) => {
   try {
-    const farms = await Farm.find({
-      userId: req.user.userId,
-      isActive: true,
-    })
+    const { userId } = req.query
+    const filter = { isActive: true }
+
+    if (userId) {
+      filter.userId = userId
+    }
+
+    const farms = await Farm.find(filter)
 
     const allRecommendations = []
 
