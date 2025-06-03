@@ -1,0 +1,39 @@
+{
+  "name": "agriculture-weather-api",
+  "version": "1.0.0",
+  "description": "Scalable agriculture weather API with AI recommendations",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.js",
+    "format": "prettier --write src/**/*.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "ioredis": "^5.3.2",
+    "bullmq": "^4.15.0",
+    "axios": "^1.6.0",
+    "nodemailer": "^6.9.7",
+    "twilio": "^4.19.0",
+    "express-validator": "^7.0.1",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "cors": "^2.8.5",
+    "compression": "^1.7.4",
+    "winston": "^3.11.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "jest": "^29.7.0",
+    "eslint": "^8.52.0",
+    "prettier": "^3.0.3"
+  },
+  "keywords": ["agriculture", "weather", "api", "farming", "ai", "recommendations", "alerts", "nodejs"],
+  "author": "Agriculture Weather API Team",
+  "license": "MIT"
+}
