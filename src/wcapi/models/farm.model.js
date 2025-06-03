@@ -92,7 +92,6 @@ const farmSchema = new mongoose.Schema(
   },
 )
 
-// Index for geospatial queries
 farmSchema.index({ "location.latitude": 1, "location.longitude": 1 })
 farmSchema.index({ userId: 1 })
 
