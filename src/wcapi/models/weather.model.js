@@ -25,7 +25,7 @@ const weatherSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["current", "forecast", "historical", "climate", "air-quality"],
+      enum: ["current", "forecast", "historical", "climate"],
       required: true,
     },
     data: {

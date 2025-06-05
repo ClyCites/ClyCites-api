@@ -216,59 +216,7 @@ router.get(
   },
 )
 
-// Get air quality data with customizable variables
-router.get(
-  "/air-quality",
-  [
-    query("latitude").isFloat({ min: -90, max: 90 }),
-    query("longitude").isFloat({ min: -180, max: 180 }),
-    query("variables").optional().isString(),
-    query("days").optional().isInt({ min: 1, max: 5 }),
-  ],
-  async (req, res) => {
-    try {
-      const errors = validationResult(req)
-      if (!errors.isEmpty()) {
-        return res.status(400).json({
-          success: false,
-          message: "Validation errors",
-          errors: errors.array(),
-        })
-      }
-
-      const { latitude, longitude, variables, days, timezone } = req.query
-
-      // Parse variables if provided
-      const parsedVariables = variables ? variables.split(",") : []
-
-      const options = {
-        days: days ? Number.parseInt(days) : 5,
-        timezone,
-      }
-
-      const airQualityData = await weatherService.getAirQuality(
-        Number.parseFloat(latitude),
-        Number.parseFloat(longitude),
-        parsedVariables,
-        options,
-      )
-
-      res.json({
-        success: true,
-        message: "Air quality data retrieved successfully",
-        data: airQualityData,
-      })
-    } catch (error) {
-      logger.error("Error fetching air quality data:", error)
-      res.status(500).json({
-        success: false,
-        message: error.message || "Failed to fetch air quality data",
-      })
-    }
-  },
-)
-
-// Get climate projection data with customizable variables and models
+// Get climate projection data with customizable variables
 router.get(
   "/climate",
   [
@@ -277,7 +225,6 @@ router.get(
     query("startDate").isISO8601(),
     query("endDate").isISO8601(),
     query("variables").optional().isString(),
-    query("models").optional().isString(),
   ],
   async (req, res) => {
     try {
@@ -296,7 +243,6 @@ router.get(
         startDate,
         endDate,
         variables,
-        models,
         timezone,
         temperatureUnit,
         windSpeedUnit,
@@ -305,7 +251,6 @@ router.get(
 
       const params = {
         variables: variables ? variables.split(",") : [],
-        models: models ? models.split(",") : [],
       }
 
       const options = {

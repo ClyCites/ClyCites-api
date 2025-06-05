@@ -156,44 +156,9 @@ GET /api/weather/historical?latitude=0.3476&longitude=32.5825&startDate=2022-01-
 }
 `,
     },
-    getAirQuality: {
-      request: `
-GET /api/weather/air-quality?latitude=0.3476&longitude=32.5825&variables=pm10,pm2_5,european_aqi&days=2
-`,
-      response: `
-{
-  "success": true,
-  "message": "Air quality data retrieved successfully",
-  "data": {
-    "location": {
-      "latitude": 0.3476,
-      "longitude": 32.5825,
-      "timezone": "Africa/Kampala",
-      "timezoneAbbreviation": "EAT"
-    },
-    "hourly": [
-      {
-        "timestamp": "2023-06-05T00:00:00Z",
-        "data": {
-          "pm10": 28.4,
-          "pm2_5": 16.2,
-          "european_aqi": 45
-        }
-      },
-      // More hourly data...
-    ],
-    "units": {
-      "pm10": "μg/m³",
-      "pm2_5": "μg/m³",
-      "european_aqi": "index"
-    }
-  }
-}
-`,
-    },
     getClimateProjection: {
       request: `
-GET /api/weather/climate?latitude=0.3476&longitude=32.5825&startDate=2030-01-01&endDate=2030-12-31&variables=temperature_2m_max,temperature_2m_min,precipitation_sum&models=EC_Earth3P_HR
+GET /api/weather/climate?latitude=0.3476&longitude=32.5825&startDate=2030-01-01&endDate=2030-12-31&variables=temperature_2m_max,temperature_2m_min,precipitation_sum
 `,
       response: `
 {
@@ -207,7 +172,6 @@ GET /api/weather/climate?latitude=0.3476&longitude=32.5825&startDate=2030-01-01&
       "timezoneAbbreviation": "EAT",
       "elevation": 1189
     },
-    "models": ["EC_Earth3P_HR"],
     "daily": [
       {
         "date": "2030-01-01",
