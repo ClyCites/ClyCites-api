@@ -115,7 +115,7 @@ class WeatherService {
         pressure: current.surface_pressure || 0,
         cloudCover: current.cloud_cover || 0,
       },
-      source: "open-meteo",
+      source: "ClyCites-Weather-API",
       units: {
         temperature: "°C",
         humidity: "%",
@@ -154,7 +154,7 @@ class WeatherService {
         pressure: hourly.surface_pressure[index] || 0,
         cloudCover: hourly.cloud_cover[index] || 0,
       },
-      source: "open-meteo",
+      source: "ClyCites-Weather-API",
       units: {
         temperature: "°C",
         humidity: "%",
@@ -193,7 +193,7 @@ class WeatherService {
         pressure: hourly.surface_pressure[index] || 0,
         cloudCover: hourly.cloud_cover[index] || 0,
       },
-      source: "open-meteo",
+      source: "ClyCites-Weather-API",
       units: {
         temperature: "°C",
         humidity: "%",
