@@ -15,6 +15,9 @@ const weatherSchema = new mongoose.Schema(
         min: -180,
         max: 180,
       },
+      timezone: String,
+      timezoneAbbreviation: String,
+      elevation: Number,
     },
     timestamp: {
       type: Date,
@@ -22,49 +25,21 @@ const weatherSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["current", "forecast", "historical"],
+      enum: ["current", "forecast", "historical", "climate", "air-quality"],
       required: true,
     },
     data: {
-      temperature: {
-        type: Number,
-        required: true,
-      },
-      humidity: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 100,
-      },
-      precipitation: {
-        type: Number,
-        required: true,
-        min: 0,
-      },
-      windSpeed: {
-        type: Number,
-        required: true,
-        min: 0,
-      },
-      windDirection: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 360,
-      },
-      pressure: {
-        type: Number,
-        required: true,
-      },
-      cloudCover: {
-        type: Number,
-        required: true,
-        min: 0,
-        max: 100,
-      },
-      uvIndex: Number,
-      visibility: Number,
-      dewPoint: Number,
+      // Dynamic data fields - can contain any of the Open-Meteo variables
+      type: mongoose.Schema.Types.Mixed,
+      required: true,
+    },
+    source: {
+      type: String,
+      default: "open-meteo",
+    },
+    units: {
+      type: mongoose.Schema.Types.Mixed,
+      default: {},
     },
     alerts: [
       {
@@ -91,13 +66,10 @@ const weatherSchema = new mongoose.Schema(
         },
       },
     ],
-    source: {
-      type: String,
-      default: "open-meteo",
-    },
   },
   {
     timestamps: true,
+    strict: false, // Allow dynamic fields in data
   },
 )
 
@@ -106,5 +78,6 @@ weatherSchema.index({ "location.latitude": 1, "location.longitude": 1 })
 weatherSchema.index({ timestamp: 1 })
 weatherSchema.index({ type: 1 })
 weatherSchema.index({ timestamp: 1, type: 1 })
+weatherSchema.index({ "location.latitude": 1, "location.longitude": 1, timestamp: 1, type: 1 }, { unique: true })
 
 export const WeatherData = mongoose.model("WeatherData", weatherSchema)

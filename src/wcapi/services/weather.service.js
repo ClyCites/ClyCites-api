@@ -49,7 +49,6 @@ class WeatherService {
 
       const forecastData = this.transformForecastData(response.data)
 
-      // Store in database
       for (const data of forecastData) {
         await this.storeWeatherData(data)
       }
