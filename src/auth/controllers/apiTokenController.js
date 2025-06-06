@@ -428,7 +428,6 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token
     if (token.user.toString() !== req.user.id) {
       return next(new AppError("Insufficient permissions to update this token", 403))
     }
