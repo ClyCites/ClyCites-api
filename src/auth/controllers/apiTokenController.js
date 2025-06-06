@@ -10,7 +10,6 @@ const getScopesForRoleLevel = (roleLevel) => {
   const baseScopes = ["profile", "read"]
 
   if (roleLevel >= 50) {
-    // Member+
     baseScopes.push("email", "teams")
   }
 
