@@ -197,7 +197,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Validate permissions array if provided
     let validatedPermissions = []
     if (permissions && Array.isArray(permissions)) {
       validatedPermissions = permissions.filter(
