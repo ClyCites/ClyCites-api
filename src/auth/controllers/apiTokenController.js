@@ -558,7 +558,6 @@ export const regenerateApiToken = asyncHandler(async (req, res, next) => {
     token.token = newToken
     token.hashedToken = crypto.default.createHash("sha256").update(newToken).digest("hex")
 
-    // Reset usage statistics
     token.usage.totalRequests = 0
     token.usage.lastUsedAt = null
 
