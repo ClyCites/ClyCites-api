@@ -271,7 +271,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
     return next(new AppError("Invalid organization ID", 400))
   }
 
-  // Check organization membership
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: organizationId,
