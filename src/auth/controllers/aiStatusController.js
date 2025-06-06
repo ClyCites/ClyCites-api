@@ -1,6 +1,6 @@
 import { aiServiceValidator } from "../services/aiServiceValidator.js"
 import { asyncHandler } from "../utils/asyncHandler.js"
-import  logger  from "../utils/logger.js" // Declare the logger variable
+import  logger  from "../utils/logger.js"
 
 /**
  * Get AI service configuration status

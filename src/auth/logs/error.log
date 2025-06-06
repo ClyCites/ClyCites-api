@@ -2765,3 +2765,384 @@
     '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
   timestamp: '2025-06-06 19:40:25'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/ai/test',
+    stack: 'Error: Not found - /api/ai/test\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/ai/test',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ.n1sSXq0MmUfASjiwM_tFFzQlK71vRHFaKXd6orkNcwM',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '5ac917e5-be8b-472e-bc54-0cf2e33c8518',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '68430854c8db77d7a4bc481a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 19:59:35'
+}
+{
+  service: 'clycites-auth',
+  name: 'AI_RetryError',
+  cause: undefined,
+  reason: 'maxRetriesExceeded',
+  errors: [
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '94b977b108ec73a8-JNB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Fri, 06 Jun 2025 17:00:44 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=FzYyGYX95.2ysGKccQZzpsCZLr1TDaOMKw25QefATdk-1749229244076-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_9082952d3fb1196afee22351f797b3a9'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    },
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '94b977c4cb9873a8-JNB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Fri, 06 Jun 2025 17:00:47 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=87aOyVEJzjAPkBclqajELc2krYpm9HiOWNqpQ3FWVQ8-1749229247241-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_2319b0f2ff43d0fca316ce71cf2a41da'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    },
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '94b977e4ce4c73a8-JNB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Fri, 06 Jun 2025 17:00:51 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=N2JeeiLlCX4w8TjAAnlP8QdmKt3AUgqN2qLUnWebJf0-1749229251622-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_5f86eb948027476440dab1a4be750910'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    }
+  ],
+  lastError: APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+      at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+      at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+      at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+      at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+      at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+      at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+      at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+      at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+    cause: undefined,
+    url: 'https://api.openai.com/v1/chat/completions',
+    requestBodyValues: {
+      model: 'gpt-4o',
+      logit_bias: undefined,
+      logprobs: undefined,
+      top_logprobs: undefined,
+      user: undefined,
+      parallel_tool_calls: undefined,
+      max_tokens: 20,
+      temperature: 0,
+      top_p: undefined,
+      frequency_penalty: undefined,
+      presence_penalty: undefined,
+      response_format: undefined,
+      stop: undefined,
+      seed: undefined,
+      max_completion_tokens: undefined,
+      store: undefined,
+      metadata: undefined,
+      prediction: undefined,
+      reasoning_effort: undefined,
+      messages: [
+        {
+          role: 'user',
+          content: "Say 'AI service is working correctly' in exactly those words."
+        }
+      ],
+      tools: undefined,
+      tool_choice: undefined,
+      functions: undefined,
+      function_call: undefined
+    },
+    statusCode: 429,
+    responseHeaders: {
+      'alt-svc': 'h3=":443"; ma=86400',
+      'cf-cache-status': 'DYNAMIC',
+      'cf-ray': '94b977e4ce4c73a8-JNB',
+      connection: 'keep-alive',
+      'content-length': '337',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Fri, 06 Jun 2025 17:00:51 GMT',
+      server: 'cloudflare',
+      'set-cookie': '_cfuvid=N2JeeiLlCX4w8TjAAnlP8QdmKt3AUgqN2qLUnWebJf0-1749229251622-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+      vary: 'Origin',
+      'x-content-type-options': 'nosniff',
+      'x-request-id': 'req_5f86eb948027476440dab1a4be750910'
+    },
+    responseBody: '{\n' +
+      '    "error": {\n' +
+      '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+      '        "type": "insufficient_quota",\n' +
+      '        "param": null,\n' +
+      '        "code": "insufficient_quota"\n' +
+      '    }\n' +
+      '}\n',
+    isRetryable: true,
+    data: {
+      error: {
+        message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+        type: 'insufficient_quota',
+        param: null,
+        code: 'insufficient_quota'
+      }
+    },
+    [Symbol(vercel.ai.error)]: true,
+    [Symbol(vercel.ai.error.AI_APICallError)]: true
+  },
+  level: 'error',
+  message: 'AI service test failed: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+  stack: 'AI_RetryError: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\n' +
+    '    at _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:283:13)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+    '    at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22',
+  timestamp: '2025-06-06 20:00:51',
+  [Symbol(vercel.ai.error)]: true,
+  [Symbol(vercel.ai.error.AI_RetryError)]: true
+}
