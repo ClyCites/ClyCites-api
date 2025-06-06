@@ -353,9 +353,7 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Get API token details
-// @route   GET /api/tokens/:tokenId
-// @access  Private
+
 export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
