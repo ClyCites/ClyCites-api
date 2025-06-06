@@ -70,7 +70,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
 }
 
 export const createApiToken = asyncHandler(async (req, res, next) => {
-  // Log request details for debugging
   console.log("=== API Token Creation Request ===")
   console.log("Content-Type:", req.headers["content-type"])
   console.log("Request body:", JSON.stringify(req.body, null, 2))
