@@ -169,7 +169,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       if (tokenExpiration <= new Date()) {
         return next(new AppError("Expiration date must be in the future", 400))
       }
-      // Limit maximum expiration to 2 years
       const maxExpiration = new Date(Date.now() + 2 * 365 * 24 * 60 * 60 * 1000)
       if (tokenExpiration > maxExpiration) {
         return next(new AppError("Expiration date cannot be more than 2 years in the future", 400))

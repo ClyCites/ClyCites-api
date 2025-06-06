@@ -4296,3 +4296,15 @@
   service: 'clycites-auth',
   timestamp: '2025-06-06 20:40:57'
 }
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:42:33'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:42:33'
+}
