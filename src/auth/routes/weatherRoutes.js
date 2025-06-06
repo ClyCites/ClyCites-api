@@ -15,7 +15,7 @@ const router = express.Router()
 router.get("/variables", getWeatherVariables)
 
 // Protected weather routes
-router.use(protect)
+// router.use(protect)
 
 // Get current weather with customizable variables
 router.get(
