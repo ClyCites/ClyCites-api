@@ -461,7 +461,6 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
       updates.isActive = isActive
     }
 
-    // Update the token
     const updatedToken = await ApiToken.findByIdAndUpdate(tokenId, updates, { new: true, runValidators: true }).select(
       "-token -hashedToken",
     )
