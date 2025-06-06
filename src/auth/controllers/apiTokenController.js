@@ -48,7 +48,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 70) {
-    // Manager+
     return {
       requestsPerMinute: 500,
       requestsPerHour: 5000,
