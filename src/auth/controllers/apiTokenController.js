@@ -10,27 +10,23 @@ const getScopesForRoleLevel = (roleLevel) => {
   const baseScopes = ["profile", "read"]
 
   if (roleLevel >= 50) {
-    // Member+
     baseScopes.push("email", "teams")
   }
 
   if (roleLevel >= 70) {
-    // Manager+
+
     baseScopes.push("users", "write", "invite")
   }
 
   if (roleLevel >= 85) {
-    // Admin+
     baseScopes.push("organizations", "roles", "applications", "delete", "manage")
   }
 
   if (roleLevel >= 90) {
-    // Owner+
     baseScopes.push("permissions", "billing", "admin")
   }
 
   if (roleLevel >= 95) {
-    // Platform Admin+
     baseScopes.push("analytics", "export", "import")
   }
 
@@ -43,7 +39,6 @@ const hashedToken = crypto.createHash("sha256").update(plainToken).digest("hex")
 
 const getRateLimitsForRoleLevel = (roleLevel) => {
   if (roleLevel >= 90) {
-    // Owner+
     return {
       requestsPerMinute: 1000,
       requestsPerHour: 10000,
@@ -52,7 +47,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 70) {
-    // Manager+
     return {
       requestsPerMinute: 500,
       requestsPerHour: 5000,
@@ -61,7 +55,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 50) {
-    // Member+
     return {
       requestsPerMinute: 100,
       requestsPerHour: 1000,
@@ -69,7 +62,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
     }
   }
 
-  // Default for lower roles
   return {
     requestsPerMinute: 60,
     requestsPerHour: 500,
@@ -77,11 +69,7 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
   }
 }
 
-// @desc    Create API token
-// @route   POST /api/organizations/:orgId/tokens
-// @access  Private (Member+)
 export const createApiToken = asyncHandler(async (req, res, next) => {
-  // Log request details for debugging
   console.log("=== API Token Creation Request ===")
   console.log("Content-Type:", req.headers["content-type"])
   console.log("Request body:", JSON.stringify(req.body, null, 2))
@@ -181,17 +169,14 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       if (tokenExpiration <= new Date()) {
         return next(new AppError("Expiration date must be in the future", 400))
       }
-      // Limit maximum expiration to 2 years
       const maxExpiration = new Date(Date.now() + 2 * 365 * 24 * 60 * 60 * 1000)
       if (tokenExpiration > maxExpiration) {
         return next(new AppError("Expiration date cannot be more than 2 years in the future", 400))
       }
     } else {
-      // Default to 1 year
       tokenExpiration = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
     }
 
-    // Validate and set rate limits
     const defaultRateLimits = getRateLimitsForRoleLevel(membership.role.level)
     let finalRateLimits = defaultRateLimits
 
@@ -212,7 +197,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Validate permissions array if provided
     let validatedPermissions = []
     if (permissions && Array.isArray(permissions)) {
       validatedPermissions = permissions.filter(
@@ -221,7 +205,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       )
     }
 
-    // Create the API token
     const apiToken = await ApiToken.create({
       name: name.trim(),
       description: description ? description.trim() : "",
@@ -281,9 +264,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Get user's API tokens for an organization
-// @route   GET /api/organizations/:orgId/tokens
-// @access  Private
 export const getUserApiTokens = asyncHandler(async (req, res, next) => {
   const organizationId = req.params.orgId
 
@@ -291,7 +271,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
     return next(new AppError("Invalid organization ID", 400))
   }
 
-  // Check organization membership
   const membership = await OrganizationMember.findOne({
     user: req.user.id,
     organization: organizationId,
@@ -311,7 +290,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
     organization: organizationId,
   }
 
-  // Filter by active status if specified
   if (req.query.status === "active") {
     query.isActive = true
     query.expiresAt = { $gt: new Date() }
@@ -329,7 +307,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
 
     const total = await ApiToken.countDocuments(query)
 
-    // Add status information to each token
     const tokensWithStatus = tokens.map((token) => {
       const now = new Date()
       const isExpired = token.expiresAt < now
@@ -346,7 +323,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
       }
     })
 
-    // Calculate summary statistics
     const activeTokens = tokensWithStatus.filter((t) => t.status.isActive).length
     const expiredTokens = tokensWithStatus.filter((t) => t.status.isExpired).length
     const inactiveTokens = tokensWithStatus.filter((t) => !t.isActive).length
@@ -377,9 +353,7 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Get API token details
-// @route   GET /api/tokens/:tokenId
-// @access  Private
+
 export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
@@ -398,7 +372,6 @@ export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token or has admin permissions
     if (token.user._id.toString() !== req.user.id) {
       const membership = await OrganizationMember.findOne({
         user: req.user.id,
@@ -411,7 +384,6 @@ export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Add status and usage information
     const now = new Date()
     const isExpired = token.expiresAt < now
     const daysUntilExpiry = Math.ceil((token.expiresAt - now) / (1000 * 60 * 60 * 24))
@@ -441,9 +413,6 @@ export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Update API token
-// @route   PUT /api/tokens/:tokenId
-// @access  Private
 export const updateApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
   const { name, description, isActive } = req.body
@@ -459,12 +428,10 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token
     if (token.user.toString() !== req.user.id) {
       return next(new AppError("Insufficient permissions to update this token", 403))
     }
 
-    // Validate update fields
     const updates = {}
 
     if (name !== undefined) {
@@ -494,7 +461,6 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
       updates.isActive = isActive
     }
 
-    // Update the token
     const updatedToken = await ApiToken.findByIdAndUpdate(tokenId, updates, { new: true, runValidators: true }).select(
       "-token -hashedToken",
     )
@@ -521,10 +487,6 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
     return next(new AppError("Failed to update token", 500))
   }
 })
-
-// @desc    Revoke API token
-// @route   DELETE /api/tokens/:tokenId
-// @access  Private
 export const revokeApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
@@ -539,7 +501,6 @@ export const revokeApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token or has admin permissions
     if (token.user.toString() !== req.user.id) {
       const membership = await OrganizationMember.findOne({
         user: req.user.id,
@@ -552,7 +513,6 @@ export const revokeApiToken = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Revoke the token (set as inactive)
     token.isActive = false
     await token.save()
 
@@ -571,9 +531,6 @@ export const revokeApiToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Regenerate API token
-// @route   POST /api/tokens/:tokenId/regenerate
-// @access  Private
 export const regenerateApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
@@ -588,23 +545,19 @@ export const regenerateApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token
     if (token.user.toString() !== req.user.id) {
       return next(new AppError("Insufficient permissions to regenerate this token", 403))
     }
 
-    // Check if token is active
     if (!token.isActive) {
       return next(new AppError("Cannot regenerate an inactive token", 400))
     }
 
-    // Generate new token
     const crypto = await import("crypto")
     const newToken = `clycites_${crypto.default.randomBytes(32).toString("hex")}`
     token.token = newToken
     token.hashedToken = crypto.default.createHash("sha256").update(newToken).digest("hex")
 
-    // Reset usage statistics
     token.usage.totalRequests = 0
     token.usage.lastUsedAt = null
 
@@ -632,9 +585,6 @@ export const regenerateApiToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Test API token
-// @route   POST /api/tokens/:tokenId/test
-// @access  Private
 export const testApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
@@ -649,12 +599,10 @@ export const testApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token
     if (token.user.toString() !== req.user.id) {
       return next(new AppError("Insufficient permissions to test this token", 403))
     }
 
-    // Test the token by validating it
     const validatedToken = await ApiToken.verifyToken(token.token)
 
     const testResult = {

@@ -1,6 +1,6 @@
 import axios from "axios"
-import { WeatherData } from "../models/weather.model.js"
-import { logger } from "../utils/logger.js"
+import { WeatherData } from "../models/weatherModel.js"
+import logger from "../utils/logger.js"
 
 class WeatherService {
   constructor() {
@@ -565,6 +565,35 @@ class WeatherService {
    */
   getAvailableVariables() {
     return this.availableVariables
+  }
+
+  /**
+   * Get weather data for a specific location and time range
+   * @param {number} latitude - Location latitude
+   * @param {number} longitude - Location longitude
+   * @param {Date} startDate - Start date
+   * @param {Date} endDate - End date
+   * @param {string} type - Weather data type
+   * @returns {Promise<Array>} Weather data array
+   */
+  async getStoredWeatherData(latitude, longitude, startDate, endDate, type = null) {
+    try {
+      const query = {
+        "location.latitude": { $gte: latitude - 0.01, $lte: latitude + 0.01 },
+        "location.longitude": { $gte: longitude - 0.01, $lte: longitude + 0.01 },
+        timestamp: { $gte: startDate, $lte: endDate },
+      }
+
+      if (type) {
+        query.type = type
+      }
+
+      const weatherData = await WeatherData.find(query).sort({ timestamp: 1 })
+      return weatherData
+    } catch (error) {
+      logger.error("Error retrieving stored weather data:", error)
+      throw new Error(`Failed to retrieve stored weather data: ${error.message}`)
+    }
   }
 }
 
