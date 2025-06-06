@@ -585,9 +585,6 @@ export const regenerateApiToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Test API token
-// @route   POST /api/tokens/:tokenId/test
-// @access  Private
 export const testApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
