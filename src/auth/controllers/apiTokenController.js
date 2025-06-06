@@ -19,7 +19,6 @@ const getScopesForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 85) {
-    // Admin+
     baseScopes.push("organizations", "roles", "applications", "delete", "manage")
   }
 
