@@ -69,9 +69,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
   }
 }
 
-// @desc    Create API token
-// @route   POST /api/organizations/:orgId/tokens
-// @access  Private (Member+)
 export const createApiToken = asyncHandler(async (req, res, next) => {
   // Log request details for debugging
   console.log("=== API Token Creation Request ===")
