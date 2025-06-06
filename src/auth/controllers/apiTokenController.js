@@ -62,7 +62,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
     }
   }
 
-  // Default for lower roles
   return {
     requestsPerMinute: 60,
     requestsPerHour: 500,
