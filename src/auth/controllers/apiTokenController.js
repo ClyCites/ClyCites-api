@@ -39,7 +39,6 @@ const hashedToken = crypto.createHash("sha256").update(plainToken).digest("hex")
 
 const getRateLimitsForRoleLevel = (roleLevel) => {
   if (roleLevel >= 90) {
-    // Owner+
     return {
       requestsPerMinute: 1000,
       requestsPerHour: 10000,
