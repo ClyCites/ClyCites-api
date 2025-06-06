@@ -55,7 +55,6 @@ const getRateLimitsForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 50) {
-    // Member+
     return {
       requestsPerMinute: 100,
       requestsPerHour: 1000,
