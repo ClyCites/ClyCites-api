@@ -22,6 +22,12 @@ import applicationRoutes from "./routes/applicationRoutes.js"
 import apiTokenRoutes from "./routes/apiTokenRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 
+// Import new agricultural routes
+import weatherRoutes from "./routes/weatherRoutes.js"
+import farmRoutes from "./routes/farmRoutes.js"
+import cropRoutes from "./routes/cropRoutes.js"
+import aiRecommendationRoutes from "./routes/aiRecommendationRoutes.js"
+
 import { connectDB } from "./config/db.js"
 import { configurePassport } from "./config/passport.js"
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js"
@@ -286,6 +292,13 @@ app.use("/api", roleRoutes)
 app.use("/api", applicationRoutes)
 app.use("/api", apiTokenRoutes)
 app.use("/api/users", userRoutes)
+
+// New agricultural routes
+app.use("/api/weather", weatherRoutes)
+app.use("/api", farmRoutes)
+app.use("/api", cropRoutes)
+app.use("/api/recommendations", aiRecommendationRoutes)
+
 
 app.get("/api/status", (req, res) => {
   res.status(200).json({
