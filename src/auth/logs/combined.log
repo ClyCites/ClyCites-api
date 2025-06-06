@@ -3425,3 +3425,273 @@
   service: 'clycites-auth',
   timestamp: '2025-06-06 19:25:40'
 }
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:14'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:22'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:35'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:45'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:25'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:40:25'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:33'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:34'
+}

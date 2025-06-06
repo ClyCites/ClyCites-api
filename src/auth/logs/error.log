@@ -2723,3 +2723,45 @@
   message: 'Error 💥',
   timestamp: '2025-06-06 18:30:56'
 }
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:40:25'
+}

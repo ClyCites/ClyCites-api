@@ -22,11 +22,15 @@ import applicationRoutes from "./routes/applicationRoutes.js"
 import apiTokenRoutes from "./routes/apiTokenRoutes.js"
 import userRoutes from "./routes/userRoutes.js"
 
-// Import new agricultural routes
+// Import agricultural routes
 import weatherRoutes from "./routes/weatherRoutes.js"
 import farmRoutes from "./routes/farmRoutes.js"
 import cropRoutes from "./routes/cropRoutes.js"
 import aiRecommendationRoutes from "./routes/aiRecommendationRoutes.js"
+import dailyAssistantRoutes from "./routes/dailyAssistantRoutes.js"
+import livestockRoutes from "./routes/livestockRoutes.js"
+import aiStatusRoutes from "./routes/aiStatusRoutes.js"
+import weatherAlertRoutes from "./routes/weatherAlertRoutes.js"
 
 import { connectDB } from "./config/db.js"
 import { configurePassport } from "./config/passport.js"
@@ -37,7 +41,6 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 dotenv.config()
-
 
 const app = express()
 
@@ -155,14 +158,22 @@ app.get("/favicon.ico", (req, res) => {
 })
 
 app.get("/health", (req, res) => {
+  const aiConfigured = !!process.env.OPENAI_API_KEY
+
   res.status(200).json({
     status: "success",
-    message: "ClyCites Enterprise Auth Server is running",
+    message: "ClyCites Agric Assistant API is running",
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV || "development",
     version: "2.0.0",
     database: "MongoDB Atlas",
     uptime: process.uptime(),
+    services: {
+      database: "connected",
+      email: process.env.EMAIL_SERVICE ? "configured" : "not configured",
+      ai: aiConfigured ? "configured" : "not configured",
+      weather: "active",
+    },
     features: [
       "Multi-Organization Support",
       "Role-Based Access Control",
@@ -171,16 +182,29 @@ app.get("/health", (req, res) => {
       "Team Management",
       "Enterprise SSO",
       "Token Validation API",
+      "Weather Integration",
+      "AI-Powered Agricultural Recommendations",
+      "Farm Management",
+      "Crop Monitoring",
+      "Smart Irrigation",
+      "Precision Agriculture",
+      "Weather Alerts & Notifications",
+      "Daily Task Management",
+      "Livestock Monitoring",
     ],
   })
 })
 
+// Update the API documentation endpoint to include AI status and new features
 app.get("/api/docs", (req, res) => {
+  const aiConfigured = !!process.env.OPENAI_API_KEY
+
   res.status(200).json({
-    title: "ClyCites Enterprise Authentication API",
+    title: "ClyCites Agric Assistant API",
     version: "2.0.0",
-    description: "Comprehensive authentication and authorization system for ClyCites platform",
+    description: "Comprehensive agricultural intelligence system with AI-powered recommendations",
     baseUrl: `${req.protocol}://${req.get("host")}/api`,
+    aiStatus: aiConfigured ? "configured" : "not configured",
     documentation: {
       postman: `${req.protocol}://${req.get("host")}/api/postman`,
       openapi: `${req.protocol}://${req.get("host")}/api/openapi`,
@@ -234,6 +258,43 @@ app.get("/api/docs", (req, res) => {
         "PUT /api/users/:userId/global-role": "Update user global role (Super Admin only)",
         "PUT /api/users/:userId/deactivate": "Deactivate user account (Admin+)",
       },
+      agriculture: {
+        "GET /api/farms": "Get user farms (requires auth)",
+        "POST /api/farms": "Create new farm (requires auth)",
+        "GET /api/farms/:farmId": "Get farm details (requires auth)",
+        "PUT /api/farms/:farmId": "Update farm (requires auth)",
+        "GET /api/farms/:farmId/crops": "Get farm crops (requires auth)",
+        "POST /api/farms/:farmId/crops": "Add crop to farm (requires auth)",
+        "GET /api/weather/current/:location": "Get current weather",
+        "GET /api/weather/forecast/:location": "Get weather forecast",
+        "GET /api/recommendations/farm/:farmId": "Get AI recommendations for farm",
+        "POST /api/recommendations/generate": "Generate new AI recommendation",
+      },
+      weatherAlerts: {
+        "GET /api/farms/:farmId/weather-alerts": "Get farm weather alerts",
+        "GET /api/weather-alerts/:alertId": "Get specific alert details",
+        "PUT /api/weather-alerts/:alertId/acknowledge": "Acknowledge weather alert",
+        "POST /api/weather-alerts/:alertId/implement-action": "Record action taken on alert",
+        "POST /api/weather-alerts/:alertId/create-tasks": "Create tasks from alert recommendations",
+        "GET /api/farms/:farmId/weather-alerts/stats": "Get alert statistics for farm",
+        "POST /api/weather-alerts/expire-old": "System maintenance - expire old alerts",
+      },
+      dailyAssistant: {
+        "GET /api/daily-assistant/tasks/:farmId": "Get daily tasks for farm",
+        "POST /api/daily-assistant/tasks": "Create new daily task",
+        "PUT /api/daily-assistant/tasks/:taskId": "Update task status",
+        "GET /api/daily-assistant/summary/:farmId": "Get daily farm summary",
+      },
+      livestock: {
+        "GET /api/farms/:farmId/livestock": "Get farm livestock",
+        "POST /api/farms/:farmId/livestock": "Add livestock to farm",
+        "GET /api/livestock/:livestockId": "Get livestock details",
+        "PUT /api/livestock/:livestockId": "Update livestock information",
+      },
+      aiService: {
+        "GET /api/ai/status": "Check AI service configuration status",
+        "POST /api/ai/test": "Test AI service connectivity (requires auth)",
+      },
     },
     authentication: {
       methods: ["JWT Bearer Token", "API Key", "OAuth2", "Session Cookies"],
@@ -250,6 +311,25 @@ app.get("/api/docs", (req, res) => {
         "analytics",
         "billing",
         "admin",
+        "agriculture",
+        "weather",
+        "ai-recommendations",
+      ],
+    },
+    setup: {
+      requiredEnvVars: [
+        "MONGODB_URI - MongoDB connection string",
+        "JWT_SECRET - JWT token signing secret",
+        "JWT_REFRESH_SECRET - Refresh token signing secret",
+        "OPENAI_API_KEY - OpenAI API key for AI features",
+      ],
+      optionalEnvVars: [
+        "EMAIL_SERVICE - Email service configuration",
+        "CLIENT_URL - Frontend application URL",
+        "WEATHER_API_KEY - Weather service API key",
+        "TWILIO_ACCOUNT_SID - Twilio account for SMS notifications",
+        "TWILIO_AUTH_TOKEN - Twilio authentication token",
+        "TWILIO_PHONE_NUMBER - Twilio phone number for SMS",
       ],
     },
     examples: {
@@ -299,22 +379,30 @@ app.use("/api", applicationRoutes)
 app.use("/api", apiTokenRoutes)
 app.use("/api/users", userRoutes)
 
-// New agricultural routes
+// Agricultural routes
 app.use("/api/weather", weatherRoutes)
 app.use("/api", farmRoutes)
 app.use("/api", cropRoutes)
 app.use("/api/recommendations", aiRecommendationRoutes)
-
+app.use("/api", dailyAssistantRoutes)
+app.use("/api", livestockRoutes)
+app.use("/api", aiStatusRoutes)
+app.use("/api", weatherAlertRoutes)
 
 app.get("/api/status", (req, res) => {
+  const aiConfigured = !!process.env.OPENAI_API_KEY
+
   res.status(200).json({
     status: "operational",
     timestamp: new Date().toISOString(),
     services: {
       database: "connected",
-      email: "configured",
+      email: process.env.EMAIL_SERVICE ? "configured" : "not configured",
       authentication: "active",
       tokenValidation: "active",
+      ai: aiConfigured ? "configured" : "not configured",
+      weather: "active",
+      notifications: "active",
     },
   })
 })
@@ -322,8 +410,8 @@ app.get("/api/status", (req, res) => {
 app.get("/api/postman", (req, res) => {
   res.status(200).json({
     info: {
-      name: "ClyCites Auth API",
-      description: "ClyCites Enterprise Authentication API Collection",
+      name: "ClyCites Agric Assistant API",
+      description: "ClyCites Agricultural Intelligence API Collection",
       version: "2.0.0",
       schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     },
@@ -423,13 +511,63 @@ app.get("/api/postman", (req, res) => {
           },
         ],
       },
+      {
+        name: "Weather Alerts",
+        item: [
+          {
+            name: "Get Farm Weather Alerts",
+            request: {
+              method: "GET",
+              header: [
+                {
+                  key: "Authorization",
+                  value: "Bearer {{access_token}}",
+                },
+              ],
+              url: {
+                raw: "{{base_url}}/api/farms/:farmId/weather-alerts",
+                host: ["{{base_url}}"],
+                path: ["api", "farms", ":farmId", "weather-alerts"],
+              },
+            },
+          },
+          {
+            name: "Acknowledge Weather Alert",
+            request: {
+              method: "PUT",
+              header: [
+                {
+                  key: "Authorization",
+                  value: "Bearer {{access_token}}",
+                },
+                {
+                  key: "Content-Type",
+                  value: "application/json",
+                },
+              ],
+              body: {
+                mode: "raw",
+                raw: JSON.stringify({
+                  acknowledgedBy: "Farm Manager",
+                  notes: "Alert reviewed and action plan prepared",
+                }),
+              },
+              url: {
+                raw: "{{base_url}}/api/weather-alerts/:alertId/acknowledge",
+                host: ["{{base_url}}"],
+                path: ["api", "weather-alerts", ":alertId", "acknowledge"],
+              },
+            },
+          },
+        ],
+      },
     ],
   })
 })
 
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "🚀 ClyCites Enterprise Authentication Server",
+    message: "🚀 ClyCites Agric Assistant API",
     version: "2.0.0",
     documentation: `${req.protocol}://${req.get("host")}/api/docs`,
     health: `${req.protocol}://${req.get("host")}/health`,
@@ -442,6 +580,15 @@ app.get("/", (req, res) => {
       "Team Management",
       "Enterprise SSO",
       "Token Validation API",
+      "Weather Integration",
+      "AI-Powered Agricultural Recommendations",
+      "Farm Management",
+      "Crop Monitoring",
+      "Smart Irrigation",
+      "Precision Agriculture",
+      "Weather Alerts & Notifications",
+      "Daily Task Management",
+      "Livestock Monitoring",
     ],
   })
 })
@@ -452,13 +599,15 @@ app.use(errorHandler)
 const PORT = process.env.PORT || 5000
 
 const server = app.listen(PORT, () => {
-  console.log(`🚀 ClyCites Enterprise Auth Server running on port ${PORT}`)
+  console.log(`🚀 ClyCites Agric Assistant API running on port ${PORT}`)
   console.log(`🌍 Environment: ${process.env.NODE_ENV || "development"}`)
   console.log(`🔗 Database: MongoDB Atlas`)
   console.log(`📚 API Documentation: http://localhost:${PORT}/api/docs`)
   console.log(`🏥 Health check: http://localhost:${PORT}/health`)
   console.log(`🔐 Token validation: http://localhost:${PORT}/api/auth/validate-token`)
   console.log(`📧 Email service: ${process.env.EMAIL_SERVICE || "Not configured"}`)
+  console.log(`🤖 AI service: ${process.env.OPENAI_API_KEY ? "Configured" : "Not configured"}`)
+  console.log(`🌦️  Weather alerts: Active`)
   console.log(`🔐 Ready to accept requests!`)
 })
 

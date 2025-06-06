@@ -166,5 +166,64 @@ weatherAlertSchema.virtual("isExpired").get(function () {
   return new Date() > this.validUntil
 })
 
+// Methods
+weatherAlertSchema.methods.acknowledge = function (userId) {
+  this.acknowledged = {
+    acknowledgedAt: new Date(),
+    acknowledgedBy: userId,
+  }
+  return this.save()
+}
+
+weatherAlertSchema.methods.implementAction = function (actionData, userId) {
+  this.actionsImplemented.push({
+    ...actionData,
+    implementedAt: new Date(),
+    implementedBy: userId,
+  })
+  return this.save()
+}
+
+weatherAlertSchema.methods.addNotification = function (notificationData) {
+  this.notificationsSent.push({
+    ...notificationData,
+    sentAt: new Date(),
+  })
+  return this.save()
+}
+
+// Static methods
+weatherAlertSchema.statics.getActiveAlerts = function (farmId) {
+  return this.find({
+    farm: farmId,
+    isActive: true,
+    validUntil: { $gte: new Date() },
+  })
+    .populate("affectedCrops", "name category")
+    .populate("affectedLivestock", "herdName animalType")
+    .sort({ severity: -1, createdAt: -1 })
+}
+
+weatherAlertSchema.statics.getAlertsByType = function (farmId, alertType) {
+  return this.find({
+    farm: farmId,
+    alertType,
+    isActive: true,
+    validUntil: { $gte: new Date() },
+  })
+}
+
+weatherAlertSchema.statics.expireOldAlerts = function () {
+  return this.updateMany(
+    {
+      validUntil: { $lt: new Date() },
+      isActive: true,
+    },
+    {
+      $set: { isActive: false },
+    },
+  )
+}
+
 const WeatherAlert = mongoose.model("WeatherAlert", weatherAlertSchema)
 export default WeatherAlert

@@ -61,8 +61,24 @@ const dailyTaskSchema = new mongoose.Schema(
       enum: ["low", "medium", "high", "critical"],
       default: "medium",
     },
+    status: {
+      type: String,
+      enum: ["pending", "in_progress", "completed", "skipped", "postponed", "cancelled"],
+      default: "pending",
+    },
     estimatedDuration: {
-      value: Number, // in minutes
+      value: {
+        type: Number,
+        required: true,
+      },
+      unit: {
+        type: String,
+        enum: ["minutes", "hours", "days"],
+        default: "minutes",
+      },
+    },
+    actualDuration: {
+      value: Number,
       unit: {
         type: String,
         enum: ["minutes", "hours", "days"],
@@ -74,79 +90,61 @@ const dailyTaskSchema = new mongoose.Schema(
       default: false,
     },
     weatherConditions: {
-      requiredConditions: [String], // e.g., ["no_rain", "temperature_below_30"]
-      avoidConditions: [String], // e.g., ["heavy_rain", "strong_wind"]
-    },
-    resources: {
-      materials: [
-        {
-          name: String,
-          quantity: Number,
-          unit: String,
-          estimatedCost: Number,
-        },
-      ],
-      equipment: [String],
-      laborRequired: {
-        people: Number,
-        skillLevel: {
-          type: String,
-          enum: ["basic", "intermediate", "advanced", "expert"],
-          default: "basic",
-        },
+      requiredConditions: [String],
+      avoidConditions: [String],
+      optimalTemperature: {
+        min: Number,
+        max: Number,
       },
+      maxWindSpeed: Number,
+      maxPrecipitation: Number,
     },
+    resources: [
+      {
+        name: String,
+        quantity: Number,
+        unit: String,
+        estimatedCost: Number,
+      },
+    ],
     instructions: [
       {
         step: Number,
         description: String,
-        duration: Number, // minutes
+        duration: Number, // in minutes
         tools: [String],
-        safetyNotes: String,
+        safetyNotes: [String],
       },
     ],
-    aiGenerated: {
-      type: Boolean,
-      default: false,
-    },
-    aiRecommendation: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "AIRecommendation",
-    },
-    status: {
-      type: String,
-      enum: ["pending", "in_progress", "completed", "skipped", "postponed", "cancelled"],
-      default: "pending",
-    },
     completion: {
       completedAt: Date,
       completedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
-      actualDuration: Number, // minutes
-      actualCost: Number,
+      actualResources: [
+        {
+          name: String,
+          quantity: Number,
+          unit: String,
+          actualCost: Number,
+        },
+      ],
       notes: String,
-      photos: [String], // URLs to photos
-      gpsLocation: {
-        latitude: Number,
-        longitude: Number,
-      },
-      weatherAtCompletion: mongoose.Schema.Types.Mixed,
+      photos: [String],
       effectiveness: {
         type: Number,
         min: 1,
         max: 5,
       },
-      issues: [String],
+      challenges: [String],
     },
     reminders: [
       {
         reminderTime: Date,
         method: {
           type: String,
-          enum: ["push", "sms", "email", "voice"],
-          default: "push",
+          enum: ["push", "sms", "email"],
         },
         sent: {
           type: Boolean,
@@ -155,45 +153,28 @@ const dailyTaskSchema = new mongoose.Schema(
         sentAt: Date,
       },
     ],
-    recurrence: {
-      isRecurring: {
-        type: Boolean,
-        default: false,
-      },
-      pattern: {
-        type: String,
-        enum: ["daily", "weekly", "monthly", "seasonal", "custom"],
-      },
-      interval: Number, // e.g., every 2 weeks
-      endDate: Date,
-      daysOfWeek: [Number], // 0-6, Sunday = 0
-      customSchedule: [Date],
-    },
     dependencies: [
       {
-        taskId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "DailyTask",
-        },
-        dependencyType: {
-          type: String,
-          enum: ["must_complete_before", "must_start_after", "cannot_overlap"],
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DailyTask",
       },
     ],
-    tags: [String],
-    isUrgent: {
+    relatedAlerts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "WeatherAlert",
+      },
+    ],
+    aiGenerated: {
       type: Boolean,
       default: false,
     },
-    postponeCount: {
+    aiConfidence: {
       type: Number,
-      default: 0,
+      min: 0,
+      max: 100,
     },
-    maxPostpones: {
-      type: Number,
-      default: 3,
-    },
+    tags: [String],
   },
   {
     timestamps: true,
@@ -203,25 +184,23 @@ const dailyTaskSchema = new mongoose.Schema(
 )
 
 // Indexes
-dailyTaskSchema.index({ farm: 1, taskDate: 1, status: 1 })
-dailyTaskSchema.index({ user: 1, taskDate: 1 })
+dailyTaskSchema.index({ farm: 1, taskDate: 1 })
+dailyTaskSchema.index({ user: 1, status: 1 })
 dailyTaskSchema.index({ category: 1, priority: 1 })
-dailyTaskSchema.index({ status: 1, taskDate: 1 })
+dailyTaskSchema.index({ taskDate: 1, status: 1 })
 dailyTaskSchema.index({ crop: 1, taskDate: 1 })
 dailyTaskSchema.index({ livestock: 1, taskDate: 1 })
-dailyTaskSchema.index({ aiGenerated: 1, taskDate: 1 })
 
 // Virtual for overdue status
 dailyTaskSchema.virtual("isOverdue").get(function () {
-  const now = new Date()
-  return this.taskDate < now && this.status === "pending"
+  if (this.status === "completed" || this.status === "cancelled") return false
+  return new Date() > this.taskDate
 })
 
 // Virtual for days overdue
 dailyTaskSchema.virtual("daysOverdue").get(function () {
   if (!this.isOverdue) return 0
-  const now = new Date()
-  const diffTime = now - this.taskDate
+  const diffTime = new Date() - this.taskDate
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 })
 
@@ -230,38 +209,90 @@ dailyTaskSchema.virtual("urgencyScore").get(function () {
   let score = 0
 
   // Priority scoring
-  switch (this.priority) {
-    case "critical":
-      score += 40
-      break
-    case "high":
-      score += 30
-      break
-    case "medium":
-      score += 20
-      break
-    case "low":
-      score += 10
-      break
-  }
+  const priorityScores = { low: 1, medium: 2, high: 3, critical: 4 }
+  score += priorityScores[this.priority] * 25
 
-  // Overdue scoring
+  // Overdue penalty
   if (this.isOverdue) {
-    score += Math.min(this.daysOverdue * 5, 30)
+    score += this.daysOverdue * 10
   }
 
-  // Weather dependency scoring
+  // Weather dependency bonus
   if (this.weatherDependent) {
-    score += 10
+    score += 15
   }
 
-  // Urgent flag
-  if (this.isUrgent) {
-    score += 20
+  // AI confidence bonus
+  if (this.aiGenerated && this.aiConfidence) {
+    score += (this.aiConfidence / 100) * 10
   }
 
   return Math.min(score, 100)
 })
+
+// Methods
+dailyTaskSchema.methods.markCompleted = function (userId, completionData = {}) {
+  this.status = "completed"
+  this.completion = {
+    completedAt: new Date(),
+    completedBy: userId,
+    ...completionData,
+  }
+  return this.save()
+}
+
+dailyTaskSchema.methods.postpone = function (newDate, reason) {
+  this.status = "postponed"
+  this.taskDate = newDate
+  if (reason) {
+    this.completion = { notes: `Postponed: ${reason}` }
+  }
+  return this.save()
+}
+
+dailyTaskSchema.methods.addReminder = function (reminderData) {
+  this.reminders.push(reminderData)
+  return this.save()
+}
+
+// Static methods
+dailyTaskSchema.statics.getTasksForDate = function (farmId, userId, date) {
+  const startOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate())
+  const endOfDay = new Date(date.getFullYear(), date.getMonth(), date.getDate() + 1)
+
+  return this.find({
+    farm: farmId,
+    user: userId,
+    taskDate: {
+      $gte: startOfDay,
+      $lt: endOfDay,
+    },
+  })
+    .populate("crop", "name category growthStage")
+    .populate("livestock", "herdName animalType totalAnimals")
+    .sort({ priority: -1, urgencyScore: -1 })
+}
+
+dailyTaskSchema.statics.getOverdueTasks = function (farmId, userId) {
+  return this.find({
+    farm: farmId,
+    user: userId,
+    status: "pending",
+    taskDate: { $lt: new Date() },
+  })
+}
+
+dailyTaskSchema.statics.getTasksByCategory = function (farmId, userId, category, startDate, endDate) {
+  return this.find({
+    farm: farmId,
+    user: userId,
+    category,
+    taskDate: {
+      $gte: startDate,
+      $lte: endDate,
+    },
+  })
+}
 
 const DailyTask = mongoose.model("DailyTask", dailyTaskSchema)
 export default DailyTask

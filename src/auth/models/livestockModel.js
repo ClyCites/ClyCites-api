@@ -7,227 +7,261 @@ const livestockSchema = new mongoose.Schema(
       ref: "Farm",
       required: true,
     },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    herdName: {
+      type: String,
+      required: true,
+      maxlength: 100,
+    },
     animalType: {
       type: String,
       enum: ["cattle", "goats", "sheep", "pigs", "poultry", "rabbits", "fish", "other"],
       required: true,
     },
     breed: {
-      name: String,
-      supplier: String,
-      origin: String,
-    },
-    herdName: {
       type: String,
       required: true,
-      trim: true,
+      maxlength: 100,
     },
     totalAnimals: {
       type: Number,
       required: true,
       min: 1,
     },
-    animalDetails: {
-      males: { type: Number, default: 0 },
-      females: { type: Number, default: 0 },
-      young: { type: Number, default: 0 },
-      averageAge: Number, // in months
-      averageWeight: Number, // in kg
+    ageGroups: [
+      {
+        ageCategory: {
+          type: String,
+          enum: ["young", "adult", "mature", "breeding"],
+        },
+        count: Number,
+        averageAge: Number, // in months
+      },
+    ],
+    genderDistribution: {
+      males: {
+        type: Number,
+        default: 0,
+      },
+      females: {
+        type: Number,
+        default: 0,
+      },
     },
     housing: {
       type: {
         type: String,
-        enum: ["open_grazing", "paddock", "barn", "cage", "pond", "free_range", "intensive"],
+        enum: ["barn", "pasture", "coop", "pen", "pond", "cage", "free_range"],
       },
       capacity: Number,
-      area: {
-        value: Number,
-        unit: {
-          type: String,
-          enum: ["square_meters", "hectares", "acres"],
-          default: "square_meters",
-        },
+      location: {
+        coordinates: [Number], // [longitude, latitude]
+        description: String,
       },
-      roofed: Boolean,
-      ventilation: {
-        type: String,
-        enum: ["natural", "mechanical", "none"],
-        default: "natural",
+      conditions: {
+        ventilation: {
+          type: String,
+          enum: ["poor", "fair", "good", "excellent"],
+        },
+        cleanliness: {
+          type: String,
+          enum: ["poor", "fair", "good", "excellent"],
+        },
+        space: {
+          type: String,
+          enum: ["cramped", "adequate", "spacious"],
+        },
       },
     },
     feeding: {
-      method: {
-        type: String,
-        enum: ["grazing", "cut_and_carry", "mixed", "commercial_feed", "kitchen_waste"],
-        required: true,
-      },
-      feedTypes: [
-        {
-          name: String,
-          supplier: String,
-          quantity: Number, // per day/week
-          unit: String,
-          cost: Number,
-          nutritionalValue: String,
-        },
-      ],
+      feedType: [String],
       feedingSchedule: [
         {
-          time: String, // e.g., "06:00", "12:00", "18:00"
+          time: String, // e.g., "06:00"
           feedType: String,
           quantity: Number,
           unit: String,
         },
       ],
+      dailyFeedCost: Number,
+      feedSupplier: String,
+      specialDiet: String,
       waterSource: {
         type: String,
-        enum: ["borehole", "well", "tap", "river", "pond", "tank"],
+        enum: ["well", "borehole", "river", "tap", "pond"],
       },
-      dailyWaterConsumption: Number, // liters
     },
     health: {
-      vaccinationSchedule: [
+      lastVetVisit: Date,
+      veterinarian: {
+        name: String,
+        contact: String,
+      },
+      currentVaccinations: [
         {
           vaccine: String,
-          lastDate: Date,
+          dateGiven: Date,
           nextDue: Date,
-          frequency: String, // e.g., "annually", "6 months"
-          veterinarian: String,
+          batchNumber: String,
+        },
+      ],
+      upcomingVaccinations: [
+        {
+          vaccine: String,
+          nextDue: Date,
+          priority: {
+            type: String,
+            enum: ["low", "medium", "high", "critical"],
+          },
+        },
+      ],
+      healthIssues: [
+        {
+          issue: String,
+          dateIdentified: Date,
+          treatment: String,
+          status: {
+            type: String,
+            enum: ["active", "treated", "chronic", "resolved"],
+          },
           cost: Number,
         },
       ],
-      commonDiseases: [String],
-      lastHealthCheck: Date,
-      healthStatus: {
-        type: String,
-        enum: ["excellent", "good", "fair", "poor", "sick"],
-        default: "good",
-      },
-      veterinarianContact: {
-        name: String,
-        phone: String,
-        location: String,
+      mortalityRate: {
+        thisMonth: Number,
+        thisYear: Number,
+        causes: [String],
       },
     },
     production: {
-      purpose: {
+      productType: {
         type: String,
-        enum: ["meat", "milk", "eggs", "breeding", "draft", "manure", "mixed"],
-        required: true,
+        enum: ["milk", "eggs", "meat", "wool", "honey", "fish", "manure"],
       },
-      currentProduction: {
-        milk: {
-          dailyYield: Number, // liters per day
-          lactatingAnimals: Number,
-        },
-        eggs: {
-          dailyYield: Number,
-          layingBirds: Number,
-        },
-        meat: {
-          expectedSlaughterWeight: Number,
-          slaughterAge: Number, // months
-        },
-      },
-      reproductionData: {
-        breedingMethod: {
+      dailyProduction: {
+        quantity: Number,
+        unit: String,
+        quality: {
           type: String,
-          enum: ["natural", "artificial_insemination", "both"],
+          enum: ["poor", "fair", "good", "excellent"],
         },
-        pregnantAnimals: Number,
-        expectedDeliveries: [
-          {
-            animalId: String,
-            expectedDate: Date,
-            breed: String,
-          },
-        ],
-        lastBreeding: Date,
+      },
+      monthlyProduction: [
+        {
+          month: String,
+          year: Number,
+          quantity: Number,
+          unit: String,
+          revenue: Number,
+        },
+      ],
+      productionGoals: {
+        daily: Number,
+        monthly: Number,
+        annual: Number,
       },
     },
+    breeding: {
+      breedingProgram: Boolean,
+      breedingStock: {
+        males: Number,
+        females: Number,
+      },
+      lastBreeding: Date,
+      expectedOffspring: [
+        {
+          expectedDate: Date,
+          parentIds: [String],
+          expectedCount: Number,
+        },
+      ],
+      breedingRecords: [
+        {
+          date: Date,
+          male: String,
+          female: String,
+          successful: Boolean,
+          offspring: Number,
+          notes: String,
+        },
+      ],
+    },
     economics: {
-      initialInvestment: Number,
-      monthlyExpenses: {
-        feed: Number,
-        veterinary: Number,
-        labor: Number,
-        utilities: Number,
-        other: Number,
+      purchaseInfo: {
+        date: Date,
+        supplier: String,
+        totalCost: Number,
+        costPerAnimal: Number,
       },
-      monthlyIncome: {
-        milk: Number,
-        eggs: Number,
-        meat: Number,
-        breeding: Number,
-        other: Number,
-      },
-      marketInformation: {
-        milkPrice: Number, // per liter
-        eggPrice: Number, // per piece/tray
-        meatPrice: Number, // per kg
-        lastUpdated: Date,
+      monthlyExpenses: [
+        {
+          month: String,
+          year: Number,
+          feed: Number,
+          veterinary: Number,
+          housing: Number,
+          labor: Number,
+          other: Number,
+          total: Number,
+        },
+      ],
+      monthlyIncome: [
+        {
+          month: String,
+          year: Number,
+          sales: Number,
+          products: Number,
+          other: Number,
+          total: Number,
+        },
+      ],
+      currentValue: Number,
+      insuranceInfo: {
+        provider: String,
+        policyNumber: String,
+        coverage: Number,
+        premium: Number,
+        expiryDate: Date,
       },
     },
     weatherSensitivity: {
-      temperatureRange: {
-        min: Number, // Celsius
+      temperatureTolerance: {
+        min: Number,
         max: Number,
-        optimal: Number,
+        optimal: {
+          min: Number,
+          max: Number,
+        },
       },
       humidityTolerance: {
-        min: Number, // percentage
+        min: Number,
         max: Number,
       },
       rainSensitivity: {
         type: String,
         enum: ["low", "medium", "high"],
-        default: "medium",
       },
-      seasonalNeeds: [
-        {
-          season: String,
-          specialCare: String,
-          feedAdjustments: String,
-          housingNeeds: String,
-        },
-      ],
+      windSensitivity: {
+        type: String,
+        enum: ["low", "medium", "high"],
+      },
     },
     records: [
       {
         date: Date,
         type: {
           type: String,
-          enum: ["feeding", "health", "production", "breeding", "death", "sale", "purchase", "other"],
+          enum: ["health", "production", "breeding", "feeding", "general"],
         },
         description: String,
-        quantity: Number,
-        cost: Number,
-        income: Number,
-        notes: String,
-        performedBy: {
+        data: mongoose.Schema.Types.Mixed,
+        recordedBy: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "User",
-        },
-      },
-    ],
-    alerts: [
-      {
-        type: {
-          type: String,
-          enum: ["health", "feeding", "breeding", "weather", "production", "vaccination"],
-        },
-        message: String,
-        priority: {
-          type: String,
-          enum: ["low", "medium", "high", "critical"],
-        },
-        isActive: {
-          type: Boolean,
-          default: true,
-        },
-        createdAt: {
-          type: Date,
-          default: Date.now,
         },
       },
     ],
@@ -235,10 +269,8 @@ const livestockSchema = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    metadata: {
-      type: mongoose.Schema.Types.Mixed,
-      default: {},
-    },
+    tags: [String],
+    notes: String,
   },
   {
     timestamps: true,
@@ -248,37 +280,115 @@ const livestockSchema = new mongoose.Schema(
 )
 
 // Indexes
-livestockSchema.index({ farm: 1 })
-livestockSchema.index({ animalType: 1 })
-livestockSchema.index({ "health.nextVaccination": 1 })
-livestockSchema.index({ isActive: 1 })
+livestockSchema.index({ farm: 1, isActive: 1 })
+livestockSchema.index({ owner: 1, animalType: 1 })
+livestockSchema.index({ animalType: 1, breed: 1 })
+livestockSchema.index({ "health.upcomingVaccinations.nextDue": 1 })
 
-// Virtual for total monthly expenses
-livestockSchema.virtual("totalMonthlyExpenses").get(function () {
-  const expenses = this.economics.monthlyExpenses
-  return Object.values(expenses).reduce((sum, expense) => sum + (expense || 0), 0)
+// Virtuals
+livestockSchema.virtual("averageAge").get(function () {
+  if (!this.ageGroups || this.ageGroups.length === 0) return 0
+  const totalAge = this.ageGroups.reduce((sum, group) => sum + group.averageAge * group.count, 0)
+  return totalAge / this.totalAnimals
 })
 
-// Virtual for total monthly income
-livestockSchema.virtual("totalMonthlyIncome").get(function () {
-  const income = this.economics.monthlyIncome
-  return Object.values(income).reduce((sum, inc) => sum + (inc || 0), 0)
-})
-
-// Virtual for monthly profit
 livestockSchema.virtual("monthlyProfit").get(function () {
-  return this.totalMonthlyIncome - this.totalMonthlyExpenses
+  const currentMonth = new Date().toISOString().slice(0, 7) // YYYY-MM
+  const income = this.economics.monthlyIncome.find((m) => m.month === currentMonth)?.total || 0
+  const expenses = this.economics.monthlyExpenses.find((m) => m.month === currentMonth)?.total || 0
+  return income - expenses
 })
 
-// Virtual for upcoming vaccinations
-livestockSchema.virtual("upcomingVaccinations").get(function () {
-  const now = new Date()
-  const nextWeek = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+livestockSchema.virtual("productionEfficiency").get(function () {
+  if (!this.production.productionGoals.daily || this.production.productionGoals.daily === 0) return 0
+  return (this.production.dailyProduction.quantity / this.production.productionGoals.daily) * 100
+})
 
-  return this.health.vaccinationSchedule.filter((vaccination) => {
-    return vaccination.nextDue && vaccination.nextDue <= nextWeek && vaccination.nextDue >= now
+// Methods
+livestockSchema.methods.addHealthRecord = function (healthData, userId) {
+  this.records.push({
+    date: new Date(),
+    type: "health",
+    description: healthData.description,
+    data: healthData,
+    recordedBy: userId,
   })
-})
+  return this.save()
+}
+
+livestockSchema.methods.addProductionRecord = function (productionData, userId) {
+  this.records.push({
+    date: new Date(),
+    type: "production",
+    description: `Production: ${productionData.quantity} ${productionData.unit}`,
+    data: productionData,
+    recordedBy: userId,
+  })
+
+  // Update daily production
+  this.production.dailyProduction = productionData
+  return this.save()
+}
+
+livestockSchema.methods.updateVaccination = function (vaccinationData) {
+  // Remove from upcoming
+  this.health.upcomingVaccinations = this.health.upcomingVaccinations.filter(
+    (v) => v.vaccine !== vaccinationData.vaccine,
+  )
+
+  // Add to current
+  this.health.currentVaccinations.push(vaccinationData)
+  return this.save()
+}
+
+livestockSchema.methods.addBreedingRecord = function (breedingData, userId) {
+  this.breeding.breedingRecords.push(breedingData)
+  this.records.push({
+    date: new Date(),
+    type: "breeding",
+    description: `Breeding: ${breedingData.male} x ${breedingData.female}`,
+    data: breedingData,
+    recordedBy: userId,
+  })
+  return this.save()
+}
+
+// Static methods
+livestockSchema.statics.getByFarm = function (farmId) {
+  return this.find({ farm: farmId, isActive: true })
+}
+
+livestockSchema.statics.getUpcomingVaccinations = function (farmId, days = 30) {
+  const futureDate = new Date()
+  futureDate.setDate(futureDate.getDate() + days)
+
+  return this.find({
+    farm: farmId,
+    isActive: true,
+    "health.upcomingVaccinations.nextDue": {
+      $lte: futureDate,
+    },
+  })
+}
+
+livestockSchema.statics.getProductionSummary = function (farmId, startDate, endDate) {
+  return this.aggregate([
+    {
+      $match: {
+        farm: farmId,
+        isActive: true,
+      },
+    },
+    {
+      $group: {
+        _id: "$production.productType",
+        totalAnimals: { $sum: "$totalAnimals" },
+        totalDailyProduction: { $sum: "$production.dailyProduction.quantity" },
+        averageProductionEfficiency: { $avg: "$productionEfficiency" },
+      },
+    },
+  ])
+}
 
 const Livestock = mongoose.model("Livestock", livestockSchema)
 export default Livestock
