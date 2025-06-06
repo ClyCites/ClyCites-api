@@ -501,7 +501,6 @@ export const revokeApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Token not found", 404))
     }
 
-    // Check if user owns the token or has admin permissions
     if (token.user.toString() !== req.user.id) {
       const membership = await OrganizationMember.findOne({
         user: req.user.id,
