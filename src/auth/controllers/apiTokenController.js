@@ -290,7 +290,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
     organization: organizationId,
   }
 
-  // Filter by active status if specified
   if (req.query.status === "active") {
     query.isActive = true
     query.expiresAt = { $gt: new Date() }
