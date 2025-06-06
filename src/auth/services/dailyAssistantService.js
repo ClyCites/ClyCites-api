@@ -7,10 +7,16 @@ import Crop from "../models/cropModel.js"
 import Livestock from "../models/livestockModel.js"
 import { weatherService } from "./weatherService.js"
 import logger from "../utils/logger.js"
+import { aiServiceValidator } from "./aiServiceValidator.js"
 
 class DailyAssistantService {
   constructor() {
-    this.model = openai("gpt-4o")
+    if (aiServiceValidator.isAIEnabled()) {
+      this.model = openai("gpt-4o")
+    } else {
+      this.model = null
+      logger.warn("⚠️  Daily AI assistant disabled - OpenAI API key not configured")
+    }
   }
 
   /**
@@ -122,6 +128,11 @@ class DailyAssistantService {
    */
   async generateWeatherSummary(currentWeather, forecast) {
     try {
+      // If AI is not available, return basic summary
+      if (!aiServiceValidator.isAIEnabled()) {
+        return this.generateBasicWeatherSummary(currentWeather, forecast)
+      }
+
       const prompt = `
         Create a brief, farmer-friendly weather summary for today and the next 2 days:
         
@@ -158,7 +169,42 @@ class DailyAssistantService {
       return text.trim()
     } catch (error) {
       logger.error("Error generating weather summary:", error)
-      return "Weather data available. Check current conditions and forecast for planning your farm activities."
+      return this.generateBasicWeatherSummary(currentWeather, forecast)
+    }
+  }
+
+  /**
+   * Generate basic weather summary without AI
+   */
+  generateBasicWeatherSummary(currentWeather, forecast) {
+    try {
+      const temp = currentWeather.data.temperature_2m
+      const precipitation = currentWeather.data.precipitation
+      const humidity = currentWeather.data.relative_humidity_2m
+
+      let summary = `Current temperature is ${temp}°C with ${humidity}% humidity. `
+
+      if (precipitation > 0) {
+        summary += `Light rainfall detected (${precipitation}mm). `
+      }
+
+      if (temp > 30) {
+        summary += "Hot conditions - ensure adequate water for crops and livestock. "
+      } else if (temp < 15) {
+        summary += "Cool conditions - monitor sensitive crops. "
+      }
+
+      const upcomingRain = forecast.daily.slice(0, 3).reduce((sum, day) => sum + (day.data.precipitation_sum || 0), 0)
+      if (upcomingRain > 10) {
+        summary += `Rain expected in the next 3 days (${upcomingRain}mm total).`
+      } else {
+        summary += "Dry conditions expected for the next few days."
+      }
+
+      return summary
+    } catch (error) {
+      logger.error("Error generating basic weather summary:", error)
+      return "Weather data available. Check current conditions for planning your farm activities."
     }
   }
 

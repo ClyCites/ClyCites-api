@@ -6,10 +6,16 @@ import Crop from "../models/cropModel.js"
 import AgricultureActivity from "../models/agricultureActivityModel.js"
 import { weatherService } from "./weatherService.js"
 import logger from "../utils/logger.js"
+import { aiServiceValidator } from "./aiServiceValidator.js"
 
 class AIRecommendationService {
   constructor() {
-    this.model = openai("gpt-4o")
+    if (aiServiceValidator.isAIEnabled()) {
+      this.model = openai("gpt-4o")
+    } else {
+      this.model = null
+      logger.warn("⚠️  AI recommendations disabled - OpenAI API key not configured")
+    }
   }
 
   /**
@@ -20,6 +26,12 @@ class AIRecommendationService {
    */
   async generateFarmRecommendations(farmId, userId) {
     try {
+      // Check if AI is enabled
+      if (!aiServiceValidator.isAIEnabled()) {
+        logger.warn("AI recommendations requested but service not configured")
+        return this.generateFallbackRecommendations(farmId, userId)
+      }
+
       const farm = await Farm.findById(farmId).populate("owner")
       if (!farm) {
         throw new Error("Farm not found")
@@ -93,6 +105,14 @@ class AIRecommendationService {
       return savedRecommendations
     } catch (error) {
       logger.error("Error generating farm recommendations:", error)
+
+      // If it's an API key error, provide helpful message
+      if (error.message.includes("API key") || error.message.includes("authentication")) {
+        logger.error("❌ OpenAI API authentication failed")
+        logger.error("💡 Please check your OPENAI_API_KEY environment variable")
+        return this.generateFallbackRecommendations(farmId, userId)
+      }
+
       throw new Error(`Failed to generate recommendations: ${error.message}`)
     }
   }
@@ -646,6 +666,100 @@ class AIRecommendationService {
     // This would integrate with market data APIs
     // For now, return placeholder recommendations
     return []
+  }
+
+  /**
+   * Generate basic recommendations when AI is not available
+   */
+  async generateFallbackRecommendations(farmId, userId) {
+    try {
+      const farm = await Farm.findById(farmId)
+      if (!farm) {
+        throw new Error("Farm not found")
+      }
+
+      const crops = await Crop.find({ farm: farmId, status: { $in: ["planted", "growing"] } })
+      const recommendations = []
+
+      // Generate basic weather-based recommendations without AI
+      const currentWeather = await weatherService.getCurrentWeather(farm.location.latitude, farm.location.longitude, [
+        "temperature_2m",
+        "precipitation",
+        "soil_moisture_0_1cm",
+      ])
+
+      // Basic irrigation recommendation
+      if (currentWeather.data.soil_moisture_0_1cm < 30) {
+        recommendations.push({
+          farm: farm._id,
+          user: userId,
+          type: "irrigation",
+          priority: "high",
+          title: "Low Soil Moisture Detected",
+          description: `Soil moisture is at ${currentWeather.data.soil_moisture_0_1cm}%. Consider irrigation to prevent crop stress.`,
+          actionRequired: true,
+          recommendedAction: "Check soil moisture manually and irrigate if necessary",
+          timeframe: "within_24h",
+          confidence: 70,
+          dataSource: {
+            weather: true,
+            soilData: true,
+            cropStage: false,
+            historicalData: false,
+            marketData: false,
+            satelliteImagery: false,
+          },
+          aiModel: {
+            name: "ClyCites-Basic-Rules",
+            version: "1.0",
+          },
+        })
+      }
+
+      // Basic temperature alert
+      if (currentWeather.data.temperature_2m > 35) {
+        recommendations.push({
+          farm: farm._id,
+          user: userId,
+          type: "weather_alert",
+          priority: "high",
+          title: "High Temperature Alert",
+          description: `Temperature is ${currentWeather.data.temperature_2m}°C. Monitor crops and livestock for heat stress.`,
+          actionRequired: true,
+          recommendedAction: "Provide shade and increase water availability",
+          timeframe: "immediate",
+          confidence: 80,
+          dataSource: {
+            weather: true,
+            soilData: false,
+            cropStage: false,
+            historicalData: false,
+            marketData: false,
+            satelliteImagery: false,
+          },
+          aiModel: {
+            name: "ClyCites-Basic-Rules",
+            version: "1.0",
+          },
+        })
+      }
+
+      // Save basic recommendations
+      const savedRecommendations = []
+      for (const rec of recommendations) {
+        try {
+          const saved = await AIRecommendation.create(rec)
+          savedRecommendations.push(saved)
+        } catch (error) {
+          logger.error("Error saving basic recommendation:", error)
+        }
+      }
+
+      return savedRecommendations
+    } catch (error) {
+      logger.error("Error generating fallback recommendations:", error)
+      throw new Error(`Failed to generate basic recommendations: ${error.message}`)
+    }
   }
 }
 

@@ -2909,3 +2909,9 @@
   service: 'clycites-auth',
   timestamp: '2025-06-06 18:56:46'
 }
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:03:44'
+}
