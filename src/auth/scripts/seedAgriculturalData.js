@@ -21,18 +21,13 @@ const seedAgriculturalData = async () => {
     const organizations = await Organization.find().limit(3)
 
     if (users.length === 0 || organizations.length === 0) {
-      console.log("❌ Please run the main database seeding first: npm run seed")
+      console.log("❌ Please run the main database seeding first to create users and organizations")
+      console.log("Run: npm run seed")
       process.exit(1)
     }
 
-    console.log(
-      "🏢 Found organizations:",
-      organizations.map((o) => o.name),
-    )
-    console.log(
-      "👥 Found users:",
-      users.map((u) => u.email),
-    )
+    console.log(`🏢 Found ${organizations.length} organizations`)
+    console.log(`👥 Found ${users.length} users`)
 
     // Clear existing agricultural data
     console.log("🗑️  Clearing existing agricultural data...")
@@ -131,60 +126,6 @@ const seedAgriculturalData = async () => {
         certifications: [],
         weatherStationId: "mbarara_001",
       },
-      {
-        name: "Nile Valley Vegetables",
-        owner: users[3]._id,
-        organization: organizations[1]._id,
-        location: {
-          latitude: 2.2042,
-          longitude: 32.2955,
-          address: "Gulu District, Northern Region, Uganda",
-          region: "Northern",
-          country: "Uganda",
-          elevation: 1104,
-        },
-        size: {
-          value: 8.7,
-          unit: "hectares",
-        },
-        soilType: "silt",
-        soilPH: 6.5,
-        irrigationSystem: "flood",
-        farmType: "crop",
-        certifications: [
-          {
-            type: "global_gap",
-            name: "GlobalGAP Certification",
-            issuedBy: "GlobalGAP",
-            validUntil: new Date("2025-09-15"),
-            certificateNumber: "GG-UG-2024-003",
-          },
-        ],
-        weatherStationId: "gulu_001",
-      },
-      {
-        name: "Lake Victoria Fish Farm",
-        owner: users[4]._id,
-        organization: organizations[2]._id,
-        location: {
-          latitude: -0.3949,
-          longitude: 32.6256,
-          address: "Entebbe, Wakiso District, Central Region, Uganda",
-          region: "Central",
-          country: "Uganda",
-          elevation: 1134,
-        },
-        size: {
-          value: 3.2,
-          unit: "hectares",
-        },
-        soilType: "peat",
-        soilPH: 7.8,
-        irrigationSystem: "none",
-        farmType: "aquaculture",
-        certifications: [],
-        weatherStationId: "entebbe_001",
-      },
     ]
 
     console.log("🚜 Creating sample farms...")
@@ -193,7 +134,6 @@ const seedAgriculturalData = async () => {
 
     // Sample crop data
     const sampleCrops = [
-      // Green Valley Farm crops
       {
         name: "Maize",
         scientificName: "Zea mays",
@@ -256,7 +196,6 @@ const seedAgriculturalData = async () => {
         },
         status: "growing",
       },
-      // Sunrise Coffee Estate crops
       {
         name: "Coffee",
         scientificName: "Coffea arabica",
@@ -285,62 +224,84 @@ const seedAgriculturalData = async () => {
         status: "growing",
         notes: "Mature coffee trees, expecting good harvest this season",
       },
-      // Highland Dairy Farm crops
-      {
-        name: "Napier Grass",
-        scientificName: "Pennisetum purpureum",
-        category: "fodder",
-        variety: "Bana",
-        farm: createdFarms[2]._id,
-        field: {
-          name: "Pasture 1",
-          area: { value: 10.0, unit: "hectares" },
-        },
-        season: "wet",
-        plantingDate: new Date("2024-01-01"),
-        expectedHarvestDate: new Date("2024-06-01"),
-        growthStage: "established",
-        plantingMethod: "broadcasting",
-        seedSource: {
-          supplier: "Local Seed Supplier",
-          variety: "Bana",
-          quantity: 5000,
-          cost: 250000,
-        },
-        expectedYield: {
-          quantity: 15000,
-          unit: "kg",
-        },
-        status: "growing",
-      },
     ]
 
     console.log("🌱 Creating sample crops...")
     const createdCrops = await Crop.create(sampleCrops)
     console.log(`✅ Created ${createdCrops.length} crops`)
 
-    // Sample agriculture activity data
+    // Sample agriculture activities
     const sampleActivities = [
       {
+        type: "irrigation",
         farm: createdFarms[0]._id,
         crop: createdCrops[0]._id,
-        activityType: "irrigation",
-        date: new Date("2024-03-20"),
-        details: "Applied 100 liters of water using drip irrigation system",
+        performedBy: users[0]._id,
+        actualDate: new Date("2024-03-20"),
+        duration: { value: 2, unit: "hours" },
+        inputs: [
+          {
+            type: "water",
+            name: "Irrigation Water",
+            quantity: 1000,
+            unit: "liters",
+            cost: 5000,
+          },
+        ],
+        results: {
+          success: true,
+          observations: "Good water distribution across the field",
+          recommendations: "Continue regular irrigation schedule",
+        },
+        status: "completed",
       },
       {
+        type: "fertilization",
+        farm: createdFarms[0]._id,
+        crop: createdCrops[1]._id,
+        performedBy: users[0]._id,
+        actualDate: new Date("2024-04-05"),
+        duration: { value: 3, unit: "hours" },
+        inputs: [
+          {
+            type: "fertilizer",
+            name: "NPK 17-17-17",
+            quantity: 50,
+            unit: "kg",
+            cost: 75000,
+            applicationRate: "50kg per hectare",
+          },
+        ],
+        results: {
+          success: true,
+          observations: "Even application achieved",
+          recommendations: "Monitor crop response over next 2 weeks",
+        },
+        status: "completed",
+      },
+      {
+        type: "pest_control",
         farm: createdFarms[1]._id,
         crop: createdCrops[2]._id,
-        activityType: "pruning",
-        date: new Date("2024-05-10"),
-        details: "Pruned coffee trees to improve air circulation",
-      },
-      {
-        farm: createdFarms[2]._id,
-        crop: createdCrops[3]._id,
-        activityType: "fertilization",
-        date: new Date("2024-02-15"),
-        details: "Applied 50 kg of NPK fertilizer",
+        performedBy: users[1]._id,
+        actualDate: new Date("2024-05-10"),
+        duration: { value: 4, unit: "hours" },
+        inputs: [
+          {
+            type: "pesticide",
+            name: "Coffee Berry Borer Control",
+            quantity: 2,
+            unit: "liters",
+            cost: 45000,
+            applicationRate: "2ml per liter of water",
+          },
+        ],
+        results: {
+          success: true,
+          observations: "Reduced pest activity observed",
+          recommendations: "Repeat treatment in 2 weeks if necessary",
+        },
+        status: "completed",
       },
     ]
 
@@ -348,28 +309,102 @@ const seedAgriculturalData = async () => {
     const createdActivities = await AgricultureActivity.create(sampleActivities)
     console.log(`✅ Created ${createdActivities.length} agriculture activities`)
 
-    // Sample AI recommendation data
+    // Sample AI recommendations
     const sampleRecommendations = [
       {
         farm: createdFarms[0]._id,
         crop: createdCrops[0]._id,
-        recommendationType: "pest_control",
-        date: new Date("2024-04-01"),
-        details: "Monitor for armyworms and apply insecticide if detected",
+        user: users[0]._id,
+        type: "irrigation",
+        priority: "high",
+        title: "Increase Irrigation Frequency",
+        description:
+          "Based on current weather conditions and soil moisture levels, increase irrigation frequency to maintain optimal growth during the flowering stage.",
+        actionRequired: true,
+        deadline: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days from now
+        weatherContext: {
+          currentConditions: { temperature: 28, humidity: 65, rainfall: 0 },
+          forecast: { expectedRainfall: 5, temperature: 30 },
+          alerts: ["High temperature expected"],
+        },
+        cropContext: {
+          growthStage: "flowering",
+          ageInDays: 65,
+          expectedActions: ["irrigation", "monitoring"],
+        },
+        economicImpact: {
+          potentialLoss: 200000,
+          potentialGain: 50000,
+          costOfAction: 15000,
+          roi: 233,
+          currency: "UGX",
+        },
+        confidence: 85,
+        aiModel: "gpt-4",
+        dataSource: ["weather_data", "crop_stage", "soil_moisture"],
+        status: "active",
+        tags: ["irrigation", "flowering", "weather_alert"],
       },
       {
         farm: createdFarms[1]._id,
         crop: createdCrops[2]._id,
-        recommendationType: "harvest_timing",
-        date: new Date("2024-11-01"),
-        details: "Harvest coffee cherries when they reach optimal ripeness",
+        user: users[1]._id,
+        type: "harvest_timing",
+        priority: "medium",
+        title: "Prepare for Coffee Harvest",
+        description:
+          "Coffee cherries are approaching optimal ripeness. Begin preparations for harvest including equipment maintenance and labor scheduling.",
+        actionRequired: true,
+        deadline: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), // 2 weeks from now
+        cropContext: {
+          growthStage: "fruiting",
+          ageInDays: 950,
+          expectedActions: ["harvest_preparation", "quality_assessment"],
+        },
+        economicImpact: {
+          potentialGain: 1500000,
+          costOfAction: 200000,
+          roi: 650,
+          currency: "UGX",
+        },
+        confidence: 92,
+        aiModel: "gpt-4",
+        dataSource: ["crop_stage", "historical_data", "market_prices"],
+        status: "active",
+        tags: ["harvest", "coffee", "timing"],
       },
       {
-        farm: createdFarms[2]._id,
-        crop: createdCrops[3]._id,
-        recommendationType: "soil_management",
-        date: new Date("2024-03-01"),
-        details: "Regularly test soil pH and adjust with lime if necessary",
+        farm: createdFarms[0]._id,
+        crop: createdCrops[1]._id,
+        user: users[0]._id,
+        type: "pest_control",
+        priority: "critical",
+        title: "Monitor for Bean Fly Infestation",
+        description:
+          "Weather conditions are favorable for bean fly activity. Implement monitoring and be ready for immediate intervention if pests are detected.",
+        actionRequired: true,
+        deadline: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000), // 1 day from now
+        weatherContext: {
+          currentConditions: { temperature: 25, humidity: 80, rainfall: 15 },
+          forecast: { expectedRainfall: 20, temperature: 26 },
+          alerts: ["High humidity conditions"],
+        },
+        cropContext: {
+          growthStage: "vegetative",
+          ageInDays: 35,
+          expectedActions: ["pest_monitoring", "preventive_treatment"],
+        },
+        economicImpact: {
+          potentialLoss: 180000,
+          costOfAction: 25000,
+          roi: 620,
+          currency: "UGX",
+        },
+        confidence: 78,
+        aiModel: "gpt-4",
+        dataSource: ["weather_data", "pest_forecast", "crop_vulnerability"],
+        status: "active",
+        tags: ["pest_control", "beans", "monitoring"],
       },
     ]
 
@@ -380,25 +415,58 @@ const seedAgriculturalData = async () => {
     // Sample weather data
     const sampleWeatherData = [
       {
-        farm: createdFarms[0]._id,
-        date: new Date("2024-03-15"),
-        temperature: { value: 25.0, unit: "°C" },
-        humidity: { value: 75, unit: "%" },
-        rainfall: { value: 100, unit: "mm" },
+        location: {
+          latitude: 0.3476,
+          longitude: 32.5825,
+          timezone: "Africa/Kampala",
+          timezoneAbbreviation: "EAT",
+          elevation: 1190,
+        },
+        timestamp: new Date("2024-06-01T12:00:00Z"),
+        type: "current",
+        data: {
+          temperature_2m: 25.5,
+          relative_humidity_2m: 75,
+          precipitation: 0,
+          wind_speed_10m: 8.2,
+          surface_pressure: 1013.2,
+          cloud_cover: 45,
+          soil_moisture_0_1cm: 0.28,
+        },
+        source: "open-meteo",
+        units: {
+          temperature: "°C",
+          precipitation: "mm",
+          windSpeed: "km/h",
+          pressure: "hPa",
+        },
       },
       {
-        farm: createdFarms[1]._id,
-        date: new Date("2024-05-01"),
-        temperature: { value: 22.0, unit: "°C" },
-        humidity: { value: 80, unit: "%" },
-        rainfall: { value: 50, unit: "mm" },
-      },
-      {
-        farm: createdFarms[2]._id,
-        date: new Date("2024-02-15"),
-        temperature: { value: 18.0, unit: "°C" },
-        humidity: { value: 65, unit: "%" },
-        rainfall: { value: 0, unit: "mm" },
+        location: {
+          latitude: 0.4162,
+          longitude: 32.6722,
+          timezone: "Africa/Kampala",
+          timezoneAbbreviation: "EAT",
+          elevation: 1200,
+        },
+        timestamp: new Date("2024-06-01T12:00:00Z"),
+        type: "current",
+        data: {
+          temperature_2m: 23.8,
+          relative_humidity_2m: 82,
+          precipitation: 2.5,
+          wind_speed_10m: 6.1,
+          surface_pressure: 1012.8,
+          cloud_cover: 65,
+          soil_moisture_0_1cm: 0.35,
+        },
+        source: "open-meteo",
+        units: {
+          temperature: "°C",
+          precipitation: "mm",
+          windSpeed: "km/h",
+          pressure: "hPa",
+        },
       },
     ]
 
@@ -406,11 +474,27 @@ const seedAgriculturalData = async () => {
     const createdWeatherData = await WeatherData.create(sampleWeatherData)
     console.log(`✅ Created ${createdWeatherData.length} weather data entries`)
 
-    console.log("🌾 Agricultural data seeding completed successfully!")
+    console.log("\n🎉 Agricultural data seeding completed successfully!")
+    console.log("\n📊 Summary:")
+    console.log(`   • ${createdFarms.length} farms created`)
+    console.log(`   • ${createdCrops.length} crops created`)
+    console.log(`   • ${createdActivities.length} activities created`)
+    console.log(`   • ${createdRecommendations.length} AI recommendations created`)
+    console.log(`   • ${createdWeatherData.length} weather data entries created`)
+
+    console.log("\n🚀 You can now:")
+    console.log("   • Test the weather API endpoints")
+    console.log("   • Generate AI recommendations")
+    console.log("   • Track agricultural activities")
+    console.log("   • Monitor crop growth stages")
+
+    process.exit(0)
   } catch (error) {
     console.error("❌ Error during agricultural data seeding:", error)
+    console.error("Stack trace:", error.stack)
     process.exit(1)
   }
 }
 
-export default seedAgriculturalData
+// Run the seeding function
+seedAgriculturalData()

@@ -2897,3 +2897,15 @@
   message: 'Error 💥',
   timestamp: '2025-06-06 18:30:56'
 }
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 18:46:43'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 18:56:46'
+}
