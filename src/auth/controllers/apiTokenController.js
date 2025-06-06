@@ -549,7 +549,6 @@ export const regenerateApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Insufficient permissions to regenerate this token", 403))
     }
 
-    // Check if token is active
     if (!token.isActive) {
       return next(new AppError("Cannot regenerate an inactive token", 400))
     }
