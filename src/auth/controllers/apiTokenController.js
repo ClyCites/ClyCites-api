@@ -14,7 +14,7 @@ const getScopesForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 70) {
-    // Manager+
+
     baseScopes.push("users", "write", "invite")
   }
 
