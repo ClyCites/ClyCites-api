@@ -2915,3 +2915,243 @@
   service: 'clycites-auth',
   timestamp: '2025-06-06 19:03:44'
 }
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:10:04'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:26'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:44'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:11'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:21'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:40'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:06'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:20'
+}

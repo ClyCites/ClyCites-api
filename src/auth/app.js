@@ -38,13 +38,19 @@ const __dirname = path.dirname(__filename)
 
 dotenv.config()
 
+
 const app = express()
 
-const requiredEnvVars = ["MONGODB_URI", "JWT_SECRET", "JWT_REFRESH_SECRET"]
+const requiredEnvVars = ["MONGODB_URI", "JWT_SECRET", "JWT_REFRESH_SECRET", "OPENAI_API_KEY"]
 const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar])
 
 if (missingEnvVars.length > 0) {
   console.error("❌ Missing required environment variables:", missingEnvVars.join(", "))
+  console.error("💡 Required variables:")
+  console.error("   - MONGODB_URI: MongoDB connection string")
+  console.error("   - JWT_SECRET: Secret for JWT token signing")
+  console.error("   - JWT_REFRESH_SECRET: Secret for refresh token signing")
+  console.error("   - OPENAI_API_KEY: OpenAI API key for AI recommendations")
   process.exit(1)
 }
 
