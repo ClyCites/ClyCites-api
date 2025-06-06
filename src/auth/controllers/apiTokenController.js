@@ -432,7 +432,6 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Insufficient permissions to update this token", 403))
     }
 
-    // Validate update fields
     const updates = {}
 
     if (name !== undefined) {
