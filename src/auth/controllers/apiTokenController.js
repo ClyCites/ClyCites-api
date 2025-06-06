@@ -323,7 +323,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
       }
     })
 
-    // Calculate summary statistics
     const activeTokens = tokensWithStatus.filter((t) => t.status.isActive).length
     const expiredTokens = tokensWithStatus.filter((t) => t.status.isExpired).length
     const inactiveTokens = tokensWithStatus.filter((t) => !t.isActive).length
