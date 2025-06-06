@@ -307,7 +307,6 @@ export const getUserApiTokens = asyncHandler(async (req, res, next) => {
 
     const total = await ApiToken.countDocuments(query)
 
-    // Add status information to each token
     const tokensWithStatus = tokens.map((token) => {
       const now = new Date()
       const isExpired = token.expiresAt < now
