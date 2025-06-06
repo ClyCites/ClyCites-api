@@ -205,7 +205,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       )
     }
 
-    // Create the API token
     const apiToken = await ApiToken.create({
       name: name.trim(),
       description: description ? description.trim() : "",
