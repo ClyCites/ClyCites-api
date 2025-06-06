@@ -177,7 +177,6 @@ export const createApiToken = asyncHandler(async (req, res, next) => {
       tokenExpiration = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
     }
 
-    // Validate and set rate limits
     const defaultRateLimits = getRateLimitsForRoleLevel(membership.role.level)
     let finalRateLimits = defaultRateLimits
 
