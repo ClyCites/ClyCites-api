@@ -29,7 +29,6 @@ const weatherSchema = new mongoose.Schema(
       required: true,
     },
     data: {
-      // Dynamic data fields - can contain any of the Open-Meteo variables
       type: mongoose.Schema.Types.Mixed,
       required: true,
     },
@@ -69,11 +68,10 @@ const weatherSchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    strict: false, // Allow dynamic fields in data
+    strict: false,
   },
 )
 
-// Indexes for efficient queries
 weatherSchema.index({ "location.latitude": 1, "location.longitude": 1 })
 weatherSchema.index({ timestamp: 1 })
 weatherSchema.index({ type: 1 })
