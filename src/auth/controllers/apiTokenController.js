@@ -553,7 +553,6 @@ export const regenerateApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Cannot regenerate an inactive token", 400))
     }
 
-    // Generate new token
     const crypto = await import("crypto")
     const newToken = `clycites_${crypto.default.randomBytes(32).toString("hex")}`
     token.token = newToken
