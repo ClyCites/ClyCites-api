@@ -384,7 +384,6 @@ export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Add status and usage information
     const now = new Date()
     const isExpired = token.expiresAt < now
     const daysUntilExpiry = Math.ceil((token.expiresAt - now) / (1000 * 60 * 60 * 24))
