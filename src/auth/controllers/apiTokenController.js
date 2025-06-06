@@ -413,9 +413,6 @@ export const getApiTokenDetails = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Update API token
-// @route   PUT /api/tokens/:tokenId
-// @access  Private
 export const updateApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
   const { name, description, isActive } = req.body
