@@ -531,9 +531,6 @@ export const revokeApiToken = asyncHandler(async (req, res, next) => {
   }
 })
 
-// @desc    Regenerate API token
-// @route   POST /api/tokens/:tokenId/regenerate
-// @access  Private
 export const regenerateApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
