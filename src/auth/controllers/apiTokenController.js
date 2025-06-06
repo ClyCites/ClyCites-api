@@ -487,10 +487,6 @@ export const updateApiToken = asyncHandler(async (req, res, next) => {
     return next(new AppError("Failed to update token", 500))
   }
 })
-
-// @desc    Revoke API token
-// @route   DELETE /api/tokens/:tokenId
-// @access  Private
 export const revokeApiToken = asyncHandler(async (req, res, next) => {
   const tokenId = req.params.tokenId
 
