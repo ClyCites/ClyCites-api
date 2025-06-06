@@ -2478,3 +2478,1929 @@
   message: 'Error 💥',
   timestamp: '2025-06-01 12:49:28'
 }
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 18:06:38'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 18:14:27'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&hourlyVariables=temperature_2m%2Cprecipitation%2Cwind_speed_10m&dailyVariables=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cwind_speed_10m_max&temperatureUnit=celsius&windSpeedUnit=kmh',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '6f2c1cab-4908-497b-b215-d700428a655b',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      hourlyVariables: 'temperature_2m,precipitation,wind_speed_10m',
+      dailyVariables: 'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:14:54'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&hourlyVariables=temperature_2m%2Cprecipitation%2Cwind_speed_10m&dailyVariables=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cwind_speed_10m_max&temperatureUnit=celsius&windSpeedUnit=kmh',
+    headers: {
+      authorization: 'Bearer {{jwt}}',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '07b2588d-5f77-4817-89ad-94357c1d4911',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      hourlyVariables: 'temperature_2m,precipitation,wind_speed_10m',
+      dailyVariables: 'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:15:44'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token expired',
+    stack: 'Error: Token expired\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:52:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&hourlyVariables=temperature_2m%2Cprecipitation%2Cwind_speed_10m&dailyVariables=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cwind_speed_10m_max&temperatureUnit=celsius&windSpeedUnit=kmh',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': 'c018c1d9-df09-40b2-aa98-555005846b87',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      hourlyVariables: 'temperature_2m,precipitation,wind_speed_10m',
+      dailyVariables: 'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:16:16'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid credentials',
+    stack: 'Error: Invalid credentials\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:144:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/login',
+    headers: {
+      'content-type': 'application/json',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': 'de3c5923-9ef2-464e-a04e-ab9e44329183',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '71'
+    },
+    body: { identifier: 'superadmin', password: 'SuperAdmin123!' },
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:16:35'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid credentials',
+    stack: 'Error: Invalid credentials\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:144:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/login',
+    headers: {
+      'content-type': 'application/json',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': 'bc18ca95-66e0-416e-b409-029eb183d3d1',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      'content-length': '71'
+    },
+    body: { identifier: 'superadmin', password: 'SuperAdmin123!' },
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:17:06'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&hourlyVariables=temperature_2m%2Cprecipitation%2Cwind_speed_10m&dailyVariables=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cwind_speed_10m_max&temperatureUnit=celsius&windSpeedUnit=kmh',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ.n1sSXq0MmUfASjiwM_tFFzQlK71vRHFaKXd6orkNcwM.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '6688ce3e-5468-4bc5-9364-b3ecdeb95cf1',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      hourlyVariables: 'temperature_2m,precipitation,wind_speed_10m',
+      dailyVariables: 'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:27:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/me',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '58907186-f049-44a8-826e-83d1c55d6f7d',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ._yK-u8oLjj0_ikmtlQ85py-DfWqIiDUz4Q4B12oMmp0'
+    },
+    body: {},
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ._yK-u8oLjj0_ikmtlQ85py-DfWqIiDUz4Q4B12oMmp0'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:28:26'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid token',
+    stack: 'Error: Invalid token\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:50:19\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ.n1sSXq0MmUfASjiwM_tFFzQlK71vRHFaKXd6orkNcwM.eyJpZCI6IjY4Mzg5ODA1YmM3OWRhMzNhZWZhZmRiNSIsImlhdCI6MTc0ODUzOTY2MSwiZXhwIjoxNzQ5MTQ0NDYxfQ.1WsPWZvB4lLIrh2hVgAYveS2q8mkx8-poKFY9TvugCk',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '16625905-bd7f-403e-b162-827610ca5c67',
+      host: '10.5.1.209:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ._yK-u8oLjj0_ikmtlQ85py-DfWqIiDUz4Q4B12oMmp0'
+    },
+    body: {},
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ._yK-u8oLjj0_ikmtlQ85py-DfWqIiDUz4Q4B12oMmp0'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:28:53'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&hourlyVariables=temperature_2m%2Cprecipitation%2Cwind_speed_10m&dailyVariables=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Cwind_speed_10m_max&temperatureUnit=celsius&windSpeedUnit=kmh',
+    headers: {
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '7149eefb-e2c5-4b25-92f6-5ed22c6e4557',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      hourlyVariables: 'temperature_2m,precipitation,wind_speed_10m',
+      dailyVariables: 'temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 18:30:56'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 18:46:43'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 18:56:46'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:03:44'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:09:55'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:10:04'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:24'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:26'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:43'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:11:44'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:10'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:12:11'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:21'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:38'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:13:40'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:05'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:06'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:15:20'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:16'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:16'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:16'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:16'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:17'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:42'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:42'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:42'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:42'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:17:44'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:05'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:05'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:05'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:05'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:07'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:34'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:34'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:34'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:34'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:18:35'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:15'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:15'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:15'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:15'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:27'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:35'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:35'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:35'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:35'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:19:37'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:43'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:43'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:43'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:43'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:46'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:54'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:54'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:54'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:54'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:20:56'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:25:26'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:25:26'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:25:26'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:25:26'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:25:40'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:05'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:30:14'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:33:22'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:39:33'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:35'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:39:42'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:39:45'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:17'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:24'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:25'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error creating email transporter: nodemailer.createTransporter is not a function',
+  stack: 'TypeError: nodemailer.createTransporter is not a function\n' +
+    '    at NotificationService.createEmailTransporter (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:11:25)\n' +
+    '    at new NotificationService (file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:6:34)\n' +
+    '    at file:///E:/Projects/ClyCites-api/src/auth/services/notificationService.js:355:36\n' +
+    '    at ModuleJob.run (node:internal/modules/esm/module_job:218:25)\n' +
+    '    at async ModuleLoader.import (node:internal/modules/esm/loader:329:24)\n' +
+    '    at async loadESM (node:internal/process/esm_loader:34:7)\n' +
+    '    at async handleMainPromise (node:internal/modules/run_main:113:12)',
+  timestamp: '2025-06-06 19:40:25'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:32'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:33'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:40:34'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:44:58'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:44:58'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:44:58'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:44:58'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:44:58'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:45:00'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:47:46'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:47:46'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:47:46'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:47:46'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:47:46'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:47:47'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:48:49'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:48:49'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:48:49'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:48:49'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:48:49'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:48:52'
+}
+{
+  message: '⚠️  OPENAI_API_KEY not found in environment variables',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:51:20'
+}
+{
+  message: '💡 AI recommendations will be disabled until API key is configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:51:20'
+}
+{
+  message: '🔑 Get your API key from: https://platform.openai.com/api-keys',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:51:20'
+}
+{
+  message: '⚠️  AI recommendations disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:51:20'
+}
+{
+  message: '⚠️  Daily AI assistant disabled - OpenAI API key not configured',
+  level: 'warn',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:51:20'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:51:23'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:58:12'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:58:12'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 19:58:13'
+}
+{
+  service: 'clycites-auth',
+  method: 'GET',
+  url: '/api/ai/test',
+  ip: '::1',
+  userAgent: 'PostmanRuntime/7.44.0',
+  level: 'warn',
+  message: '404 Error',
+  timestamp: '2025-06-06 19:59:35'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/ai/test',
+    stack: 'Error: Not found - /api/ai/test\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/ai/test',
+    headers: {
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTIyMzU2MSwiZXhwIjoxNzQ5ODI4MzYxfQ.n1sSXq0MmUfASjiwM_tFFzQlK71vRHFaKXd6orkNcwM',
+      'user-agent': 'PostmanRuntime/7.44.0',
+      accept: '*/*',
+      'cache-control': 'no-cache',
+      'postman-token': '5ac917e5-be8b-472e-bc54-0cf2e33c8518',
+      host: 'localhost:5000',
+      'accept-encoding': 'gzip, deflate, br',
+      connection: 'keep-alive'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '68430854c8db77d7a4bc481a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-06 19:59:35'
+}
+{
+  service: 'clycites-auth',
+  name: 'AI_RetryError',
+  cause: undefined,
+  reason: 'maxRetriesExceeded',
+  errors: [
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '94b977b108ec73a8-JNB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Fri, 06 Jun 2025 17:00:44 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=FzYyGYX95.2ysGKccQZzpsCZLr1TDaOMKw25QefATdk-1749229244076-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_9082952d3fb1196afee22351f797b3a9'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    },
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '94b977c4cb9873a8-JNB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Fri, 06 Jun 2025 17:00:47 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=87aOyVEJzjAPkBclqajELc2krYpm9HiOWNqpQ3FWVQ8-1749229247241-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_2319b0f2ff43d0fca316ce71cf2a41da'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    },
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '94b977e4ce4c73a8-JNB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Fri, 06 Jun 2025 17:00:51 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=N2JeeiLlCX4w8TjAAnlP8QdmKt3AUgqN2qLUnWebJf0-1749229251622-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_5f86eb948027476440dab1a4be750910'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    }
+  ],
+  lastError: APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+      at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+      at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+      at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+      at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+      at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+      at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+      at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+      at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+    cause: undefined,
+    url: 'https://api.openai.com/v1/chat/completions',
+    requestBodyValues: {
+      model: 'gpt-4o',
+      logit_bias: undefined,
+      logprobs: undefined,
+      top_logprobs: undefined,
+      user: undefined,
+      parallel_tool_calls: undefined,
+      max_tokens: 20,
+      temperature: 0,
+      top_p: undefined,
+      frequency_penalty: undefined,
+      presence_penalty: undefined,
+      response_format: undefined,
+      stop: undefined,
+      seed: undefined,
+      max_completion_tokens: undefined,
+      store: undefined,
+      metadata: undefined,
+      prediction: undefined,
+      reasoning_effort: undefined,
+      messages: [
+        {
+          role: 'user',
+          content: "Say 'AI service is working correctly' in exactly those words."
+        }
+      ],
+      tools: undefined,
+      tool_choice: undefined,
+      functions: undefined,
+      function_call: undefined
+    },
+    statusCode: 429,
+    responseHeaders: {
+      'alt-svc': 'h3=":443"; ma=86400',
+      'cf-cache-status': 'DYNAMIC',
+      'cf-ray': '94b977e4ce4c73a8-JNB',
+      connection: 'keep-alive',
+      'content-length': '337',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Fri, 06 Jun 2025 17:00:51 GMT',
+      server: 'cloudflare',
+      'set-cookie': '_cfuvid=N2JeeiLlCX4w8TjAAnlP8QdmKt3AUgqN2qLUnWebJf0-1749229251622-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+      vary: 'Origin',
+      'x-content-type-options': 'nosniff',
+      'x-request-id': 'req_5f86eb948027476440dab1a4be750910'
+    },
+    responseBody: '{\n' +
+      '    "error": {\n' +
+      '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+      '        "type": "insufficient_quota",\n' +
+      '        "param": null,\n' +
+      '        "code": "insufficient_quota"\n' +
+      '    }\n' +
+      '}\n',
+    isRetryable: true,
+    data: {
+      error: {
+        message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+        type: 'insufficient_quota',
+        param: null,
+        code: 'insufficient_quota'
+      }
+    },
+    [Symbol(vercel.ai.error)]: true,
+    [Symbol(vercel.ai.error.AI_APICallError)]: true
+  },
+  level: 'error',
+  message: 'AI service test failed: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+  stack: 'AI_RetryError: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\n' +
+    '    at _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:283:13)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+    '    at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22',
+  timestamp: '2025-06-06 20:00:51',
+  [Symbol(vercel.ai.error)]: true,
+  [Symbol(vercel.ai.error.AI_RetryError)]: true
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:08:10'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:08:10'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:08:12'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:28:32'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:28:32'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:28:33'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:40:57'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:40:57'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:42:33'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:42:33'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:42:53'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:42:53'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:43:22'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:43:22'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:43:33'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:43:33'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:45:41'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:45:41'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:46:50'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:46:50'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:47:52'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:47:52'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:48:07'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:48:07'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:48:58'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-06-06 20:48:58'
+}
