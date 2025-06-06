@@ -513,7 +513,6 @@ export const revokeApiToken = asyncHandler(async (req, res, next) => {
       }
     }
 
-    // Revoke the token (set as inactive)
     token.isActive = false
     await token.save()
 
