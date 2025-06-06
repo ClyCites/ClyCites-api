@@ -603,7 +603,6 @@ export const testApiToken = asyncHandler(async (req, res, next) => {
       return next(new AppError("Insufficient permissions to test this token", 403))
     }
 
-    // Test the token by validating it
     const validatedToken = await ApiToken.verifyToken(token.token)
 
     const testResult = {
