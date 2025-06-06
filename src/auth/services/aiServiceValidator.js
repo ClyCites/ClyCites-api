@@ -1,42 +1,53 @@
-import logger from "../utils/logger.js"
+// Import dotenv to load .env variables
+import dotenv from "dotenv";
+dotenv.config();
+
+import logger from "../utils/logger.js";
 
 class AIServiceValidator {
   constructor() {
-    this.isConfigured = false
-    this.validateConfiguration()
+    this.isConfigured = false;
+    this.validateConfiguration();
   }
 
   validateConfiguration() {
     try {
-      if (!process.env.OPENAI_API_KEY) {
-        logger.warn("⚠️  OPENAI_API_KEY not found in environment variables")
-        logger.warn("💡 AI recommendations will be disabled until API key is configured")
-        logger.warn("🔑 Get your API key from: https://platform.openai.com/api-keys")
-        this.isConfigured = false
-        return false
+      const apiKey = process.env.OPENAI_API_KEY;
+
+      // Debug logging
+      logger.info("🔍 Checking OpenAI API Key...");
+      if (!apiKey) {
+        logger.warn("⚠️  OPENAI_API_KEY is undefined or missing from environment variables");
+        logger.warn("💡 AI features will be disabled until it's properly configured");
+        logger.warn("🔑 Get your API key from: https://platform.openai.com/api-keys");
+        this.isConfigured = false;
+        return false;
       }
 
-      // Validate API key format
-      const apiKey = process.env.OPENAI_API_KEY
-      if (!apiKey.startsWith("sk-") || apiKey.length < 20) {
-        logger.error("❌ Invalid OPENAI_API_KEY format")
-        logger.error("💡 API key should start with 'sk-' and be at least 20 characters long")
-        this.isConfigured = false
-        return false
+      // Format validation (support both old and new key prefixes)
+      if (
+        (!apiKey.startsWith("sk-") && !apiKey.startsWith("sk-proj-")) ||
+        apiKey.length < 20
+      ) {
+        logger.error("❌ Invalid OPENAI_API_KEY format");
+        logger.error("💡 API key should start with 'sk-' or 'sk-proj-' and be at least 20 characters long");
+        this.isConfigured = false;
+        return false;
       }
 
-      this.isConfigured = true
-      logger.info("✅ OpenAI API key configured successfully")
-      return true
+      // All checks passed
+      this.isConfigured = true;
+      logger.info("✅ OpenAI API key configured successfully");
+      return true;
     } catch (error) {
-      logger.error("❌ Error validating AI service configuration:", error)
-      this.isConfigured = false
-      return false
+      logger.error("❌ Error validating AI service configuration:", error);
+      this.isConfigured = false;
+      return false;
     }
   }
 
   isAIEnabled() {
-    return this.isConfigured
+    return this.isConfigured;
   }
 
   getConfigurationStatus() {
@@ -65,8 +76,9 @@ class AIServiceValidator {
               "3. Restart the application",
             ],
           },
-    }
+    };
   }
 }
 
-export const aiServiceValidator = new AIServiceValidator()
+// Export a singleton instance
+export const aiServiceValidator = new AIServiceValidator();
