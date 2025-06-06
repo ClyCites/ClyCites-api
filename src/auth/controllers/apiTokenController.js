@@ -27,7 +27,6 @@ const getScopesForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 95) {
-    // Platform Admin+
     baseScopes.push("analytics", "export", "import")
   }
 
