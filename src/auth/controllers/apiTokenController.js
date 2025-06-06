@@ -23,7 +23,6 @@ const getScopesForRoleLevel = (roleLevel) => {
   }
 
   if (roleLevel >= 90) {
-    // Owner+
     baseScopes.push("permissions", "billing", "admin")
   }
 
