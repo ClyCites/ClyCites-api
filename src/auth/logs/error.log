@@ -393,3 +393,196 @@
   message: 'Error 💥',
   timestamp: '2025-06-09 20:57:39'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'The user belonging to this token no longer exists',
+    stack: 'Error: The user belonging to this token no longer exists\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:32:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/auth/me',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.ePYoNmQmDL1z40X83lrrOLo7WaVAdN4KxBIaxElxEMk',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0OTY2MzM0MCwiZXhwIjoxNzUwMjY4MTQwfQ.3ThKFZW8orV3hXyNpm0XQ_9hoOKMUrOqCebgBSjHNqE'
+    },
+    body: {},
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0OTY2MzM0MCwiZXhwIjoxNzUwMjY4MTQwfQ.3ThKFZW8orV3hXyNpm0XQ_9hoOKMUrOqCebgBSjHNqE'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-15 20:02:18'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid refresh token. Please login again.',
+    stack: 'Error: Invalid refresh token. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:258:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.ePYoNmQmDL1z40X83lrrOLo7WaVAdN4KxBIaxElxEMk',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA; token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0OTY2MzM0MCwiZXhwIjoxNzUwMjY4MTQwfQ.3ThKFZW8orV3hXyNpm0XQ_9hoOKMUrOqCebgBSjHNqE'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0OTY2MDA1NywiZXhwIjoxNzUwMjY0ODU3fQ.N4f6BzL-0C0DOw0ynjPhZ3d7npH3SB2c8xdT6kmfYrc'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA',
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDhjMzg1ODg5ZjVkMmY5ZTBlMzU3ZiIsImlhdCI6MTc0OTY2MzM0MCwiZXhwIjoxNzUwMjY4MTQwfQ.3ThKFZW8orV3hXyNpm0XQ_9hoOKMUrOqCebgBSjHNqE'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-15 20:02:20'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid credentials',
+    stack: 'Error: Invalid credentials\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:144:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/login',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '73',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA'
+    },
+    body: {
+      identifier: 'superadmin',
+      password: 'SuperAdmin123!',
+      rememberMe: true
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-15 20:03:58'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Invalid credentials',
+    stack: 'Error: Invalid credentials\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:144:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/login',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '74',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA'
+    },
+    body: {
+      identifier: 'superadmin',
+      password: 'SuperAdmin123!',
+      rememberMe: false
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDMwODU0YzhkYjc3ZDdhNGJjNDgxYSIsImlhdCI6MTc0OTQ5MTk3OSwiZXhwIjoxNzUwMDk2Nzc5fQ.4cEqHoS2w3T35yMPYqLy53ErLllf8HY1elC6Uc3kfWA'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-15 20:07:54'
+}
