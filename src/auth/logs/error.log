@@ -1911,3 +1911,1475 @@
   message: 'Error 💥',
   timestamp: '2025-06-16 11:52:20'
 }
+{
+  service: 'clycites-auth',
+  port: 443,
+  address: '94.130.142.35',
+  syscall: 'connect',
+  code: 'ETIMEDOUT',
+  errno: -4039,
+  message: 'Error fetching current weather: connect ETIMEDOUT 94.130.142.35:443',
+  name: 'Error',
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: {
+      FormData: [Function: FormData] [FormData] {
+        LINE_BREAK: '\r\n',
+        DEFAULT_CONTENT_TYPE: 'application/octet-stream'
+      },
+      Blob: [class Blob]
+    },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': undefined,
+      'User-Agent': 'axios/1.9.0',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    params: {
+      latitude: -1.2921,
+      longitude: 36.8219,
+      current: 'temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover',
+      timezone: 'auto',
+      temperature_unit: 'celsius',
+      wind_speed_unit: 'kmh',
+      precipitation_unit: 'mm'
+    },
+    method: 'get',
+    url: 'https://api.open-meteo.com/v1/forecast',
+    allowAbsoluteUrls: true,
+    data: undefined
+  },
+  request: <ref *3> Writable {
+    _writableState: WritableState {
+      highWaterMark: 16384,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 34357356,
+      [Symbol(kBufferedValue)]: null
+    },
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError],
+      socket: [Function: handleRequestSocket]
+    },
+    _eventsCount: 3,
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'https:',
+      path: '/v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+      method: 'GET',
+      headers: [Object: null prototype] {
+        Accept: 'application/json, text/plain, */*',
+        'User-Agent': 'axios/1.9.0',
+        'Accept-Encoding': 'gzip, compress, deflate, br'
+      },
+      agents: { http: undefined, https: undefined },
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: { proxy: [Function: beforeRedirect] },
+      hostname: 'api.open-meteo.com',
+      port: '',
+      agent: undefined,
+      nativeProtocols: <ref *4> {
+        'http:': {
+          _connectionListener: [Function: connectionListener],
+          METHODS: [
+            'ACL',         'BIND',       'CHECKOUT',
+            'CONNECT',     'COPY',       'DELETE',
+            'GET',         'HEAD',       'LINK',
+            'LOCK',        'M-SEARCH',   'MERGE',
+            'MKACTIVITY',  'MKCALENDAR', 'MKCOL',
+            'MOVE',        'NOTIFY',     'OPTIONS',
+            'PATCH',       'POST',       'PROPFIND',
+            'PROPPATCH',   'PURGE',      'PUT',
+            'REBIND',      'REPORT',     'SEARCH',
+            'SOURCE',      'SUBSCRIBE',  'TRACE',
+            'UNBIND',      'UNLINK',     'UNLOCK',
+            'UNSUBSCRIBE'
+          ],
+          STATUS_CODES: {
+            '100': 'Continue',
+            '101': 'Switching Protocols',
+            '102': 'Processing',
+            '103': 'Early Hints',
+            '200': 'OK',
+            '201': 'Created',
+            '202': 'Accepted',
+            '203': 'Non-Authoritative Information',
+            '204': 'No Content',
+            '205': 'Reset Content',
+            '206': 'Partial Content',
+            '207': 'Multi-Status',
+            '208': 'Already Reported',
+            '226': 'IM Used',
+            '300': 'Multiple Choices',
+            '301': 'Moved Permanently',
+            '302': 'Found',
+            '303': 'See Other',
+            '304': 'Not Modified',
+            '305': 'Use Proxy',
+            '307': 'Temporary Redirect',
+            '308': 'Permanent Redirect',
+            '400': 'Bad Request',
+            '401': 'Unauthorized',
+            '402': 'Payment Required',
+            '403': 'Forbidden',
+            '404': 'Not Found',
+            '405': 'Method Not Allowed',
+            '406': 'Not Acceptable',
+            '407': 'Proxy Authentication Required',
+            '408': 'Request Timeout',
+            '409': 'Conflict',
+            '410': 'Gone',
+            '411': 'Length Required',
+            '412': 'Precondition Failed',
+            '413': 'Payload Too Large',
+            '414': 'URI Too Long',
+            '415': 'Unsupported Media Type',
+            '416': 'Range Not Satisfiable',
+            '417': 'Expectation Failed',
+            '418': "I'm a Teapot",
+            '421': 'Misdirected Request',
+            '422': 'Unprocessable Entity',
+            '423': 'Locked',
+            '424': 'Failed Dependency',
+            '425': 'Too Early',
+            '426': 'Upgrade Required',
+            '428': 'Precondition Required',
+            '429': 'Too Many Requests',
+            '431': 'Request Header Fields Too Large',
+            '451': 'Unavailable For Legal Reasons',
+            '500': 'Internal Server Error',
+            '501': 'Not Implemented',
+            '502': 'Bad Gateway',
+            '503': 'Service Unavailable',
+            '504': 'Gateway Timeout',
+            '505': 'HTTP Version Not Supported',
+            '506': 'Variant Also Negotiates',
+            '507': 'Insufficient Storage',
+            '508': 'Loop Detected',
+            '509': 'Bandwidth Limit Exceeded',
+            '510': 'Not Extended',
+            '511': 'Network Authentication Required'
+          },
+          Agent: [Function: Agent] { defaultMaxSockets: Infinity },
+          ClientRequest: [Function: ClientRequest],
+          IncomingMessage: [Function: IncomingMessage],
+          OutgoingMessage: [Function: OutgoingMessage],
+          Server: [Function: Server],
+          ServerResponse: [Function: ServerResponse],
+          createServer: [Function: createServer],
+          validateHeaderName: [Function: __node_internal_],
+          validateHeaderValue: [Function: __node_internal_],
+          get: [Function: get],
+          request: [Function: request],
+          setMaxIdleHTTPParsers: [Function: setMaxIdleHTTPParsers],
+          maxHeaderSize: [Getter],
+          globalAgent: [Getter/Setter]
+        },
+        'https:': {
+          Agent: [Function: Agent],
+          globalAgent: <ref *2> Agent {
+            _events: [Object: null prototype] {
+              free: [Function (anonymous)],
+              newListener: [Function: maybeEnableKeylog]
+            },
+            _eventsCount: 2,
+            _maxListeners: undefined,
+            defaultPort: 443,
+            protocol: 'https:',
+            options: [Object: null prototype] {
+              keepAlive: true,
+              scheduling: 'lifo',
+              timeout: 5000,
+              noDelay: true,
+              path: null
+            },
+            requests: [Object: null prototype] {},
+            sockets: [Object: null prototype] {
+              'api.open-meteo.com:443:::::::::::::::::::::': [
+                <ref *1> TLSSocket {
+                  _tlsOptions: {
+                    allowHalfOpen: undefined,
+                    pipe: false,
+                    secureContext: SecureContext { context: SecureContext {} },
+                    isServer: false,
+                    requestCert: true,
+                    rejectUnauthorized: true,
+                    session: <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 fa 28 e8 b3 4c 28 ff 77 fa 81 c0 ac b4 f5 20 9a 20 1d e1 bc f4 e8 62 f6 ca b0 e3 53 7d ff 89 bc 04 ... 1443 more bytes>,
+                    ALPNProtocols: undefined,
+                    requestOCSP: undefined,
+                    enableTrace: undefined,
+                    pskCallback: undefined,
+                    highWaterMark: undefined,
+                    onread: undefined,
+                    signal: undefined
+                  },
+                  _secureEstablished: false,
+                  _securePending: false,
+                  _newSessionPending: false,
+                  _controlReleased: true,
+                  secureConnecting: true,
+                  _SNICallback: null,
+                  servername: null,
+                  alpnProtocol: null,
+                  authorized: false,
+                  authorizationError: null,
+                  encrypted: true,
+                  _events: [Object: null prototype] {
+                    close: [
+                      [Function: onSocketCloseDestroySSL],
+                      [Function: bound onceWrapper] {
+                        listener: [Function (anonymous)]
+                      },
+                      [Function: onClose],
+                      [Function: socketCloseListener],
+                      [Function: bound onceWrapper] {
+                        listener: [Function: onClose]
+                      }
+                    ],
+                    end: [
+                      [Function: onConnectEnd],
+                      [Function: onReadableStreamEnd]
+                    ],
+                    newListener: [Function: keylogNewListener],
+                    connect: [
+                      [Function: bound onceWrapper] {
+                        listener: [Function (anonymous)]
+                      },
+                      [Function: bound onceWrapper] {
+                        listener: [Function (anonymous)]
+                      },
+                      [Function: bound onceWrapper] {
+                        listener: [Function: connect]
+                      }
+                    ],
+                    secure: [Function: onConnectSecure],
+                    session: [Function (anonymous)],
+                    free: [Function: onFree],
+                    timeout: [Function: onTimeout],
+                    agentRemove: [Function: onRemove],
+                    error: [Function: socketErrorListener],
+                    drain: [Function: ondrain]
+                  },
+                  _eventsCount: 11,
+                  connecting: false,
+                  _hadError: true,
+                  _parent: null,
+                  _host: 'api.open-meteo.com',
+                  _closeAfterHandlingError: false,
+                  _readableState: ReadableState {
+                    highWaterMark: 16384,
+                    buffer: BufferList { head: null, tail: null, length: 0 },
+                    length: 0,
+                    pipes: [],
+                    awaitDrainWriters: null,
+                    [Symbol(kState)]: 60355672,
+                    [Symbol(kErroredValue)]: Error: connect ETIMEDOUT 94.130.142.35:443
+                        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+                      errno: -4039,
+                      code: 'ETIMEDOUT',
+                      syscall: 'connect',
+                      address: '94.130.142.35',
+                      port: 443
+                    }
+                  },
+                  _maxListeners: undefined,
+                  _writableState: WritableState {
+                    highWaterMark: 16384,
+                    length: 430,
+                    corked: 0,
+                    onwrite: [Function: bound onwrite],
+                    writelen: 430,
+                    bufferedIndex: 0,
+                    pendingcb: 1,
+                    [Symbol(kState)]: 237798356,
+                    [Symbol(kBufferedValue)]: null,
+                    [Symbol(kWriteCbValue)]: [Function: bound onFinish],
+                    [Symbol(kErroredValue)]: Error: connect ETIMEDOUT 94.130.142.35:443
+                        at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+                      errno: -4039,
+                      code: 'ETIMEDOUT',
+                      syscall: 'connect',
+                      address: '94.130.142.35',
+                      port: 443
+                    }
+                  },
+                  allowHalfOpen: false,
+                  _sockname: null,
+                  _pendingData: 'GET /v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm HTTP/1.1\r\n' +
+                    'Accept: application/json, text/plain, */*\r\n' +
+                    'User-Agent: axios/1.9.0\r\n' +
+                    'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+                    'Host: api.open-meteo.com\r\n' +
+                    'Connection: keep-alive\r\n' +
+                    '\r\n',
+                  _pendingEncoding: 'latin1',
+                  server: undefined,
+                  _server: null,
+                  ssl: null,
+                  _requestCert: true,
+                  _rejectUnauthorized: true,
+                  timeout: 5000,
+                  parser: null,
+                  _httpMessage: ClientRequest {
+                    _events: [Object: null prototype] {
+                      response: [Function: bound onceWrapper] {
+                        listener: [Function (anonymous)]
+                      },
+                      abort: [Function (anonymous)],
+                      aborted: [Function (anonymous)],
+                      connect: [Function (anonymous)],
+                      error: [Function (anonymous)],
+                      socket: [Function (anonymous)],
+                      timeout: [Function (anonymous)]
+                    },
+                    _eventsCount: 7,
+                    _maxListeners: undefined,
+                    outputData: [],
+                    outputSize: 0,
+                    writable: true,
+                    destroyed: false,
+                    _last: true,
+                    chunkedEncoding: false,
+                    shouldKeepAlive: true,
+                    maxRequestsOnConnectionReached: false,
+                    _defaultKeepAlive: true,
+                    useChunkedEncodingByDefault: false,
+                    sendDate: false,
+                    _removedConnection: false,
+                    _removedContLen: false,
+                    _removedTE: false,
+                    strictContentLength: false,
+                    _contentLength: 0,
+                    _hasBody: true,
+                    _trailer: '',
+                    finished: true,
+                    _headerSent: true,
+                    _closed: false,
+                    socket: [Circular *1],
+                    _header: 'GET /v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm HTTP/1.1\r\n' +
+                      'Accept: application/json, text/plain, */*\r\n' +
+                      'User-Agent: axios/1.9.0\r\n' +
+                      'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+                      'Host: api.open-meteo.com\r\n' +
+                      'Connection: keep-alive\r\n' +
+                      '\r\n',
+                    _keepAliveTimeout: 0,
+                    _onPendingData: [Function: nop],
+                    agent: [Circular *2],
+                    socketPath: undefined,
+                    method: 'GET',
+                    maxHeaderSize: undefined,
+                    insecureHTTPParser: undefined,
+                    joinDuplicateHeaders: undefined,
+                    path: '/v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+                    _ended: false,
+                    res: null,
+                    aborted: false,
+                    timeoutCb: [Function: emitRequestTimeout],
+                    upgradeOrConnect: false,
+                    parser: null,
+                    maxHeadersCount: null,
+                    reusedSocket: false,
+                    host: 'api.open-meteo.com',
+                    protocol: 'https:',
+                    _redirectable: [Circular *3],
+                    [Symbol(kCapture)]: false,
+                    [Symbol(kBytesWritten)]: 0,
+                    [Symbol(kNeedDrain)]: false,
+                    [Symbol(corked)]: 0,
+                    [Symbol(kOutHeaders)]: [Object: null prototype] {
+                      accept: [ 'Accept', 'application/json, text/plain, */*' ],
+                      'user-agent': [ 'User-Agent', 'axios/1.9.0' ],
+                      'accept-encoding': [
+                        'Accept-Encoding',
+                        'gzip, compress, deflate, br'
+                      ],
+                      host: [ 'Host', 'api.open-meteo.com' ]
+                    },
+                    [Symbol(errored)]: null,
+                    [Symbol(kHighWaterMark)]: 16384,
+                    [Symbol(kRejectNonStandardBodyWrites)]: false,
+                    [Symbol(kUniqueHeaders)]: null
+                  },
+                  [Symbol(alpncallback)]: null,
+                  [Symbol(res)]: TLSWrap {
+                    _parent: TCP {
+                      reading: [Getter/Setter],
+                      onconnection: null,
+                      [Symbol(owner_symbol)]: [Circular *1],
+                      [Symbol(handle_onclose)]: [Function: done]
+                    },
+                    _parentWrap: null,
+                    _secureContext: SecureContext { context: SecureContext {} },
+                    reading: false,
+                    onkeylog: [Function: onkeylog],
+                    onhandshakestart: {},
+                    onhandshakedone: [Function (anonymous)],
+                    onocspresponse: [Function: onocspresponse],
+                    onnewsession: [Function: onnewsessionclient],
+                    onerror: [Function: onerror],
+                    [Symbol(owner_symbol)]: [Circular *1]
+                  },
+                  [Symbol(verified)]: false,
+                  [Symbol(pendingSession)]: null,
+                  [Symbol(async_id_symbol)]: 75208,
+                  [Symbol(kHandle)]: null,
+                  [Symbol(lastWriteQueueSize)]: 0,
+                  [Symbol(timeout)]: Timeout {
+                    _idleTimeout: 5000,
+                    _idlePrev: null,
+                    _idleNext: null,
+                    _idleStart: 8613147,
+                    _onTimeout: null,
+                    _timerArgs: undefined,
+                    _repeat: null,
+                    _destroyed: true,
+                    [Symbol(refed)]: false,
+                    [Symbol(kHasPrimitive)]: false,
+                    [Symbol(asyncId)]: 75210,
+                    [Symbol(triggerId)]: 0
+                  },
+                  [Symbol(kBuffer)]: null,
+                  [Symbol(kBufferCb)]: null,
+                  [Symbol(kBufferGen)]: null,
+                  [Symbol(kCapture)]: false,
+                  [Symbol(kSetNoDelay)]: false,
+                  [Symbol(kSetKeepAlive)]: true,
+                  [Symbol(kSetKeepAliveInitialDelay)]: 60,
+                  [Symbol(kBytesRead)]: 0,
+                  [Symbol(kBytesWritten)]: 0,
+                  [Symbol(connect-options)]: {
+                    rejectUnauthorized: true,
+                    ciphers: 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA',
+                    checkServerIdentity: [Function: checkServerIdentity],
+                    minDHSize: 1024,
+                    session: <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 fa 28 e8 b3 4c 28 ff 77 fa 81 c0 ac b4 f5 20 9a 20 1d e1 bc f4 e8 62 f6 ca b0 e3 53 7d ff 89 bc 04 ... 1443 more bytes>,
+                    maxRedirects: 21,
+                    maxBodyLength: Infinity,
+                    protocol: 'https:',
+                    path: null,
+                    method: 'GET',
+                    headers: [Object: null prototype] {
+                      Accept: 'application/json, text/plain, */*',
+                      'User-Agent': 'axios/1.9.0',
+                      'Accept-Encoding': 'gzip, compress, deflate, br'
+                    },
+                    agents: { http: undefined, https: undefined },
+                    auth: undefined,
+                    family: undefined,
+                    beforeRedirect: [Function: dispatchBeforeRedirect],
+                    beforeRedirects: { proxy: [Function: beforeRedirect] },
+                    hostname: 'api.open-meteo.com',
+                    port: 443,
+                    agent: undefined,
+                    nativeProtocols: [Circular *4],
+                    pathname: '/v1/forecast',
+                    search: '?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+                    _defaultAgent: [Circular *2],
+                    host: 'api.open-meteo.com',
+                    keepAlive: true,
+                    scheduling: 'lifo',
+                    timeout: 5000,
+                    noDelay: true,
+                    servername: 'api.open-meteo.com',
+                    _agentKey: 'api.open-meteo.com:443:::::::::::::::::::::',
+                    encoding: null,
+                    keepAliveInitialDelay: 1000
+                  }
+                }
+              ]
+            },
+            freeSockets: [Object: null prototype] {},
+            keepAliveMsecs: 1000,
+            keepAlive: true,
+            maxSockets: Infinity,
+            maxFreeSockets: 256,
+            scheduling: 'lifo',
+            maxTotalSockets: Infinity,
+            totalSocketCount: 1,
+            maxCachedSessions: 100,
+            _sessionCache: {
+              map: {
+                'archive-api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 db 02 01 01 02 02 03 04 04 02 13 02 04 20 8c c8 55 8d 21 4f 7e 59 cb 94 41 c3 9b 37 14 1e fb 4d c0 3f c4 29 2c 7a 04 41 31 40 56 5c 76 8f 04 ... 1453 more bytes>,
+                'api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 f4 90 d5 4b 21 e9 85 87 ca 6f b2 ec dd 84 56 c7 95 0b c8 40 b9 31 38 ed db bd 5e 18 9e 15 70 17 04 ... 1443 more bytes>
+              },
+              list: [
+                'archive-api.open-meteo.com:443:::::::::::::::::::::',
+                'api.open-meteo.com:443:::::::::::::::::::::'
+              ]
+            },
+            [Symbol(kCapture)]: false
+          },
+          Server: [Function: Server],
+          createServer: [Function: createServer],
+          get: [Function: get],
+          request: [Function: request]
+        }
+      },
+      pathname: '/v1/forecast',
+      search: '?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm'
+    },
+    _ended: true,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 0,
+    _requestBodyBuffers: [],
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: <ref *5> ClientRequest {
+      _events: [Object: null prototype] {
+        response: [Function: bound onceWrapper] {
+          listener: [Function (anonymous)]
+        },
+        abort: [Function (anonymous)],
+        aborted: [Function (anonymous)],
+        connect: [Function (anonymous)],
+        error: [Function (anonymous)],
+        socket: [Function (anonymous)],
+        timeout: [Function (anonymous)]
+      },
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 0,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: false,
+      socket: <ref *1> TLSSocket {
+        _tlsOptions: {
+          allowHalfOpen: undefined,
+          pipe: false,
+          secureContext: SecureContext { context: SecureContext {} },
+          isServer: false,
+          requestCert: true,
+          rejectUnauthorized: true,
+          session: <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 fa 28 e8 b3 4c 28 ff 77 fa 81 c0 ac b4 f5 20 9a 20 1d e1 bc f4 e8 62 f6 ca b0 e3 53 7d ff 89 bc 04 ... 1443 more bytes>,
+          ALPNProtocols: undefined,
+          requestOCSP: undefined,
+          enableTrace: undefined,
+          pskCallback: undefined,
+          highWaterMark: undefined,
+          onread: undefined,
+          signal: undefined
+        },
+        _secureEstablished: false,
+        _securePending: false,
+        _newSessionPending: false,
+        _controlReleased: true,
+        secureConnecting: true,
+        _SNICallback: null,
+        servername: null,
+        alpnProtocol: null,
+        authorized: false,
+        authorizationError: null,
+        encrypted: true,
+        _events: [Object: null prototype] {
+          close: [
+            [Function: onSocketCloseDestroySSL],
+            [Function: bound onceWrapper] {
+              listener: [Function (anonymous)]
+            },
+            [Function: onClose],
+            [Function: socketCloseListener],
+            [Function: bound onceWrapper] {
+              listener: [Function: onClose]
+            }
+          ],
+          end: [ [Function: onConnectEnd], [Function: onReadableStreamEnd] ],
+          newListener: [Function: keylogNewListener],
+          connect: [
+            [Function: bound onceWrapper] {
+              listener: [Function (anonymous)]
+            },
+            [Function: bound onceWrapper] {
+              listener: [Function (anonymous)]
+            },
+            [Function: bound onceWrapper] {
+              listener: [Function: connect]
+            }
+          ],
+          secure: [Function: onConnectSecure],
+          session: [Function (anonymous)],
+          free: [Function: onFree],
+          timeout: [Function: onTimeout],
+          agentRemove: [Function: onRemove],
+          error: [Function: socketErrorListener],
+          drain: [Function: ondrain]
+        },
+        _eventsCount: 11,
+        connecting: false,
+        _hadError: true,
+        _parent: null,
+        _host: 'api.open-meteo.com',
+        _closeAfterHandlingError: false,
+        _readableState: ReadableState {
+          highWaterMark: 16384,
+          buffer: BufferList { head: null, tail: null, length: 0 },
+          length: 0,
+          pipes: [],
+          awaitDrainWriters: null,
+          [Symbol(kState)]: 60355672,
+          [Symbol(kErroredValue)]: Error: connect ETIMEDOUT 94.130.142.35:443
+              at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+            errno: -4039,
+            code: 'ETIMEDOUT',
+            syscall: 'connect',
+            address: '94.130.142.35',
+            port: 443
+          }
+        },
+        _maxListeners: undefined,
+        _writableState: WritableState {
+          highWaterMark: 16384,
+          length: 430,
+          corked: 0,
+          onwrite: [Function: bound onwrite],
+          writelen: 430,
+          bufferedIndex: 0,
+          pendingcb: 1,
+          [Symbol(kState)]: 237798356,
+          [Symbol(kBufferedValue)]: null,
+          [Symbol(kWriteCbValue)]: [Function: bound onFinish],
+          [Symbol(kErroredValue)]: Error: connect ETIMEDOUT 94.130.142.35:443
+              at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+            errno: -4039,
+            code: 'ETIMEDOUT',
+            syscall: 'connect',
+            address: '94.130.142.35',
+            port: 443
+          }
+        },
+        allowHalfOpen: false,
+        _sockname: null,
+        _pendingData: 'GET /v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm HTTP/1.1\r\n' +
+          'Accept: application/json, text/plain, */*\r\n' +
+          'User-Agent: axios/1.9.0\r\n' +
+          'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+          'Host: api.open-meteo.com\r\n' +
+          'Connection: keep-alive\r\n' +
+          '\r\n',
+        _pendingEncoding: 'latin1',
+        server: undefined,
+        _server: null,
+        ssl: null,
+        _requestCert: true,
+        _rejectUnauthorized: true,
+        timeout: 5000,
+        parser: null,
+        _httpMessage: [Circular *5],
+        [Symbol(alpncallback)]: null,
+        [Symbol(res)]: TLSWrap {
+          _parent: TCP {
+            reading: [Getter/Setter],
+            onconnection: null,
+            [Symbol(owner_symbol)]: [Circular *1],
+            [Symbol(handle_onclose)]: [Function: done]
+          },
+          _parentWrap: null,
+          _secureContext: SecureContext { context: SecureContext {} },
+          reading: false,
+          onkeylog: [Function: onkeylog],
+          onhandshakestart: {},
+          onhandshakedone: [Function (anonymous)],
+          onocspresponse: [Function: onocspresponse],
+          onnewsession: [Function: onnewsessionclient],
+          onerror: [Function: onerror],
+          [Symbol(owner_symbol)]: [Circular *1]
+        },
+        [Symbol(verified)]: false,
+        [Symbol(pendingSession)]: null,
+        [Symbol(async_id_symbol)]: 75208,
+        [Symbol(kHandle)]: null,
+        [Symbol(lastWriteQueueSize)]: 0,
+        [Symbol(timeout)]: Timeout {
+          _idleTimeout: 5000,
+          _idlePrev: null,
+          _idleNext: null,
+          _idleStart: 8613147,
+          _onTimeout: null,
+          _timerArgs: undefined,
+          _repeat: null,
+          _destroyed: true,
+          [Symbol(refed)]: false,
+          [Symbol(kHasPrimitive)]: false,
+          [Symbol(asyncId)]: 75210,
+          [Symbol(triggerId)]: 0
+        },
+        [Symbol(kBuffer)]: null,
+        [Symbol(kBufferCb)]: null,
+        [Symbol(kBufferGen)]: null,
+        [Symbol(kCapture)]: false,
+        [Symbol(kSetNoDelay)]: false,
+        [Symbol(kSetKeepAlive)]: true,
+        [Symbol(kSetKeepAliveInitialDelay)]: 60,
+        [Symbol(kBytesRead)]: 0,
+        [Symbol(kBytesWritten)]: 0,
+        [Symbol(connect-options)]: {
+          rejectUnauthorized: true,
+          ciphers: 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA',
+          checkServerIdentity: [Function: checkServerIdentity],
+          minDHSize: 1024,
+          session: <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 fa 28 e8 b3 4c 28 ff 77 fa 81 c0 ac b4 f5 20 9a 20 1d e1 bc f4 e8 62 f6 ca b0 e3 53 7d ff 89 bc 04 ... 1443 more bytes>,
+          maxRedirects: 21,
+          maxBodyLength: Infinity,
+          protocol: 'https:',
+          path: null,
+          method: 'GET',
+          headers: [Object: null prototype] {
+            Accept: 'application/json, text/plain, */*',
+            'User-Agent': 'axios/1.9.0',
+            'Accept-Encoding': 'gzip, compress, deflate, br'
+          },
+          agents: { http: undefined, https: undefined },
+          auth: undefined,
+          family: undefined,
+          beforeRedirect: [Function: dispatchBeforeRedirect],
+          beforeRedirects: { proxy: [Function: beforeRedirect] },
+          hostname: 'api.open-meteo.com',
+          port: 443,
+          agent: undefined,
+          nativeProtocols: <ref *4> {
+            'http:': {
+              _connectionListener: [Function: connectionListener],
+              METHODS: [
+                'ACL',         'BIND',       'CHECKOUT',
+                'CONNECT',     'COPY',       'DELETE',
+                'GET',         'HEAD',       'LINK',
+                'LOCK',        'M-SEARCH',   'MERGE',
+                'MKACTIVITY',  'MKCALENDAR', 'MKCOL',
+                'MOVE',        'NOTIFY',     'OPTIONS',
+                'PATCH',       'POST',       'PROPFIND',
+                'PROPPATCH',   'PURGE',      'PUT',
+                'REBIND',      'REPORT',     'SEARCH',
+                'SOURCE',      'SUBSCRIBE',  'TRACE',
+                'UNBIND',      'UNLINK',     'UNLOCK',
+                'UNSUBSCRIBE'
+              ],
+              STATUS_CODES: {
+                '100': 'Continue',
+                '101': 'Switching Protocols',
+                '102': 'Processing',
+                '103': 'Early Hints',
+                '200': 'OK',
+                '201': 'Created',
+                '202': 'Accepted',
+                '203': 'Non-Authoritative Information',
+                '204': 'No Content',
+                '205': 'Reset Content',
+                '206': 'Partial Content',
+                '207': 'Multi-Status',
+                '208': 'Already Reported',
+                '226': 'IM Used',
+                '300': 'Multiple Choices',
+                '301': 'Moved Permanently',
+                '302': 'Found',
+                '303': 'See Other',
+                '304': 'Not Modified',
+                '305': 'Use Proxy',
+                '307': 'Temporary Redirect',
+                '308': 'Permanent Redirect',
+                '400': 'Bad Request',
+                '401': 'Unauthorized',
+                '402': 'Payment Required',
+                '403': 'Forbidden',
+                '404': 'Not Found',
+                '405': 'Method Not Allowed',
+                '406': 'Not Acceptable',
+                '407': 'Proxy Authentication Required',
+                '408': 'Request Timeout',
+                '409': 'Conflict',
+                '410': 'Gone',
+                '411': 'Length Required',
+                '412': 'Precondition Failed',
+                '413': 'Payload Too Large',
+                '414': 'URI Too Long',
+                '415': 'Unsupported Media Type',
+                '416': 'Range Not Satisfiable',
+                '417': 'Expectation Failed',
+                '418': "I'm a Teapot",
+                '421': 'Misdirected Request',
+                '422': 'Unprocessable Entity',
+                '423': 'Locked',
+                '424': 'Failed Dependency',
+                '425': 'Too Early',
+                '426': 'Upgrade Required',
+                '428': 'Precondition Required',
+                '429': 'Too Many Requests',
+                '431': 'Request Header Fields Too Large',
+                '451': 'Unavailable For Legal Reasons',
+                '500': 'Internal Server Error',
+                '501': 'Not Implemented',
+                '502': 'Bad Gateway',
+                '503': 'Service Unavailable',
+                '504': 'Gateway Timeout',
+                '505': 'HTTP Version Not Supported',
+                '506': 'Variant Also Negotiates',
+                '507': 'Insufficient Storage',
+                '508': 'Loop Detected',
+                '509': 'Bandwidth Limit Exceeded',
+                '510': 'Not Extended',
+                '511': 'Network Authentication Required'
+              },
+              Agent: [Function: Agent] { defaultMaxSockets: Infinity },
+              ClientRequest: [Function: ClientRequest],
+              IncomingMessage: [Function: IncomingMessage],
+              OutgoingMessage: [Function: OutgoingMessage],
+              Server: [Function: Server],
+              ServerResponse: [Function: ServerResponse],
+              createServer: [Function: createServer],
+              validateHeaderName: [Function: __node_internal_],
+              validateHeaderValue: [Function: __node_internal_],
+              get: [Function: get],
+              request: [Function: request],
+              setMaxIdleHTTPParsers: [Function: setMaxIdleHTTPParsers],
+              maxHeaderSize: [Getter],
+              globalAgent: [Getter/Setter]
+            },
+            'https:': {
+              Agent: [Function: Agent],
+              globalAgent: <ref *2> Agent {
+                _events: [Object: null prototype] {
+                  free: [Function (anonymous)],
+                  newListener: [Function: maybeEnableKeylog]
+                },
+                _eventsCount: 2,
+                _maxListeners: undefined,
+                defaultPort: 443,
+                protocol: 'https:',
+                options: [Object: null prototype] {
+                  keepAlive: true,
+                  scheduling: 'lifo',
+                  timeout: 5000,
+                  noDelay: true,
+                  path: null
+                },
+                requests: [Object: null prototype] {},
+                sockets: [Object: null prototype] {
+                  'api.open-meteo.com:443:::::::::::::::::::::': [ [Circular *1] ]
+                },
+                freeSockets: [Object: null prototype] {},
+                keepAliveMsecs: 1000,
+                keepAlive: true,
+                maxSockets: Infinity,
+                maxFreeSockets: 256,
+                scheduling: 'lifo',
+                maxTotalSockets: Infinity,
+                totalSocketCount: 1,
+                maxCachedSessions: 100,
+                _sessionCache: {
+                  map: {
+                    'archive-api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 db 02 01 01 02 02 03 04 04 02 13 02 04 20 8c c8 55 8d 21 4f 7e 59 cb 94 41 c3 9b 37 14 1e fb 4d c0 3f c4 29 2c 7a 04 41 31 40 56 5c 76 8f 04 ... 1453 more bytes>,
+                    'api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 f4 90 d5 4b 21 e9 85 87 ca 6f b2 ec dd 84 56 c7 95 0b c8 40 b9 31 38 ed db bd 5e 18 9e 15 70 17 04 ... 1443 more bytes>
+                  },
+                  list: [
+                    'archive-api.open-meteo.com:443:::::::::::::::::::::',
+                    'api.open-meteo.com:443:::::::::::::::::::::'
+                  ]
+                },
+                [Symbol(kCapture)]: false
+              },
+              Server: [Function: Server],
+              createServer: [Function: createServer],
+              get: [Function: get],
+              request: [Function: request]
+            }
+          },
+          pathname: '/v1/forecast',
+          search: '?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+          _defaultAgent: <ref *2> Agent {
+            _events: [Object: null prototype] {
+              free: [Function (anonymous)],
+              newListener: [Function: maybeEnableKeylog]
+            },
+            _eventsCount: 2,
+            _maxListeners: undefined,
+            defaultPort: 443,
+            protocol: 'https:',
+            options: [Object: null prototype] {
+              keepAlive: true,
+              scheduling: 'lifo',
+              timeout: 5000,
+              noDelay: true,
+              path: null
+            },
+            requests: [Object: null prototype] {},
+            sockets: [Object: null prototype] {
+              'api.open-meteo.com:443:::::::::::::::::::::': [ [Circular *1] ]
+            },
+            freeSockets: [Object: null prototype] {},
+            keepAliveMsecs: 1000,
+            keepAlive: true,
+            maxSockets: Infinity,
+            maxFreeSockets: 256,
+            scheduling: 'lifo',
+            maxTotalSockets: Infinity,
+            totalSocketCount: 1,
+            maxCachedSessions: 100,
+            _sessionCache: {
+              map: {
+                'archive-api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 db 02 01 01 02 02 03 04 04 02 13 02 04 20 8c c8 55 8d 21 4f 7e 59 cb 94 41 c3 9b 37 14 1e fb 4d c0 3f c4 29 2c 7a 04 41 31 40 56 5c 76 8f 04 ... 1453 more bytes>,
+                'api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 f4 90 d5 4b 21 e9 85 87 ca 6f b2 ec dd 84 56 c7 95 0b c8 40 b9 31 38 ed db bd 5e 18 9e 15 70 17 04 ... 1443 more bytes>
+              },
+              list: [
+                'archive-api.open-meteo.com:443:::::::::::::::::::::',
+                'api.open-meteo.com:443:::::::::::::::::::::'
+              ]
+            },
+            [Symbol(kCapture)]: false
+          },
+          host: 'api.open-meteo.com',
+          keepAlive: true,
+          scheduling: 'lifo',
+          timeout: 5000,
+          noDelay: true,
+          servername: 'api.open-meteo.com',
+          _agentKey: 'api.open-meteo.com:443:::::::::::::::::::::',
+          encoding: null,
+          keepAliveInitialDelay: 1000
+        }
+      },
+      _header: 'GET /v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'User-Agent: axios/1.9.0\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: api.open-meteo.com\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: <ref *2> Agent {
+        _events: [Object: null prototype] {
+          free: [Function (anonymous)],
+          newListener: [Function: maybeEnableKeylog]
+        },
+        _eventsCount: 2,
+        _maxListeners: undefined,
+        defaultPort: 443,
+        protocol: 'https:',
+        options: [Object: null prototype] {
+          keepAlive: true,
+          scheduling: 'lifo',
+          timeout: 5000,
+          noDelay: true,
+          path: null
+        },
+        requests: [Object: null prototype] {},
+        sockets: [Object: null prototype] {
+          'api.open-meteo.com:443:::::::::::::::::::::': [
+            <ref *1> TLSSocket {
+              _tlsOptions: {
+                allowHalfOpen: undefined,
+                pipe: false,
+                secureContext: SecureContext { context: SecureContext {} },
+                isServer: false,
+                requestCert: true,
+                rejectUnauthorized: true,
+                session: <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 fa 28 e8 b3 4c 28 ff 77 fa 81 c0 ac b4 f5 20 9a 20 1d e1 bc f4 e8 62 f6 ca b0 e3 53 7d ff 89 bc 04 ... 1443 more bytes>,
+                ALPNProtocols: undefined,
+                requestOCSP: undefined,
+                enableTrace: undefined,
+                pskCallback: undefined,
+                highWaterMark: undefined,
+                onread: undefined,
+                signal: undefined
+              },
+              _secureEstablished: false,
+              _securePending: false,
+              _newSessionPending: false,
+              _controlReleased: true,
+              secureConnecting: true,
+              _SNICallback: null,
+              servername: null,
+              alpnProtocol: null,
+              authorized: false,
+              authorizationError: null,
+              encrypted: true,
+              _events: [Object: null prototype] {
+                close: [
+                  [Function: onSocketCloseDestroySSL],
+                  [Function: bound onceWrapper] {
+                    listener: [Function (anonymous)]
+                  },
+                  [Function: onClose],
+                  [Function: socketCloseListener],
+                  [Function: bound onceWrapper] {
+                    listener: [Function: onClose]
+                  }
+                ],
+                end: [
+                  [Function: onConnectEnd],
+                  [Function: onReadableStreamEnd]
+                ],
+                newListener: [Function: keylogNewListener],
+                connect: [
+                  [Function: bound onceWrapper] {
+                    listener: [Function (anonymous)]
+                  },
+                  [Function: bound onceWrapper] {
+                    listener: [Function (anonymous)]
+                  },
+                  [Function: bound onceWrapper] {
+                    listener: [Function: connect]
+                  }
+                ],
+                secure: [Function: onConnectSecure],
+                session: [Function (anonymous)],
+                free: [Function: onFree],
+                timeout: [Function: onTimeout],
+                agentRemove: [Function: onRemove],
+                error: [Function: socketErrorListener],
+                drain: [Function: ondrain]
+              },
+              _eventsCount: 11,
+              connecting: false,
+              _hadError: true,
+              _parent: null,
+              _host: 'api.open-meteo.com',
+              _closeAfterHandlingError: false,
+              _readableState: ReadableState {
+                highWaterMark: 16384,
+                buffer: BufferList { head: null, tail: null, length: 0 },
+                length: 0,
+                pipes: [],
+                awaitDrainWriters: null,
+                [Symbol(kState)]: 60355672,
+                [Symbol(kErroredValue)]: Error: connect ETIMEDOUT 94.130.142.35:443
+                    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+                  errno: -4039,
+                  code: 'ETIMEDOUT',
+                  syscall: 'connect',
+                  address: '94.130.142.35',
+                  port: 443
+                }
+              },
+              _maxListeners: undefined,
+              _writableState: WritableState {
+                highWaterMark: 16384,
+                length: 430,
+                corked: 0,
+                onwrite: [Function: bound onwrite],
+                writelen: 430,
+                bufferedIndex: 0,
+                pendingcb: 1,
+                [Symbol(kState)]: 237798356,
+                [Symbol(kBufferedValue)]: null,
+                [Symbol(kWriteCbValue)]: [Function: bound onFinish],
+                [Symbol(kErroredValue)]: Error: connect ETIMEDOUT 94.130.142.35:443
+                    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+                  errno: -4039,
+                  code: 'ETIMEDOUT',
+                  syscall: 'connect',
+                  address: '94.130.142.35',
+                  port: 443
+                }
+              },
+              allowHalfOpen: false,
+              _sockname: null,
+              _pendingData: 'GET /v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm HTTP/1.1\r\n' +
+                'Accept: application/json, text/plain, */*\r\n' +
+                'User-Agent: axios/1.9.0\r\n' +
+                'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+                'Host: api.open-meteo.com\r\n' +
+                'Connection: keep-alive\r\n' +
+                '\r\n',
+              _pendingEncoding: 'latin1',
+              server: undefined,
+              _server: null,
+              ssl: null,
+              _requestCert: true,
+              _rejectUnauthorized: true,
+              timeout: 5000,
+              parser: null,
+              _httpMessage: [Circular *5],
+              [Symbol(alpncallback)]: null,
+              [Symbol(res)]: TLSWrap {
+                _parent: TCP {
+                  reading: [Getter/Setter],
+                  onconnection: null,
+                  [Symbol(owner_symbol)]: [Circular *1],
+                  [Symbol(handle_onclose)]: [Function: done]
+                },
+                _parentWrap: null,
+                _secureContext: SecureContext { context: SecureContext {} },
+                reading: false,
+                onkeylog: [Function: onkeylog],
+                onhandshakestart: {},
+                onhandshakedone: [Function (anonymous)],
+                onocspresponse: [Function: onocspresponse],
+                onnewsession: [Function: onnewsessionclient],
+                onerror: [Function: onerror],
+                [Symbol(owner_symbol)]: [Circular *1]
+              },
+              [Symbol(verified)]: false,
+              [Symbol(pendingSession)]: null,
+              [Symbol(async_id_symbol)]: 75208,
+              [Symbol(kHandle)]: null,
+              [Symbol(lastWriteQueueSize)]: 0,
+              [Symbol(timeout)]: Timeout {
+                _idleTimeout: 5000,
+                _idlePrev: null,
+                _idleNext: null,
+                _idleStart: 8613147,
+                _onTimeout: null,
+                _timerArgs: undefined,
+                _repeat: null,
+                _destroyed: true,
+                [Symbol(refed)]: false,
+                [Symbol(kHasPrimitive)]: false,
+                [Symbol(asyncId)]: 75210,
+                [Symbol(triggerId)]: 0
+              },
+              [Symbol(kBuffer)]: null,
+              [Symbol(kBufferCb)]: null,
+              [Symbol(kBufferGen)]: null,
+              [Symbol(kCapture)]: false,
+              [Symbol(kSetNoDelay)]: false,
+              [Symbol(kSetKeepAlive)]: true,
+              [Symbol(kSetKeepAliveInitialDelay)]: 60,
+              [Symbol(kBytesRead)]: 0,
+              [Symbol(kBytesWritten)]: 0,
+              [Symbol(connect-options)]: {
+                rejectUnauthorized: true,
+                ciphers: 'TLS_AES_256_GCM_SHA384:TLS_CHACHA20_POLY1305_SHA256:TLS_AES_128_GCM_SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA',
+                checkServerIdentity: [Function: checkServerIdentity],
+                minDHSize: 1024,
+                session: <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 fa 28 e8 b3 4c 28 ff 77 fa 81 c0 ac b4 f5 20 9a 20 1d e1 bc f4 e8 62 f6 ca b0 e3 53 7d ff 89 bc 04 ... 1443 more bytes>,
+                maxRedirects: 21,
+                maxBodyLength: Infinity,
+                protocol: 'https:',
+                path: null,
+                method: 'GET',
+                headers: [Object: null prototype] {
+                  Accept: 'application/json, text/plain, */*',
+                  'User-Agent': 'axios/1.9.0',
+                  'Accept-Encoding': 'gzip, compress, deflate, br'
+                },
+                agents: { http: undefined, https: undefined },
+                auth: undefined,
+                family: undefined,
+                beforeRedirect: [Function: dispatchBeforeRedirect],
+                beforeRedirects: { proxy: [Function: beforeRedirect] },
+                hostname: 'api.open-meteo.com',
+                port: 443,
+                agent: undefined,
+                nativeProtocols: <ref *4> {
+                  'http:': {
+                    _connectionListener: [Function: connectionListener],
+                    METHODS: [
+                      'ACL',         'BIND',       'CHECKOUT',
+                      'CONNECT',     'COPY',       'DELETE',
+                      'GET',         'HEAD',       'LINK',
+                      'LOCK',        'M-SEARCH',   'MERGE',
+                      'MKACTIVITY',  'MKCALENDAR', 'MKCOL',
+                      'MOVE',        'NOTIFY',     'OPTIONS',
+                      'PATCH',       'POST',       'PROPFIND',
+                      'PROPPATCH',   'PURGE',      'PUT',
+                      'REBIND',      'REPORT',     'SEARCH',
+                      'SOURCE',      'SUBSCRIBE',  'TRACE',
+                      'UNBIND',      'UNLINK',     'UNLOCK',
+                      'UNSUBSCRIBE'
+                    ],
+                    STATUS_CODES: {
+                      '100': 'Continue',
+                      '101': 'Switching Protocols',
+                      '102': 'Processing',
+                      '103': 'Early Hints',
+                      '200': 'OK',
+                      '201': 'Created',
+                      '202': 'Accepted',
+                      '203': 'Non-Authoritative Information',
+                      '204': 'No Content',
+                      '205': 'Reset Content',
+                      '206': 'Partial Content',
+                      '207': 'Multi-Status',
+                      '208': 'Already Reported',
+                      '226': 'IM Used',
+                      '300': 'Multiple Choices',
+                      '301': 'Moved Permanently',
+                      '302': 'Found',
+                      '303': 'See Other',
+                      '304': 'Not Modified',
+                      '305': 'Use Proxy',
+                      '307': 'Temporary Redirect',
+                      '308': 'Permanent Redirect',
+                      '400': 'Bad Request',
+                      '401': 'Unauthorized',
+                      '402': 'Payment Required',
+                      '403': 'Forbidden',
+                      '404': 'Not Found',
+                      '405': 'Method Not Allowed',
+                      '406': 'Not Acceptable',
+                      '407': 'Proxy Authentication Required',
+                      '408': 'Request Timeout',
+                      '409': 'Conflict',
+                      '410': 'Gone',
+                      '411': 'Length Required',
+                      '412': 'Precondition Failed',
+                      '413': 'Payload Too Large',
+                      '414': 'URI Too Long',
+                      '415': 'Unsupported Media Type',
+                      '416': 'Range Not Satisfiable',
+                      '417': 'Expectation Failed',
+                      '418': "I'm a Teapot",
+                      '421': 'Misdirected Request',
+                      '422': 'Unprocessable Entity',
+                      '423': 'Locked',
+                      '424': 'Failed Dependency',
+                      '425': 'Too Early',
+                      '426': 'Upgrade Required',
+                      '428': 'Precondition Required',
+                      '429': 'Too Many Requests',
+                      '431': 'Request Header Fields Too Large',
+                      '451': 'Unavailable For Legal Reasons',
+                      '500': 'Internal Server Error',
+                      '501': 'Not Implemented',
+                      '502': 'Bad Gateway',
+                      '503': 'Service Unavailable',
+                      '504': 'Gateway Timeout',
+                      '505': 'HTTP Version Not Supported',
+                      '506': 'Variant Also Negotiates',
+                      '507': 'Insufficient Storage',
+                      '508': 'Loop Detected',
+                      '509': 'Bandwidth Limit Exceeded',
+                      '510': 'Not Extended',
+                      '511': 'Network Authentication Required'
+                    },
+                    Agent: [Function: Agent] { defaultMaxSockets: Infinity },
+                    ClientRequest: [Function: ClientRequest],
+                    IncomingMessage: [Function: IncomingMessage],
+                    OutgoingMessage: [Function: OutgoingMessage],
+                    Server: [Function: Server],
+                    ServerResponse: [Function: ServerResponse],
+                    createServer: [Function: createServer],
+                    validateHeaderName: [Function: __node_internal_],
+                    validateHeaderValue: [Function: __node_internal_],
+                    get: [Function: get],
+                    request: [Function: request],
+                    setMaxIdleHTTPParsers: [Function: setMaxIdleHTTPParsers],
+                    maxHeaderSize: [Getter],
+                    globalAgent: [Getter/Setter]
+                  },
+                  'https:': {
+                    Agent: [Function: Agent],
+                    globalAgent: [Circular *2],
+                    Server: [Function: Server],
+                    createServer: [Function: createServer],
+                    get: [Function: get],
+                    request: [Function: request]
+                  }
+                },
+                pathname: '/v1/forecast',
+                search: '?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+                _defaultAgent: [Circular *2],
+                host: 'api.open-meteo.com',
+                keepAlive: true,
+                scheduling: 'lifo',
+                timeout: 5000,
+                noDelay: true,
+                servername: 'api.open-meteo.com',
+                _agentKey: 'api.open-meteo.com:443:::::::::::::::::::::',
+                encoding: null,
+                keepAliveInitialDelay: 1000
+              }
+            }
+          ]
+        },
+        freeSockets: [Object: null prototype] {},
+        keepAliveMsecs: 1000,
+        keepAlive: true,
+        maxSockets: Infinity,
+        maxFreeSockets: 256,
+        scheduling: 'lifo',
+        maxTotalSockets: Infinity,
+        totalSocketCount: 1,
+        maxCachedSessions: 100,
+        _sessionCache: {
+          map: {
+            'archive-api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 db 02 01 01 02 02 03 04 04 02 13 02 04 20 8c c8 55 8d 21 4f 7e 59 cb 94 41 c3 9b 37 14 1e fb 4d c0 3f c4 29 2c 7a 04 41 31 40 56 5c 76 8f 04 ... 1453 more bytes>,
+            'api.open-meteo.com:443:::::::::::::::::::::': <Buffer 30 82 05 d1 02 01 01 02 02 03 04 04 02 13 02 04 20 f4 90 d5 4b 21 e9 85 87 ca 6f b2 ec dd 84 56 c7 95 0b c8 40 b9 31 38 ed db bd 5e 18 9e 15 70 17 04 ... 1443 more bytes>
+          },
+          list: [
+            'archive-api.open-meteo.com:443:::::::::::::::::::::',
+            'api.open-meteo.com:443:::::::::::::::::::::'
+          ]
+        },
+        [Symbol(kCapture)]: false
+      },
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'api.open-meteo.com',
+      protocol: 'https:',
+      _redirectable: [Circular *3],
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype] {
+        accept: [ 'Accept', 'application/json, text/plain, */*' ],
+        'user-agent': [ 'User-Agent', 'axios/1.9.0' ],
+        'accept-encoding': [ 'Accept-Encoding', 'gzip, compress, deflate, br' ],
+        host: [ 'Host', 'api.open-meteo.com' ]
+      },
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 16384,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    _currentUrl: 'https://api.open-meteo.com/v1/forecast?latitude=-1.2921&longitude=36.8219&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover&timezone=auto&temperature_unit=celsius&wind_speed_unit=kmh&precipitation_unit=mm',
+    [Symbol(kCapture)]: false
+  },
+  cause: Error: connect ETIMEDOUT 94.130.142.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1595:16) {
+    errno: -4039,
+    code: 'ETIMEDOUT',
+    syscall: 'connect',
+    address: '94.130.142.35',
+    port: 443
+  },
+  level: 'error',
+  stack: 'Error: connect ETIMEDOUT 94.130.142.35:443\n' +
+    '    at AxiosError.from (file:///E:/Projects/ClyCites-api/src/auth/node_modules/axios/lib/core/AxiosError.js:92:14)\n' +
+    '    at RedirectableRequest.handleRequestError (file:///E:/Projects/ClyCites-api/src/auth/node_modules/axios/lib/adapters/http.js:620:25)\n' +
+    '    at RedirectableRequest.emit (node:events:514:28)\n' +
+    '    at eventHandlers.<computed> (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\follow-redirects\\index.js:49:24)\n' +
+    '    at ClientRequest.emit (node:events:514:28)\n' +
+    '    at TLSSocket.socketErrorListener (node:_http_client:495:9)\n' +
+    '    at TLSSocket.emit (node:events:514:28)\n' +
+    '    at emitErrorNT (node:internal/streams/destroy:151:8)\n' +
+    '    at emitErrorCloseNT (node:internal/streams/destroy:116:3)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)\n' +
+    '    at Axios.request (file:///E:/Projects/ClyCites-api/src/auth/node_modules/axios/lib/core/Axios.js:45:41)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+    '    at async WeatherService.getCurrentWeather (file:///E:/Projects/ClyCites-api/src/auth/services/weatherService.js:140:24)\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/weatherController.js:42:25',
+  timestamp: '2025-06-16 12:49:58'
+}
+{
+  service: 'clycites-auth',
+  level: 'error',
+  message: 'Error fetching current weather: Converting circular structure to JSON\n' +
+    "    --> starting at object with constructor 'TLSSocket'\n" +
+    "    |     property '_httpMessage' -> object with constructor 'ClientRequest'\n" +
+    "    --- property 'socket' closes the circle",
+  stack: 'TypeError: Converting circular structure to JSON\n' +
+    "    --> starting at object with constructor 'TLSSocket'\n" +
+    "    |     property '_httpMessage' -> object with constructor 'ClientRequest'\n" +
+    "    --- property 'socket' closes the circle\n" +
+    '    at JSON.stringify (<anonymous>)\n' +
+    '    at Printf.template (file:///E:/Projects/ClyCites-api/src/auth/utils/logger.js:30:24)\n' +
+    '    at Printf.transform (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\logform\\printf.js:11:26)\n' +
+    '    at Format.transform (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\logform\\combine.js:20:24)\n' +
+    '    at Console._write (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\winston-transport\\modern.js:91:33)\n' +
+    '    at doWrite (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\winston-transport\\node_modules\\readable-stream\\lib\\_stream_writable.js:390:139)\n' +
+    '    at writeOrBuffer (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\winston-transport\\node_modules\\readable-stream\\lib\\_stream_writable.js:381:5)\n' +
+    '    at Writable.write (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\winston-transport\\node_modules\\readable-stream\\lib\\_stream_writable.js:302:11)\n' +
+    '    at DerivedLogger.ondata (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\winston\\node_modules\\readable-stream\\lib\\_stream_readable.js:629:20)\n' +
+    '    at DerivedLogger.emit (node:events:526:35)',
+  timestamp: '2025-06-16 12:49:58'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Converting circular structure to JSON\n' +
+      "    --> starting at object with constructor 'TLSSocket'\n" +
+      "    |     property '_httpMessage' -> object with constructor 'ClientRequest'\n" +
+      "    --- property 'socket' closes the circle",
+    stack: 'Error: Converting circular structure to JSON\n' +
+      "    --> starting at object with constructor 'TLSSocket'\n" +
+      "    |     property '_httpMessage' -> object with constructor 'ClientRequest'\n" +
+      "    --- property 'socket' closes the circle\n" +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/weatherController.js:56:17\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 500,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/current?latitude=-1.2921&longitude=36.8219&variables=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure%2Ccloud_cover&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2NzAyMCwiZXhwIjoxNzUwNjcxODIwfQ.sP7BxRgSSCF2xfZlNKolxTRmuyet_4q91pBnAQtvL94',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      'if-none-match': 'W/"220-xVF5WD2yV4XiBcGdQOyoVNRzeLc"'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      variables: 'temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 12:49:58'
+}
