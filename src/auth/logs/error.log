@@ -3383,3 +3383,1753 @@
   message: 'Error 💥',
   timestamp: '2025-06-16 12:49:58'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/variables',
+    stack: 'Error: Not found - /api/api/weather/variables\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/variables',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:49:41'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/variables',
+    stack: 'Error: Not found - /api/api/weather/variables\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/variables',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:49:44'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    stack: 'Error: Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { latitude: '0.5778793', longitude: '32.6425699' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:49:55'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    stack: 'Error: Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { latitude: '0.5778793', longitude: '32.6425699' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:49:59'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    stack: 'Error: Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { latitude: '0.5778793', longitude: '32.6425699' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:06'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=k',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=k\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=k',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'k' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:24'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=k',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=k\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=k',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'k' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:26'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=ka',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=ka\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=ka',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'ka' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:27'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=ka',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=ka\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=ka',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'ka' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:29'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kam',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kam\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kam',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kam' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:31'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=ka',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=ka\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=ka',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'ka' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:32'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:33'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kam',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kam\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kam',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kam' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:33'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:35'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:38'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:40'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:43'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:46'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:49'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:51'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    stack: 'Error: Not found - /api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/reverse?latitude=0.5778793&longitude=32.6425699',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { latitude: '0.5778793', longitude: '32.6425699' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:52'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:54'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:58'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:59'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:50:59'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:04'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:04'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:06'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:12'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:13'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:13'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Not found - /api/api/weather/locations/search?q=kampa',
+    stack: 'Error: Not found - /api/api/weather/locations/search?q=kampa\n' +
+      '    at notFound (file:///E:/Projects/ClyCites-api/src/auth/middlewares/errorMiddleware.js:162:8)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:646:15\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:265:14)\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:47:5\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 404,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/api/weather/locations/search?q=kampa',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA3NDU3MywiZXhwIjoxNzUwNjc5MzczfQ.eLqYI9ol24Ze-ifcxI-YP4tEUoip0JBrQwyFt18KHk8',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { q: 'kampa' },
+    params: {},
+    user: '684efe476e8eedcd64ea7c2a'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 14:51:14'
+}
