@@ -1182,3 +1182,798 @@
   message: 'Error 💥',
   timestamp: '2025-06-16 11:12:40'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/variables',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:02'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/current?latitude=-1.2921&longitude=36.8219&variables=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure%2Ccloud_cover&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      variables: 'temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at process.processTimers (node:internal/timers:511:9)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/historical?latitude=-1.2921&longitude=36.8219&startDate=2025-05-17&endDate=2025-06-16&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      startDate: '2025-05-17',
+      endDate: '2025-06-16',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/variables',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/current?latitude=-1.2921&longitude=36.8219&variables=temperature_2m%2Crelative_humidity_2m%2Cprecipitation%2Cwind_speed_10m%2Cwind_direction_10m%2Csurface_pressure%2Ccloud_cover&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      variables: 'temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,wind_direction_10m,surface_pressure,cloud_cover',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/forecast?latitude=-1.2921&longitude=36.8219&days=7&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      days: '7',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed',
+    stack: 'Error: Token verification failed\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:54:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/weather/historical?latitude=-1.2921&longitude=36.8219&startDate=2025-05-17&endDate=2025-06-16&temperatureUnit=celsius&windSpeedUnit=kmh&precipitationUnit=mm',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {
+      latitude: '-1.2921',
+      longitude: '36.8219',
+      startDate: '2025-05-17',
+      endDate: '2025-06-16',
+      temperatureUnit: 'celsius',
+      windSpeedUnit: 'kmh',
+      precipitationUnit: 'mm'
+    },
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at runNextTicks (node:internal/process/task_queues:64:3)\n' +
+      '    at listOnTimeout (node:internal/timers:540:9)\n' +
+      '    at process.processTimers (node:internal/timers:514:7)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:15'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:20'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Token verification failed. Please login again.',
+    stack: 'Error: Token verification failed. Please login again.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/controllers/authController.js:295:19\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'POST',
+    url: '/api/auth/refresh-token',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'content-length': '190',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.Yt1S9QtlHJu2IpHpGugw9eseWHqqM3siyoVCyDsTXfY',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Google Chrome";v="137", "Chromium";v="137", "Not/A)Brand";v="24"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      cookie: 'refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es; __next_hmr_refresh_hash__=899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    body: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es'
+    },
+    cookies: {
+      refreshToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NGVmZTQ3NmU4ZWVkY2Q2NGVhN2MyYSIsImlhdCI6MTc1MDA2MTQ4OSwiZXhwIjoxNzUwNjY2Mjg5fQ.L1DD0Ih1s1mexY0F2-BotTYQpq-wRnWl_0Z3rb815es',
+      __next_hmr_refresh_hash__: '899a5df91ec83510edb31f25860901c94006b995e79db05f'
+    },
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-06-16 11:52:20'
+}
