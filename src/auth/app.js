@@ -400,7 +400,6 @@ app.use("/api/farms/:farmId/alerts", farmAlertRoutes)
 app.use("/api/farms/:farmId/smart-assistant", smartAssistantRoutes)
 
 
-
 app.get("/api/status", (req, res) => {
   const aiConfigured = !!process.env.OPENAI_API_KEY
 
