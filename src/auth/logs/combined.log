@@ -75725,3 +75725,538 @@
   message: 'Error 💥',
   timestamp: '2025-07-08 22:17:16'
 }
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/ai/status',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      'if-none-match': 'W/"14e-qEzmXxhOd1QmoneEuSWvXHKNqnM"'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 00:02:04'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/ai/status',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      'if-none-match': 'W/"14e-qEzmXxhOd1QmoneEuSWvXHKNqnM"'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 00:02:04'
+}
+{
+  service: 'clycites-auth',
+  name: 'AI_RetryError',
+  cause: undefined,
+  reason: 'maxRetriesExceeded',
+  errors: [
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '95c2879c69afc832-EBB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Tue, 08 Jul 2025 21:03:45 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=_2lad6bJWo.jASWLnipzeCCAqOIA0bpuSxgymONPHYY-1752008625070-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_660f45839429448c996cffb44d7adfdd'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    },
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '95c287c0ae3cc832-EBB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Tue, 08 Jul 2025 21:03:48 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=ZUor_7piGrODbAKs473s6PHI9G_hPD4ejlqJblX_JvE-1752008628703-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_e16d86eb877fcb668d7f4933bc251d88'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    },
+    APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+        at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+        at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+        at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+        at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+        at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+        at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+      cause: undefined,
+      url: 'https://api.openai.com/v1/chat/completions',
+      requestBodyValues: {
+        model: 'gpt-4o',
+        logit_bias: undefined,
+        logprobs: undefined,
+        top_logprobs: undefined,
+        user: undefined,
+        parallel_tool_calls: undefined,
+        max_tokens: 20,
+        temperature: 0,
+        top_p: undefined,
+        frequency_penalty: undefined,
+        presence_penalty: undefined,
+        response_format: undefined,
+        stop: undefined,
+        seed: undefined,
+        max_completion_tokens: undefined,
+        store: undefined,
+        metadata: undefined,
+        prediction: undefined,
+        reasoning_effort: undefined,
+        messages: [
+          {
+            role: 'user',
+            content: "Say 'AI service is working correctly' in exactly those words."
+          }
+        ],
+        tools: undefined,
+        tool_choice: undefined,
+        functions: undefined,
+        function_call: undefined
+      },
+      statusCode: 429,
+      responseHeaders: {
+        'alt-svc': 'h3=":443"; ma=86400',
+        'cf-cache-status': 'DYNAMIC',
+        'cf-ray': '95c287e2d821c832-EBB',
+        connection: 'keep-alive',
+        'content-length': '337',
+        'content-type': 'application/json; charset=utf-8',
+        date: 'Tue, 08 Jul 2025 21:03:54 GMT',
+        server: 'cloudflare',
+        'set-cookie': '_cfuvid=VtxV6BpGon3J94fybl.FqBrRpvEWgQHdQFT6JQw536k-1752008634224-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+        'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+        vary: 'Origin',
+        'x-content-type-options': 'nosniff',
+        'x-request-id': 'req_83e18402d28cb47075ee3d09970ec5e9'
+      },
+      responseBody: '{\n' +
+        '    "error": {\n' +
+        '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+        '        "type": "insufficient_quota",\n' +
+        '        "param": null,\n' +
+        '        "code": "insufficient_quota"\n' +
+        '    }\n' +
+        '}\n',
+      isRetryable: true,
+      data: {
+        error: {
+          message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+          type: 'insufficient_quota',
+          param: null,
+          code: 'insufficient_quota'
+        }
+      },
+      [Symbol(vercel.ai.error)]: true,
+      [Symbol(vercel.ai.error.AI_APICallError)]: true
+    }
+  ],
+  lastError: APICallError [AI_APICallError]: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.
+      at file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:667:14
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+      at async postToApi (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/provider-utils/dist/index.mjs:567:28)
+      at async OpenAIChatLanguageModel.doGenerate (file:///E:/Projects/ClyCites-api/src/auth/node_modules/@ai-sdk/openai/dist/index.mjs:622:9)
+      at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4289:30)
+      at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+      at async _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:271:12)
+      at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)
+      at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22
+      at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22 {
+    cause: undefined,
+    url: 'https://api.openai.com/v1/chat/completions',
+    requestBodyValues: {
+      model: 'gpt-4o',
+      logit_bias: undefined,
+      logprobs: undefined,
+      top_logprobs: undefined,
+      user: undefined,
+      parallel_tool_calls: undefined,
+      max_tokens: 20,
+      temperature: 0,
+      top_p: undefined,
+      frequency_penalty: undefined,
+      presence_penalty: undefined,
+      response_format: undefined,
+      stop: undefined,
+      seed: undefined,
+      max_completion_tokens: undefined,
+      store: undefined,
+      metadata: undefined,
+      prediction: undefined,
+      reasoning_effort: undefined,
+      messages: [
+        {
+          role: 'user',
+          content: "Say 'AI service is working correctly' in exactly those words."
+        }
+      ],
+      tools: undefined,
+      tool_choice: undefined,
+      functions: undefined,
+      function_call: undefined
+    },
+    statusCode: 429,
+    responseHeaders: {
+      'alt-svc': 'h3=":443"; ma=86400',
+      'cf-cache-status': 'DYNAMIC',
+      'cf-ray': '95c287e2d821c832-EBB',
+      connection: 'keep-alive',
+      'content-length': '337',
+      'content-type': 'application/json; charset=utf-8',
+      date: 'Tue, 08 Jul 2025 21:03:54 GMT',
+      server: 'cloudflare',
+      'set-cookie': '_cfuvid=VtxV6BpGon3J94fybl.FqBrRpvEWgQHdQFT6JQw536k-1752008634224-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+      'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+      vary: 'Origin',
+      'x-content-type-options': 'nosniff',
+      'x-request-id': 'req_83e18402d28cb47075ee3d09970ec5e9'
+    },
+    responseBody: '{\n' +
+      '    "error": {\n' +
+      '        "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",\n' +
+      '        "type": "insufficient_quota",\n' +
+      '        "param": null,\n' +
+      '        "code": "insufficient_quota"\n' +
+      '    }\n' +
+      '}\n',
+    isRetryable: true,
+    data: {
+      error: {
+        message: 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+        type: 'insufficient_quota',
+        param: null,
+        code: 'insufficient_quota'
+      }
+    },
+    [Symbol(vercel.ai.error)]: true,
+    [Symbol(vercel.ai.error.AI_APICallError)]: true
+  },
+  level: 'error',
+  message: 'AI service test failed: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.',
+  stack: 'AI_RetryError: Failed after 3 attempts. Last error: You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.\n' +
+    '    at _retryWithExponentialBackoff (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:283:13)\n' +
+    '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+    '    at async fn (file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:4245:32)\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/node_modules/ai/dist/index.mjs:470:22\n' +
+    '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/aiStatusController.js:37:22',
+  timestamp: '2025-07-09 00:03:53',
+  [Symbol(vercel.ai.error)]: true,
+  [Symbol(vercel.ai.error.AI_RetryError)]: true
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/ai/status',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      'if-none-match': 'W/"14e-qEzmXxhOd1QmoneEuSWvXHKNqnM"'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 00:06:14'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Access denied. No token provided.',
+    stack: 'Error: Access denied. No token provided.\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/middlewares/authMiddleware.js:21:17\n' +
+      '    at file:///E:/Projects/ClyCites-api/src/auth/utils/asyncHandler.js:2:19\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)\n' +
+      '    at trim_prefix (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:328:13)\n' +
+      '    at E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:286:9\n' +
+      '    at Function.process_params (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:346:12)\n' +
+      '    at next (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:280:10)\n' +
+      '    at Function.handle (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:175:3)\n' +
+      '    at router (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\index.js:47:12)\n' +
+      '    at Layer.handle [as handle_request] (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\express\\lib\\router\\layer.js:95:5)',
+    statusCode: 401,
+    isOperational: true,
+    validationErrors: null
+  },
+  request: {
+    method: 'GET',
+    url: '/api/ai/status',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+      'if-none-match': 'W/"14e-qEzmXxhOd1QmoneEuSWvXHKNqnM"'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: undefined
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 00:06:14'
+}
