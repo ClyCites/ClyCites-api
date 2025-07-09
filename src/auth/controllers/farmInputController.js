@@ -1,538 +1,298 @@
-import { validationResult } from "express-validator"
+import asyncHandler from "../utils/asyncHandler.js"
 import FarmInput from "../models/farmInputModel.js"
 import Farm from "../models/farmModel.js"
-import OrganizationMember from "../models/organizationMemberModel.js"
-import { asyncHandler } from "../utils/asyncHandler.js"
-import { AppError } from "../utils/appError.js"
+import AppError from "../utils/appError.js"
 
-// @desc    Create farm input
-// @route   POST /api/farms/:farmId/inputs
-// @access  Private (Farm owner or org member)
-export const createFarmInput = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
-
-  const farmId = req.params.farmId
-  const {
-    inputType,
-    inputName,
-    brand,
-    supplier,
-    purchaseInfo,
-    currentStock,
-    minimumStock,
-    expiryDate,
-    storageLocation,
-    storageConditions,
-    safetyInfo,
-    qualityMetrics,
-    certifications,
-    crop,
-    livestock,
-    tags,
-    metadata,
-  } = req.body
-
-  // Check if farm exists and user has access
-  const farm = await Farm.findById(farmId)
-  if (!farm) {
-    return next(new AppError("Farm not found", 404))
-  }
-
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const farmInput = await FarmInput.create({
-    farm: farmId,
-    crop,
-    livestock,
-    inputType,
-    inputName,
-    brand,
-    supplier,
-    purchaseInfo,
-    currentStock: currentStock || purchaseInfo.quantity,
-    minimumStock: minimumStock || 0,
-    expiryDate,
-    storageLocation,
-    storageConditions,
-    safetyInfo,
-    qualityMetrics,
-    certifications,
-    tags,
-    metadata,
-  })
-
-  res.status(201).json({
-    success: true,
-    message: "Farm input created successfully",
-    data: { farmInput },
-  })
-})
-
-// @desc    Get farm inputs
+// @desc    Get all farm inputs
 // @route   GET /api/farms/:farmId/inputs
-// @access  Private (Farm owner or org member)
-export const getFarmInputs = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-  const { inputType, lowStock, expired, page = 1, limit = 20 } = req.query
+// @access  Private
+export const getFarmInputs = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+  const { category, status, lowStock } = req.query
 
-  // Check farm access
-  const farm = await Farm.findById(farmId)
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Farm not found or access denied", 404)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
+  const query = { farm: farmId }
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const skip = (Number.parseInt(page) - 1) * Number.parseInt(limit)
-  const query = { farm: farmId, isActive: true }
-
-  if (inputType) {
-    query.inputType = inputType
-  }
-
+  // Apply filters
+  if (category) query.category = category
+  if (status) query.status = status
   if (lowStock === "true") {
-    query.$expr = { $lte: ["$currentStock", "$minimumStock"] }
+    query.$expr = { $lt: ["$currentStock", "$minimumStock"] }
   }
 
-  if (expired === "true") {
-    query.expiryDate = { $lt: new Date() }
-  }
+  const inputs = await FarmInput.find(query).populate("supplier", "name contact").sort({ createdAt: -1 })
 
-  const inputs = await FarmInput.find(query)
-    .populate("crop", "name category")
-    .populate("livestock", "herdName animalType")
-    .sort({ createdAt: -1 })
-    .skip(skip)
-    .limit(Number.parseInt(limit))
-
-  const total = await FarmInput.countDocuments(query)
-
-  // Add calculated fields
-  const inputsWithCalculations = inputs.map((input) => ({
-    ...input.toObject(),
-    totalUsed: input.totalUsed,
-    stockPercentage: input.stockPercentage,
-    costPerUnitUsed: input.costPerUnitUsed,
-    daysUntilExpiry: input.daysUntilExpiry,
-    isLowStock: input.isLowStock,
-    isExpired: input.isExpired,
-    alerts: input.checkAlerts(),
-  }))
+  // Calculate summary statistics
+  const totalValue = inputs.reduce((sum, input) => sum + input.currentStock * input.unitCost, 0)
+  const lowStockItems = inputs.filter((input) => input.currentStock < input.minimumStock)
+  const expiringSoon = inputs.filter((input) => {
+    if (!input.expiryDate) return false
+    const daysUntilExpiry = Math.ceil((new Date(input.expiryDate) - new Date()) / (1000 * 60 * 60 * 24))
+    return daysUntilExpiry <= 30 && daysUntilExpiry > 0
+  })
 
   res.status(200).json({
-    success: true,
+    status: "success",
+    results: inputs.length,
     data: {
-      inputs: inputsWithCalculations,
-      pagination: {
-        page: Number.parseInt(page),
-        limit: Number.parseInt(limit),
-        total,
-        pages: Math.ceil(total / Number.parseInt(limit)),
+      inputs,
+      summary: {
+        totalValue,
+        lowStockCount: lowStockItems.length,
+        expiringSoonCount: expiringSoon.length,
+        totalItems: inputs.length,
       },
     },
   })
 })
 
-// @desc    Get input details
-// @route   GET /api/inputs/:inputId
-// @access  Private (Farm owner or org member)
-export const getInputDetails = asyncHandler(async (req, res, next) => {
-  const inputId = req.params.inputId
+// @desc    Add new farm input
+// @route   POST /api/farms/:farmId/inputs
+// @access  Private
+export const addFarmInput = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
 
-  const input = await FarmInput.findById(inputId)
-    .populate("farm", "name owner organization")
-    .populate("crop", "name category growthStage")
-    .populate("livestock", "herdName animalType totalAnimals")
-    .populate("usage.appliedBy", "firstName lastName")
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Farm not found or access denied", 404)
+  }
+
+  const inputData = {
+    ...req.body,
+    farm: farmId,
+    addedBy: req.user._id,
+  }
+
+  const input = await FarmInput.create(inputData)
+  await input.populate("supplier", "name contact")
+
+  res.status(201).json({
+    status: "success",
+    data: { input },
+  })
+})
+
+// @desc    Get single farm input
+// @route   GET /api/inputs/:inputId
+// @access  Private
+export const getFarmInput = asyncHandler(async (req, res) => {
+  const input = await FarmInput.findById(req.params.inputId)
+    .populate("farm", "name")
+    .populate("supplier", "name contact email")
+    .populate("addedBy", "firstName lastName")
 
   if (!input) {
-    return next(new AppError("Input not found", 404))
+    throw new AppError("Input not found", 404)
   }
 
-  // Check permissions
-  const isOwner = input.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: input.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const inputWithCalculations = {
-    ...input.toObject(),
-    totalUsed: input.totalUsed,
-    stockPercentage: input.stockPercentage,
-    costPerUnitUsed: input.costPerUnitUsed,
-    daysUntilExpiry: input.daysUntilExpiry,
-    isLowStock: input.isLowStock,
-    isExpired: input.isExpired,
-    alerts: input.checkAlerts(),
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: input.farm._id, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
   res.status(200).json({
-    success: true,
-    data: { input: inputWithCalculations },
+    status: "success",
+    data: { input },
   })
 })
 
 // @desc    Update farm input
 // @route   PUT /api/inputs/:inputId
-// @access  Private (Farm owner or org member)
-export const updateFarmInput = asyncHandler(async (req, res, next) => {
-  const inputId = req.params.inputId
+// @access  Private
+export const updateFarmInput = asyncHandler(async (req, res) => {
+  const input = await FarmInput.findById(req.params.inputId)
 
-  const input = await FarmInput.findById(inputId).populate("farm")
   if (!input) {
-    return next(new AppError("Input not found", 404))
+    throw new AppError("Input not found", 404)
   }
 
-  // Check permissions
-  const isOwner = input.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: input.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: input.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
-  const allowedFields = [
-    "inputName",
-    "brand",
-    "supplier",
-    "currentStock",
-    "minimumStock",
-    "expiryDate",
-    "storageLocation",
-    "storageConditions",
-    "safetyInfo",
-    "qualityMetrics",
-    "certifications",
-    "tags",
-    "metadata",
-  ]
-
-  const updates = {}
-  allowedFields.forEach((field) => {
-    if (req.body[field] !== undefined) {
-      updates[field] = req.body[field]
+  // Track usage if currentStock is being updated
+  if (req.body.currentStock !== undefined && req.body.currentStock !== input.currentStock) {
+    const usageAmount = input.currentStock - req.body.currentStock
+    if (usageAmount > 0) {
+      input.usageHistory.push({
+        date: new Date(),
+        amount: usageAmount,
+        purpose: req.body.usagePurpose || "Stock adjustment",
+        recordedBy: req.user._id,
+      })
     }
-  })
+  }
 
-  const updatedInput = await FarmInput.findByIdAndUpdate(inputId, updates, {
-    new: true,
-    runValidators: true,
-  })
+  Object.assign(input, req.body)
+  input.lastUpdated = new Date()
+
+  await input.save()
+  await input.populate("supplier", "name contact")
 
   res.status(200).json({
-    success: true,
-    message: "Input updated successfully",
-    data: { input: updatedInput },
+    status: "success",
+    data: { input },
   })
 })
 
-// @desc    Add input usage
+// @desc    Record input usage
 // @route   POST /api/inputs/:inputId/usage
-// @access  Private (Farm owner or org member)
-export const addInputUsage = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
+// @access  Private
+export const recordInputUsage = asyncHandler(async (req, res) => {
+  const { amount, purpose, notes } = req.body
+  const input = await FarmInput.findById(req.params.inputId)
 
-  const inputId = req.params.inputId
-  const { quantity, purpose, applicationMethod, weatherConditions, effectiveness, notes } = req.body
-
-  const input = await FarmInput.findById(inputId).populate("farm")
   if (!input) {
-    return next(new AppError("Input not found", 404))
+    throw new AppError("Input not found", 404)
   }
 
-  // Check permissions
-  const isOwner = input.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: input.farm.organization,
-    status: "active",
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: input.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
+  }
+
+  if (amount > input.currentStock) {
+    throw new AppError("Usage amount exceeds current stock", 400)
+  }
+
+  // Record usage
+  input.usageHistory.push({
+    date: new Date(),
+    amount,
+    purpose,
+    notes,
+    recordedBy: req.user._id,
   })
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
+  // Update current stock
+  input.currentStock -= amount
+  input.lastUpdated = new Date()
 
-  if (quantity > input.currentStock) {
-    return next(new AppError("Insufficient stock available", 400))
-  }
+  await input.save()
 
-  const usageData = {
-    date: new Date(),
-    quantity,
-    purpose,
-    appliedBy: req.user.id,
-    applicationMethod,
-    weatherConditions,
-    effectiveness,
-    notes,
-  }
-
-  await input.addUsage(usageData)
-
-  res.status(201).json({
-    success: true,
+  res.status(200).json({
+    status: "success",
     message: "Usage recorded successfully",
     data: {
-      usage: usageData,
+      input,
       remainingStock: input.currentStock,
     },
   })
 })
 
-// @desc    Update stock level
-// @route   PUT /api/inputs/:inputId/stock
-// @access  Private (Farm owner or org member)
-export const updateStockLevel = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
+// @desc    Get input analytics
+// @route   GET /api/farms/:farmId/inputs/analytics
+// @access  Private
+export const getInputAnalytics = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+  const { period = "30" } = req.query
 
-  const inputId = req.params.inputId
-  const { newStock, reason } = req.body
-
-  const input = await FarmInput.findById(inputId).populate("farm")
-  if (!input) {
-    return next(new AppError("Input not found", 404))
-  }
-
-  // Check permissions
-  const isOwner = input.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: input.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  await input.updateStock(newStock, reason)
-
-  res.status(200).json({
-    success: true,
-    message: "Stock level updated successfully",
-    data: {
-      input: {
-        id: input._id,
-        name: input.inputName,
-        previousStock: input.currentStock,
-        newStock,
-        reason,
-      },
-    },
-  })
-})
-
-// @desc    Get cost analysis
-// @route   GET /api/farms/:farmId/inputs/cost-analysis
-// @access  Private (Farm owner or org member)
-export const getCostAnalysis = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-  const { startDate, endDate, period = "month" } = req.query
-
-  // Check farm access
-  const farm = await Farm.findById(farmId)
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Farm not found or access denied", 404)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
+  const inputs = await FarmInput.find({ farm: farmId })
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
+  // Calculate analytics
+  const totalValue = inputs.reduce((sum, input) => sum + input.currentStock * input.unitCost, 0)
+  const totalPurchaseValue = inputs.reduce((sum, input) => sum + input.totalCost, 0)
 
-  let start, end
-  if (startDate && endDate) {
-    start = new Date(startDate)
-    end = new Date(endDate)
-  } else {
-    end = new Date()
-    switch (period) {
-      case "week":
-        start = new Date(end.getTime() - 7 * 24 * 60 * 60 * 1000)
-        break
-      case "month":
-        start = new Date(end.getFullYear(), end.getMonth() - 1, end.getDate())
-        break
-      case "quarter":
-        start = new Date(end.getFullYear(), end.getMonth() - 3, end.getDate())
-        break
-      case "year":
-        start = new Date(end.getFullYear() - 1, end.getMonth(), end.getDate())
-        break
-      default:
-        start = new Date(end.getFullYear(), end.getMonth() - 1, end.getDate())
+  // Category breakdown
+  const categoryBreakdown = inputs.reduce((acc, input) => {
+    if (!acc[input.category]) {
+      acc[input.category] = { count: 0, value: 0 }
     }
-  }
+    acc[input.category].count++
+    acc[input.category].value += input.currentStock * input.unitCost
+    return acc
+  }, {})
 
-  const costAnalysis = await FarmInput.getCostAnalysis(farmId, start, end)
+  // Usage trends (last 30 days)
+  const thirtyDaysAgo = new Date()
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - Number.parseInt(period))
 
-  // Get additional metrics
-  const [totalInputs, lowStockInputs, expiredInputs] = await Promise.all([
-    FarmInput.countDocuments({ farm: farmId, isActive: true }),
-    FarmInput.countDocuments({
-      farm: farmId,
-      isActive: true,
-      $expr: { $lte: ["$currentStock", "$minimumStock"] },
-    }),
-    FarmInput.countDocuments({
-      farm: farmId,
-      isActive: true,
-      expiryDate: { $lt: new Date() },
-    }),
-  ])
+  const usageTrends = inputs
+    .map((input) => {
+      const recentUsage = input.usageHistory.filter((usage) => new Date(usage.date) >= thirtyDaysAgo)
+      const totalUsage = recentUsage.reduce((sum, usage) => sum + usage.amount, 0)
 
-  const totalCost = costAnalysis.reduce((sum, item) => sum + item.totalCost, 0)
-  const totalQuantity = costAnalysis.reduce((sum, item) => sum + item.totalQuantity, 0)
+      return {
+        name: input.name,
+        category: input.category,
+        totalUsage,
+        usageCount: recentUsage.length,
+        averageUsage: recentUsage.length > 0 ? totalUsage / recentUsage.length : 0,
+      }
+    })
+    .filter((item) => item.totalUsage > 0)
+
+  // Alerts
+  const lowStockItems = inputs.filter((input) => input.currentStock < input.minimumStock)
+  const expiredItems = inputs.filter((input) => input.expiryDate && new Date(input.expiryDate) < new Date())
+  const expiringSoon = inputs.filter((input) => {
+    if (!input.expiryDate) return false
+    const daysUntilExpiry = Math.ceil((new Date(input.expiryDate) - new Date()) / (1000 * 60 * 60 * 24))
+    return daysUntilExpiry <= 30 && daysUntilExpiry > 0
+  })
 
   res.status(200).json({
-    success: true,
+    status: "success",
     data: {
-      period: { start, end, type: period },
       summary: {
-        totalCost,
-        totalQuantity,
-        averageCostPerUnit: totalQuantity > 0 ? totalCost / totalQuantity : 0,
-        totalInputTypes: costAnalysis.length,
-        totalInputs,
-        lowStockInputs,
-        expiredInputs,
+        totalItems: inputs.length,
+        totalValue,
+        totalPurchaseValue,
+        utilizationRate:
+          totalPurchaseValue > 0 ? (((totalPurchaseValue - totalValue) / totalPurchaseValue) * 100).toFixed(2) : 0,
       },
-      breakdown: costAnalysis,
+      categoryBreakdown,
+      usageTrends,
+      alerts: {
+        lowStock: lowStockItems.length,
+        expired: expiredItems.length,
+        expiringSoon: expiringSoon.length,
+      },
+      recommendations: [
+        ...(lowStockItems.length > 0 ? [`${lowStockItems.length} items are running low on stock`] : []),
+        ...(expiredItems.length > 0 ? [`${expiredItems.length} items have expired and should be disposed`] : []),
+        ...(expiringSoon.length > 0 ? [`${expiringSoon.length} items will expire within 30 days`] : []),
+      ],
     },
   })
 })
 
-// @desc    Get low stock alerts
-// @route   GET /api/farms/:farmId/inputs/low-stock
-// @access  Private (Farm owner or org member)
-export const getLowStockAlerts = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
+// @desc    Delete farm input
+// @route   DELETE /api/inputs/:inputId
+// @access  Private
+export const deleteFarmInput = asyncHandler(async (req, res) => {
+  const input = await FarmInput.findById(req.params.inputId)
 
-  // Check farm access
-  const farm = await Farm.findById(farmId)
+  if (!input) {
+    throw new AppError("Input not found", 404)
+  }
+
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: input.farm, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Access denied", 403)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const [lowStockItems, expiringItems] = await Promise.all([
-    FarmInput.getLowStockItems(farmId),
-    FarmInput.getExpiringItems(farmId, 30),
-  ])
-
-  const alerts = []
-
-  // Add low stock alerts
-  lowStockItems.forEach((item) => {
-    alerts.push({
-      type: "low_stock",
-      severity: "medium",
-      item: {
-        id: item._id,
-        name: item.inputName,
-        type: item.inputType,
-        currentStock: item.currentStock,
-        minimumStock: item.minimumStock,
-        unit: item.purchaseInfo.unit,
-      },
-      message: `${item.inputName} is running low on stock`,
-      recommendedAction: "Reorder this item to avoid stockout",
-    })
-  })
-
-  // Add expiring items alerts
-  expiringItems.forEach((item) => {
-    const daysUntilExpiry = Math.ceil((item.expiryDate - new Date()) / (1000 * 60 * 60 * 24))
-    alerts.push({
-      type: "expiring_soon",
-      severity: daysUntilExpiry <= 7 ? "high" : "medium",
-      item: {
-        id: item._id,
-        name: item.inputName,
-        type: item.inputType,
-        expiryDate: item.expiryDate,
-        daysUntilExpiry,
-        currentStock: item.currentStock,
-        unit: item.purchaseInfo.unit,
-      },
-      message: `${item.inputName} expires in ${daysUntilExpiry} days`,
-      recommendedAction: daysUntilExpiry <= 7 ? "Use immediately or dispose safely" : "Plan usage before expiry",
-    })
-  })
+  await input.deleteOne()
 
   res.status(200).json({
-    success: true,
-    data: {
-      alerts,
-      summary: {
-        lowStockItems: lowStockItems.length,
-        expiringItems: expiringItems.length,
-        totalAlerts: alerts.length,
-      },
-    },
+    status: "success",
+    message: "Input deleted successfully",
   })
 })
-
-export default {
-  createFarmInput,
-  getFarmInputs,
-  getInputDetails,
-  updateFarmInput,
-  addInputUsage,
-  updateStockLevel,
-  getCostAnalysis,
-  getLowStockAlerts,
-}

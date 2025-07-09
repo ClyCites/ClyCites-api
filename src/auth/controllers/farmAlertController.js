@@ -1,521 +1,351 @@
-import { validationResult } from "express-validator"
+import asyncHandler from "../utils/asyncHandler.js"
 import FarmAlert from "../models/farmAlertModel.js"
 import Farm from "../models/farmModel.js"
-import OrganizationMember from "../models/organizationMemberModel.js"
-import { notificationService } from "../services/notificationService.js"
-import { asyncHandler } from "../utils/asyncHandler.js"
-import { AppError } from "../utils/appError.js"
+import AppError from "../utils/appError.js"
+import { sendNotification } from "../services/notificationService.js"
 
-// @desc    Create farm alert
-// @route   POST /api/farms/:farmId/alerts
-// @access  Private (Farm owner or org member)
-export const createFarmAlert = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
+// @desc    Get all farm alerts
+// @route   GET /api/farms/:farmId/alerts
+// @access  Private
+export const getFarmAlerts = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+  const { type, priority, status, resolved } = req.query
 
-  const farmId = req.params.farmId
-  const {
-    alertType,
-    severity,
-    priority,
-    title,
-    message,
-    description,
-    source,
-    sourceDetails,
-    relatedEntities,
-    data,
-    thresholds,
-    location,
-    timeframe,
-    recommendedActions,
-    recurrence,
-    tags,
-    expiresAt,
-    metadata,
-  } = req.body
-
-  // Check if farm exists and user has access
-  const farm = await Farm.findById(farmId)
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Farm not found or access denied", 404)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
+  const query = { farm: farmId }
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
+  // Apply filters
+  if (type) query.type = type
+  if (priority) query.priority = priority
+  if (status) query.status = status
+  if (resolved !== undefined) query.resolved = resolved === "true"
 
-  const alert = await FarmAlert.create({
-    farm: farmId,
-    user: req.user.id,
-    alertType,
-    severity,
-    priority: priority || 5,
-    title,
-    message,
-    description,
-    source: source || "manual",
-    sourceDetails: {
-      ...sourceDetails,
-      userId: req.user.id,
+  const alerts = await FarmAlert.find(query)
+    .populate("createdBy", "firstName lastName")
+    .populate("resolvedBy", "firstName lastName")
+    .sort({ createdAt: -1 })
+
+  // Calculate summary statistics
+  const activeAlerts = alerts.filter((a) => !a.resolved).length
+  const criticalAlerts = alerts.filter((a) => a.priority === "critical" && !a.resolved).length
+  const highAlerts = alerts.filter((a) => a.priority === "high" && !a.resolved).length
+
+  const typeBreakdown = alerts.reduce((acc, alert) => {
+    if (!acc[alert.type]) acc[alert.type] = { total: 0, active: 0 }
+    acc[alert.type].total++
+    if (!alert.resolved) acc[alert.type].active++
+    return acc
+  }, {})
+
+  res.status(200).json({
+    status: "success",
+    results: alerts.length,
+    data: {
+      alerts,
+      summary: {
+        totalAlerts: alerts.length,
+        activeAlerts,
+        criticalAlerts,
+        highAlerts,
+        typeBreakdown,
+      },
     },
-    relatedEntities: relatedEntities || {},
-    data: data || {},
-    thresholds,
-    location,
-    timeframe,
-    recommendedActions: recommendedActions || [],
-    recurrence: recurrence || { isRecurring: false },
-    tags: tags || [],
-    expiresAt,
-    metadata: metadata || {},
   })
+})
 
-  // Send notifications for high priority alerts
-  if (["high", "critical", "emergency"].includes(severity)) {
+// @desc    Create new farm alert
+// @route   POST /api/farms/:farmId/alerts
+// @access  Private
+export const createFarmAlert = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Farm not found or access denied", 404)
+  }
+
+  const alertData = {
+    ...req.body,
+    farm: farmId,
+    createdBy: req.user._id,
+  }
+
+  const alert = await FarmAlert.create(alertData)
+  await alert.populate("createdBy", "firstName lastName")
+
+  // Send notification for high priority alerts
+  if (alert.priority === "critical" || alert.priority === "high") {
     try {
-      await notificationService.sendAlertNotification(req.user.id, alert)
+      await sendNotification({
+        type: "alert",
+        recipient: req.user._id,
+        title: `${alert.priority.toUpperCase()} Alert: ${alert.title}`,
+        message: alert.description,
+        data: { alertId: alert._id, farmId },
+      })
     } catch (error) {
       console.error("Failed to send alert notification:", error)
     }
   }
 
   res.status(201).json({
-    success: true,
-    message: "Farm alert created successfully",
+    status: "success",
     data: { alert },
   })
 })
 
-// @desc    Get farm alerts
-// @route   GET /api/farms/:farmId/alerts
-// @access  Private (Farm owner or org member)
-export const getFarmAlerts = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-  const { status, severity, alertType, active = "true", page = 1, limit = 20 } = req.query
-
-  // Check farm access
-  const farm = await Farm.findById(farmId)
-  if (!farm) {
-    return next(new AppError("Farm not found", 404))
-  }
-
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const options = {}
-  if (severity) options.severity = severity
-  if (alertType) options.alertType = alertType
-
-  let alerts
-  if (active === "true") {
-    alerts = await FarmAlert.getActiveAlerts(farmId, options)
-  } else {
-    const query = { farm: farmId }
-    if (status) query.status = status
-    if (severity) query.severity = severity
-    if (alertType) query.alertType = alertType
-
-    const skip = (Number.parseInt(page) - 1) * Number.parseInt(limit)
-    alerts = await FarmAlert.find(query)
-      .populate("relatedEntities.crops", "name category")
-      .populate("relatedEntities.livestock", "herdName animalType")
-      .populate("relatedEntities.workers", "personalInfo.firstName personalInfo.lastName")
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(Number.parseInt(limit))
-  }
-
-  // Add calculated fields
-  const alertsWithCalculations = alerts.map((alert) => ({
-    ...alert.toObject(),
-    timeSinceCreation: alert.timeSinceCreation,
-    isExpired: alert.isExpired,
-    urgencyScore: alert.urgencyScore,
-    estimatedImpact: alert.estimatedImpact,
-  }))
-
-  res.status(200).json({
-    success: true,
-    data: {
-      alerts: alertsWithCalculations,
-      count: alerts.length,
-    },
-  })
-})
-
-// @desc    Get alert details
+// @desc    Get single farm alert
 // @route   GET /api/alerts/:alertId
-// @access  Private (Alert recipient or farm member)
-export const getAlertDetails = asyncHandler(async (req, res, next) => {
-  const alertId = req.params.alertId
-
-  const alert = await FarmAlert.findById(alertId)
-    .populate("farm", "name location")
-    .populate("user", "firstName lastName email")
-    .populate("relatedEntities.crops", "name category growthStage")
-    .populate("relatedEntities.livestock", "herdName animalType totalAnimals")
-    .populate("relatedEntities.workers", "personalInfo.firstName personalInfo.lastName employment.position")
-    .populate("acknowledgment.acknowledgedBy", "firstName lastName")
-    .populate("resolution.resolvedBy", "firstName lastName")
+// @access  Private
+export const getFarmAlert = asyncHandler(async (req, res) => {
+  const alert = await FarmAlert.findById(req.params.alertId)
+    .populate("farm", "name")
+    .populate("createdBy", "firstName lastName")
+    .populate("resolvedBy", "firstName lastName")
+    .populate("actions.performedBy", "firstName lastName")
 
   if (!alert) {
-    return next(new AppError("Alert not found", 404))
+    throw new AppError("Alert not found", 404)
   }
 
-  // Check access - user must be alert recipient or farm member
-  const isRecipient = alert.user._id.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: alert.farm.organization,
-    status: "active",
-  })
-
-  if (!isRecipient && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const alertWithCalculations = {
-    ...alert.toObject(),
-    timeSinceCreation: alert.timeSinceCreation,
-    isExpired: alert.isExpired,
-    urgencyScore: alert.urgencyScore,
-    estimatedImpact: alert.estimatedImpact,
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: alert.farm._id, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
   res.status(200).json({
-    success: true,
-    data: { alert: alertWithCalculations },
-  })
-})
-
-// @desc    Acknowledge alert
-// @route   PUT /api/alerts/:alertId/acknowledge
-// @access  Private (Alert recipient)
-export const acknowledgeAlert = asyncHandler(async (req, res, next) => {
-  const alertId = req.params.alertId
-  const { notes } = req.body
-
-  const alert = await FarmAlert.findOne({
-    _id: alertId,
-    user: req.user.id,
-  })
-
-  if (!alert) {
-    return next(new AppError("Alert not found or access denied", 404))
-  }
-
-  if (alert.acknowledgment.acknowledgedAt) {
-    return next(new AppError("Alert already acknowledged", 400))
-  }
-
-  await alert.acknowledge(req.user.id, notes)
-
-  res.status(200).json({
-    success: true,
-    message: "Alert acknowledged successfully",
+    status: "success",
     data: { alert },
   })
 })
 
-// @desc    Resolve alert
-// @route   PUT /api/alerts/:alertId/resolve
-// @access  Private (Alert recipient)
-export const resolveAlert = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
-
-  const alertId = req.params.alertId
-  const { resolution, actionsTaken, effectiveness, cost, timeSpent, notes } = req.body
-
-  const alert = await FarmAlert.findOne({
-    _id: alertId,
-    user: req.user.id,
-  })
+// @desc    Update farm alert
+// @route   PUT /api/alerts/:alertId
+// @access  Private
+export const updateFarmAlert = asyncHandler(async (req, res) => {
+  const alert = await FarmAlert.findById(req.params.alertId)
 
   if (!alert) {
-    return next(new AppError("Alert not found or access denied", 404))
+    throw new AppError("Alert not found", 404)
   }
 
-  if (alert.status === "resolved") {
-    return next(new AppError("Alert already resolved", 400))
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: alert.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
-  const resolutionData = {
-    resolution,
-    actionsTaken: actionsTaken || [],
-    effectiveness: effectiveness ? Number.parseInt(effectiveness) : undefined,
-    cost: cost ? Number.parseFloat(cost) : undefined,
-    timeSpent: timeSpent ? Number.parseInt(timeSpent) : undefined,
-    notes,
-  }
+  Object.assign(alert, req.body)
+  alert.lastUpdated = new Date()
 
-  await alert.resolve(req.user.id, resolutionData)
+  await alert.save()
+  await alert.populate("createdBy", "firstName lastName")
 
   res.status(200).json({
-    success: true,
+    status: "success",
+    data: { alert },
+  })
+})
+
+// @desc    Resolve farm alert
+// @route   PUT /api/alerts/:alertId/resolve
+// @access  Private
+export const resolveFarmAlert = asyncHandler(async (req, res) => {
+  const { resolution, notes } = req.body
+  const alert = await FarmAlert.findById(req.params.alertId)
+
+  if (!alert) {
+    throw new AppError("Alert not found", 404)
+  }
+
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: alert.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
+  }
+
+  alert.resolved = true
+  alert.resolvedAt = new Date()
+  alert.resolvedBy = req.user._id
+  alert.resolution = resolution
+  alert.resolutionNotes = notes
+
+  await alert.save()
+  await alert.populate(["createdBy", "resolvedBy"], "firstName lastName")
+
+  res.status(200).json({
+    status: "success",
     message: "Alert resolved successfully",
     data: { alert },
   })
 })
 
-// @desc    Escalate alert
-// @route   PUT /api/alerts/:alertId/escalate
-// @access  Private (Alert recipient)
-export const escalateAlert = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
-
-  const alertId = req.params.alertId
-  const { escalatedTo, reason } = req.body
-
-  const alert = await FarmAlert.findOne({
-    _id: alertId,
-    user: req.user.id,
-  })
+// @desc    Add action to alert
+// @route   POST /api/alerts/:alertId/actions
+// @access  Private
+export const addAlertAction = asyncHandler(async (req, res) => {
+  const { action, notes, status } = req.body
+  const alert = await FarmAlert.findById(req.params.alertId)
 
   if (!alert) {
-    return next(new AppError("Alert not found or access denied", 404))
+    throw new AppError("Alert not found", 404)
   }
 
-  if (alert.escalation.escalated) {
-    return next(new AppError("Alert already escalated", 400))
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: alert.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
-  await alert.escalate(req.user.id, escalatedTo, reason)
+  alert.actions.push({
+    action,
+    notes,
+    status: status || "completed",
+    performedBy: req.user._id,
+    performedAt: new Date(),
+  })
 
-  // Send notification to escalated user
-  try {
-    await notificationService.sendEscalationNotification(escalatedTo, alert)
-  } catch (error) {
-    console.error("Failed to send escalation notification:", error)
-  }
+  alert.lastUpdated = new Date()
+  await alert.save()
 
   res.status(200).json({
-    success: true,
-    message: "Alert escalated successfully",
+    status: "success",
+    message: "Action added successfully",
     data: { alert },
   })
 })
 
-// @desc    Snooze alert
-// @route   PUT /api/alerts/:alertId/snooze
-// @access  Private (Alert recipient)
-export const snoozeAlert = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
+// @desc    Get alert analytics
+// @route   GET /api/farms/:farmId/alerts/analytics
+// @access  Private
+export const getAlertAnalytics = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+  const { period = "30" } = req.query
 
-  const alertId = req.params.alertId
-  const { minutes } = req.body
-
-  const alert = await FarmAlert.findOne({
-    _id: alertId,
-    user: req.user.id,
-  })
-
-  if (!alert) {
-    return next(new AppError("Alert not found or access denied", 404))
-  }
-
-  await alert.snooze(Number.parseInt(minutes))
-
-  res.status(200).json({
-    success: true,
-    message: `Alert snoozed for ${minutes} minutes`,
-    data: { alert },
-  })
-})
-
-// @desc    Get critical alerts
-// @route   GET /api/farms/:farmId/alerts/critical
-// @access  Private (Farm owner or org member)
-export const getCriticalAlerts = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-
-  // Check farm access
-  const farm = await Farm.findById(farmId)
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Farm not found or access denied", 404)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
+  const periodDays = Number.parseInt(period)
+  const startDate = new Date()
+  startDate.setDate(startDate.getDate() - periodDays)
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const criticalAlerts = await FarmAlert.getCriticalAlerts(farmId)
-
-  const alertsWithCalculations = criticalAlerts.map((alert) => ({
-    ...alert.toObject(),
-    timeSinceCreation: alert.timeSinceCreation,
-    urgencyScore: alert.urgencyScore,
-    estimatedImpact: alert.estimatedImpact,
-  }))
-
-  res.status(200).json({
-    success: true,
-    data: {
-      alerts: alertsWithCalculations,
-      count: criticalAlerts.length,
-    },
-  })
-})
-
-// @desc    Get alert statistics
-// @route   GET /api/farms/:farmId/alerts/statistics
-// @access  Private (Farm owner or org member)
-export const getAlertStatistics = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-  const { period = "month" } = req.query
-
-  // Check farm access
-  const farm = await Farm.findById(farmId)
-  if (!farm) {
-    return next(new AppError("Farm not found", 404))
-  }
-
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  let startDate,
-    endDate = new Date()
-  switch (period) {
-    case "week":
-      startDate = new Date(endDate.getTime() - 7 * 24 * 60 * 60 * 1000)
-      break
-    case "month":
-      startDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1, endDate.getDate())
-      break
-    case "quarter":
-      startDate = new Date(endDate.getFullYear(), endDate.getMonth() - 3, endDate.getDate())
-      break
-    case "year":
-      startDate = new Date(endDate.getFullYear() - 1, endDate.getMonth(), endDate.getDate())
-      break
-    default:
-      startDate = new Date(endDate.getFullYear(), endDate.getMonth() - 1, endDate.getDate())
-  }
-
-  const [statistics, activeAlerts, totalAlerts] = await Promise.all([
-    FarmAlert.getAlertStatistics(farmId, startDate, endDate),
-    FarmAlert.countDocuments({
-      farm: farmId,
-      status: { $in: ["active", "acknowledged", "in_progress"] },
-      isActive: true,
-    }),
-    FarmAlert.countDocuments({
-      farm: farmId,
-      createdAt: { $gte: startDate, $lte: endDate },
-    }),
-  ])
-
-  const resolvedAlerts = await FarmAlert.countDocuments({
+  const alerts = await FarmAlert.find({
     farm: farmId,
-    status: "resolved",
-    createdAt: { $gte: startDate, $lte: endDate },
+    createdAt: { $gte: startDate },
   })
 
-  const resolutionRate = totalAlerts > 0 ? Math.round((resolvedAlerts / totalAlerts) * 100) : 0
+  // Calculate analytics
+  const totalAlerts = alerts.length
+  const resolvedAlerts = alerts.filter((a) => a.resolved).length
+  const activeAlerts = totalAlerts - resolvedAlerts
+  const resolutionRate = totalAlerts > 0 ? ((resolvedAlerts / totalAlerts) * 100).toFixed(2) : 0
+
+  // Priority breakdown
+  const priorityBreakdown = alerts.reduce((acc, alert) => {
+    if (!acc[alert.priority]) acc[alert.priority] = { total: 0, resolved: 0 }
+    acc[alert.priority].total++
+    if (alert.resolved) acc[alert.priority].resolved++
+    return acc
+  }, {})
+
+  // Type breakdown
+  const typeBreakdown = alerts.reduce((acc, alert) => {
+    if (!acc[alert.type]) acc[alert.type] = { total: 0, resolved: 0 }
+    acc[alert.type].total++
+    if (alert.resolved) acc[alert.type].resolved++
+    return acc
+  }, {})
+
+  // Resolution time analysis
+  const resolvedAlertsWithTime = alerts.filter((a) => a.resolved && a.resolvedAt)
+  const averageResolutionTime =
+    resolvedAlertsWithTime.length > 0
+      ? resolvedAlertsWithTime.reduce((sum, alert) => {
+          const resolutionTime = new Date(alert.resolvedAt) - new Date(alert.createdAt)
+          return sum + resolutionTime
+        }, 0) /
+        resolvedAlertsWithTime.length /
+        (1000 * 60 * 60) // Convert to hours
+      : 0
+
+  // Trend analysis (daily counts)
+  const dailyTrends = []
+  for (let i = periodDays - 1; i >= 0; i--) {
+    const date = new Date()
+    date.setDate(date.getDate() - i)
+    const dayStart = new Date(date.setHours(0, 0, 0, 0))
+    const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+
+    const dayAlerts = alerts.filter((a) => new Date(a.createdAt) >= dayStart && new Date(a.createdAt) <= dayEnd)
+
+    dailyTrends.push({
+      date: dayStart.toISOString().split("T")[0],
+      total: dayAlerts.length,
+      critical: dayAlerts.filter((a) => a.priority === "critical").length,
+      high: dayAlerts.filter((a) => a.priority === "high").length,
+      resolved: dayAlerts.filter((a) => a.resolved).length,
+    })
+  }
 
   res.status(200).json({
-    success: true,
+    status: "success",
     data: {
-      period: { start: startDate, end: endDate, type: period },
       summary: {
         totalAlerts,
         activeAlerts,
         resolvedAlerts,
-        resolutionRate,
-        averageResponseTime:
-          statistics.reduce((sum, stat) => sum + (stat.avgResponseTime || 0), 0) / statistics.length || 0,
-        averageResolutionTime:
-          statistics.reduce((sum, stat) => sum + (stat.avgResolutionTime || 0), 0) / statistics.length || 0,
-        totalCostImpact: statistics.reduce((sum, stat) => sum + (stat.totalCostImpact || 0), 0),
+        resolutionRate: Number.parseFloat(resolutionRate),
+        averageResolutionTime: Number.parseFloat(averageResolutionTime.toFixed(2)),
       },
-      breakdown: statistics,
+      priorityBreakdown,
+      typeBreakdown,
+      dailyTrends,
+      recommendations: [
+        ...(activeAlerts > 10 ? ["High number of active alerts - consider prioritizing resolution"] : []),
+        ...(Number.parseFloat(resolutionRate) < 70 ? ["Low resolution rate - review alert management process"] : []),
+        ...(averageResolutionTime > 24
+          ? ["High average resolution time - consider improving response procedures"]
+          : []),
+        ...(alerts.filter((a) => a.priority === "critical" && !a.resolved).length > 0
+          ? [
+              `${alerts.filter((a) => a.priority === "critical" && !a.resolved).length} critical alerts need immediate attention`,
+            ]
+          : []),
+      ],
     },
   })
 })
 
-// @desc    Dismiss alert
-// @route   PUT /api/alerts/:alertId/dismiss
-// @access  Private (Alert recipient)
-export const dismissAlert = asyncHandler(async (req, res, next) => {
-  const alertId = req.params.alertId
-  const { reason } = req.body
-
-  const alert = await FarmAlert.findOne({
-    _id: alertId,
-    user: req.user.id,
-  })
+// @desc    Delete farm alert
+// @route   DELETE /api/alerts/:alertId
+// @access  Private
+export const deleteFarmAlert = asyncHandler(async (req, res) => {
+  const alert = await FarmAlert.findById(req.params.alertId)
 
   if (!alert) {
-    return next(new AppError("Alert not found or access denied", 404))
+    throw new AppError("Alert not found", 404)
   }
 
-  alert.status = "dismissed"
-  alert.resolution = {
-    resolvedAt: new Date(),
-    resolvedBy: req.user.id,
-    resolution: "dismissed",
-    notes: reason || "Alert dismissed by user",
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: alert.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
-  await alert.save()
+  await alert.deleteOne()
 
   res.status(200).json({
-    success: true,
-    message: "Alert dismissed successfully",
-    data: { alert },
+    status: "success",
+    message: "Alert deleted successfully",
   })
 })
-
-export default {
-  createFarmAlert,
-  getFarmAlerts,
-  getAlertDetails,
-  acknowledgeAlert,
-  resolveAlert,
-  escalateAlert,
-  snoozeAlert,
-  getCriticalAlerts,
-  getAlertStatistics,
-  dismissAlert,
-}

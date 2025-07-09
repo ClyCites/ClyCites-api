@@ -1,6 +1,6 @@
 import express from "express"
 import { body, param, query } from "express-validator"
-import farmInputController from "../controllers/farmInputController.js"
+import farmAlertController from "../controllers/farmAlertController.js"
 import { protect } from "../middlewares/authMiddleware.js"
 
 const router = express.Router({ mergeParams: true })
@@ -8,84 +8,98 @@ const router = express.Router({ mergeParams: true })
 // All routes are protected
 router.use(protect)
 
-// Farm input routes
+// Farm alert routes
 router
   .route("/")
   .post(
     [
-      body("inputType")
-        .isIn([
-          "seeds",
-          "fertilizer",
-          "pesticide",
-          "herbicide",
-          "fungicide",
-          "feed",
-          "medicine",
-          "fuel",
-          "equipment",
-          "labor",
-          "water",
-          "electricity",
-          "other",
-        ])
-        .withMessage("Invalid input type"),
-      body("inputName").notEmpty().withMessage("Input name is required"),
-      body("purchaseInfo.date").isISO8601().withMessage("Valid purchase date is required"),
-      body("purchaseInfo.quantity").isNumeric().withMessage("Quantity must be a number"),
-      body("purchaseInfo.unitCost").isNumeric().withMessage("Unit cost must be a number"),
-      body("purchaseInfo.totalCost").isNumeric().withMessage("Total cost must be a number"),
+      body("alertType").notEmpty().withMessage("Alert type is required"),
+      body("severity").isIn(["info", "low", "medium", "high", "critical", "emergency"]).withMessage("Invalid severity"),
+      body("title").notEmpty().withMessage("Title is required"),
+      body("message").notEmpty().withMessage("Message is required"),
     ],
-    farmInputController.createFarmInput,
+    farmAlertController.createFarmAlert,
   )
   .get(
     [
       query("page").optional().isInt({ min: 1 }).withMessage("Page must be a positive integer"),
       query("limit").optional().isInt({ min: 1, max: 100 }).withMessage("Limit must be between 1 and 100"),
+      query("severity")
+        .optional()
+        .isIn(["info", "low", "medium", "high", "critical", "emergency"])
+        .withMessage("Invalid severity"),
+      query("status")
+        .optional()
+        .isIn(["active", "acknowledged", "in_progress", "resolved", "dismissed", "expired"])
+        .withMessage("Invalid status"),
     ],
-    farmInputController.getFarmInputs,
+    farmAlertController.getFarmAlerts,
   )
 
-// Cost analysis route
+// Critical alerts route
+router.get("/critical", farmAlertController.getCriticalAlerts)
+
+// Alert statistics route
 router.get(
-  "/cost-analysis",
-  [
-    query("period").optional().isIn(["week", "month", "quarter", "year"]).withMessage("Invalid period"),
-    query("startDate").optional().isISO8601().withMessage("Invalid start date"),
-    query("endDate").optional().isISO8601().withMessage("Invalid end date"),
-  ],
-  farmInputController.getCostAnalysis,
+  "/statistics",
+  [query("period").optional().isIn(["week", "month", "quarter", "year"]).withMessage("Invalid period")],
+  farmAlertController.getAlertStatistics,
 )
 
-// Low stock alerts route
-router.get("/low-stock", farmInputController.getLowStockAlerts)
+// Individual alert routes (moved to separate router to avoid conflicts)
+const alertRouter = express.Router()
+alertRouter.use(protect)
 
-// Individual input routes
-router
-  .route("/:inputId")
-  .get([param("inputId").isMongoId().withMessage("Invalid input ID")], farmInputController.getInputDetails)
-  .put([param("inputId").isMongoId().withMessage("Invalid input ID")], farmInputController.updateFarmInput)
+alertRouter
+  .route("/:alertId")
+  .get([param("alertId").isMongoId().withMessage("Invalid alert ID")], farmAlertController.getAlertDetails)
 
-// Input usage routes
-router.post(
-  "/:inputId/usage",
+// Alert action routes
+alertRouter.put(
+  "/:alertId/acknowledge",
   [
-    param("inputId").isMongoId().withMessage("Invalid input ID"),
-    body("quantity").isNumeric().withMessage("Quantity must be a number"),
-    body("purpose").optional().isString().withMessage("Purpose must be a string"),
+    param("alertId").isMongoId().withMessage("Invalid alert ID"),
+    body("notes").optional().isString().withMessage("Notes must be a string"),
   ],
-  farmInputController.addInputUsage,
+  farmAlertController.acknowledgeAlert,
 )
 
-// Stock update routes
-router.put(
-  "/:inputId/stock",
+alertRouter.put(
+  "/:alertId/resolve",
   [
-    param("inputId").isMongoId().withMessage("Invalid input ID"),
-    body("newStock").isNumeric().withMessage("New stock must be a number"),
+    param("alertId").isMongoId().withMessage("Invalid alert ID"),
+    body("resolution").notEmpty().withMessage("Resolution is required"),
+    body("effectiveness").optional().isInt({ min: 1, max: 5 }).withMessage("Effectiveness must be between 1 and 5"),
+  ],
+  farmAlertController.resolveAlert,
+)
+
+alertRouter.put(
+  "/:alertId/escalate",
+  [
+    param("alertId").isMongoId().withMessage("Invalid alert ID"),
+    body("escalatedTo").isMongoId().withMessage("Valid user ID is required"),
+    body("reason").notEmpty().withMessage("Escalation reason is required"),
+  ],
+  farmAlertController.escalateAlert,
+)
+
+alertRouter.put(
+  "/:alertId/snooze",
+  [
+    param("alertId").isMongoId().withMessage("Invalid alert ID"),
+    body("minutes").isInt({ min: 1, max: 1440 }).withMessage("Minutes must be between 1 and 1440"),
+  ],
+  farmAlertController.snoozeAlert,
+)
+
+alertRouter.put(
+  "/:alertId/dismiss",
+  [
+    param("alertId").isMongoId().withMessage("Invalid alert ID"),
     body("reason").optional().isString().withMessage("Reason must be a string"),
   ],
-  farmInputController.updateStockLevel,
+  farmAlertController.dismissAlert,
 )
 
-export default router
+export { router as farmAlertRoutes, alertRouter }
