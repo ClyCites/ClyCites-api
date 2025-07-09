@@ -32,7 +32,6 @@ import livestockRoutes from "./routes/livestockRoutes.js"
 import aiStatusRoutes from "./routes/aiStatusRoutes.js"
 import weatherAlertRoutes from "./routes/weatherAlertRoutes.js"
 
-
 import farmInputRoutes from "./routes/farmInputRoutes.js"
 import farmWorkerRoutes from "./routes/farmWorkerRoutes.js"
 import farmAlertRoutes from "./routes/farmAlertRoutes.js"
@@ -399,6 +398,7 @@ app.use("/api", farmInputRoutes)
 app.use("/api", farmWorkerRoutes)
 app.use("/api", farmAlertRoutes)
 app.use("/api", smartAssistantRoutes)
+
 
 app.get("/api/status", (req, res) => {
   const aiConfigured = !!process.env.OPENAI_API_KEY

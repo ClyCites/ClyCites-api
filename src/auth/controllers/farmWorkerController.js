@@ -1,528 +1,364 @@
-import { validationResult } from "express-validator"
+import asyncHandler from "../utils/asyncHandler.js"
 import FarmWorker from "../models/farmWorkerModel.js"
 import Farm from "../models/farmModel.js"
-import OrganizationMember from "../models/organizationMemberModel.js"
-import DailyTask from "../models/dailyTaskModel.js"
-import { asyncHandler } from "../utils/asyncHandler.js"
 import { AppError } from "../utils/appError.js"
 
-// @desc    Create farm worker
-// @route   POST /api/farms/:farmId/workers
-// @access  Private (Farm owner or org member)
-export const createFarmWorker = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
-
-  const farmId = req.params.farmId
-  const { personalInfo, employment, skills, healthSafety, notes, metadata } = req.body
-
-  // Check if farm exists and user has access
-  const farm = await Farm.findById(farmId)
-  if (!farm) {
-    return next(new AppError("Farm not found", 404))
-  }
-
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  // Generate employee ID if not provided
-  if (!employment.employeeId) {
-    const workerCount = await FarmWorker.countDocuments({ farm: farmId })
-    employment.employeeId = `${farm.name.substring(0, 3).toUpperCase()}${String(workerCount + 1).padStart(3, "0")}`
-  }
-
-  const worker = await FarmWorker.create({
-    farm: farmId,
-    personalInfo,
-    employment,
-    skills: skills || [],
-    healthSafety: healthSafety || {},
-    notes,
-    metadata: metadata || {},
-  })
-
-  res.status(201).json({
-    success: true,
-    message: "Farm worker created successfully",
-    data: { worker },
-  })
-})
-
-// @desc    Get farm workers
+// @desc    Get all farm workers
 // @route   GET /api/farms/:farmId/workers
-// @access  Private (Farm owner or org member)
-export const getFarmWorkers = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-  const { position, status = "active", page = 1, limit = 20 } = req.query
+// @access  Private
+export const getFarmWorkers = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+  const { status, department, skill } = req.query
 
-  // Check farm access
-  const farm = await Farm.findById(farmId)
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Farm not found or access denied", 404)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
-  })
+  const query = { farm: farmId }
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
+  // Apply filters
+  if (status) query.status = status
+  if (department) query.department = department
+  if (skill) query.skills = { $in: [skill] }
 
-  const skip = (Number.parseInt(page) - 1) * Number.parseInt(limit)
-  const query = { farm: farmId, status }
+  const workers = await FarmWorker.find(query).populate("supervisor", "firstName lastName").sort({ createdAt: -1 })
 
-  if (position) {
-    query["employment.position"] = position
-  }
-
-  const workers = await FarmWorker.find(query).sort({ createdAt: -1 }).skip(skip).limit(Number.parseInt(limit))
-
-  const total = await FarmWorker.countDocuments(query)
-
-  // Add calculated fields
-  const workersWithCalculations = workers.map((worker) => ({
-    ...worker.toObject(),
-    fullName: worker.fullName,
-    age: worker.age,
-    yearsOfService: worker.yearsOfService,
-    currentMonthAttendance: worker.currentMonthAttendance,
-    activeTasks: worker.activeTasks.length,
-    monthlyTasksCompleted: worker.monthlyTasksCompleted,
-  }))
+  // Calculate summary statistics
+  const activeWorkers = workers.filter((worker) => worker.status === "active").length
+  const totalSalary = workers.reduce((sum, worker) => sum + worker.salary, 0)
+  const avgPerformance =
+    workers.length > 0 ? workers.reduce((sum, worker) => sum + worker.performanceRating, 0) / workers.length : 0
 
   res.status(200).json({
-    success: true,
+    status: "success",
+    results: workers.length,
     data: {
-      workers: workersWithCalculations,
-      pagination: {
-        page: Number.parseInt(page),
-        limit: Number.parseInt(limit),
-        total,
-        pages: Math.ceil(total / Number.parseInt(limit)),
+      workers,
+      summary: {
+        totalWorkers: workers.length,
+        activeWorkers,
+        totalSalary,
+        averagePerformance: avgPerformance.toFixed(2),
       },
     },
   })
 })
 
-// @desc    Get worker details
-// @route   GET /api/workers/:workerId
-// @access  Private (Farm owner or org member)
-export const getWorkerDetails = asyncHandler(async (req, res, next) => {
-  const workerId = req.params.workerId
+// @desc    Add new farm worker
+// @route   POST /api/farms/:farmId/workers
+// @access  Private
+export const addFarmWorker = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
 
-  const worker = await FarmWorker.findById(workerId)
-    .populate("farm", "name owner organization")
-    .populate("tasks.task", "title category priority status")
-    .populate("performance.reviews.reviewer", "firstName lastName")
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Farm not found or access denied", 404)
+  }
+
+  const workerData = {
+    ...req.body,
+    farm: farmId,
+    addedBy: req.user._id,
+  }
+
+  const worker = await FarmWorker.create(workerData)
+  await worker.populate("supervisor", "firstName lastName")
+
+  res.status(201).json({
+    status: "success",
+    data: { worker },
+  })
+})
+
+// @desc    Get single farm worker
+// @route   GET /api/workers/:workerId
+// @access  Private
+export const getFarmWorker = asyncHandler(async (req, res) => {
+  const worker = await FarmWorker.findById(req.params.workerId)
+    .populate("farm", "name")
+    .populate("supervisor", "firstName lastName email")
+    .populate("addedBy", "firstName lastName")
 
   if (!worker) {
-    return next(new AppError("Worker not found", 404))
+    throw new AppError("Worker not found", 404)
   }
 
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const workerWithCalculations = {
-    ...worker.toObject(),
-    fullName: worker.fullName,
-    age: worker.age,
-    yearsOfService: worker.yearsOfService,
-    currentMonthAttendance: worker.currentMonthAttendance,
-    activeTasks: worker.activeTasks,
-    monthlyTasksCompleted: worker.monthlyTasksCompleted,
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: worker.farm._id, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
   res.status(200).json({
-    success: true,
-    data: { worker: workerWithCalculations },
+    status: "success",
+    data: { worker },
   })
 })
 
 // @desc    Update farm worker
 // @route   PUT /api/workers/:workerId
-// @access  Private (Farm owner or org member)
-export const updateFarmWorker = asyncHandler(async (req, res, next) => {
-  const workerId = req.params.workerId
+// @access  Private
+export const updateFarmWorker = asyncHandler(async (req, res) => {
+  const worker = await FarmWorker.findById(req.params.workerId)
 
-  const worker = await FarmWorker.findById(workerId).populate("farm")
   if (!worker) {
-    return next(new AppError("Worker not found", 404))
+    throw new AppError("Worker not found", 404)
   }
 
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: worker.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
-  const allowedFields = ["personalInfo", "employment", "skills", "healthSafety", "status", "notes", "metadata"]
+  Object.assign(worker, req.body)
+  worker.lastUpdated = new Date()
 
-  const updates = {}
-  allowedFields.forEach((field) => {
-    if (req.body[field] !== undefined) {
-      updates[field] = req.body[field]
-    }
-  })
-
-  const updatedWorker = await FarmWorker.findByIdAndUpdate(workerId, updates, {
-    new: true,
-    runValidators: true,
-  })
+  await worker.save()
+  await worker.populate("supervisor", "firstName lastName")
 
   res.status(200).json({
-    success: true,
-    message: "Worker updated successfully",
-    data: { worker: updatedWorker },
+    status: "success",
+    data: { worker },
   })
 })
 
-// @desc    Record attendance
+// @desc    Record worker attendance
 // @route   POST /api/workers/:workerId/attendance
-// @access  Private (Farm owner or org member)
-export const recordAttendance = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
+// @access  Private
+export const recordAttendance = asyncHandler(async (req, res) => {
+  const { date, status, hoursWorked, notes } = req.body
+  const worker = await FarmWorker.findById(req.params.workerId)
 
-  const workerId = req.params.workerId
-  const { date, checkIn, checkOut, status, notes } = req.body
-
-  const worker = await FarmWorker.findById(workerId).populate("farm")
   if (!worker) {
-    return next(new AppError("Worker not found", 404))
+    throw new AppError("Worker not found", 404)
   }
 
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: worker.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
+  }
+
+  // Check if attendance already exists for this date
+  const existingAttendance = worker.attendance.find((att) => att.date.toDateString() === new Date(date).toDateString())
+
+  if (existingAttendance) {
+    throw new AppError("Attendance already recorded for this date", 400)
+  }
+
+  // Record attendance
+  worker.attendance.push({
+    date: new Date(date),
+    status,
+    hoursWorked: hoursWorked || 0,
+    notes,
+    recordedBy: req.user._id,
   })
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
+  worker.lastUpdated = new Date()
+  await worker.save()
 
-  // Calculate hours worked
-  let hoursWorked = 0
-  if (checkIn && checkOut) {
-    const checkInTime = new Date(checkIn)
-    const checkOutTime = new Date(checkOut)
-    hoursWorked = (checkOutTime - checkInTime) / (1000 * 60 * 60) // Convert to hours
-  }
-
-  const attendanceData = {
-    date: new Date(date),
-    checkIn: checkIn ? new Date(checkIn) : undefined,
-    checkOut: checkOut ? new Date(checkOut) : undefined,
-    hoursWorked,
-    status: status || "present",
-    notes,
-  }
-
-  await worker.recordAttendance(attendanceData)
-
-  res.status(201).json({
-    success: true,
+  res.status(200).json({
+    status: "success",
     message: "Attendance recorded successfully",
-    data: { attendance: attendanceData },
+    data: { worker },
   })
 })
 
 // @desc    Assign task to worker
 // @route   POST /api/workers/:workerId/tasks
-// @access  Private (Farm owner or org member)
-export const assignTask = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
+// @access  Private
+export const assignTask = asyncHandler(async (req, res) => {
+  const { title, description, priority, dueDate, estimatedHours } = req.body
+  const worker = await FarmWorker.findById(req.params.workerId)
 
-  const workerId = req.params.workerId
-  const { taskId } = req.body
-
-  const worker = await FarmWorker.findById(workerId).populate("farm")
   if (!worker) {
-    return next(new AppError("Worker not found", 404))
+    throw new AppError("Worker not found", 404)
   }
 
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  // Verify task exists and belongs to the same farm
-  const task = await DailyTask.findById(taskId)
-  if (!task || task.farm.toString() !== worker.farm._id.toString()) {
-    return next(new AppError("Task not found or access denied", 404))
-  }
-
-  await worker.assignTask(taskId)
-
-  res.status(200).json({
-    success: true,
-    message: "Task assigned successfully",
-    data: {
-      worker: { id: worker._id, name: worker.fullName },
-      task: { id: task._id, title: task.title },
-    },
-  })
-})
-
-// @desc    Complete task
-// @route   PUT /api/workers/:workerId/tasks/:taskId/complete
-// @access  Private (Farm owner or org member)
-export const completeTask = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
-
-  const { workerId, taskId } = req.params
-  const { quality, feedback } = req.body
-
-  const worker = await FarmWorker.findById(workerId).populate("farm")
-  if (!worker) {
-    return next(new AppError("Worker not found", 404))
-  }
-
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  await worker.completeTask(taskId, quality, feedback)
-
-  // Update the actual task status
-  await DailyTask.findByIdAndUpdate(taskId, { status: "completed" })
-
-  res.status(200).json({
-    success: true,
-    message: "Task completed successfully",
-    data: {
-      worker: { id: worker._id, name: worker.fullName },
-      task: { id: taskId, quality, feedback },
-    },
-  })
-})
-
-// @desc    Add performance review
-// @route   POST /api/workers/:workerId/reviews
-// @access  Private (Farm owner or org member)
-export const addPerformanceReview = asyncHandler(async (req, res, next) => {
-  const errors = validationResult(req)
-  if (!errors.isEmpty()) {
-    return next(new AppError("Validation failed", 400, errors.array()))
-  }
-
-  const workerId = req.params.workerId
-  const { rating, strengths, improvements, goals, comments } = req.body
-
-  const worker = await FarmWorker.findById(workerId).populate("farm")
-  if (!worker) {
-    return next(new AppError("Worker not found", 404))
-  }
-
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  const reviewData = {
-    date: new Date(),
-    reviewer: req.user.id,
-    rating: Number.parseInt(rating),
-    strengths: strengths || [],
-    improvements: improvements || [],
-    goals: goals || [],
-    comments,
-  }
-
-  await worker.addPerformanceReview(reviewData)
-
-  res.status(201).json({
-    success: true,
-    message: "Performance review added successfully",
-    data: { review: reviewData },
-  })
-})
-
-// @desc    Get worker performance report
-// @route   GET /api/farms/:farmId/workers/performance
-// @access  Private (Farm owner or org member)
-export const getPerformanceReport = asyncHandler(async (req, res, next) => {
-  const farmId = req.params.farmId
-  const { startDate, endDate, period = "month" } = req.query
-
-  // Check farm access
-  const farm = await Farm.findById(farmId)
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: worker.farm, owner: req.user._id })
   if (!farm) {
-    return next(new AppError("Farm not found", 404))
+    throw new AppError("Access denied", 403)
   }
 
-  const isOwner = farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: farm.organization,
-    status: "active",
+  // Assign task
+  worker.tasks.push({
+    title,
+    description,
+    priority: priority || "medium",
+    status: "pending",
+    assignedDate: new Date(),
+    dueDate: dueDate ? new Date(dueDate) : null,
+    estimatedHours: estimatedHours || 0,
+    assignedBy: req.user._id,
   })
 
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
-  }
-
-  let start, end
-  if (startDate && endDate) {
-    start = new Date(startDate)
-    end = new Date(endDate)
-  } else {
-    end = new Date()
-    switch (period) {
-      case "week":
-        start = new Date(end.getTime() - 7 * 24 * 60 * 60 * 1000)
-        break
-      case "month":
-        start = new Date(end.getFullYear(), end.getMonth() - 1, end.getDate())
-        break
-      case "quarter":
-        start = new Date(end.getFullYear(), end.getMonth() - 3, end.getDate())
-        break
-      default:
-        start = new Date(end.getFullYear(), end.getMonth() - 1, end.getDate())
-    }
-  }
-
-  const performanceReport = await FarmWorker.getPerformanceReport(farmId, start, end)
-
-  // Get additional statistics
-  const [totalWorkers, activeWorkers, avgRating] = await Promise.all([
-    FarmWorker.countDocuments({ farm: farmId }),
-    FarmWorker.countDocuments({ farm: farmId, status: "active" }),
-    FarmWorker.aggregate([
-      { $match: { farm: farmId, status: "active" } },
-      { $group: { _id: null, avgRating: { $avg: "$performance.currentRating" } } },
-    ]),
-  ])
+  worker.lastUpdated = new Date()
+  await worker.save()
 
   res.status(200).json({
-    success: true,
+    status: "success",
+    message: "Task assigned successfully",
+    data: { worker },
+  })
+})
+
+// @desc    Update task status
+// @route   PUT /api/workers/:workerId/tasks/:taskId
+// @access  Private
+export const updateTaskStatus = asyncHandler(async (req, res) => {
+  const { status, actualHours, notes } = req.body
+  const worker = await FarmWorker.findById(req.params.workerId)
+
+  if (!worker) {
+    throw new AppError("Worker not found", 404)
+  }
+
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: worker.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
+  }
+
+  const task = worker.tasks.id(req.params.taskId)
+  if (!task) {
+    throw new AppError("Task not found", 404)
+  }
+
+  task.status = status
+  if (actualHours) task.actualHours = actualHours
+  if (notes) task.notes = notes
+  if (status === "completed") task.completedDate = new Date()
+
+  worker.lastUpdated = new Date()
+  await worker.save()
+
+  res.status(200).json({
+    status: "success",
+    message: "Task updated successfully",
+    data: { worker },
+  })
+})
+
+// @desc    Get worker analytics
+// @route   GET /api/farms/:farmId/workers/analytics
+// @access  Private
+export const getWorkerAnalytics = asyncHandler(async (req, res) => {
+  const { farmId } = req.params
+  const { period = "30" } = req.query
+
+  // Verify farm ownership
+  const farm = await Farm.findOne({ _id: farmId, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Farm not found or access denied", 404)
+  }
+
+  const workers = await FarmWorker.find({ farm: farmId })
+
+  // Calculate analytics
+  const totalWorkers = workers.length
+  const activeWorkers = workers.filter((w) => w.status === "active").length
+  const totalSalary = workers.reduce((sum, w) => sum + w.salary, 0)
+  const avgPerformance =
+    workers.length > 0 ? workers.reduce((sum, w) => sum + w.performanceRating, 0) / workers.length : 0
+
+  // Department breakdown
+  const departmentBreakdown = workers.reduce((acc, worker) => {
+    if (!acc[worker.department]) {
+      acc[worker.department] = { count: 0, totalSalary: 0 }
+    }
+    acc[worker.department].count++
+    acc[worker.department].totalSalary += worker.salary
+    return acc
+  }, {})
+
+  // Attendance analysis (last 30 days)
+  const thirtyDaysAgo = new Date()
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - Number.parseInt(period))
+
+  const attendanceStats = workers.map((worker) => {
+    const recentAttendance = worker.attendance.filter((att) => new Date(att.date) >= thirtyDaysAgo)
+    const totalDays = recentAttendance.length
+    const presentDays = recentAttendance.filter((att) => att.status === "present").length
+    const totalHours = recentAttendance.reduce((sum, att) => sum + att.hoursWorked, 0)
+
+    return {
+      workerId: worker._id,
+      name: `${worker.firstName} ${worker.lastName}`,
+      department: worker.department,
+      attendanceRate: totalDays > 0 ? ((presentDays / totalDays) * 100).toFixed(2) : 0,
+      totalHours,
+      averageHours: totalDays > 0 ? (totalHours / totalDays).toFixed(2) : 0,
+    }
+  })
+
+  // Task completion analysis
+  const taskStats = workers.map((worker) => {
+    const completedTasks = worker.tasks.filter((task) => task.status === "completed").length
+    const pendingTasks = worker.tasks.filter((task) => task.status === "pending").length
+    const overdueTasks = worker.tasks.filter(
+      (task) => task.status !== "completed" && task.dueDate && new Date(task.dueDate) < new Date(),
+    ).length
+
+    return {
+      workerId: worker._id,
+      name: `${worker.firstName} ${worker.lastName}`,
+      completedTasks,
+      pendingTasks,
+      overdueTasks,
+      completionRate: worker.tasks.length > 0 ? ((completedTasks / worker.tasks.length) * 100).toFixed(2) : 0,
+    }
+  })
+
+  res.status(200).json({
+    status: "success",
     data: {
-      period: { start, end, type: period },
       summary: {
         totalWorkers,
         activeWorkers,
-        averageRating: avgRating[0]?.avgRating || 0,
-        totalTasksCompleted: performanceReport.reduce((sum, worker) => sum + worker.tasksCompleted, 0),
-        averageTasksPerWorker:
-          performanceReport.length > 0
-            ? performanceReport.reduce((sum, worker) => sum + worker.tasksCompleted, 0) / performanceReport.length
-            : 0,
+        totalSalary,
+        averagePerformance: avgPerformance.toFixed(2),
+        averageSalary: totalWorkers > 0 ? (totalSalary / totalWorkers).toFixed(2) : 0,
       },
-      workers: performanceReport,
+      departmentBreakdown,
+      attendanceStats,
+      taskStats,
+      recommendations: [
+        ...(activeWorkers < totalWorkers ? [`${totalWorkers - activeWorkers} workers are inactive`] : []),
+        ...(avgPerformance < 3 ? ["Average performance is below expectations"] : []),
+        ...(attendanceStats.filter((stat) => stat.attendanceRate < 80).length > 0
+          ? [`${attendanceStats.filter((stat) => stat.attendanceRate < 80).length} workers have low attendance`]
+          : []),
+      ],
     },
   })
 })
 
-// @desc    Calculate monthly salary
-// @route   GET /api/workers/:workerId/salary/:month/:year
-// @access  Private (Farm owner or org member)
-export const calculateMonthlySalary = asyncHandler(async (req, res, next) => {
-  const { workerId, month, year } = req.params
+// @desc    Delete farm worker
+// @route   DELETE /api/workers/:workerId
+// @access  Private
+export const deleteFarmWorker = asyncHandler(async (req, res) => {
+  const worker = await FarmWorker.findById(req.params.workerId)
 
-  const worker = await FarmWorker.findById(workerId).populate("farm")
   if (!worker) {
-    return next(new AppError("Worker not found", 404))
+    throw new AppError("Worker not found", 404)
   }
 
-  // Check permissions
-  const isOwner = worker.farm.owner.toString() === req.user.id
-  const membership = await OrganizationMember.findOne({
-    user: req.user.id,
-    organization: worker.farm.organization,
-    status: "active",
-  })
-
-  if (!isOwner && !membership) {
-    return next(new AppError("Access denied", 403))
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: worker.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
   }
 
-  const salaryCalculation = worker.calculateMonthlySalary(Number.parseInt(month), Number.parseInt(year))
+  await worker.deleteOne()
 
   res.status(200).json({
-    success: true,
-    data: {
-      worker: {
-        id: worker._id,
-        name: worker.fullName,
-        position: worker.employment.position,
-      },
-      period: { month: Number.parseInt(month), year: Number.parseInt(year) },
-      salary: salaryCalculation,
-    },
+    status: "success",
+    message: "Worker deleted successfully",
   })
 })
-
-export default {
-  createFarmWorker,
-  getFarmWorkers,
-  getWorkerDetails,
-  updateFarmWorker,
-  recordAttendance,
-  assignTask,
-  completeTask,
-  addPerformanceReview,
-  getPerformanceReport,
-  calculateMonthlySalary,
-}

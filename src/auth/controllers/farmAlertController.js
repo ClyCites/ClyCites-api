@@ -31,16 +31,14 @@ export const getFarmAlerts = asyncHandler(async (req, res) => {
     .sort({ createdAt: -1 })
 
   // Calculate summary statistics
-  const activeAlerts = alerts.filter((a) => !a.resolved).length
-  const criticalAlerts = alerts.filter((a) => a.priority === "critical" && !a.resolved).length
-  const highAlerts = alerts.filter((a) => a.priority === "high" && !a.resolved).length
-
-  const typeBreakdown = alerts.reduce((acc, alert) => {
-    if (!acc[alert.type]) acc[alert.type] = { total: 0, active: 0 }
-    acc[alert.type].total++
-    if (!alert.resolved) acc[alert.type].active++
-    return acc
-  }, {})
+  const activeAlerts = alerts.filter((alert) => !alert.resolved).length
+  const criticalAlerts = alerts.filter((alert) => alert.priority === "critical" && !alert.resolved).length
+  const resolvedToday = alerts.filter((alert) => {
+    if (!alert.resolved || !alert.resolvedAt) return false
+    const today = new Date()
+    const resolvedDate = new Date(alert.resolvedAt)
+    return resolvedDate.toDateString() === today.toDateString()
+  }).length
 
   res.status(200).json({
     status: "success",
@@ -51,8 +49,7 @@ export const getFarmAlerts = asyncHandler(async (req, res) => {
         totalAlerts: alerts.length,
         activeAlerts,
         criticalAlerts,
-        highAlerts,
-        typeBreakdown,
+        resolvedToday,
       },
     },
   })
@@ -106,9 +103,8 @@ export const createFarmAlert = asyncHandler(async (req, res) => {
 export const getFarmAlert = asyncHandler(async (req, res) => {
   const alert = await FarmAlert.findById(req.params.alertId)
     .populate("farm", "name")
-    .populate("createdBy", "firstName lastName")
-    .populate("resolvedBy", "firstName lastName")
-    .populate("actions.performedBy", "firstName lastName")
+    .populate("createdBy", "firstName lastName email")
+    .populate("resolvedBy", "firstName lastName email")
 
   if (!alert) {
     throw new AppError("Alert not found", 404)
@@ -147,6 +143,7 @@ export const updateFarmAlert = asyncHandler(async (req, res) => {
 
   await alert.save()
   await alert.populate("createdBy", "firstName lastName")
+  await alert.populate("resolvedBy", "firstName lastName")
 
   res.status(200).json({
     status: "success",
@@ -155,7 +152,7 @@ export const updateFarmAlert = asyncHandler(async (req, res) => {
 })
 
 // @desc    Resolve farm alert
-// @route   PUT /api/alerts/:alertId/resolve
+// @route   POST /api/alerts/:alertId/resolve
 // @access  Private
 export const resolveFarmAlert = asyncHandler(async (req, res) => {
   const { resolution, notes } = req.body
@@ -171,14 +168,21 @@ export const resolveFarmAlert = asyncHandler(async (req, res) => {
     throw new AppError("Access denied", 403)
   }
 
+  if (alert.resolved) {
+    throw new AppError("Alert is already resolved", 400)
+  }
+
+  // Resolve alert
   alert.resolved = true
   alert.resolvedAt = new Date()
   alert.resolvedBy = req.user._id
   alert.resolution = resolution
   alert.resolutionNotes = notes
+  alert.status = "resolved"
+  alert.lastUpdated = new Date()
 
   await alert.save()
-  await alert.populate(["createdBy", "resolvedBy"], "firstName lastName")
+  await alert.populate("resolvedBy", "firstName lastName")
 
   res.status(200).json({
     status: "success",
@@ -187,11 +191,11 @@ export const resolveFarmAlert = asyncHandler(async (req, res) => {
   })
 })
 
-// @desc    Add action to alert
-// @route   POST /api/alerts/:alertId/actions
+// @desc    Escalate farm alert
+// @route   POST /api/alerts/:alertId/escalate
 // @access  Private
-export const addAlertAction = asyncHandler(async (req, res) => {
-  const { action, notes, status } = req.body
+export const escalateFarmAlert = asyncHandler(async (req, res) => {
+  const { escalationReason, newPriority } = req.body
   const alert = await FarmAlert.findById(req.params.alertId)
 
   if (!alert) {
@@ -204,12 +208,58 @@ export const addAlertAction = asyncHandler(async (req, res) => {
     throw new AppError("Access denied", 403)
   }
 
-  alert.actions.push({
-    action,
-    notes,
-    status: status || "completed",
-    performedBy: req.user._id,
-    performedAt: new Date(),
+  if (alert.resolved) {
+    throw new AppError("Cannot escalate resolved alert", 400)
+  }
+
+  // Add escalation record
+  alert.escalations.push({
+    escalatedAt: new Date(),
+    escalatedBy: req.user._id,
+    previousPriority: alert.priority,
+    newPriority: newPriority || "critical",
+    reason: escalationReason,
+  })
+
+  // Update priority if provided
+  if (newPriority) {
+    alert.priority = newPriority
+  }
+
+  alert.status = "escalated"
+  alert.lastUpdated = new Date()
+
+  await alert.save()
+
+  res.status(200).json({
+    status: "success",
+    message: "Alert escalated successfully",
+    data: { alert },
+  })
+})
+
+// @desc    Add comment to alert
+// @route   POST /api/alerts/:alertId/comments
+// @access  Private
+export const addAlertComment = asyncHandler(async (req, res) => {
+  const { comment } = req.body
+  const alert = await FarmAlert.findById(req.params.alertId)
+
+  if (!alert) {
+    throw new AppError("Alert not found", 404)
+  }
+
+  // Verify access through farm ownership
+  const farm = await Farm.findOne({ _id: alert.farm, owner: req.user._id })
+  if (!farm) {
+    throw new AppError("Access denied", 403)
+  }
+
+  // Add comment
+  alert.comments.push({
+    comment,
+    commentedBy: req.user._id,
+    commentedAt: new Date(),
   })
 
   alert.lastUpdated = new Date()
@@ -217,7 +267,7 @@ export const addAlertAction = asyncHandler(async (req, res) => {
 
   res.status(200).json({
     status: "success",
-    message: "Action added successfully",
+    message: "Comment added successfully",
     data: { alert },
   })
 })
@@ -235,67 +285,74 @@ export const getAlertAnalytics = asyncHandler(async (req, res) => {
     throw new AppError("Farm not found or access denied", 404)
   }
 
-  const periodDays = Number.parseInt(period)
-  const startDate = new Date()
-  startDate.setDate(startDate.getDate() - periodDays)
-
-  const alerts = await FarmAlert.find({
-    farm: farmId,
-    createdAt: { $gte: startDate },
-  })
+  const alerts = await FarmAlert.find({ farm: farmId })
 
   // Calculate analytics
   const totalAlerts = alerts.length
-  const resolvedAlerts = alerts.filter((a) => a.resolved).length
-  const activeAlerts = totalAlerts - resolvedAlerts
-  const resolutionRate = totalAlerts > 0 ? ((resolvedAlerts / totalAlerts) * 100).toFixed(2) : 0
+  const activeAlerts = alerts.filter((alert) => !alert.resolved).length
+  const resolvedAlerts = alerts.filter((alert) => alert.resolved).length
 
   // Priority breakdown
   const priorityBreakdown = alerts.reduce((acc, alert) => {
-    if (!acc[alert.priority]) acc[alert.priority] = { total: 0, resolved: 0 }
+    if (!acc[alert.priority]) {
+      acc[alert.priority] = { total: 0, active: 0, resolved: 0 }
+    }
     acc[alert.priority].total++
-    if (alert.resolved) acc[alert.priority].resolved++
+    if (alert.resolved) {
+      acc[alert.priority].resolved++
+    } else {
+      acc[alert.priority].active++
+    }
     return acc
   }, {})
 
   // Type breakdown
   const typeBreakdown = alerts.reduce((acc, alert) => {
-    if (!acc[alert.type]) acc[alert.type] = { total: 0, resolved: 0 }
+    if (!acc[alert.type]) {
+      acc[alert.type] = { total: 0, active: 0, resolved: 0 }
+    }
     acc[alert.type].total++
-    if (alert.resolved) acc[alert.type].resolved++
+    if (alert.resolved) {
+      acc[alert.type].resolved++
+    } else {
+      acc[alert.type].active++
+    }
     return acc
   }, {})
 
   // Resolution time analysis
-  const resolvedAlertsWithTime = alerts.filter((a) => a.resolved && a.resolvedAt)
-  const averageResolutionTime =
+  const resolvedAlertsWithTime = alerts.filter((alert) => alert.resolved && alert.resolvedAt && alert.createdAt)
+
+  const avgResolutionTime =
     resolvedAlertsWithTime.length > 0
       ? resolvedAlertsWithTime.reduce((sum, alert) => {
           const resolutionTime = new Date(alert.resolvedAt) - new Date(alert.createdAt)
           return sum + resolutionTime
-        }, 0) /
-        resolvedAlertsWithTime.length /
-        (1000 * 60 * 60) // Convert to hours
+        }, 0) / resolvedAlertsWithTime.length
       : 0
 
-  // Trend analysis (daily counts)
-  const dailyTrends = []
-  for (let i = periodDays - 1; i >= 0; i--) {
-    const date = new Date()
-    date.setDate(date.getDate() - i)
-    const dayStart = new Date(date.setHours(0, 0, 0, 0))
-    const dayEnd = new Date(date.setHours(23, 59, 59, 999))
+  // Trend analysis (last 30 days)
+  const thirtyDaysAgo = new Date()
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - Number.parseInt(period))
 
-    const dayAlerts = alerts.filter((a) => new Date(a.createdAt) >= dayStart && new Date(a.createdAt) <= dayEnd)
+  const recentAlerts = alerts.filter((alert) => new Date(alert.createdAt) >= thirtyDaysAgo)
+  const dailyTrends = {}
 
-    dailyTrends.push({
-      date: dayStart.toISOString().split("T")[0],
-      total: dayAlerts.length,
-      critical: dayAlerts.filter((a) => a.priority === "critical").length,
-      high: dayAlerts.filter((a) => a.priority === "high").length,
-      resolved: dayAlerts.filter((a) => a.resolved).length,
-    })
-  }
+  recentAlerts.forEach((alert) => {
+    const date = new Date(alert.createdAt).toDateString()
+    if (!dailyTrends[date]) {
+      dailyTrends[date] = { created: 0, resolved: 0 }
+    }
+    dailyTrends[date].created++
+
+    if (alert.resolved && new Date(alert.resolvedAt) >= thirtyDaysAgo) {
+      const resolvedDate = new Date(alert.resolvedAt).toDateString()
+      if (!dailyTrends[resolvedDate]) {
+        dailyTrends[resolvedDate] = { created: 0, resolved: 0 }
+      }
+      dailyTrends[resolvedDate].resolved++
+    }
+  })
 
   res.status(200).json({
     status: "success",
@@ -304,23 +361,18 @@ export const getAlertAnalytics = asyncHandler(async (req, res) => {
         totalAlerts,
         activeAlerts,
         resolvedAlerts,
-        resolutionRate: Number.parseFloat(resolutionRate),
-        averageResolutionTime: Number.parseFloat(averageResolutionTime.toFixed(2)),
+        resolutionRate: totalAlerts > 0 ? ((resolvedAlerts / totalAlerts) * 100).toFixed(2) : 0,
+        avgResolutionTimeHours: avgResolutionTime > 0 ? (avgResolutionTime / (1000 * 60 * 60)).toFixed(2) : 0,
       },
       priorityBreakdown,
       typeBreakdown,
       dailyTrends,
       recommendations: [
-        ...(activeAlerts > 10 ? ["High number of active alerts - consider prioritizing resolution"] : []),
-        ...(Number.parseFloat(resolutionRate) < 70 ? ["Low resolution rate - review alert management process"] : []),
-        ...(averageResolutionTime > 24
-          ? ["High average resolution time - consider improving response procedures"]
+        ...(activeAlerts > 10 ? ["High number of active alerts - consider prioritization"] : []),
+        ...(priorityBreakdown.critical?.active > 0
+          ? [`${priorityBreakdown.critical.active} critical alerts need immediate attention`]
           : []),
-        ...(alerts.filter((a) => a.priority === "critical" && !a.resolved).length > 0
-          ? [
-              `${alerts.filter((a) => a.priority === "critical" && !a.resolved).length} critical alerts need immediate attention`,
-            ]
-          : []),
+        ...(avgResolutionTime > 24 * 60 * 60 * 1000 ? ["Average resolution time exceeds 24 hours"] : []),
       ],
     },
   })

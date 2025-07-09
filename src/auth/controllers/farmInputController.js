@@ -1,7 +1,7 @@
 import asyncHandler from "../utils/asyncHandler.js"
 import FarmInput from "../models/farmInputModel.js"
 import Farm from "../models/farmModel.js"
-import AppError from "../utils/appError.js"
+import { AppError } from "../utils/appError.js"
 
 // @desc    Get all farm inputs
 // @route   GET /api/farms/:farmId/inputs
