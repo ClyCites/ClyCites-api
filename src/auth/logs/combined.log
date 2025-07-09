@@ -76260,3 +76260,165 @@
   message: 'Error 💥',
   timestamp: '2025-07-09 00:06:14'
 }
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:23:58'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:23:58'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:25:03'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:34:34'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:34:34'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:34:51'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:34:51'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:35:28'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:35:28'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:36:08'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:36:08'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:37:10'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:54:37'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:54:37'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 12:58:10'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 13:00:45'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 13:00:45'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 13:01:46'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:15:19'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:15:19'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:15:21'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:16:02'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:16:02'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:16:05'
+}
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:16:13'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:16:13'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 14:16:15'
+}
