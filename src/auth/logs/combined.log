@@ -76422,3 +76422,21 @@
   service: 'clycites-auth',
   timestamp: '2025-07-09 14:16:15'
 }
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 15:50:15'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 15:50:15'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 15:50:17'
+}

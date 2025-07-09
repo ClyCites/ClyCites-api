@@ -10,10 +10,8 @@ import { protect } from "../middlewares/authMiddleware.js"
 
 const router = express.Router({ mergeParams: true })
 
-// Protect all routes
 router.use(protect)
 
-// Routes
 router.route("/dashboard").get(param("farmId").isMongoId().withMessage("Invalid farm ID"), getFarmDashboard)
 
 router.route("/smart-actions").get(param("farmId").isMongoId().withMessage("Invalid farm ID"), getSmartActions)
