@@ -393,11 +393,12 @@ app.use("/api", dailyAssistantRoutes)
 app.use("/api", livestockRoutes)
 app.use("/api", aiStatusRoutes)
 app.use("/api", weatherAlertRoutes)
+// Farm-specific nested routes
+app.use("/api/farms/:farmId/inputs", farmInputRoutes)
+app.use("/api/farms/:farmId/workers", farmWorkerRoutes)
+app.use("/api/farms/:farmId/alerts", farmAlertRoutes)
+app.use("/api/farms/:farmId/smart-assistant", smartAssistantRoutes)
 
-app.use("/api", farmInputRoutes)
-app.use("/api", farmWorkerRoutes)
-app.use("/api", farmAlertRoutes)
-app.use("/api", smartAssistantRoutes)
 
 
 app.get("/api/status", (req, res) => {

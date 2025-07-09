@@ -1,43 +1,5 @@
 import mongoose from "mongoose"
 
-const escalationSchema = new mongoose.Schema({
-  escalatedAt: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
-  escalatedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  previousPriority: {
-    type: String,
-    required: true,
-  },
-  newPriority: {
-    type: String,
-    required: true,
-  },
-  reason: String,
-})
-
-const commentSchema = new mongoose.Schema({
-  comment: {
-    type: String,
-    required: true,
-  },
-  commentedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  commentedAt: {
-    type: Date,
-    default: Date.now,
-  },
-})
-
 const farmAlertSchema = new mongoose.Schema(
   {
     farm: {
@@ -53,80 +15,88 @@ const farmAlertSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
+      trim: true,
     },
     type: {
       type: String,
       required: true,
-      enum: ["weather", "crop", "livestock", "equipment", "financial", "security", "maintenance", "other"],
+      enum: ["weather", "crop", "livestock", "equipment", "financial", "security", "other"],
+    },
+    category: {
+      type: String,
+      required: true,
+      trim: true,
     },
     priority: {
+      type: String,
+      required: true,
+      enum: ["low", "medium", "high", "urgent"],
+      default: "medium",
+    },
+    severity: {
       type: String,
       required: true,
       enum: ["low", "medium", "high", "critical"],
       default: "medium",
     },
-    status: {
-      type: String,
-      enum: ["active", "acknowledged", "in-progress", "escalated", "resolved"],
-      default: "active",
-    },
-    severity: {
-      type: String,
-      enum: ["minor", "moderate", "major", "severe"],
-      default: "moderate",
-    },
     source: {
       type: String,
-      enum: ["system", "sensor", "manual", "weather-api", "ai-analysis"],
+      required: true,
+      enum: ["system", "manual", "sensor", "weather_api", "external"],
       default: "manual",
     },
-    location: {
+    status: {
       type: String,
-      trim: true,
-    },
-    coordinates: {
-      latitude: Number,
-      longitude: Number,
+      enum: ["active", "acknowledged", "resolved", "dismissed"],
+      default: "active",
     },
     affectedArea: {
       type: String,
-      enum: ["entire-farm", "field", "greenhouse", "barn", "storage", "equipment", "specific-location"],
+      trim: true,
     },
-    relatedEntity: {
-      entityType: {
-        type: String,
-        enum: ["crop", "livestock", "equipment", "worker", "input", "none"],
+    recommendedActions: [
+      {
+        action: String,
+        priority: {
+          type: String,
+          enum: ["low", "medium", "high", "urgent"],
+          default: "medium",
+        },
+        completed: {
+          type: Boolean,
+          default: false,
+        },
       },
-      entityId: mongoose.Schema.Types.ObjectId,
-    },
-    threshold: {
-      parameter: String,
-      value: Number,
-      unit: String,
-      condition: {
-        type: String,
-        enum: ["above", "below", "equal", "not-equal"],
+    ],
+    actionsTaken: [
+      {
+        action: {
+          type: String,
+          required: true,
+        },
+        description: String,
+        result: String,
+        takenAt: {
+          type: Date,
+          default: Date.now,
+        },
+        takenBy: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
       },
+    ],
+    assignedTo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-    currentValue: {
-      value: Number,
-      unit: String,
-      timestamp: Date,
+    acknowledgedAt: Date,
+    acknowledgedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
-    autoResolve: {
-      type: Boolean,
-      default: false,
-    },
-    autoResolveCondition: {
-      parameter: String,
-      value: Number,
-      unit: String,
-      condition: String,
-    },
-    resolved: {
-      type: Boolean,
-      default: false,
-    },
+    acknowledgmentNotes: String,
     resolvedAt: Date,
     resolvedBy: {
       type: mongoose.Schema.Types.ObjectId,
@@ -134,21 +104,32 @@ const farmAlertSchema = new mongoose.Schema(
     },
     resolution: String,
     resolutionNotes: String,
-    escalations: [escalationSchema],
-    comments: [commentSchema],
-    tags: [String],
+    expiresAt: {
+      type: Date,
+      default: () => {
+        // Default expiry: 30 days from creation
+        return new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+      },
+    },
     metadata: {
-      type: Map,
-      of: mongoose.Schema.Types.Mixed,
+      weatherData: mongoose.Schema.Types.Mixed,
+      sensorData: mongoose.Schema.Types.Mixed,
+      location: {
+        coordinates: [Number],
+        type: {
+          type: String,
+          default: "Point",
+        },
+      },
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    lastUpdated: {
-      type: Date,
-      default: Date.now,
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   {
@@ -156,78 +137,54 @@ const farmAlertSchema = new mongoose.Schema(
   },
 )
 
-// Indexes for better query performance
+// Indexes
 farmAlertSchema.index({ farm: 1, status: 1 })
 farmAlertSchema.index({ farm: 1, type: 1 })
 farmAlertSchema.index({ farm: 1, priority: 1 })
-farmAlertSchema.index({ farm: 1, resolved: 1 })
-farmAlertSchema.index({ createdAt: -1 })
-farmAlertSchema.index({ resolvedAt: 1 })
+farmAlertSchema.index({ farm: 1, severity: 1 })
+farmAlertSchema.index({ farm: 1, expiresAt: 1 })
+farmAlertSchema.index({ farm: 1, createdAt: -1 })
 
-// Virtual for alert age in hours
-farmAlertSchema.virtual("ageInHours").get(function () {
+// Virtual for time since creation
+farmAlertSchema.virtual("timeActive").get(function () {
   const now = new Date()
-  const created = new Date(this.createdAt)
-  return Math.floor((now - created) / (1000 * 60 * 60))
-})
+  const diffTime = now - this.createdAt
+  const hours = Math.floor(diffTime / (1000 * 60 * 60))
+  const days = Math.floor(hours / 24)
 
-// Virtual for resolution time in hours
-farmAlertSchema.virtual("resolutionTimeHours").get(function () {
-  if (!this.resolved || !this.resolvedAt) return null
-  const resolved = new Date(this.resolvedAt)
-  const created = new Date(this.createdAt)
-  return Math.floor((resolved - created) / (1000 * 60 * 60))
-})
-
-// Virtual for checking if alert is overdue (based on priority)
-farmAlertSchema.virtual("isOverdue").get(function () {
-  if (this.resolved) return false
-
-  const ageHours = this.ageInHours
-  const thresholds = {
-    critical: 2, // 2 hours
-    high: 8, // 8 hours
-    medium: 24, // 24 hours
-    low: 72, // 72 hours
+  if (days > 0) {
+    return `${days} day${days > 1 ? "s" : ""}`
+  } else {
+    return `${hours} hour${hours > 1 ? "s" : ""}`
   }
-
-  return ageHours > (thresholds[this.priority] || 24)
 })
 
-// Pre-save middleware to update lastUpdated
-farmAlertSchema.pre("save", function (next) {
-  this.lastUpdated = new Date()
-  next()
+// Virtual for urgency score (combination of priority and severity)
+farmAlertSchema.virtual("urgencyScore").get(function () {
+  const priorityScores = { low: 1, medium: 2, high: 3, urgent: 4 }
+  const severityScores = { low: 1, medium: 2, high: 3, critical: 4 }
+
+  return priorityScores[this.priority] + severityScores[this.severity]
 })
 
-// Static method to get active alerts count by priority
-farmAlertSchema.statics.getActiveAlertsByPriority = function (farmId) {
-  return this.aggregate([
-    { $match: { farm: farmId, resolved: false } },
-    { $group: { _id: "$priority", count: { $sum: 1 } } },
-    { $sort: { _id: 1 } },
-  ])
-}
+// Virtual for days until expiry
+farmAlertSchema.virtual("daysUntilExpiry").get(function () {
+  if (!this.expiresAt) return null
+  const today = new Date()
+  const diffTime = this.expiresAt - today
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+})
 
-// Static method to get alert trends
-farmAlertSchema.statics.getAlertTrends = function (farmId, days = 30) {
-  const startDate = new Date()
-  startDate.setDate(startDate.getDate() - days)
+// Middleware to auto-resolve expired alerts
+farmAlertSchema.pre("find", function () {
+  this.where({ expiresAt: { $gt: new Date() } })
+})
 
-  return this.aggregate([
-    { $match: { farm: farmId, createdAt: { $gte: startDate } } },
-    {
-      $group: {
-        _id: {
-          date: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
-          type: "$type",
-        },
-        count: { $sum: 1 },
-      },
-    },
-    { $sort: { "_id.date": 1 } },
-  ])
-}
+farmAlertSchema.pre("findOne", function () {
+  this.where({ expiresAt: { $gt: new Date() } })
+})
 
-const FarmAlert = mongoose.model("FarmAlert", farmAlertSchema)
-export default FarmAlert
+farmAlertSchema.set("toJSON", { virtuals: true })
+farmAlertSchema.set("toObject", { virtuals: true })
+
+export default mongoose.model("FarmAlert", farmAlertSchema)

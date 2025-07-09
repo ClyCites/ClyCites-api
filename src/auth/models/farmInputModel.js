@@ -1,28 +1,5 @@
 import mongoose from "mongoose"
 
-const usageHistorySchema = new mongoose.Schema({
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
-  amount: {
-    type: Number,
-    required: true,
-    min: 0,
-  },
-  purpose: {
-    type: String,
-    required: true,
-  },
-  notes: String,
-  recordedBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-})
-
 const farmInputSchema = new mongoose.Schema(
   {
     farm: {
@@ -38,70 +15,100 @@ const farmInputSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      enum: ["seeds", "fertilizers", "pesticides", "tools", "equipment", "feed", "medicine", "other"],
+      enum: ["seeds", "fertilizers", "pesticides", "equipment", "feed", "medicine", "other"],
     },
-    brand: {
+    type: {
       type: String,
+      required: true,
       trim: true,
     },
     supplier: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Organization",
+      name: String,
+      contact: String,
+      address: String,
     },
     purchaseDate: {
       type: Date,
       required: true,
     },
-    expiryDate: Date,
-    batchNumber: String,
+    expiryDate: {
+      type: Date,
+    },
     quantity: {
-      type: Number,
-      required: true,
-      min: 0,
+      initial: {
+        type: Number,
+        required: true,
+      },
+      current: {
+        type: Number,
+        required: true,
+      },
+      unit: {
+        type: String,
+        required: true,
+      },
     },
-    unit: {
+    cost: {
+      perUnit: {
+        type: Number,
+        required: true,
+      },
+      total: {
+        type: Number,
+        required: true,
+      },
+    },
+    storageLocation: {
       type: String,
-      required: true,
-      enum: ["kg", "g", "l", "ml", "pieces", "bags", "bottles", "boxes"],
+      trim: true,
     },
-    unitCost: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
-    totalCost: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
-    currentStock: {
-      type: Number,
-      required: true,
-      min: 0,
-    },
-    minimumStock: {
-      type: Number,
-      required: true,
-      min: 0,
-      default: 10,
+    batchNumber: {
+      type: String,
+      trim: true,
     },
     status: {
       type: String,
-      enum: ["active", "expired", "depleted", "recalled"],
-      default: "active",
+      enum: ["available", "low_stock", "depleted", "expired"],
+      default: "available",
     },
-    storageLocation: String,
-    storageConditions: String,
-    usageHistory: [usageHistorySchema],
-    notes: String,
-    addedBy: {
+    lowStockThreshold: {
+      type: Number,
+      default: 10,
+    },
+    usageHistory: [
+      {
+        date: {
+          type: Date,
+          required: true,
+        },
+        quantity: {
+          type: Number,
+          required: true,
+        },
+        purpose: {
+          type: String,
+          required: true,
+        },
+        notes: String,
+        usedBy: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          required: true,
+        },
+      },
+    ],
+    description: {
+      type: String,
+      trim: true,
+    },
+    createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    lastUpdated: {
-      type: Date,
-      default: Date.now,
+    updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
   },
   {
@@ -109,42 +116,49 @@ const farmInputSchema = new mongoose.Schema(
   },
 )
 
-// Indexes for better query performance
+// Indexes
 farmInputSchema.index({ farm: 1, category: 1 })
 farmInputSchema.index({ farm: 1, status: 1 })
-farmInputSchema.index({ expiryDate: 1 })
-farmInputSchema.index({ currentStock: 1, minimumStock: 1 })
+farmInputSchema.index({ farm: 1, expiryDate: 1 })
+farmInputSchema.index({ farm: 1, "quantity.current": 1 })
 
-// Virtual for checking if stock is low
-farmInputSchema.virtual("isLowStock").get(function () {
-  return this.currentStock < this.minimumStock
+// Middleware to update status based on quantity and expiry
+farmInputSchema.pre("save", function (next) {
+  // Check if expired
+  if (this.expiryDate && this.expiryDate < new Date()) {
+    this.status = "expired"
+  }
+  // Check if depleted
+  else if (this.quantity.current === 0) {
+    this.status = "depleted"
+  }
+  // Check if low stock
+  else if (this.quantity.current <= this.lowStockThreshold) {
+    this.status = "low_stock"
+  }
+  // Otherwise available
+  else {
+    this.status = "available"
+  }
+
+  next()
 })
 
-// Virtual for checking if expired
-farmInputSchema.virtual("isExpired").get(function () {
-  return this.expiryDate && new Date(this.expiryDate) < new Date()
+// Virtual for usage percentage
+farmInputSchema.virtual("usagePercentage").get(function () {
+  if (this.quantity.initial === 0) return 0
+  return (((this.quantity.initial - this.quantity.current) / this.quantity.initial) * 100).toFixed(2)
 })
 
 // Virtual for days until expiry
 farmInputSchema.virtual("daysUntilExpiry").get(function () {
   if (!this.expiryDate) return null
   const today = new Date()
-  const expiry = new Date(this.expiryDate)
-  const diffTime = expiry - today
+  const diffTime = this.expiryDate - today
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
 })
 
-// Pre-save middleware to update status based on conditions
-farmInputSchema.pre("save", function (next) {
-  if (this.currentStock === 0) {
-    this.status = "depleted"
-  } else if (this.expiryDate && new Date(this.expiryDate) < new Date()) {
-    this.status = "expired"
-  } else if (this.status === "depleted" || this.status === "expired") {
-    this.status = "active"
-  }
-  next()
-})
+farmInputSchema.set("toJSON", { virtuals: true })
+farmInputSchema.set("toObject", { virtuals: true })
 
-const FarmInput = mongoose.model("FarmInput", farmInputSchema)
-export default FarmInput
+export default mongoose.model("FarmInput", farmInputSchema)
