@@ -76440,3 +76440,1671 @@
   service: 'clycites-auth',
   timestamp: '2025-07-09 15:50:17'
 }
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 15:51:03'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 15:51:03'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-09 15:51:05'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:28:16'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:28:18'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:28:19'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:28:19'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:31:40'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:31:44'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:32:41'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:32:42'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:34:29'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:34:29'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:35:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:35:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:36:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:36:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:43:07'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "user" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/user',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:43:07'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:43:07'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:43:08'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:45:34'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:45:34'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:45:34'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:45:35'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:00'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:01'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:01'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:02'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:57'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:58'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:58'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:58'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:46:59'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"',
+    stack: 'CastError: Cast to ObjectId failed for value "farms" (type string) at path "_id" for model "Application"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/applicationController.js:76:23',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/farms?page=1&limit=10',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: { page: '1', limit: '10' },
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:47:03'
+}
+{
+  service: 'clycites-auth',
+  error: {
+    message: 'Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"',
+    stack: 'CastError: Cast to ObjectId failed for value "my-organizations" (type string) at path "_id" for model "Organization"\n' +
+      '    at SchemaObjectId.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schema\\objectId.js:250:11)\n' +
+      '    at SchemaType.applySetters (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1236:12)\n' +
+      '    at SchemaType.castForQuery (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\schemaType.js:1653:17)\n' +
+      '    at cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\cast.js:379:32)\n' +
+      '    at Query.cast (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4868:12)\n' +
+      '    at Query._castConditions (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2265:10)\n' +
+      '    at model.Query._findOne (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:2589:8)\n' +
+      '    at model.Query.exec (E:\\Projects\\ClyCites-api\\src\\auth\\node_modules\\mongoose\\lib\\query.js:4412:80)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n' +
+      '    at async file:///E:/Projects/ClyCites-api/src/auth/controllers/organizationController.js:155:24',
+    statusCode: 500,
+    isOperational: undefined,
+    validationErrors: undefined
+  },
+  request: {
+    method: 'GET',
+    url: '/api/organizations/my-organizations',
+    headers: {
+      host: 'localhost:5000',
+      connection: 'keep-alive',
+      'sec-ch-ua-platform': '"Windows"',
+      authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmIxYTM3MTA1NmFkM2ZhZTNkYTA0ZiIsImlhdCI6MTc1MjAwMjI2NCwiZXhwIjoxNzUyNjA3MDY0fQ.mAiYbOObNRYamKJchVw9Ql3t3L_LccrUy_JJ4hy_wgA',
+      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+      'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+      'content-type': 'application/json',
+      'sec-ch-ua-mobile': '?0',
+      accept: '*/*',
+      origin: 'http://localhost:3000',
+      'sec-fetch-site': 'same-site',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-dest': 'empty',
+      referer: 'http://localhost:3000/',
+      'accept-encoding': 'gzip, deflate, br, zstd',
+      'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8'
+    },
+    body: {},
+    cookies: [Object: null prototype] {},
+    query: {},
+    params: {},
+    user: '686b1a371056ad3fae3da04f'
+  },
+  level: 'error',
+  message: 'Error 💥',
+  timestamp: '2025-07-09 18:47:11'
+}
