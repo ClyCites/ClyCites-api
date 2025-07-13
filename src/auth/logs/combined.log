@@ -78108,3 +78108,21 @@
   message: 'Error 💥',
   timestamp: '2025-07-09 18:47:11'
 }
+{
+  message: '🔍 Checking OpenAI API Key...',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-11 00:40:28'
+}
+{
+  message: '✅ OpenAI API key configured successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-11 00:40:28'
+}
+{
+  message: 'Email configuration verified successfully',
+  level: 'info',
+  service: 'clycites-auth',
+  timestamp: '2025-07-11 00:40:33'
+}
