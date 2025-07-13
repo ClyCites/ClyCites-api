@@ -32,6 +32,11 @@ import livestockRoutes from "./routes/livestockRoutes.js"
 import aiStatusRoutes from "./routes/aiStatusRoutes.js"
 import weatherAlertRoutes from "./routes/weatherAlertRoutes.js"
 
+import farmInputRoutes from "./routes/farmInputRoutes.js"
+import farmWorkerRoutes from "./routes/farmWorkerRoutes.js"
+import farmAlertRoutes from "./routes/farmAlertRoutes.js"
+import smartAssistantRoutes from "./routes/smartAssistantRoutes.js"
+
 import { connectDB } from "./config/db.js"
 import { configurePassport } from "./config/passport.js"
 import { errorHandler, notFound } from "./middlewares/errorMiddleware.js"
@@ -388,6 +393,12 @@ app.use("/api", dailyAssistantRoutes)
 app.use("/api", livestockRoutes)
 app.use("/api", aiStatusRoutes)
 app.use("/api", weatherAlertRoutes)
+// Farm-specific nested routes
+app.use("/api/farms/:farmId/inputs", farmInputRoutes)
+app.use("/api/farms/:farmId/workers", farmWorkerRoutes)
+app.use("/api/farms/:farmId/alerts", farmAlertRoutes)
+app.use("/api/farms/:farmId/smart-assistant", smartAssistantRoutes)
+
 
 app.get("/api/status", (req, res) => {
   const aiConfigured = !!process.env.OPENAI_API_KEY
